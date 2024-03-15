@@ -1,13 +1,31 @@
-import React from "react";
 import { RiRobot2Fill } from "react-icons/ri";
 import { IoSend } from "react-icons/io5";
-import Chat from "../ui/Chat";
+import Chat from "../common/Chat";
 import TextareaAutosize from "react-textarea-autosize";
+import { useState } from "react";
 
 const MessageBox = () => {
+  const [botMessage, setBotMessage] = useState("");
+  const [userMessage, setUserMessage] = useState("");
+
+  const sendMessage = async (event, message) => {
+    try {
+      event.preventDefault();
+      const response = await fetch(
+        `http://localhost:3001/bot?message=${encodeURIComponent(message)}`
+      );
+      const data = await response.text();
+      console.log("data: ", data);
+      setBotMessage(data.toString());
+      setUserMessage("");
+    } catch (error) {
+      console.log("failed: ", error);
+    }
+  };
+
   return (
     <div
-      id="message-ui"
+      id="message-box"
       className="fixed right-10 bottom-24 sm:right-20 lg:right-28 lg:bottom-28 w-[400px] sm:w-[500px] h-[600px] sm:h-[700px] bg-white rounded-lg z-[100]"
     >
       <header
@@ -21,35 +39,30 @@ const MessageBox = () => {
           city of bacoor - chatbot
         </h3>
       </header>
-      <section id="messages" className="px-4 mt-[100px]">
-        <div className="ml-[150px]">
-          <Chat
-            message={"So you want to know my 100 reasons why I love Navia?"}
-          />
-        </div>
-        <div className="flex items-center gap-2">
-          <span id="chatbot-icon" className="text-2xl">
-            <RiRobot2Fill />
-          </span>
-          <Chat message={"YES"} />
-        </div>
+      <section id="messages" className="px-4 w-full mt-[100px]">
+        {userMessage && <Chat message={userMessage} />}
+        {botMessage && <Chat isBot={true} message={botMessage} />}
       </section>
       <form
         action=""
         method=""
-        className="w-full absolute bottom-0 flex justify-between items-center gap-4 px-6 py-4"
+        onSubmit={(e) => sendMessage(e, userMessage)}
+        className="w-full absolute bottom-0 flex justify-between items-center gap-2 px-4 py-4"
       >
         <TextareaAutosize
           name="chat"
           id="chat"
-          className="px-4 py-3 w-full rounded-3xl border border-gray-400 focus:outline-1 focus:outline-gray-500"
+          value={userMessage}
+          onChange={(e) => {
+            setUserMessage(e.target.value);
+          }}
+          className="px-4 py-3 w-full rounded-3xl border border-gray-400 outline-1 focus:outline-blue-500"
           placeholder="Type here..."
         />
         <button
-          onClick={(e) => e.preventDefault()}
           type="submit"
-          id="send-chat"
-          className="w-[50px] h-[50px] flex items-center justify-center text-2xl"
+          disabled={!userMessage}
+          className="p-4 rounded-full flex items-center justify-center text-2xl hover:bg-gray-200 cursor-pointer"
         >
           <IoSend />
         </button>
