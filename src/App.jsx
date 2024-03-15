@@ -18,7 +18,7 @@ const App = () => {
   return (
     <>
       <main className="flex flex-col items-center px-4">
-        <div ref={chatHead} id="chat-head-wrapper">
+        <div ref={chatHead} id="chathead-wrapper">
           <ChatHead state={isChatActive} setState={setIsChatActive} />
           {isChatActive && <MessageBox />}
         </div>
