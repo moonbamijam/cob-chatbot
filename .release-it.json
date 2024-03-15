@@ -1,0 +1,21 @@
+{
+  "git": {
+    "commitMessage": "chore(build): release v${version}",
+    "requireBranch": "main"
+  },
+  "github": {
+    "release": true,
+    "releaseName": "v${version}",
+    "tokenRef": "COB_CHATBOT_TOKEN"
+  },
+  "npm": {
+    "publish": false
+  },
+  "plugins": {
+    "@release-it/conventional-changelog": {
+      "infile": "CHANGELOG.md",
+      "header": "# What's New",
+      "preset": "angular"
+    }
+  }
+}
