@@ -2,13 +2,23 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  :root {
+    --opaque-black: 40 40 40;
+  }
+}
+
 *,
 ::before,
 ::after {
-  @apply box-border p-0 m-0 transition-all;
+  @apply font-raleway box-border p-0 m-0;
 }
 
 /* common */
+body {
+  @apply bg-city-hall bg-no-repeat bg-cover;
+}
+
 textarea {
   resize: none;
   scrollbar-width: none;
