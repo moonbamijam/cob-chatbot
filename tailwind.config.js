@@ -4,16 +4,32 @@ export default {
   theme: {
     extend: {
       colors: {
-        dummyprimary: "#A9B5FE",
-        dummysecondary: "#E7F1FE",
-        dummyhighlight: "#286FFD",
-        dummyextra: "#85BBFB",
+        primary: "#A9B5FE",
+        secondary: "#E7F1FE",
+        highlight: "#286FFD",
+        extra: "#85BBFB",
+        opaqueBlack: "rgb(var(--opaque-black) / 0.3)",
       },
       container: {
         center: true,
       },
       screens: {
         xs: "475px",
+      },
+      backgroundImage: {
+        "city-hall": "url(/src/assets/bg.jpg)",
+      },
+      fontFamily: {
+        raleway: [
+          "Raleway",
+          "ui-sans-serif",
+          "system-ui",
+          "sans-serif",
+          "Apple Color Emoji",
+          "Segoe UI Emoji",
+          "Segoe UI Symbol",
+          "Noto Color Emoji",
+        ],
       },
     },
   },
