@@ -13,7 +13,7 @@ const ChatHead = ({ state, setState }) => {
       <button
         onClick={toggleChat}
         id=""
-        className="fixed right-8 bottom-8 lg:right-12 lg:bottom-12 rounded-full p-3 text-3xl lg:text-4xl bg-dummyhighlight text-white z-[100] "
+        className="fixed right-8 bottom-8 lg:right-12 lg:bottom-12 rounded-full p-3 text-3xl lg:text-4xl bg-highlight text-white z-[100] "
       >
         {state ? (
           <IoClose />
