@@ -164,7 +164,7 @@ const DropdownAnchor = ({ href, text }) => {
   return (
     <a
       href={href}
-      className="capitalize py-3 text-xs font-semibold hover:text-red-500"
+      className="capitalize py-3 text-xs font-bold hover:text-[#ff0202]"
     >
       {text}
     </a>
