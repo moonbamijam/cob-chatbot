@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import ChatHead from "./components/bot/ChatHead";
 import MessageBox from "./components/bot/MessageBox";
-import DummyPage from "./components/DummyPage";
+import Page from "./components/Page";
 
 const App = () => {
   const [isChatActive, setIsChatActive] = useState(false);
@@ -10,19 +10,19 @@ const App = () => {
 
   useEffect(() => {
     const handleChatHead = (event) => {
-      if (!chatHead?.current?.contains(event.target)) setIsChatActive(false);
+      if (!chatHead.current.contains(event.target)) setIsChatActive(false);
     };
     document.addEventListener("mousedown", handleChatHead);
   }, [chatHead]);
 
   return (
     <>
-      <main className="flex flex-col items-center px-4">
+      <main className="flex flex-col">
         <div ref={chatHead} id="chathead-wrapper">
           <ChatHead state={isChatActive} setState={setIsChatActive} />
           {isChatActive && <MessageBox />}
         </div>
-        <DummyPage />
+        <Page />
         {isChatActive && (
           <div
             id="screen-dimmer"
