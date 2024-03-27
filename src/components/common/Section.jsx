@@ -1,8 +1,8 @@
-import React from "react";
-
-const Section = ({ children }) => {
+const Section = ({ children, className }) => {
   return (
-    <section className="container relative py-8 bg-white shadow shadow-gray-400 rounded-md">
+    <section
+      className={`container w-[1021px] relative flex flex-col ${className}`}
+    >
       {children}
     </section>
   );
