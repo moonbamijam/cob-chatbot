@@ -16,7 +16,7 @@
 
 /* common */
 body {
-  @apply bg-city-hall bg-no-repeat bg-cover;
+  @apply bg-city-hall bg-no-repeat bg-cover bg-fixed;
 }
 
 textarea {
