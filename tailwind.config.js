@@ -9,6 +9,7 @@ export default {
         highlight: "#286FFD",
         extra: "#85BBFB",
         opaqueBlack: "rgb(var(--opaque-black) / 0.3)",
+        footerOpaqueBlack: "rgb(var(--opaque-black) / 0.8)",
       },
       container: {
         center: true,
