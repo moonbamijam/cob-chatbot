@@ -5,14 +5,17 @@ import FbPage from "../../assets/fb-page.png";
 const Footer = () => {
   return (
     <footer className="flex flex-col">
-      <div className="flex px-10">
-        <div id="fb-page" className="w-[340px] flex flex-col mb-5">
+      <div className="flex gap-12 px-10 mt-16">
+        <div id="fb-page" className="max-w-[340px] flex flex-col mb-5">
           <HighlightTitle text={"LIKE US ON FACEBOOK:"} />
-          <a href="https://www.facebook.com/CityGovtBacoor/?ref=embed_page">
+          <a
+            href="https://www.facebook.com/CityGovtBacoor/?ref=embed_page"
+            className="w-[200px] inline"
+          >
             <img src={FbPage} alt="" width={200} height={500} />
           </a>
         </div>
-        <div id="hotlines" className="w-[340px] flex flex-col">
+        <div id="hotlines" className="max-w-[340px] flex flex-col">
           <div className="mb-5">
             <HighlightTitle text={"EMERGENCY HOTLINES:"} />
           </div>
@@ -39,7 +42,7 @@ const Footer = () => {
             <p className="text-white text-sm">(046) 481-4120</p>
           </div>
         </div>
-        <div id="strike-scan" className="w-[340px] flex flex-col">
+        <div id="strike-scan" className="max-w-[340px] flex flex-col">
           <div className="mb-5">
             <HighlightTitle text={"STRIKE SCAN ME"} />
           </div>
