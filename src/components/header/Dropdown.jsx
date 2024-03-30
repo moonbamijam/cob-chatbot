@@ -1,7 +1,6 @@
 import { RiArrowDownSLine } from "react-icons/ri";
 
 const Dropdown = ({
-  href,
   text,
   dropdownOne,
   dropdownTwo,
@@ -11,8 +10,7 @@ const Dropdown = ({
   toggle,
 }) => {
   return (
-    <a
-      href={href}
+    <div
       onMouseEnter={() => toggle()}
       onMouseLeave={() => toggle()}
       className="relative flex items-center gap-1 py-5 cursor-pointer"
@@ -148,7 +146,7 @@ const Dropdown = ({
           />
         </DropdownAnchorList>
       )}
-    </a>
+    </div>
   );
 };
 
