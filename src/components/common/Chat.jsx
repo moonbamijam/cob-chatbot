@@ -8,7 +8,7 @@ const Chat = ({ role, message, timeSent }) => {
           role == "bot"
             ? "w-full relative flex items-center gap-2"
             : "w-full flex justify-end"
-        }  mt-4 mb-2`}
+        }  mt-3 mb-2`}
       >
         {role == "bot" ? (
           <img
