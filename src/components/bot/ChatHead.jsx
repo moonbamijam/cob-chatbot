@@ -19,7 +19,7 @@ const ChatHead = ({ state, setState }) => {
           <IoClose />
         ) : (
           <>
-            <Ping /> <RiRobot2Fill />
+            <RiRobot2Fill />
           </>
         )}
       </button>
