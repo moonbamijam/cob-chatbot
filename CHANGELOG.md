@@ -1,5 +1,12 @@
 # What's New
 
+## [1.2.1](https://github.com/Jireh-sama/cob-chatbot/compare/1.2.0...1.2.1) (2024-04-01)
+
+
+### Bug Fixes
+
+* chathead ref is null type error ([c080bc2](https://github.com/Jireh-sama/cob-chatbot/commit/c080bc21ee6c9ac4747daa1d85bb58d2281f04d9))
+
 # [1.2.0](https://github.com/Jireh-sama/cob-chatbot/compare/1.1.0...1.2.0) (2024-04-01)
 
 
