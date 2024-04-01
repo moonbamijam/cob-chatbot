@@ -6,11 +6,11 @@ import Page from "./components/Page";
 const App = () => {
   const [isChatActive, setIsChatActive] = useState(false);
 
-  const chatHead = useRef(null);
+  const chatHead = useRef();
 
   useEffect(() => {
     const handleChatHead = (event) => {
-      if (!chatHead.current.contains(event.target)) setIsChatActive(false);
+      if (!chatHead.current?.contains(event.target)) setIsChatActive(false);
     };
     document.addEventListener("mousedown", handleChatHead);
   }, [chatHead]);
