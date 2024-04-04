@@ -27,6 +27,7 @@ import Loading from "../ui/Loading";
 const MessageBox = () => {
   const scrollIntoNewChat = useRef();
 
+  const [error, setError] = useState(false);
   const [loading, setLoading] = useState(true);
   const [userMessage, setUserMessage] = useState("");
   const [botMessage, setBotMessage] = useState("");
@@ -37,36 +38,48 @@ const MessageBox = () => {
   const q = query(messagesCollectionRef, orderBy("timeSent", "asc"));
 
   const getReplyFromBot = async (message) => {
-    setBotIsTyping(true);
-    await sleep(3);
-    const response = await fetch(
-      `http://localhost:3001/bot?message=${encodeURIComponent(message)}`
-    );
-    const data = await response.json();
-    setBotIsTyping(false);
-    await addDoc(messagesCollectionRef, {
-      text: data,
-      role: "bot",
-      timeSent: Timestamp.now(),
-    });
-    setBotMessage(data);
+    try {
+      setBotIsTyping(true);
+      await sleep(3);
+      const response = await fetch(
+        `http://localhost:3001/bot?message=${encodeURIComponent(message)}`
+      );
+      const data = await response.json();
+      setBotIsTyping(false);
+      await addDoc(messagesCollectionRef, {
+        text: data,
+        role: "bot",
+        timeSent: Timestamp.now(),
+      });
+      setBotMessage(data);
+    } catch (error) {
+      setError(true);
+    }
   };
 
   const sendMessageToBot = async (event, message) => {
     event.preventDefault();
     setUserMessage("");
-    await addDoc(messagesCollectionRef, {
-      text: userMessage,
-      role: "user",
-      timeSent: Timestamp.now(),
-    });
-    await sleep(1.5);
-    await getReplyFromBot(message);
+    try {
+      await addDoc(messagesCollectionRef, {
+        text: userMessage,
+        role: "user",
+        timeSent: Timestamp.now(),
+      });
+      await sleep(1.5);
+      await getReplyFromBot(message);
+    } catch (error) {
+      setError(true);
+    }
   };
 
   const getChatHistory = async () => {
-    const data = await getDocs(q);
-    setMessages(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+    try {
+      const data = await getDocs(q);
+      setMessages(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+    } catch (error) {
+      setError(true);
+    }
     setLoading(false);
   };
 
@@ -134,6 +147,13 @@ const MessageBox = () => {
               />
             ))}
             {botIsTyping && <Typing />}
+          </div>
+        )}
+        {error && (
+          <div className="w-full flex justify-center">
+            <div className="min-w-[50%] px-4 py-3 mt-3 mb-2 text-center text-white rounded-3xl bg-red-500">
+              Something went wrong!
+            </div>
           </div>
         )}
         <div ref={scrollIntoNewChat}></div>
