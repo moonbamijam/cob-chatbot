@@ -18,12 +18,12 @@ import { getFirestore } from "firebase/firestore";
 // DEVELOPMENT
 const firebaseConfig = {
   apiKey: `${import.meta.env.APIKEYDEV}`,
-  authDomain: `${import.meta.env.AUTHDOMAIN}`,
+  authDomain: `${import.meta.env.AUTHDOMAINDEV}`,
   projectId: "chatbot-test-49529",
-  storageBucket: `${import.meta.env.STORAGEBUCKET}`,
-  messagingSenderId: `${import.meta.env.MESSAGINGSENDERID}`,
+  storageBucket: `${import.meta.env.STORAGEBUCKETDEV}`,
+  messagingSenderId: `${import.meta.env.MESSAGINGSENDERIDDEV}`,
   appId: `${import.meta.env.APPIDDEV}`,
-  measurementId: `${import.meta.env.MEASUREMENTID}`,
+  measurementId: `${import.meta.env.MEASUREMENTIDDEV}`,
 };
 
 const app = initializeApp(firebaseConfig);
