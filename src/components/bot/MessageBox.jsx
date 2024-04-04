@@ -9,7 +9,6 @@ import {
   orderBy,
 } from "firebase/firestore";
 import TextareaAutosize from "react-textarea-autosize";
-
 // Libraries
 import { chatbot } from "../../libs/bot-details";
 import { timeDisplay } from "../../utils/time-display";
@@ -30,7 +29,7 @@ const MessageBox = () => {
 
   const [loading, setLoading] = useState(true);
   const [userMessage, setUserMessage] = useState("");
-  const [botMessage, setBotMessage] = useState("initial text");
+  const [botMessage, setBotMessage] = useState("");
   const [botIsTyping, setBotIsTyping] = useState(false);
   const [messages, setMessages] = useState([]);
 
@@ -50,7 +49,7 @@ const MessageBox = () => {
       role: "bot",
       timeSent: Timestamp.now(),
     });
-    setBotMessage(data)
+    setBotMessage(data);
   };
 
   const sendMessageToBot = async (event, message) => {
