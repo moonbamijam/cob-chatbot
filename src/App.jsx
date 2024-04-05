@@ -7,7 +7,9 @@ const App = () => {
   const [isChatActive, setIsChatActive] = useState(false);
 
   const chatHead = useRef();
-
+  const toggleChat = () => {
+    setIsChatActive(!isChatActive);
+  };
   useEffect(() => {
     const handleChatHead = (event) => {
       if (!chatHead.current?.contains(event.target)) setIsChatActive(false);
@@ -19,7 +21,7 @@ const App = () => {
     <>
       <main className="flex flex-col">
         <div ref={chatHead} id="chathead-wrapper">
-          <ChatHead state={isChatActive} setState={setIsChatActive} />
+          <ChatHead state={isChatActive} onClick={() => toggleChat()} />
           {isChatActive && <MessageBox />}
         </div>
         <Page />
