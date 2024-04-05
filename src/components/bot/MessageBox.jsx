@@ -9,33 +9,54 @@ import {
   orderBy,
 } from "firebase/firestore";
 import TextareaAutosize from "react-textarea-autosize";
+
 // Libraries
 import { chatbot } from "../../libs/bot-details";
 import { timeDisplay } from "../../utils/time-display";
 
 // Utilities
 import { sleep } from "../../utils/sleep";
+import { scrollInto } from "../../utils/scroll-into";
 
 // Components
 import Chat from "../common/Chat";
 import Typing from "../ui/Typing";
+import Loading from "../ui/Loading";
+import SuggestedQuestionBtn from "../buttons/SuggestedQuestionBtn";
+import MaximizeBtn from "../buttons/MaximizeBtn";
 
 // Icons
 import { IoSend } from "react-icons/io5";
-import Loading from "../ui/Loading";
 
 const MessageBox = () => {
-  const scrollIntoNewChat = useRef();
+  const latestMessage = useRef();
+  const faqsWrapper = useRef();
 
+  const [isLargeScreen, setIsLargeScreen] = useState(false);
+  const [isMouseDown, setIsMouseDown] = useState(false);
+  const [startX, setStartX] = useState(0);
+  const [scrollLeft, setScrollLeft] = useState(0);
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(true);
   const [userMessage, setUserMessage] = useState("");
   const [botMessage, setBotMessage] = useState("");
   const [botIsTyping, setBotIsTyping] = useState(false);
   const [messages, setMessages] = useState([]);
+  const [faqs, setFaqs] = useState([]);
 
   const messagesCollectionRef = collection(db, "messages");
-  const q = query(messagesCollectionRef, orderBy("timeSent", "asc"));
+  const messagesQuery = query(
+    messagesCollectionRef,
+    orderBy("timeSent", "asc")
+  );
+
+  const faqsCollectionRef = collection(db, "FAQs");
+  const faqsQuery = query(faqsCollectionRef, orderBy("frequency", "desc"));
+
+  const toggleLargeScreen = () => {
+    setIsLargeScreen(!isLargeScreen);
+    scrollInto(latestMessage);
+  };
 
   const getReplyFromBot = async (message) => {
     try {
@@ -47,7 +68,7 @@ const MessageBox = () => {
       const data = await response.json();
       setBotIsTyping(false);
       await addDoc(messagesCollectionRef, {
-        text: data,
+        messageInfo: data,
         role: "bot",
         timeSent: Timestamp.now(),
       });
@@ -59,13 +80,29 @@ const MessageBox = () => {
 
   const sendMessageToBot = async (event, message) => {
     event.preventDefault();
-    setUserMessage("");
     try {
       await addDoc(messagesCollectionRef, {
-        text: userMessage,
+        messageInfo: { answer: message },
         role: "user",
         timeSent: Timestamp.now(),
       });
+      setUserMessage("");
+      await sleep(1.5);
+      await getReplyFromBot(message);
+    } catch (error) {
+      setError(true);
+    }
+  };
+
+  const sendFaqToBot = async (message) => {
+    try {
+      setUserMessage(message);
+      await addDoc(messagesCollectionRef, {
+        messageInfo: { answer: message },
+        role: "user",
+        timeSent: Timestamp.now(),
+      });
+      setUserMessage("");
       await sleep(1.5);
       await getReplyFromBot(message);
     } catch (error) {
@@ -75,7 +112,7 @@ const MessageBox = () => {
 
   const getChatHistory = async () => {
     try {
-      const data = await getDocs(q);
+      const data = await getDocs(messagesQuery);
       setMessages(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
     } catch (error) {
       setError(true);
@@ -83,24 +120,57 @@ const MessageBox = () => {
     setLoading(false);
   };
 
+  const getFaqs = async () => {
+    try {
+      const data = await getDocs(faqsQuery);
+      setFaqs(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+    } catch (error) {
+      setError(true);
+    }
+  };
+
   useEffect(() => {
-    scrollIntoNewChat.current?.scrollIntoView({ behavior: "smooth" });
+    scrollInto(latestMessage);
   }, [messages, botIsTyping]);
 
   useEffect(() => {
     getChatHistory();
+    getFaqs();
   }, [userMessage, botMessage]);
+
+  const handleMouseDown = (e) => {
+    setIsMouseDown(true);
+    setStartX(e.pageX - faqsWrapper.current.offsetLeft);
+    setScrollLeft(faqsWrapper.current.scrollLeft);
+  };
+
+  const handleMouseLeave = () => {
+    setIsMouseDown(false);
+  };
+
+  const handleMouseUp = () => {
+    setIsMouseDown(false);
+  };
+  const handleMouseMove = (e) => {
+    if (!isMouseDown) return;
+    e.preventDefault();
+    const x = e.pageX - faqsWrapper.current.offsetLeft;
+    const walk = (x - startX) * 2;
+    faqsWrapper.current.scrollLeft = scrollLeft - walk;
+  };
 
   return (
     <div
       id="message-box"
-      className="fixed flex flex-col right-10 bottom-24 sm:right-20 lg:right-28 lg:bottom-32 w-[400px] sm:w-[500px] h-[600px] sm:h-[700px] bg-white rounded-lg overflow-hidden z-[100]"
+      className={`${
+        isLargeScreen ? "w-[1200px] h-[750px]" : "w-[500px] h-[700px]"
+      } fixed flex flex-col right-10 bottom-24 sm:right-20 lg:right-28 lg:bottom-32 bg-white rounded-lg overflow-hidden z-[100]`}
     >
       <header
         id="chat-ui-header"
         className="w-full flex items-center justify-between px-8 py-4 mr-auto shadow-md"
       >
-        <div className="flex items-center gap-4">
+        <div className="w-[150px] flex items-center gap-4">
           <img
             src={chatbot.logo}
             alt=""
@@ -110,13 +180,19 @@ const MessageBox = () => {
           />
           <h3 className="text-2xl capitalize font-semibold">{chatbot.name}</h3>
         </div>
-        <p id="timenow" className="text-lg">
+        {/* <p id="timenow" className="text-lg">
           {timeDisplay()}
-        </p>
+        </p> */}
+        <menu className="w-[150px] flex justify-end">
+          <MaximizeBtn
+            onClick={() => toggleLargeScreen()}
+            state={isLargeScreen}
+          />
+        </menu>
       </header>
       <section
         id="messages"
-        className="px-4 py-6 w-full h-full overflow-y-scroll scroll-ml-6 no-scrollbar"
+        className="w-full h-full px-4 pt-6 overflow-y-scroll no-scrollbar"
       >
         <div id="bot-profile" className="flex flex-col items-center mb-8">
           <img
@@ -140,7 +216,7 @@ const MessageBox = () => {
               <Chat
                 key={id}
                 role={message.role}
-                message={message.text}
+                message={message.messageInfo.answer}
                 timeSent={new Date(message.timeSent.seconds * 1000)
                   .toLocaleTimeString()
                   .replace(/(.*)\D\d+/, "$1")}
@@ -156,7 +232,25 @@ const MessageBox = () => {
             </div>
           </div>
         )}
-        <div ref={scrollIntoNewChat}></div>
+        <div ref={latestMessage}></div>
+      </section>
+      <section
+        onMouseDown={handleMouseDown}
+        onMouseLeave={handleMouseLeave}
+        onMouseUp={handleMouseUp}
+        onMouseMove={handleMouseMove}
+        ref={faqsWrapper}
+        style={{ background: "white" }}
+        id="suggested-questions"
+        className="relative w-full h-[80px] px-4 pt-2 flex items-center space-x-4 whitespace-nowrap overflow-x-scroll overflow-y-hidden no-scrollbar"
+      >
+        {faqs.map((faq, id) => (
+          <SuggestedQuestionBtn
+            key={id}
+            onClick={() => sendFaqToBot(faq.questions[0])}
+            question={faq.questions[0]}
+          />
+        ))}
       </section>
       <form
         action=""
