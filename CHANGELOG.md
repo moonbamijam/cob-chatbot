@@ -1,5 +1,26 @@
 # What's New
 
+# [1.3.0](https://github.com/Jireh-sama/cob-chatbot/compare/1.2.1...1.3.0) (2024-04-05)
+
+
+### Features
+
+* add animated chatbot mascot ([5cc8364](https://github.com/Jireh-sama/cob-chatbot/commit/5cc8364989e75e53c1700e92fbc9eb8c41b9a0ab)), closes [#5](https://github.com/Jireh-sama/cob-chatbot/issues/5)
+* add error handling to MesssageBox component ([efd4423](https://github.com/Jireh-sama/cob-chatbot/commit/efd442330c76d4202548c533c737653881908748))
+* add FAQs based suggested questions to msg ui ([7b92909](https://github.com/Jireh-sama/cob-chatbot/commit/7b929095c98cfcfb1a5caad64ee531e00e38a892)), closes [#13](https://github.com/Jireh-sama/cob-chatbot/issues/13) [#12](https://github.com/Jireh-sama/cob-chatbot/issues/12)
+* add global transitions ([c849b74](https://github.com/Jireh-sama/cob-chatbot/commit/c849b74dbd82da5b462d6533a7975390ff4aa6a0))
+* add new btn component for suggested question ([c4a4fc1](https://github.com/Jireh-sama/cob-chatbot/commit/c4a4fc1ed225ad344e95898815488518597fcc44))
+* add new button component for maximizing ([44fa2eb](https://github.com/Jireh-sama/cob-chatbot/commit/44fa2eb2937dc7a0069b9d2e166f3adb75f2b3d5))
+* add new styling to chat common component ([cbe0300](https://github.com/Jireh-sama/cob-chatbot/commit/cbe0300ae3cb8c2ebf44db31a2ed9af570436ddc))
+* add new utility function for scrollIntoView ([dae8123](https://github.com/Jireh-sama/cob-chatbot/commit/dae8123a513b025edb03a744ee2e7f060a527b54))
+* new name for chatbot ([e48f019](https://github.com/Jireh-sama/cob-chatbot/commit/e48f019c52f6dc70bc97dd51cf109511e2f3cb7e))
+
+
+### Performance Improvements
+
+* move new toggle chat function to app ([6d53762](https://github.com/Jireh-sama/cob-chatbot/commit/6d53762d87e069495c4e7f52294dd7da5e4614cd))
+* update toggle function for chat head ([f17cb7a](https://github.com/Jireh-sama/cob-chatbot/commit/f17cb7af7b262f17639115d2b596475da7202acf))
+
 ## [1.2.1](https://github.com/Jireh-sama/cob-chatbot/compare/1.2.0...1.2.1) (2024-04-01)
 
 
