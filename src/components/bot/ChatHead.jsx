@@ -1,25 +1,23 @@
-import React from "react";
+import Mascot from "../../assets/animated-mascot.gif";
 import { IoClose } from "react-icons/io5";
 import { RiRobot2Fill } from "react-icons/ri";
 import Ping from "../ui/Ping";
 
-const ChatHead = ({ state, setState }) => {
-  [state, setState];
-  const toggleChat = () => {
-    setState(!state);
-  };
+const ChatHead = ({ state, onClick }) => {
   return (
     <>
       <button
-        onClick={toggleChat}
+        onClick={() => onClick()}
         id=""
-        className="fixed right-8 bottom-8 lg:right-12 lg:bottom-12 rounded-full p-3 text-3xl lg:text-4xl bg-highlight text-white z-[100] "
+        className="fixed right-8 bottom-8 lg:right-12 lg:bottom-12 rounded-full p-3 text-3xl lg:text-4xl text-white z-[100] "
       >
         {state ? (
-          <IoClose />
+          <div className="flex justify-evenly bg-highlight rounded-full p-3">
+            <IoClose />
+          </div>
         ) : (
           <>
-            <RiRobot2Fill />
+            <img src={Mascot} alt="" className="w-[150px] " />
           </>
         )}
       </button>
