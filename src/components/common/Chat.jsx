@@ -23,15 +23,15 @@ const Chat = ({ role, message, timeSent }) => {
         )}
         <div
           className={`max-w-[80%] rounded-3xl ${
-            role == "bot" ? "bg-gray-500" : "bg-highlight"
-          } text-white px-4 py-3 break-words`}
+            role == "bot" ? "bg-[#F4F0F2]" : "bg-highlight text-white"
+          } px-4 py-3 break-words`}
         >
           <p id="message">{message}</p>
           <div
             id="timeSent"
             className={`w-full ${
-              role == "bot" ? "text-right" : "text-left"
-            } text-xs text-gray-300`}
+              role == "bot" ? "text-gray-500" : "text-gray-300"
+            } text-xs text-right`}
           >
             {timeSent}
           </div>
