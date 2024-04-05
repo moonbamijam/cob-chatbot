@@ -23,7 +23,7 @@
 *,
 ::before,
 ::after {
-  @apply font-raleway box-border p-0 m-0;
+  @apply font-raleway box-border p-0 m-0 transition-all;
 }
 
 /* common */
