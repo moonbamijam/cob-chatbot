@@ -7,16 +7,17 @@ import {
   Timestamp,
   query,
   orderBy,
+  where,
 } from "firebase/firestore";
 import TextareaAutosize from "react-textarea-autosize";
 
 // Libraries
 import { chatbot } from "../../libs/bot-details";
-import { timeDisplay } from "../../utils/time-display";
 
 // Utilities
 import { sleep } from "../../utils/sleep";
 import { scrollInto } from "../../utils/scroll-into";
+import { verifiedUID } from "../../utils/uid";
 
 // Components
 import Chat from "../common/Chat";
@@ -24,9 +25,12 @@ import Typing from "../ui/Typing";
 import Loading from "../ui/Loading";
 import SuggestedQuestionBtn from "../buttons/SuggestedQuestionBtn";
 import MaximizeBtn from "../buttons/MaximizeBtn";
+import Error from "../ui/Error";
 
 // Icons
 import { IoSend } from "react-icons/io5";
+
+const uid = verifiedUID();
 
 const MessageBox = () => {
   const latestMessage = useRef();
@@ -47,7 +51,8 @@ const MessageBox = () => {
   const messagesCollectionRef = collection(db, "messages");
   const messagesQuery = query(
     messagesCollectionRef,
-    orderBy("timeSent", "asc")
+    orderBy("timeSent", "asc"),
+    where("uid", "==", uid)
   );
 
   const faqsCollectionRef = collection(db, "FAQs");
@@ -71,10 +76,12 @@ const MessageBox = () => {
         messageInfo: data,
         role: "bot",
         timeSent: Timestamp.now(),
+        uid: uid,
       });
       setBotMessage(data);
     } catch (error) {
       setError(true);
+      console.log(error);
     }
   };
 
@@ -85,12 +92,15 @@ const MessageBox = () => {
         messageInfo: { answer: message },
         role: "user",
         timeSent: Timestamp.now(),
+        uid: uid,
       });
+
       setUserMessage("");
       await sleep(1.5);
       await getReplyFromBot(message);
     } catch (error) {
       setError(true);
+      console.log(error);
     }
   };
 
@@ -101,12 +111,14 @@ const MessageBox = () => {
         messageInfo: { answer: message },
         role: "user",
         timeSent: Timestamp.now(),
+        uid: uid,
       });
       setUserMessage("");
       await sleep(1.5);
       await getReplyFromBot(message);
     } catch (error) {
       setError(true);
+      console.log(error);
     }
   };
 
@@ -116,6 +128,7 @@ const MessageBox = () => {
       setMessages(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
     } catch (error) {
       setError(true);
+      console.log(error);
     }
     setLoading(false);
   };
@@ -126,6 +139,7 @@ const MessageBox = () => {
       setFaqs(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
     } catch (error) {
       setError(true);
+      console.log(error);
     }
   };
 
@@ -180,9 +194,6 @@ const MessageBox = () => {
           />
           <h3 className="text-2xl capitalize font-semibold">{chatbot.name}</h3>
         </div>
-        {/* <p id="timenow" className="text-lg">
-          {timeDisplay()}
-        </p> */}
         <menu className="w-[150px] flex justify-end">
           <MaximizeBtn
             onClick={() => toggleLargeScreen()}
@@ -225,13 +236,7 @@ const MessageBox = () => {
             {botIsTyping && <Typing />}
           </div>
         )}
-        {error && (
-          <div className="w-full flex justify-center">
-            <div className="min-w-[50%] px-4 py-3 mt-3 mb-2 text-center text-white rounded-3xl bg-red-500">
-              Something went wrong!
-            </div>
-          </div>
-        )}
+        {error && <Error />}
         <div ref={latestMessage}></div>
       </section>
       <section
