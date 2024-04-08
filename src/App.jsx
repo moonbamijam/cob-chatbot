@@ -5,6 +5,7 @@ import Page from "./components/Page";
 
 const App = () => {
   const [isChatActive, setIsChatActive] = useState(false);
+  const [theme, setTheme] = useState(localStorage.getItem("theme"));
 
   const chatHead = useRef();
   const toggleChat = () => {
@@ -16,6 +17,21 @@ const App = () => {
     };
     document.addEventListener("mousedown", handleChatHead);
   }, [chatHead]);
+
+  useEffect(() => {
+    if (theme === "dark") {
+      window.matchMedia("prefer-color-scheme: dark");
+      localStorage.setItem("theme", "dark");
+    } else {
+      window.matchMedia("prefer-color-scheme: light");
+      localStorage.setItem("theme", "light");
+    }
+  }, [theme]);
+
+  useEffect(() => {
+    if (theme === "dark") document.documentElement.classList.add("dark");
+    else document.documentElement.classList.remove("dark");
+  }, [theme]);
 
   return (
     <>
