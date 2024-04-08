@@ -18,6 +18,7 @@ import { chatbot } from "../../libs/bot-details";
 import { sleep } from "../../utils/sleep";
 import { scrollInto } from "../../utils/scroll-into";
 import { verifiedUID } from "../../utils/uid";
+import { toggleTheme } from "../../utils/toggle-theme";
 
 // Components
 import Chat from "../common/Chat";
@@ -26,6 +27,10 @@ import Loading from "../ui/Loading";
 import SuggestedQuestionBtn from "../buttons/SuggestedQuestionBtn";
 import MaximizeBtn from "../buttons/MaximizeBtn";
 import Error from "../ui/Error";
+import SettingsBtn from "../buttons/SettingsBtn";
+import MiniProfile from "./MiniProfile";
+import SettingsTitle from "./SettingsTitle";
+import ThemeSwitchBtn from "../buttons/ThemeSwitchBtn";
 
 // Icons
 import { IoSend } from "react-icons/io5";
@@ -35,7 +40,8 @@ const uid = verifiedUID();
 const MessageBox = () => {
   const latestMessage = useRef();
   const faqsWrapper = useRef();
-
+  const [theme, setTheme] = useState(localStorage.getItem("theme"));
+  const [settings, setSettings] = useState(false);
   const [isLargeScreen, setIsLargeScreen] = useState(false);
   const [isMouseDown, setIsMouseDown] = useState(false);
   const [startX, setStartX] = useState(0);
@@ -47,6 +53,21 @@ const MessageBox = () => {
   const [botIsTyping, setBotIsTyping] = useState(false);
   const [messages, setMessages] = useState([]);
   const [faqs, setFaqs] = useState([]);
+
+  useEffect(() => {
+    if (theme === "dark") {
+      window.matchMedia("prefer-color-scheme: dark");
+      localStorage.setItem("theme", "dark");
+    } else {
+      window.matchMedia("prefer-color-scheme: light");
+      localStorage.setItem("theme", "light");
+    }
+  }, [theme]);
+
+  useEffect(() => {
+    if (theme === "dark") document.documentElement.classList.add("dark");
+    else document.documentElement.classList.remove("dark");
+  }, [theme]);
 
   const messagesCollectionRef = collection(db, "messages");
   const messagesQuery = query(
@@ -61,6 +82,10 @@ const MessageBox = () => {
   const toggleLargeScreen = () => {
     setIsLargeScreen(!isLargeScreen);
     scrollInto(latestMessage);
+  };
+
+  const toggleSettings = () => {
+    setSettings(!settings);
   };
 
   const getReplyFromBot = async (message) => {
@@ -176,49 +201,45 @@ const MessageBox = () => {
   return (
     <div
       id="message-box"
-      className={`${
+      className={` ${
         isLargeScreen ? "w-[1200px] h-[750px]" : "w-[500px] h-[700px]"
-      } fixed flex flex-col right-10 bottom-24 sm:right-20 lg:right-28 lg:bottom-32 bg-white rounded-lg overflow-hidden z-[100]`}
+      } fixed flex flex-col right-10 bottom-24 sm:right-20 lg:right-28 lg:bottom-32 bg-white dark:bg-gray-800 rounded-lg overflow-hidden z-[100]`}
     >
       <header
         id="chat-ui-header"
-        className="w-full flex items-center justify-between px-8 py-4 mr-auto shadow-md"
+        className="w-full flex items-center justify-between px-8 py-4 mr-auto shadow-md "
       >
-        <div className="w-[150px] flex items-center gap-4">
+        <button
+          onClick={() => toggleSettings()}
+          id="chatbot-detai"
+          className="flex items-center gap-4"
+        >
           <img
             src={chatbot.logo}
             alt=""
             width={45}
             height={45}
-            className="rounded-full border border-black"
+            className="rounded-full"
           />
-          <h3 className="text-2xl capitalize font-semibold">{chatbot.name}</h3>
-        </div>
-        <menu className="w-[150px] flex justify-end">
+          <h3 className="text-2xl capitalize font-semibold dark:text-white">
+            {chatbot.nickName}
+          </h3>
+        </button>
+        <menu className="flex gap-1 justify-end">
           <MaximizeBtn
             onClick={() => toggleLargeScreen()}
             state={isLargeScreen}
           />
+          <SettingsBtn onClick={() => toggleSettings()} state={settings} />
         </menu>
       </header>
       <section
         id="messages"
-        className="w-full h-full px-4 pt-6 overflow-y-scroll no-scrollbar"
+        className={`${
+          settings ? "-translate-x-full hidden" : ""
+        } w-full h-full px-4 pt-6 overflow-y-scroll no-scrollbar`}
       >
-        <div id="bot-profile" className="flex flex-col items-center mb-8">
-          <img
-            src={chatbot.logo}
-            alt=""
-            width={100}
-            height={100}
-            className="rounded-full border border-black mb-2"
-          />
-          <div id="details" className="text-center mb-4">
-            <h1 className="font-bold text-4xl mb-1">{chatbot.name}</h1>
-            <p className="">{chatbot.slogan}</p>
-          </div>
-          <hr className="w-full" />
-        </div>
+        <MiniProfile state={settings} />
         {loading ? (
           <Loading />
         ) : (
@@ -245,9 +266,10 @@ const MessageBox = () => {
         onMouseUp={handleMouseUp}
         onMouseMove={handleMouseMove}
         ref={faqsWrapper}
-        style={{ background: "white" }}
         id="suggested-questions"
-        className="relative w-full h-[80px] px-4 pt-2 flex items-center space-x-4 whitespace-nowrap overflow-x-scroll overflow-y-hidden no-scrollbar"
+        className={`${
+          settings ? "-translate-x-full hidden" : ""
+        } w-full h-[80px] px-4 pt-2 flex items-center space-x-4 whitespace-nowrap overflow-x-scroll overflow-y-hidden no-scrollbar `}
       >
         {faqs.map((faq, id) => (
           <SuggestedQuestionBtn
@@ -263,7 +285,9 @@ const MessageBox = () => {
         onSubmit={(e) => {
           sendMessageToBot(e, userMessage);
         }}
-        className="w-full flex justify-between items-center gap-2 px-4 py-2"
+        className={`${
+          settings ? "-translate-x-full hidden" : ""
+        } w-full flex justify-between items-center gap-2 px-4 py-2`}
       >
         <TextareaAutosize
           name="chat"
@@ -272,17 +296,27 @@ const MessageBox = () => {
           onChange={(e) => {
             setUserMessage(e.target.value);
           }}
-          className="px-4 py-3 w-full rounded-3xl border border-gray-400 outline-1 focus:outline-blue-500"
+          className="px-4 py-3 w-full rounded-3xl dark:text-white border border-gray-400 dark:border-transparent outline-none dark:bg-gray-700  dark:caret-white"
           placeholder="Type here..."
         />
         <button
           type="submit"
           disabled={!userMessage}
-          className="p-4 rounded-full flex items-center justify-center text-2xl hover:bg-gray-200 cursor-pointer"
+          className="p-4 rounded-full flex items-center justify-center active:translate-x-2 text-2xl text-blue-500 hover:bg-gray-300 dark:hover:bg-gray-700 cursor-pointer"
         >
           <IoSend />
         </button>
       </form>
+      {settings && (
+        <div className={`px-4 py-6`}>
+          <MiniProfile state={settings} />
+          <SettingsTitle text={"change theme"} />
+          <ThemeSwitchBtn
+            state={theme}
+            onClick={() => toggleTheme(theme, setTheme)}
+          />
+        </div>
+      )}
     </div>
   );
 };
