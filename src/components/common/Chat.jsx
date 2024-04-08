@@ -2,7 +2,7 @@ import { chatbot } from "../../libs/bot-details";
 
 const Chat = ({ role, message, timeSent }) => {
   return (
-    <div className="">
+    <div className={`${role == "bot" ? "bot message" : "user message"} `}>
       <div
         className={`${
           role == "bot"
@@ -23,14 +23,14 @@ const Chat = ({ role, message, timeSent }) => {
         )}
         <div
           className={`max-w-[80%] rounded-3xl ${
-            role == "bot" ? "bg-[#F4F0F2]" : "bg-highlight text-white"
+            role == "bot" ? "bg-[#F4F0F2] dark:bg-gray-600 dark:text-white" : "bg-highlight text-white"
           } px-4 py-3 break-words`}
         >
           <p id="message">{message}</p>
           <div
             id="timeSent"
             className={`w-full ${
-              role == "bot" ? "text-gray-500" : "text-gray-300"
+              role == "bot" ? "text-gray-500 dark:text-gray-300" : "text-gray-300"
             } text-xs text-right`}
           >
             {timeSent}
