@@ -3,9 +3,12 @@ import ChatHead from "./components/bot/ChatHead";
 import MessageBox from "./components/bot/MessageBox";
 import Page from "./components/Page";
 
+// Context
+import ThemesProvider from "./providers/ThemesProvider";
+import FontSizeProvider from "./providers/FontSizeProvider";
+
 const App = () => {
   const [isChatActive, setIsChatActive] = useState(false);
-  const [theme, setTheme] = useState(localStorage.getItem("theme"));
 
   const chatHead = useRef();
   const toggleChat = () => {
@@ -18,27 +21,16 @@ const App = () => {
     document.addEventListener("mousedown", handleChatHead);
   }, [chatHead]);
 
-  useEffect(() => {
-    if (theme === "dark") {
-      window.matchMedia("prefer-color-scheme: dark");
-      localStorage.setItem("theme", "dark");
-    } else {
-      window.matchMedia("prefer-color-scheme: light");
-      localStorage.setItem("theme", "light");
-    }
-  }, [theme]);
-
-  useEffect(() => {
-    if (theme === "dark") document.documentElement.classList.add("dark");
-    else document.documentElement.classList.remove("dark");
-  }, [theme]);
-
   return (
     <>
       <main className="flex flex-col">
         <div ref={chatHead} id="chathead-wrapper">
-          <ChatHead state={isChatActive} onClick={() => toggleChat()} />
-          {isChatActive && <MessageBox />}
+          <ThemesProvider>
+            <FontSizeProvider>
+              <ChatHead state={isChatActive} onClick={() => toggleChat()} />
+              {isChatActive && <MessageBox />}
+            </FontSizeProvider>
+          </ThemesProvider>
         </div>
         <Page />
         {isChatActive && (
