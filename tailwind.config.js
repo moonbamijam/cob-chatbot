@@ -8,6 +8,7 @@ export default {
         primary: "#A9B5FE",
         secondary: "#E7F1FE",
         highlight: "#286FFD",
+        bot: "#F4F0F2",
         extra: "#85BBFB",
         opaqueBlack: "rgb(var(--opaque-black) / 0.3)",
         footerOpaqueBlack: "rgb(var(--opaque-black) / 0.8)",
