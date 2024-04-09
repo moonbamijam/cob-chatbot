@@ -1,6 +1,13 @@
+import { useContext } from "react";
+
+// Context & Providers
+import { FontSizeContext } from "../../providers/FontSizeProvider";
+
 import { chatbot } from "../../libs/bot-details";
 
 const Chat = ({ role, message, timeSent }) => {
+  const [fontSize, setFontSize] = useContext(FontSizeContext);
+
   return (
     <div className={`${role == "bot" ? "bot message" : "user message"} `}>
       <div
@@ -23,14 +30,24 @@ const Chat = ({ role, message, timeSent }) => {
         )}
         <div
           className={`max-w-[80%] rounded-3xl ${
-            role == "bot" ? "bg-[#F4F0F2] dark:bg-gray-600 dark:text-white" : "bg-highlight text-white"
+            role == "bot"
+              ? "bg-bot dark:bg-gray-600"
+              : "bg-highlight text-white"
           } px-4 py-3 break-words`}
         >
-          <p id="message">{message}</p>
+          <p
+            id="message"
+            style={{ fontSize: fontSize }}
+            className="dark:text-white"
+          >
+            {message}
+          </p>
           <div
             id="timeSent"
             className={`w-full ${
-              role == "bot" ? "text-gray-500 dark:text-gray-300" : "text-gray-300"
+              role == "bot"
+                ? "text-gray-500 dark:text-gray-300"
+                : "text-gray-300"
             } text-xs text-right`}
           >
             {timeSent}
