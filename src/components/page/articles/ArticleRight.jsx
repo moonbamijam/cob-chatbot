@@ -1,4 +1,4 @@
-import BacoorCityHall from "../../assets/bacoor-city-hall.png";
+import BacoorCityHall from "../../../assets/bacoor-city-hall.png";
 import { HiInformationCircle } from "react-icons/hi";
 import HighlightTitle from "../ui/HighlightTitle";
 

@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import ChatHead from "./components/bot/ChatHead";
-import MessageBox from "./components/bot/MessageBox";
-import Page from "./components/Page";
+import ChatBox from "./components/bot/ChatBox";
+import Page from "./components/page/Page";
 
 // Context
 import ThemesProvider from "./providers/ThemesProvider";
@@ -28,7 +28,7 @@ const App = () => {
           <ThemesProvider>
             <FontSizeProvider>
               <ChatHead state={isChatActive} onClick={() => toggleChat()} />
-              {isChatActive && <MessageBox />}
+              {isChatActive && <ChatBox />}
             </FontSizeProvider>
           </ThemesProvider>
         </div>

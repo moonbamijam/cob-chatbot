@@ -1,8 +1,8 @@
-import { chatbot } from "../../libs/bot-details";
+import { chatbot } from "../../../libs/bot-details";
 
 const MiniProfile = ({ state }) => {
   return (
-    <div id="bot-profile" className="flex flex-col items-center mb-8">
+    <section id="bot-profile" className="flex flex-col items-center mb-8">
       <img
         src={chatbot.logo}
         alt=""
@@ -16,13 +16,11 @@ const MiniProfile = ({ state }) => {
         </h1>
         <h3 className="dark:text-white mb-3">{chatbot.slogan}</h3>
         {state && (
-          <p className="dark:text-white text-sm opacity-70">
-            {chatbot.desc}
-          </p>
+          <p className="dark:text-white text-sm opacity-70">{chatbot.desc}</p>
         )}
       </div>
       <hr className="w-full" />
-    </div>
+    </section>
   );
 };
 

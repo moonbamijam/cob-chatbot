@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { LuSun } from "react-icons/lu";
 import { FaMoon } from "react-icons/fa6";
 
-import { ThemesContext } from "../../providers/ThemesProvider";
+import { ThemesContext } from "../../../providers/ThemesProvider";
 
 const ThemeSwitchBtn = () => {
   const [theme, setTheme] = useContext(ThemesContext);

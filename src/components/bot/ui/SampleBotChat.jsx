@@ -1,4 +1,4 @@
-import { chatbot } from "../../libs/bot-details";
+import { chatbot } from "../../../libs/bot-details";
 
 const SampleBotChat = ({ style }) => {
   return (

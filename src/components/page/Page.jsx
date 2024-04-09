@@ -7,7 +7,7 @@ import ArticleLeft from "./articles/ArticleLeft";
 import ArticleRight from "./articles/ArticleRight";
 
 // Assets
-import LandingImg from "../assets/landing.png";
+import LandingImg from "../../assets/landing.png";
 
 // Icons
 import { RiArrowLeftSLine, RiArrowRightSLine } from "react-icons/ri";
