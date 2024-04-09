@@ -18,7 +18,6 @@ import { chatbot } from "../../libs/bot-details";
 import { sleep } from "../../utils/sleep";
 import { scrollInto } from "../../utils/scroll-into";
 import { verifiedUID } from "../../utils/uid";
-import { toggleTheme } from "../../utils/toggle-theme";
 
 // Components
 import Chat from "../common/Chat";
@@ -31,6 +30,7 @@ import SettingsBtn from "../buttons/SettingsBtn";
 import MiniProfile from "./MiniProfile";
 import SettingsTitle from "./SettingsTitle";
 import ThemeSwitchBtn from "../buttons/ThemeSwitchBtn";
+import FontSizeSwitchBtn from "../buttons/FontSizeSwitchBtn";
 
 // Icons
 import { IoSend } from "react-icons/io5";
@@ -40,7 +40,6 @@ const uid = verifiedUID();
 const MessageBox = () => {
   const latestMessage = useRef();
   const faqsWrapper = useRef();
-  const [theme, setTheme] = useState(localStorage.getItem("theme"));
   const [settings, setSettings] = useState(false);
   const [isLargeScreen, setIsLargeScreen] = useState(false);
   const [isMouseDown, setIsMouseDown] = useState(false);
@@ -53,21 +52,6 @@ const MessageBox = () => {
   const [botIsTyping, setBotIsTyping] = useState(false);
   const [messages, setMessages] = useState([]);
   const [faqs, setFaqs] = useState([]);
-
-  useEffect(() => {
-    if (theme === "dark") {
-      window.matchMedia("prefer-color-scheme: dark");
-      localStorage.setItem("theme", "dark");
-    } else {
-      window.matchMedia("prefer-color-scheme: light");
-      localStorage.setItem("theme", "light");
-    }
-  }, [theme]);
-
-  useEffect(() => {
-    if (theme === "dark") document.documentElement.classList.add("dark");
-    else document.documentElement.classList.remove("dark");
-  }, [theme]);
 
   const messagesCollectionRef = collection(db, "messages");
   const messagesQuery = query(
@@ -86,6 +70,7 @@ const MessageBox = () => {
 
   const toggleSettings = () => {
     setSettings(!settings);
+    scrollInto(latestMessage);
   };
 
   const getReplyFromBot = async (message) => {
@@ -308,13 +293,12 @@ const MessageBox = () => {
         </button>
       </form>
       {settings && (
-        <div className={`px-4 py-6`}>
+        <div className={`px-4 py-6 overflow-y-scroll no-scrollbar`}>
           <MiniProfile state={settings} />
           <SettingsTitle text={"change theme"} />
-          <ThemeSwitchBtn
-            state={theme}
-            onClick={() => toggleTheme(theme, setTheme)}
-          />
+          <ThemeSwitchBtn />
+          <SettingsTitle text={"change font size"} />
+          <FontSizeSwitchBtn />
         </div>
       )}
     </div>
