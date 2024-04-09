@@ -20,24 +20,24 @@ import { scrollInto } from "../../utils/scroll-into";
 import { verifiedUID } from "../../utils/uid";
 
 // Components
-import Chat from "../common/Chat";
-import Typing from "../ui/Typing";
-import Loading from "../ui/Loading";
-import SuggestedQuestionBtn from "../buttons/SuggestedQuestionBtn";
-import MaximizeBtn from "../buttons/MaximizeBtn";
-import Error from "../ui/Error";
-import SettingsBtn from "../buttons/SettingsBtn";
-import MiniProfile from "./MiniProfile";
-import SettingsTitle from "./SettingsTitle";
-import ThemeSwitchBtn from "../buttons/ThemeSwitchBtn";
-import FontSizeSwitchBtn from "../buttons/FontSizeSwitchBtn";
+import Chat from "./ui/Chat";
+import Typing from "./ui/Typing";
+import Loading from "./ui/Loading";
+import SuggestedQuestionBtn from "./buttons/SuggestedQuestionBtn";
+import MaximizeBtn from "./buttons/MaximizeBtn";
+import Error from "./ui/Error";
+import SettingsBtn from "./buttons/SettingsBtn";
+import MiniProfile from "./sections/MiniProfile";
+import SettingsTitle from "./ui/SettingsTitle";
+import ThemeSwitchBtn from "./buttons/ThemeSwitchBtn";
+import FontSizes from "./sections/FontSizes";
 
 // Icons
 import { IoSend } from "react-icons/io5";
 
 const uid = verifiedUID();
 
-const MessageBox = () => {
+const ChatBox = () => {
   const latestMessage = useRef();
   const faqsWrapper = useRef();
   const [settings, setSettings] = useState(false);
@@ -298,11 +298,11 @@ const MessageBox = () => {
           <SettingsTitle text={"change theme"} />
           <ThemeSwitchBtn />
           <SettingsTitle text={"change font size"} />
-          <FontSizeSwitchBtn />
+          <FontSizes />
         </div>
       )}
     </div>
   );
 };
 
-export default MessageBox;
+export default ChatBox;

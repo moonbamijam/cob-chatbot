@@ -1,7 +1,5 @@
 import Mascot from "../../assets/animated-mascot.gif";
 import { IoClose } from "react-icons/io5";
-import { RiRobot2Fill } from "react-icons/ri";
-import Ping from "../ui/Ping";
 
 const ChatHead = ({ state, onClick }) => {
   return (

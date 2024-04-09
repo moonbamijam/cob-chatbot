@@ -1,10 +1,14 @@
 import React, { useContext } from "react";
 
-import { FontSizeContext } from "../../providers/FontSizeProvider";
+// Providers & Context
+import { FontSizeContext } from "../../../providers/FontSizeProvider";
 
+// Components
+import FontSizeBtn from "../buttons/FontSizeBtn";
 import SampleUserChat from "../ui/SampleUserChat";
 import SampleBotChat from "../ui/SampleBotChat";
 
+// Icons
 import { LuArrowBigDown } from "react-icons/lu";
 
 const fontSizes = [
@@ -34,7 +38,7 @@ const fontSizes = [
   },
 ];
 
-const FontSizeSwitchBtn = () => {
+const FontSizes = () => {
   const [fontSize, setFontSize] = useContext(FontSizeContext);
 
   const handleChange = (event) => {
@@ -58,7 +62,7 @@ const FontSizeSwitchBtn = () => {
         className="inline-grid grid-cols-3 gap-x-5 gap-y-2"
       >
         {fontSizes.map((font, id) => (
-          <RadioBtn
+          <FontSizeBtn
             key={id}
             name={font.name}
             value={font.size}
@@ -80,26 +84,4 @@ const FontSizeSwitchBtn = () => {
   );
 };
 
-const RadioBtn = ({ name, value, state, onClick, onChange }) => {
-  return (
-    <button onClick={() => onClick()} className="active:translate-y-1">
-      <input
-        type="radio"
-        name="font-sizes"
-        id={name}
-        value={value}
-        checked={state == value}
-        onChange={onChange}
-        className="hidden peer"
-      />
-      <label
-        htmlFor={name}
-        className="bg-gray-300 hover:bg-highlight hover:text-white dark:hover:bg-highlight dark:bg-gray-500 dark:text-white peer-checked:bg-highlight peer-checked:text-white w-[120px] h-[50px] flex justify-center items-center rounded-3xl capitalize cursor-pointer"
-      >
-        {name}
-      </label>
-    </button>
-  );
-};
-
-export default FontSizeSwitchBtn;
+export default FontSizes;

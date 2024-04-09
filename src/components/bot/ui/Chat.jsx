@@ -1,9 +1,9 @@
 import { useContext } from "react";
 
 // Context & Providers
-import { FontSizeContext } from "../../providers/FontSizeProvider";
+import { FontSizeContext } from "../../../providers/FontSizeProvider";
 
-import { chatbot } from "../../libs/bot-details";
+import { chatbot } from "../../../libs/bot-details";
 
 const Chat = ({ role, message, timeSent }) => {
   const [fontSize, setFontSize] = useContext(FontSizeContext);
