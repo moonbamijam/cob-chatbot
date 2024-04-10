@@ -33,12 +33,12 @@ const App = () => {
           </ThemesProvider>
         </div>
         <Page />
-        {isChatActive && (
-          <div
-            id="screen-dimmer"
-            className="w-full h-full fixed z-[90] bg-black opacity-80"
-          ></div>
-        )}
+        <div
+          id="screen-dimmer"
+          className={`w-full h-full fixed z-[90] bg-black ${
+            isChatActive ? "opacity-80" : "opacity-0 invisible"
+          }`}
+        ></div>
       </main>
     </>
   );
