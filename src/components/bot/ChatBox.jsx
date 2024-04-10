@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { db } from "../../utils/firebase-config";
 import {
   collection,
@@ -10,6 +10,9 @@ import {
   where,
 } from "firebase/firestore";
 import TextareaAutosize from "react-textarea-autosize";
+
+// Contexts
+import { LargeScreenContext } from "../../providers/LargeScreenProvider";
 
 // Libraries
 import { chatbot } from "../../libs/bot-details";
@@ -38,10 +41,10 @@ import { IoSend } from "react-icons/io5";
 const uid = verifiedUID();
 
 const ChatBox = () => {
+  const [isLargeScreen, setIsLargeScreen] = useContext(LargeScreenContext);
   const latestMessage = useRef();
   const faqsWrapper = useRef();
   const [settings, setSettings] = useState(false);
-  const [isLargeScreen, setIsLargeScreen] = useState(false);
   const [isMouseDown, setIsMouseDown] = useState(false);
   const [startX, setStartX] = useState(0);
   const [scrollLeft, setScrollLeft] = useState(0);
@@ -222,7 +225,7 @@ const ChatBox = () => {
         id="messages"
         className={`${
           settings ? "-translate-x-full hidden" : ""
-        } w-full h-full px-4 pt-6 overflow-y-scroll no-scrollbar`}
+        } w-full h-full px-4 py-6 overflow-y-scroll no-scrollbar`}
       >
         <MiniProfile state={settings} />
         {loading ? (
@@ -254,7 +257,7 @@ const ChatBox = () => {
         id="suggested-questions"
         className={`${
           settings ? "-translate-x-full hidden" : ""
-        } w-full h-[80px] px-4 pt-2 flex items-center space-x-4 whitespace-nowrap overflow-x-scroll overflow-y-hidden no-scrollbar `}
+        } w-full h-[80px] px-4 flex items-center space-x-4 whitespace-nowrap overflow-x-scroll overflow-y-hidden no-scrollbar `}
       >
         {faqs.map((faq, id) => (
           <SuggestedQuestionBtn
@@ -293,7 +296,11 @@ const ChatBox = () => {
         </button>
       </form>
       {settings && (
-        <div className={`px-4 py-6 overflow-y-scroll no-scrollbar`}>
+        <div
+          className={`${
+            settings ? "" : ""
+          } px-4 py-6 overflow-y-scroll no-scrollbar`}
+        >
           <MiniProfile state={settings} />
           <SettingsTitle text={"change theme"} />
           <ThemeSwitchBtn />

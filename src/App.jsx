@@ -3,9 +3,10 @@ import ChatHead from "./components/bot/ChatHead";
 import ChatBox from "./components/bot/ChatBox";
 import Page from "./components/page/Page";
 
-// Context
+// Providers
 import ThemesProvider from "./providers/ThemesProvider";
 import FontSizeProvider from "./providers/FontSizeProvider";
+import LargeScreenProvider from "./providers/LargeScreenProvider";
 
 const App = () => {
   const [isChatActive, setIsChatActive] = useState(false);
@@ -14,6 +15,7 @@ const App = () => {
   const toggleChat = () => {
     setIsChatActive(!isChatActive);
   };
+
   useEffect(() => {
     const handleChatHead = (event) => {
       if (!chatHead.current?.contains(event.target)) setIsChatActive(false);
@@ -25,12 +27,14 @@ const App = () => {
     <>
       <main className="flex flex-col">
         <div ref={chatHead} id="chathead-wrapper">
-          <ThemesProvider>
-            <FontSizeProvider>
-              <ChatHead state={isChatActive} onClick={() => toggleChat()} />
-              {isChatActive && <ChatBox />}
-            </FontSizeProvider>
-          </ThemesProvider>
+          <LargeScreenProvider>
+            <ThemesProvider>
+              <FontSizeProvider>
+                <ChatHead state={isChatActive} onClick={() => toggleChat()} />
+                {isChatActive && <ChatBox />}
+              </FontSizeProvider>
+            </ThemesProvider>
+          </LargeScreenProvider>
         </div>
         <Page />
         <div
