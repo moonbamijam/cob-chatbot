@@ -34,6 +34,7 @@ import MiniProfile from "./sections/MiniProfile";
 import SettingsTitle from "./ui/SettingsTitle";
 import ThemeSwitchBtn from "./buttons/ThemeSwitchBtn";
 import FontSizes from "./sections/FontSizes";
+import BackBtn from "./buttons/BackBtn";
 
 // Icons
 import { IoSend } from "react-icons/io5";
@@ -306,6 +307,7 @@ const ChatBox = () => {
           <ThemeSwitchBtn />
           <SettingsTitle text={"change font size"} />
           <FontSizes />
+          <BackBtn onClick={() => toggleSettings()} text={"back"} />
         </div>
       )}
     </div>
