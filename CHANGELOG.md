@@ -1,5 +1,36 @@
 # What's New
 
+# [1.4.0](https://github.com/Jireh-sama/cob-chatbot/compare/1.3.0...1.4.0) (2024-04-11)
+
+
+### Bug Fixes
+
+* dark mode only render on settings btn click ([39fa05f](https://github.com/Jireh-sama/cob-chatbot/commit/39fa05f32cba027e13d60285fd7ed89bacb11cfe))
+
+
+### Features
+
+* add back button component ([827bbbb](https://github.com/Jireh-sama/cob-chatbot/commit/827bbbb983bc5b2d2b4cae8bf0266270a42e1174))
+* add bot property to colors ([b95acea](https://github.com/Jireh-sama/cob-chatbot/commit/b95aceaed006a165c758d204b0585121cdd16789))
+* add error handling ui component ([c3ee07f](https://github.com/Jireh-sama/cob-chatbot/commit/c3ee07faaa7059e179a7b0969c64844288063ae5))
+* add font size switch btn component ([c896b01](https://github.com/Jireh-sama/cob-chatbot/commit/c896b0173cd84d71dccfffb360aecb3ed6a2fd5c))
+* add font size switch btn to message box ([4c7b759](https://github.com/Jireh-sama/cob-chatbot/commit/4c7b759143d41834e560edad02305d58b91ac685))
+* add mini profile component ([309b64e](https://github.com/Jireh-sama/cob-chatbot/commit/309b64ea629055c58444cbb128ebff85b5479f7e))
+* add nick name and description to chatbot lib ([b8eaa5d](https://github.com/Jireh-sama/cob-chatbot/commit/b8eaa5dc21cd41cab402c8062d59fac984827e7c))
+* add persistence for the size of chat box ([667acc2](https://github.com/Jireh-sama/cob-chatbot/commit/667acc2847f26a67fc1cd139a273d94ca53ddd8e))
+* add sample user and bot chat ui component ([41dc841](https://github.com/Jireh-sama/cob-chatbot/commit/41dc84104b88fc7729ee35210e3852f9ff754004))
+* add settings and dark mode theme ([3472313](https://github.com/Jireh-sama/cob-chatbot/commit/34723130f93131f148a90bfeca5de61f42ce2c89))
+* add smooth transition for screen dimmer ([c4978bc](https://github.com/Jireh-sama/cob-chatbot/commit/c4978bc4dc4ee767dd3f3918963495c2613223d0))
+* add themes and font size providers ([5b9d725](https://github.com/Jireh-sama/cob-chatbot/commit/5b9d7257de5c35ec1d42b928bf830669deeeeb2d))
+* add uid to handle unique convo per user ([f949e14](https://github.com/Jireh-sama/cob-chatbot/commit/f949e145752ec8340f4712e14093562f5885667d)), closes [#19](https://github.com/Jireh-sama/cob-chatbot/issues/19)
+
+
+### Performance Improvements
+
+* add font size context to chat component ([65e7b52](https://github.com/Jireh-sama/cob-chatbot/commit/65e7b521e836bec1fbe83e83ab0edd0cd898dbd3))
+* add providers to app ([33bdce7](https://github.com/Jireh-sama/cob-chatbot/commit/33bdce7a9a4a99afda71b6bf43e3447c88d3bfba))
+* move toggleTheme fn and add themes context ([545223d](https://github.com/Jireh-sama/cob-chatbot/commit/545223dfe301e4c1d0df6bce9d50303ebde279c1))
+
 # [1.3.0](https://github.com/Jireh-sama/cob-chatbot/compare/1.2.1...1.3.0) (2024-04-05)
 
 
