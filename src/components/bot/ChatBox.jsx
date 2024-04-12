@@ -58,6 +58,8 @@ const ChatBox = ({ className, closeUsing }) => {
   const [botIsTyping, setBotIsTyping] = useState(false);
   const [messages, setMessages] = useState([]);
   const [faqs, setFaqs] = useState([]);
+  const hasSymbol = (str) => /@=@/.test(str);
+  let botHasMultipleMessage = null;
 
   const messagesCollectionRef = collection(db, "messages");
   const messagesQuery = query(
@@ -87,14 +89,30 @@ const ChatBox = ({ className, closeUsing }) => {
         `http://localhost:3001/bot?message=${encodeURIComponent(message)}`
       );
       const data = await response.json();
+      const botMessage = data.answer;
+      if (hasSymbol(data.answer)) {
+        botHasMultipleMessage = botMessage.split("@=@");
+      }
       setBotIsTyping(false);
+      if (botHasMultipleMessage) {
+        botHasMultipleMessage.forEach(async (response) => {
+          await addDoc(messagesCollectionRef, {
+            message: response,
+            role: "bot",
+            timeSent: Timestamp.now(),
+            uid: uid,
+          });
+          setBotMessage(response);
+        });
+        return;
+      }
       await addDoc(messagesCollectionRef, {
-        messageInfo: data,
+        message: botMessage,
         role: "bot",
         timeSent: Timestamp.now(),
         uid: uid,
       });
-      setBotMessage(data);
+      setBotMessage(message);
     } catch (error) {
       setError(true);
       console.log(error);
@@ -105,7 +123,7 @@ const ChatBox = ({ className, closeUsing }) => {
     event.preventDefault();
     try {
       await addDoc(messagesCollectionRef, {
-        messageInfo: { answer: message },
+        message: message,
         role: "user",
         timeSent: Timestamp.now(),
         uid: uid,
@@ -124,7 +142,7 @@ const ChatBox = ({ className, closeUsing }) => {
     try {
       setUserMessage(message);
       await addDoc(messagesCollectionRef, {
-        messageInfo: { answer: message },
+        message: message,
         role: "user",
         timeSent: Timestamp.now(),
         uid: uid,
@@ -253,7 +271,7 @@ const ChatBox = ({ className, closeUsing }) => {
                 <Chat
                   key={id}
                   role={message.role}
-                  message={message.messageInfo.answer}
+                  message={message.message}
                   timeSent={new Date(message.timeSent.seconds * 1000)
                     .toLocaleTimeString()
                     .replace(/(.*)\D\d+/, "$1")}
