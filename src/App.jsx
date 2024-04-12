@@ -26,12 +26,19 @@ const App = () => {
   return (
     <>
       <main className="flex flex-col">
-        <div ref={chatHead} id="chathead-wrapper">
+        <div ref={chatHead}>
           <LargeScreenProvider>
             <ThemesProvider>
               <FontSizeProvider>
                 <ChatHead state={isChatActive} onClick={() => toggleChat()} />
-                {isChatActive && <ChatBox />}
+                <ChatBox
+                  className={
+                    isChatActive
+                      ? "opacity-100"
+                      : "opacity-0 -translate-y-[100%] invisible"
+                  }
+                  closeUsing={toggleChat}
+                />
               </FontSizeProvider>
             </ThemesProvider>
           </LargeScreenProvider>
@@ -41,8 +48,12 @@ const App = () => {
           id="screen-dimmer"
           className={`w-full h-full fixed z-[90] bg-black ${
             isChatActive ? "opacity-80" : "opacity-0 invisible"
-          }`}
-        ></div>
+          } flex justify-center items-center `}
+        >
+          <p className="text-lg text-gray-300 animate-bounce">
+            Click anywhere to close.
+          </p>
+        </div>
       </main>
     </>
   );

@@ -36,13 +36,14 @@ import SettingsTitle from "./ui/SettingsTitle";
 import ThemeSwitchBtn from "./buttons/ThemeSwitchBtn";
 import FontSizes from "./sections/FontSizes";
 import BackBtn from "./buttons/BackBtn";
+import CloseChatBtn from "./buttons/CloseChatBtn";
 
 // Icons
 import { IoSend } from "react-icons/io5";
 
 const uid = verifiedUID();
 
-const ChatBox = () => {
+const ChatBox = ({ className, closeUsing }) => {
   const [isLargeScreen, setIsLargeScreen] = useContext(LargeScreenContext);
   const latestMessage = useRef();
   const faqsWrapper = useRef();
@@ -205,7 +206,7 @@ const ChatBox = () => {
       id="message-box"
       className={` ${
         isLargeScreen ? "w-[1200px] h-[750px]" : "w-[500px] h-[700px]"
-      } fixed flex flex-col right-10 bottom-24 sm:right-20 lg:right-28 lg:bottom-32 bg-white dark:bg-gray-800 rounded-lg overflow-hidden z-[100]`}
+      } fixed flex flex-col right-36 bottom-32 bg-white dark:bg-gray-800 rounded-xl overflow-hidden z-[100] ${className}`}
     >
       <header
         id="chat-ui-header"
@@ -233,6 +234,7 @@ const ChatBox = () => {
             state={isLargeScreen}
           />
           <SettingsBtn onClick={() => toggleSettings()} state={settings} />
+          <CloseChatBtn onClick={closeUsing} />
         </menu>
       </header>
       <section
