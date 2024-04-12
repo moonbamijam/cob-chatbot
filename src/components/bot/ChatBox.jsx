@@ -11,8 +11,9 @@ import {
 } from "firebase/firestore";
 import TextareaAutosize from "react-textarea-autosize";
 
-// Contexts
+// Contexts & Providers
 import { LargeScreenContext } from "../../providers/LargeScreenProvider";
+import InternetProvider from "../../providers/InternetProvider";
 
 // Libraries
 import { chatbot } from "../../libs/bot-details";
@@ -137,8 +138,8 @@ const ChatBox = () => {
   };
 
   const getChatHistory = async () => {
+    const data = await getDocs(messagesQuery);
     try {
-      const data = await getDocs(messagesQuery);
       setMessages(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
     } catch (error) {
       setError(true);
@@ -148,8 +149,8 @@ const ChatBox = () => {
   };
 
   const getFaqs = async () => {
+    const data = await getDocs(faqsQuery);
     try {
-      const data = await getDocs(faqsQuery);
       setFaqs(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
     } catch (error) {
       setError(true);
@@ -229,24 +230,26 @@ const ChatBox = () => {
         } w-full h-full px-4 py-6 overflow-y-scroll no-scrollbar`}
       >
         <MiniProfile state={settings} />
-        {loading ? (
-          <Loading />
-        ) : (
-          <div>
-            {messages.map((message, id) => (
-              <Chat
-                key={id}
-                role={message.role}
-                message={message.messageInfo.answer}
-                timeSent={new Date(message.timeSent.seconds * 1000)
-                  .toLocaleTimeString()
-                  .replace(/(.*)\D\d+/, "$1")}
-              />
-            ))}
-            {botIsTyping && <Typing />}
-          </div>
-        )}
-        {error && <Error />}
+        <InternetProvider>
+          {loading ? (
+            <Loading />
+          ) : (
+            <div>
+              {messages.map((message, id) => (
+                <Chat
+                  key={id}
+                  role={message.role}
+                  message={message.messageInfo.answer}
+                  timeSent={new Date(message.timeSent.seconds * 1000)
+                    .toLocaleTimeString()
+                    .replace(/(.*)\D\d+/, "$1")}
+                />
+              ))}
+              {botIsTyping && <Typing />}
+            </div>
+          )}
+          {error && <Error message={"something went wrong!"} />}
+        </InternetProvider>
         <div ref={latestMessage}></div>
       </section>
       <section
@@ -258,7 +261,7 @@ const ChatBox = () => {
         id="suggested-questions"
         className={`${
           settings ? "-translate-x-full hidden" : ""
-        } w-full h-[80px] px-4 flex items-center space-x-4 whitespace-nowrap overflow-x-scroll overflow-y-hidden no-scrollbar `}
+        } w-full h-[80px] px-4 flex items-center space-x-4 whitespace-nowrap overflow-x-scroll overflow-y-hidden no-scrollbar`}
       >
         {faqs.map((faq, id) => (
           <SuggestedQuestionBtn
