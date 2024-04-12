@@ -167,6 +167,18 @@ const ChatBox = () => {
     getFaqs();
   }, [userMessage, botMessage]);
 
+  useEffect(() => {
+    const handleSendMessageInEnter = (event) => {
+      if (event.keyCode == 13 && !event.shiftKey) {
+        sendMessageToBot(event, userMessage);
+      }
+    };
+    document.addEventListener("keydown", handleSendMessageInEnter);
+    return () => {
+      document.removeEventListener("keydown", handleSendMessageInEnter);
+    };
+  }, [userMessage]);
+
   const handleMouseDown = (e) => {
     setIsMouseDown(true);
     setStartX(e.pageX - faqsWrapper.current.offsetLeft);
@@ -274,9 +286,7 @@ const ChatBox = () => {
       <form
         action=""
         method=""
-        onSubmit={(e) => {
-          sendMessageToBot(e, userMessage);
-        }}
+        onSubmit={(e) => sendMessageToBot(e, userMessage)}
         className={`${
           settings ? "-translate-x-full hidden" : ""
         } w-full flex justify-between items-center gap-2 px-4 py-2`}
