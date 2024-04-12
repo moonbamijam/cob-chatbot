@@ -258,7 +258,7 @@ const ChatBox = ({ className, closeUsing }) => {
         id="messages"
         className={`${
           settings ? "-translate-x-full hidden" : ""
-        } w-full h-full px-4 py-6 overflow-y-scroll no-scrollbar`}
+        } w-full h-full px-4 py-6 overflow-y-scroll scrollbar scrollbar-track-transparent scrollbar-thumb-gray-300 dark:scrollbar-thumb-gray-500 hover:scrollbar-thumb-highlight`}
       >
         <MiniProfile state={settings} />
         <InternetProvider>
@@ -332,7 +332,7 @@ const ChatBox = ({ className, closeUsing }) => {
         <div
           className={`${
             settings ? "" : ""
-          } px-4 py-6 overflow-y-scroll no-scrollbar`}
+          } px-4 py-6 overflow-y-scroll scrollbar scrollbar-track-transparent scrollbar-thumb-gray-300 dark:scrollbar-thumb-gray-500 hover:scrollbar-thumb-highlight`}
         >
           <MiniProfile state={settings} />
           <SettingsTitle text={"change theme"} />
