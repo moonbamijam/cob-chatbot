@@ -95,13 +95,19 @@ const ChatBox = ({ className, closeUsing }) => {
       }
       setBotIsTyping(false);
       if (botHasMultipleMessage) {
-        botHasMultipleMessage.forEach(async (response) => {
+        botHasMultipleMessage.forEach(async (response, i) => {
+          if (i == 1) {
+            await sleep(1.5);
+            setBotIsTyping(true);
+            await sleep(3);
+          }
           await addDoc(messagesCollectionRef, {
             message: response,
             role: "bot",
             timeSent: Timestamp.now(),
             uid: uid,
           });
+          setBotIsTyping(false);
           setBotMessage(response);
         });
         return;
