@@ -38,7 +38,7 @@ const Chat = ({ role, message, timeSent }) => {
           <p
             id="message"
             style={{ fontSize: fontSize }}
-            className="dark:text-white"
+            className="dark:text-white whitespace-pre-line"
           >
             {message}
           </p>
