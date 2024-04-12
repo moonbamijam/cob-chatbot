@@ -188,9 +188,8 @@ const ChatBox = ({ className, closeUsing }) => {
 
   useEffect(() => {
     const handleSendMessageInEnter = (event) => {
-      if (event.keyCode == 13 && !event.shiftKey) {
+      if (event.keyCode == 13 && !event.shiftKey && !userMessage == "")
         sendMessageToBot(event, userMessage);
-      }
     };
     document.addEventListener("keydown", handleSendMessageInEnter);
     return () => {
