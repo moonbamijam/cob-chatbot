@@ -48,7 +48,7 @@ const App = () => {
           id="screen-dimmer"
           className={`w-full h-full fixed z-[90] bg-black ${
             isChatActive ? "opacity-80" : "opacity-0 invisible"
-          } flex justify-center items-center `}
+          } flex justify-center items-center pr-[30%]`}
         >
           <p className="text-lg text-gray-300 animate-bounce">
             Click anywhere to close.
