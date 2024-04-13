@@ -93,8 +93,13 @@ const ChatBox = ({ className, closeUsing }) => {
       if (
         deptMessage === "departments" ||
         deptMessage === "can you give me the list of departments?" ||
+        deptMessage === "can you give me the list of departments" ||
         deptMessage === "can you give me the departments?" ||
-        deptMessage === "departments list?"
+        deptMessage === "can you give me the departments" ||
+        deptMessage === "departments list?" ||
+        deptMessage === "departments list" ||
+        deptMessage === "list of departments" ||
+        deptMessage === "give me the list of deparments"
       ) {
         setIsAskingForDepts(true);
         await sleep(3);
@@ -109,7 +114,7 @@ const ChatBox = ({ className, closeUsing }) => {
         setBotIsTyping(false);
         setBotMessage(deptsAnswer);
         // Above is all temporary
-        
+
       } else if (message) {
         await sleep(3);
         const response = await fetch(
