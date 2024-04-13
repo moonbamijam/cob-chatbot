@@ -1,5 +1,33 @@
 # What's New
 
+# [1.5.0](https://github.com/Jireh-sama/cob-chatbot/compare/1.4.0...1.5.0) (2024-04-13)
+
+
+### Bug Fixes
+
+* can send an empty string of message ([846fdb1](https://github.com/Jireh-sama/cob-chatbot/commit/846fdb10329bb17380a0dd63f8548941069e71e0))
+
+
+### Features
+
+* add chat head and chat box animation ([c58a609](https://github.com/Jireh-sama/cob-chatbot/commit/c58a6098a9acbdc05a46451851a15ab46f5bf4c0)), closes [#11](https://github.com/Jireh-sama/cob-chatbot/issues/11)
+* add close chat button to chat box ([0e4ab37](https://github.com/Jireh-sama/cob-chatbot/commit/0e4ab37ce90479b07d148df4d0875e8e5c765533))
+* add delay to multiple messages by @Jireh-sama ([2f9f8d8](https://github.com/Jireh-sama/cob-chatbot/commit/2f9f8d872cc232db24fea596ffe82e6f76b03ed7))
+* add enter key to send message ([3fafe6e](https://github.com/Jireh-sama/cob-chatbot/commit/3fafe6ea7f4652fe12cc7b8106776d1c5d6a47a8))
+* add internet provider ([276016e](https://github.com/Jireh-sama/cob-chatbot/commit/276016e055b2a6b2c3d81fbc309afae4c4e269ed))
+* add new messages to compare in deptMessage ([71de53e](https://github.com/Jireh-sama/cob-chatbot/commit/71de53e1da8893833c1b361cedeca986482ecb67))
+* add new temporary styling to chat component ([2db228c](https://github.com/Jireh-sama/cob-chatbot/commit/2db228c9c824a90ed389e9f6b6659cbfe383959f))
+* add padding to screen dimmer ([c562eb6](https://github.com/Jireh-sama/cob-chatbot/commit/c562eb61693ba4fb3d86b255e510d753c98f884a))
+* add styling to scrollbars in chat box ([a9bed6a](https://github.com/Jireh-sama/cob-chatbot/commit/a9bed6a91871b5f3155b4ea56b3bd8b48e039602))
+* add text splitting to bot message ([c2f6247](https://github.com/Jireh-sama/cob-chatbot/commit/c2f62475df4d1014b12ed6066eea71c667f522d2))
+* new dynamic message to error ui component ([154d5bd](https://github.com/Jireh-sama/cob-chatbot/commit/154d5bd532365f610633f87805a7f3c7efef287b))
+* temporary features for handling departments ([1749d66](https://github.com/Jireh-sama/cob-chatbot/commit/1749d6624c95b24554da33c721f91ea881c3b4fc))
+
+
+### Performance Improvements
+
+* remove unused styling to chat head ([212a5e5](https://github.com/Jireh-sama/cob-chatbot/commit/212a5e587a1de03e288e453b2193b9e43132b84e))
+
 # [1.4.0](https://github.com/Jireh-sama/cob-chatbot/compare/1.3.0...1.4.0) (2024-04-11)
 
 
