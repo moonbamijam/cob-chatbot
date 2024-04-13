@@ -11,11 +11,13 @@ import {
 } from "firebase/firestore";
 import TextareaAutosize from "react-textarea-autosize";
 
-// Contexts
+// Contexts & Providers
 import { LargeScreenContext } from "../../providers/LargeScreenProvider";
+import InternetProvider from "../../providers/InternetProvider";
 
 // Libraries
 import { chatbot } from "../../libs/bot-details";
+import { depts, deptsAnswer } from "../../libs/depts";
 
 // Utilities
 import { sleep } from "../../utils/sleep";
@@ -35,13 +37,14 @@ import SettingsTitle from "./ui/SettingsTitle";
 import ThemeSwitchBtn from "./buttons/ThemeSwitchBtn";
 import FontSizes from "./sections/FontSizes";
 import BackBtn from "./buttons/BackBtn";
+import CloseChatBtn from "./buttons/CloseChatBtn";
 
 // Icons
 import { IoSend } from "react-icons/io5";
 
 const uid = verifiedUID();
 
-const ChatBox = () => {
+const ChatBox = ({ className, closeUsing }) => {
   const [isLargeScreen, setIsLargeScreen] = useContext(LargeScreenContext);
   const latestMessage = useRef();
   const faqsWrapper = useRef();
@@ -56,6 +59,11 @@ const ChatBox = () => {
   const [botIsTyping, setBotIsTyping] = useState(false);
   const [messages, setMessages] = useState([]);
   const [faqs, setFaqs] = useState([]);
+  const hasSymbol = (str) => /@=@/.test(str);
+  let botHasMultipleMessage = null;
+
+  // Temporary state to hold departments array
+  const [isAskingForDepts, setIsAskingForDepts] = useState(false);
 
   const messagesCollectionRef = collection(db, "messages");
   const messagesQuery = query(
@@ -80,19 +88,70 @@ const ChatBox = () => {
   const getReplyFromBot = async (message) => {
     try {
       setBotIsTyping(true);
-      await sleep(3);
-      const response = await fetch(
-        `http://localhost:3001/bot?message=${encodeURIComponent(message)}`
-      );
-      const data = await response.json();
-      setBotIsTyping(false);
-      await addDoc(messagesCollectionRef, {
-        messageInfo: data,
-        role: "bot",
-        timeSent: Timestamp.now(),
-        uid: uid,
-      });
-      setBotMessage(data);
+      let deptMessage = message.toLowerCase();
+      // Temporary statements just to display departments
+      if (
+        deptMessage === "departments" ||
+        deptMessage === "can you give me the list of departments?" ||
+        deptMessage === "can you give me the list of departments" ||
+        deptMessage === "can you give me the departments?" ||
+        deptMessage === "can you give me the departments" ||
+        deptMessage === "departments list?" ||
+        deptMessage === "departments list" ||
+        deptMessage === "list of departments" ||
+        deptMessage === "give me the list of deparments"
+      ) {
+        setIsAskingForDepts(true);
+        await sleep(3);
+        await addDoc(messagesCollectionRef, {
+          message: deptsAnswer,
+          role: "bot",
+          askingForDepts: true,
+          depts: depts,
+          timeSent: Timestamp.now(),
+          uid: uid,
+        });
+        setBotIsTyping(false);
+        setBotMessage(deptsAnswer);
+        // Above is all temporary
+
+      } else if (message) {
+        await sleep(3);
+        const response = await fetch(
+          `http://localhost:3001/bot?message=${encodeURIComponent(message)}`
+        );
+        const data = await response.json();
+        const botResponse = data.answer;
+        if (hasSymbol(data.answer)) {
+          botHasMultipleMessage = botResponse.split("@=@");
+        }
+        if (botHasMultipleMessage) {
+          botHasMultipleMessage.forEach(async (response, i) => {
+            if (i == 1) {
+              await sleep(1.5);
+              setBotIsTyping(true);
+              await sleep(3);
+            }
+            await addDoc(messagesCollectionRef, {
+              message: response,
+              role: "bot",
+              timeSent: Timestamp.now(),
+              uid: uid,
+            });
+            setBotIsTyping(false);
+            setBotMessage(response);
+          });
+          return;
+        }
+        setBotIsTyping(false);
+        await addDoc(messagesCollectionRef, {
+          message: botResponse,
+          role: "bot",
+          timeSent: Timestamp.now(),
+          uid: uid,
+        });
+        setBotMessage(message);
+      }
     } catch (error) {
       setError(true);
       console.log(error);
@@ -103,12 +162,11 @@ const ChatBox = () => {
     event.preventDefault();
     try {
       await addDoc(messagesCollectionRef, {
-        messageInfo: { answer: message },
+        message: message,
         role: "user",
         timeSent: Timestamp.now(),
         uid: uid,
       });
-
       setUserMessage("");
       await sleep(1.5);
       await getReplyFromBot(message);
@@ -122,7 +180,7 @@ const ChatBox = () => {
     try {
       setUserMessage(message);
       await addDoc(messagesCollectionRef, {
-        messageInfo: { answer: message },
+        message: message,
         role: "user",
         timeSent: Timestamp.now(),
         uid: uid,
@@ -137,8 +195,8 @@ const ChatBox = () => {
   };
 
   const getChatHistory = async () => {
+    const data = await getDocs(messagesQuery);
     try {
-      const data = await getDocs(messagesQuery);
       setMessages(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
     } catch (error) {
       setError(true);
@@ -148,8 +206,8 @@ const ChatBox = () => {
   };
 
   const getFaqs = async () => {
+    const data = await getDocs(faqsQuery);
     try {
-      const data = await getDocs(faqsQuery);
       setFaqs(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
     } catch (error) {
       setError(true);
@@ -165,6 +223,17 @@ const ChatBox = () => {
     getChatHistory();
     getFaqs();
   }, [userMessage, botMessage]);
+
+  useEffect(() => {
+    const handleSendMessageInEnter = (event) => {
+      if (event.keyCode == 13 && !event.shiftKey && !userMessage == "")
+        sendMessageToBot(event, userMessage);
+    };
+    document.addEventListener("keydown", handleSendMessageInEnter);
+    return () => {
+      document.removeEventListener("keydown", handleSendMessageInEnter);
+    };
+  }, [userMessage]);
 
   const handleMouseDown = (e) => {
     setIsMouseDown(true);
@@ -192,7 +261,7 @@ const ChatBox = () => {
       id="message-box"
       className={` ${
         isLargeScreen ? "w-[1200px] h-[750px]" : "w-[500px] h-[700px]"
-      } fixed flex flex-col right-10 bottom-24 sm:right-20 lg:right-28 lg:bottom-32 bg-white dark:bg-gray-800 rounded-lg overflow-hidden z-[100]`}
+      } fixed flex flex-col right-36 bottom-32 bg-white dark:bg-gray-800 rounded-xl overflow-hidden z-[100] ${className}`}
     >
       <header
         id="chat-ui-header"
@@ -220,33 +289,38 @@ const ChatBox = () => {
             state={isLargeScreen}
           />
           <SettingsBtn onClick={() => toggleSettings()} state={settings} />
+          <CloseChatBtn onClick={closeUsing} />
         </menu>
       </header>
       <section
         id="messages"
         className={`${
           settings ? "-translate-x-full hidden" : ""
-        } w-full h-full px-4 py-6 overflow-y-scroll no-scrollbar`}
+        } w-full h-full px-4 py-6 overflow-y-scroll scrollbar scrollbar-track-transparent scrollbar-thumb-gray-300 dark:scrollbar-thumb-gray-500 hover:scrollbar-thumb-highlight`}
       >
         <MiniProfile state={settings} />
-        {loading ? (
-          <Loading />
-        ) : (
-          <div>
-            {messages.map((message, id) => (
-              <Chat
-                key={id}
-                role={message.role}
-                message={message.messageInfo.answer}
-                timeSent={new Date(message.timeSent.seconds * 1000)
-                  .toLocaleTimeString()
-                  .replace(/(.*)\D\d+/, "$1")}
-              />
-            ))}
-            {botIsTyping && <Typing />}
-          </div>
-        )}
-        {error && <Error />}
+        <InternetProvider>
+          {loading ? (
+            <Loading />
+          ) : (
+            <div>
+              {messages.map((message, id) => (
+                <Chat
+                  key={id}
+                  role={message.role}
+                  askingForDepts={message.askingForDepts}
+                  depts={message.depts}
+                  message={message.message}
+                  timeSent={new Date(message.timeSent.seconds * 1000)
+                    .toLocaleTimeString()
+                    .replace(/(.*)\D\d+/, "$1")}
+                />
+              ))}
+              {botIsTyping && <Typing />}
+            </div>
+          )}
+          {error && <Error message={"something went wrong!"} />}
+        </InternetProvider>
         <div ref={latestMessage}></div>
       </section>
       <section
@@ -258,7 +332,7 @@ const ChatBox = () => {
         id="suggested-questions"
         className={`${
           settings ? "-translate-x-full hidden" : ""
-        } w-full h-[80px] px-4 flex items-center space-x-4 whitespace-nowrap overflow-x-scroll overflow-y-hidden no-scrollbar `}
+        } w-full h-[80px] px-4 flex items-center space-x-4 whitespace-nowrap overflow-x-scroll overflow-y-hidden no-scrollbar`}
       >
         {faqs.map((faq, id) => (
           <SuggestedQuestionBtn
@@ -271,9 +345,7 @@ const ChatBox = () => {
       <form
         action=""
         method=""
-        onSubmit={(e) => {
-          sendMessageToBot(e, userMessage);
-        }}
+        onSubmit={(e) => sendMessageToBot(e, userMessage)}
         className={`${
           settings ? "-translate-x-full hidden" : ""
         } w-full flex justify-between items-center gap-2 px-4 py-2`}
@@ -300,7 +372,7 @@ const ChatBox = () => {
         <div
           className={`${
             settings ? "" : ""
-          } px-4 py-6 overflow-y-scroll no-scrollbar`}
+          } px-4 py-6 overflow-y-scroll scrollbar scrollbar-track-transparent scrollbar-thumb-gray-300 dark:scrollbar-thumb-gray-500 hover:scrollbar-thumb-highlight`}
         >
           <MiniProfile state={settings} />
           <SettingsTitle text={"change theme"} />
