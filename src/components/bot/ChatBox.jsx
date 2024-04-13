@@ -17,6 +17,7 @@ import InternetProvider from "../../providers/InternetProvider";
 
 // Libraries
 import { chatbot } from "../../libs/bot-details";
+import { depts, deptsAnswer } from "../../libs/depts";
 
 // Utilities
 import { sleep } from "../../utils/sleep";
@@ -61,6 +62,9 @@ const ChatBox = ({ className, closeUsing }) => {
   const hasSymbol = (str) => /@=@/.test(str);
   let botHasMultipleMessage = null;
 
+  // Temporary state to hold departments array
+  const [isAskingForDepts, setIsAskingForDepts] = useState(false);
+
   const messagesCollectionRef = collection(db, "messages");
   const messagesQuery = query(
     messagesCollectionRef,
@@ -84,41 +88,65 @@ const ChatBox = ({ className, closeUsing }) => {
   const getReplyFromBot = async (message) => {
     try {
       setBotIsTyping(true);
-      await sleep(3);
-      const response = await fetch(
-        `http://localhost:3001/bot?message=${encodeURIComponent(message)}`
-      );
-      const data = await response.json();
-      const botMessage = data.answer;
-      if (hasSymbol(data.answer)) {
-        botHasMultipleMessage = botMessage.split("@=@");
-      }
-      setBotIsTyping(false);
-      if (botHasMultipleMessage) {
-        botHasMultipleMessage.forEach(async (response, i) => {
-          if (i == 1) {
-            await sleep(1.5);
-            setBotIsTyping(true);
-            await sleep(3);
-          }
-          await addDoc(messagesCollectionRef, {
-            message: response,
-            role: "bot",
-            timeSent: Timestamp.now(),
-            uid: uid,
-          });
-          setBotIsTyping(false);
-          setBotMessage(response);
+      let deptMessage = message.toLowerCase();
+      // Temporary statements just to display departments
+      if (
+        deptMessage === "departments" ||
+        deptMessage === "can you give me the list of departments?" ||
+        deptMessage === "can you give me the departments?" ||
+        deptMessage === "departments list?"
+      ) {
+        setIsAskingForDepts(true);
+        await sleep(3);
+        await addDoc(messagesCollectionRef, {
+          message: deptsAnswer,
+          role: "bot",
+          askingForDepts: true,
+          depts: depts,
+          timeSent: Timestamp.now(),
+          uid: uid,
         });
-        return;
+        setBotIsTyping(false);
+        setBotMessage(deptsAnswer);
+        // Above is all temporary
+        
+      } else if (message) {
+        await sleep(3);
+        const response = await fetch(
+          `http://localhost:3001/bot?message=${encodeURIComponent(message)}`
+        );
+        const data = await response.json();
+        const botResponse = data.answer;
+        if (hasSymbol(data.answer)) {
+          botHasMultipleMessage = botResponse.split("@=@");
+        }
+        if (botHasMultipleMessage) {
+          botHasMultipleMessage.forEach(async (response, i) => {
+            if (i == 1) {
+              await sleep(1.5);
+              setBotIsTyping(true);
+              await sleep(3);
+            }
+            await addDoc(messagesCollectionRef, {
+              message: response,
+              role: "bot",
+              timeSent: Timestamp.now(),
+              uid: uid,
+            });
+            setBotIsTyping(false);
+            setBotMessage(response);
+          });
+          return;
+        }
+        setBotIsTyping(false);
+        await addDoc(messagesCollectionRef, {
+          message: botResponse,
+          role: "bot",
+          timeSent: Timestamp.now(),
+          uid: uid,
+        });
+        setBotMessage(message);
       }
-      await addDoc(messagesCollectionRef, {
-        message: botMessage,
-        role: "bot",
-        timeSent: Timestamp.now(),
-        uid: uid,
-      });
-      setBotMessage(message);
     } catch (error) {
       setError(true);
       console.log(error);
@@ -134,7 +162,6 @@ const ChatBox = ({ className, closeUsing }) => {
         timeSent: Timestamp.now(),
         uid: uid,
       });
-
       setUserMessage("");
       await sleep(1.5);
       await getReplyFromBot(message);
@@ -276,6 +303,8 @@ const ChatBox = ({ className, closeUsing }) => {
                 <Chat
                   key={id}
                   role={message.role}
+                  askingForDepts={message.askingForDepts}
+                  depts={message.depts}
                   message={message.message}
                   timeSent={new Date(message.timeSent.seconds * 1000)
                     .toLocaleTimeString()
