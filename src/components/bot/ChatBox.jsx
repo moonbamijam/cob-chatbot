@@ -114,7 +114,6 @@ const ChatBox = ({ className, closeUsing }) => {
         setBotIsTyping(false);
         setBotMessage(deptsAnswer);
         // Above is all temporary
-
       } else if (message) {
         await sleep(3);
         const response = await fetch(
@@ -195,14 +194,14 @@ const ChatBox = ({ className, closeUsing }) => {
   };
 
   const getChatHistory = async () => {
-    const data = await getDocs(messagesQuery);
     try {
+      const data = await getDocs(messagesQuery);
       setMessages(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+      if (data) setLoading(false);
     } catch (error) {
       setError(true);
       console.log(error);
     }
-    setLoading(false);
   };
 
   const getFaqs = async () => {
