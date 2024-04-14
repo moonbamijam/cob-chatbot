@@ -50,7 +50,7 @@ const App = () => {
             isChatActive ? "opacity-80" : "opacity-0 invisible"
           } flex justify-center items-center pr-[30%]`}
         >
-          <p className="text-lg text-gray-300 animate-bounce">
+          <p className="text-lg text-gray-300 animate-bounce select-none">
             Click anywhere to close.
           </p>
         </div>
