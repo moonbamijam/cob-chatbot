@@ -41,6 +41,7 @@ import CloseChatBtn from "./buttons/CloseChatBtn";
 
 // Icons
 import { IoSend } from "react-icons/io5";
+import { splitMessage } from "../../utils/split-message";
 
 const uid = verifiedUID();
 
@@ -59,8 +60,6 @@ const ChatBox = ({ className, closeUsing }) => {
   const [botIsTyping, setBotIsTyping] = useState(false);
   const [messages, setMessages] = useState([]);
   const [faqs, setFaqs] = useState([]);
-  const hasSymbol = (str) => /@=@/.test(str);
-  let botHasMultipleMessage = null;
 
   // Temporary state to hold departments array
   const [isAskingForDepts, setIsAskingForDepts] = useState(false);
@@ -121,9 +120,7 @@ const ChatBox = ({ className, closeUsing }) => {
         );
         const data = await response.json();
         const botResponse = data.answer;
-        if (hasSymbol(data.answer)) {
-          botHasMultipleMessage = botResponse.split("@=@");
-        }
+        const botHasMultipleMessage = splitMessage(botResponse);
         if (botHasMultipleMessage) {
           botHasMultipleMessage.forEach(async (response, i) => {
             if (i == 1) {
