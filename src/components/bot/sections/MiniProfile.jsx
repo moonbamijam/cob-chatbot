@@ -1,4 +1,4 @@
-import { chatbot } from "../../../libs/bot-details";
+import { chatbot } from "../../../lib/bot-details";
 
 const MiniProfile = ({ state }) => {
   return (
@@ -16,7 +16,9 @@ const MiniProfile = ({ state }) => {
         </h1>
         <h3 className="dark:text-white mb-3">{chatbot.slogan}</h3>
         {state && (
-          <p className="dark:text-white text-sm opacity-70">{chatbot.desc}</p>
+          <p className="dark:text-white text-sm opacity-70 whitespace-pre-line">
+            {chatbot.desc}
+          </p>
         )}
       </div>
       <hr className="w-full" />
