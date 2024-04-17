@@ -16,13 +16,18 @@ import { LargeScreenContext } from "../../providers/LargeScreenProvider";
 import InternetProvider from "../../providers/InternetProvider";
 
 // Libraries
-import { chatbot } from "../../libs/bot-details";
-import { depts, deptsAnswer } from "../../libs/depts";
+import { chatbot } from "../../lib/bot-details";
+import { depts, deptsAnswer } from "../../lib/depts";
 
 // Utilities
 import { sleep } from "../../utils/sleep";
 import { scrollInto } from "../../utils/scroll-into";
 import { verifiedUID } from "../../utils/uid";
+import { hasSymbol, splitMessage } from "../../utils/split-message";
+import {
+  containsPlaceholder,
+  splitLinkToResponse,
+} from "../../utils/split-link";
 
 // Components
 import Chat from "./ui/Chat";
@@ -38,6 +43,7 @@ import ThemeSwitchBtn from "./buttons/ThemeSwitchBtn";
 import FontSizes from "./sections/FontSizes";
 import BackBtn from "./buttons/BackBtn";
 import CloseChatBtn from "./buttons/CloseChatBtn";
+import SuggestedQuestionsCarousel from "./sections/SuggestedQuestionsCarousel";
 
 // Icons
 import { IoSend } from "react-icons/io5";
@@ -49,9 +55,6 @@ const ChatBox = ({ className, closeUsing }) => {
   const latestMessage = useRef();
   const faqsWrapper = useRef();
   const [settings, setSettings] = useState(false);
-  const [isMouseDown, setIsMouseDown] = useState(false);
-  const [startX, setStartX] = useState(0);
-  const [scrollLeft, setScrollLeft] = useState(0);
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(true);
   const [userMessage, setUserMessage] = useState("");
@@ -59,11 +62,6 @@ const ChatBox = ({ className, closeUsing }) => {
   const [botIsTyping, setBotIsTyping] = useState(false);
   const [messages, setMessages] = useState([]);
   const [faqs, setFaqs] = useState([]);
-  const hasSymbol = (str) => /@=@/.test(str);
-  let botHasMultipleMessage = null;
-
-  // Temporary state to hold departments array
-  const [isAskingForDepts, setIsAskingForDepts] = useState(false);
 
   const messagesCollectionRef = collection(db, "messages");
   const messagesQuery = query(
@@ -92,21 +90,25 @@ const ChatBox = ({ className, closeUsing }) => {
       // Temporary statements just to display departments
       if (
         deptMessage === "departments" ||
+        deptMessage === "department" ||
         deptMessage === "can you give me the list of departments?" ||
         deptMessage === "can you give me the list of departments" ||
         deptMessage === "can you give me the departments?" ||
         deptMessage === "can you give me the departments" ||
+        deptMessage === "can you give me list of departments?" ||
+        deptMessage === "can you give me list of departments" ||
         deptMessage === "departments list?" ||
         deptMessage === "departments list" ||
+        deptMessage === "department list?" ||
+        deptMessage === "department list" ||
         deptMessage === "list of departments" ||
+        deptMessage === "list of department" ||
         deptMessage === "give me the list of deparments"
       ) {
-        setIsAskingForDepts(true);
         await sleep(3);
         await addDoc(messagesCollectionRef, {
           message: deptsAnswer,
           role: "bot",
-          askingForDepts: true,
           depts: depts,
           timeSent: Timestamp.now(),
           uid: uid,
@@ -114,18 +116,16 @@ const ChatBox = ({ className, closeUsing }) => {
         setBotIsTyping(false);
         setBotMessage(deptsAnswer);
         // Above is all temporary
-
-      } else if (message) {
+      } else {
         await sleep(3);
         const response = await fetch(
           `http://localhost:3001/bot?message=${encodeURIComponent(message)}`
         );
         const data = await response.json();
+        const intentRecognizedByBot = data.intent;
         const botResponse = data.answer;
-        if (hasSymbol(data.answer)) {
-          botHasMultipleMessage = botResponse.split("@=@");
-        }
-        if (botHasMultipleMessage) {
+        if (hasSymbol(botResponse)) {
+          const botHasMultipleMessage = splitMessage(botResponse);
           botHasMultipleMessage.forEach(async (response, i) => {
             if (i == 1) {
               await sleep(1.5);
@@ -133,6 +133,7 @@ const ChatBox = ({ className, closeUsing }) => {
               await sleep(3);
             }
             await addDoc(messagesCollectionRef, {
+              intent: intentRecognizedByBot,
               message: response,
               role: "bot",
               timeSent: Timestamp.now(),
@@ -145,12 +146,13 @@ const ChatBox = ({ className, closeUsing }) => {
         }
         setBotIsTyping(false);
         await addDoc(messagesCollectionRef, {
+          intent: intentRecognizedByBot,
           message: botResponse,
           role: "bot",
           timeSent: Timestamp.now(),
           uid: uid,
         });
-        setBotMessage(message);
+        setBotMessage(botResponse);
       }
     } catch (error) {
       setError(true);
@@ -195,14 +197,14 @@ const ChatBox = ({ className, closeUsing }) => {
   };
 
   const getChatHistory = async () => {
-    const data = await getDocs(messagesQuery);
     try {
+      const data = await getDocs(messagesQuery);
       setMessages(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+      if (data) setLoading(false);
     } catch (error) {
       setError(true);
       console.log(error);
     }
-    setLoading(false);
   };
 
   const getFaqs = async () => {
@@ -234,27 +236,6 @@ const ChatBox = ({ className, closeUsing }) => {
       document.removeEventListener("keydown", handleSendMessageInEnter);
     };
   }, [userMessage]);
-
-  const handleMouseDown = (e) => {
-    setIsMouseDown(true);
-    setStartX(e.pageX - faqsWrapper.current.offsetLeft);
-    setScrollLeft(faqsWrapper.current.scrollLeft);
-  };
-
-  const handleMouseLeave = () => {
-    setIsMouseDown(false);
-  };
-
-  const handleMouseUp = () => {
-    setIsMouseDown(false);
-  };
-  const handleMouseMove = (e) => {
-    if (!isMouseDown) return;
-    e.preventDefault();
-    const x = e.pageX - faqsWrapper.current.offsetLeft;
-    const walk = (x - startX) * 2;
-    faqsWrapper.current.scrollLeft = scrollLeft - walk;
-  };
 
   return (
     <div
@@ -293,29 +274,46 @@ const ChatBox = ({ className, closeUsing }) => {
         </menu>
       </header>
       <section
-        id="messages"
         className={`${
           settings ? "-translate-x-full hidden" : ""
-        } w-full h-full px-4 py-6 overflow-y-scroll scrollbar scrollbar-track-transparent scrollbar-thumb-gray-300 dark:scrollbar-thumb-gray-500 hover:scrollbar-thumb-highlight`}
+        } w-full h-full px-4 py-6 overflow-y-scroll scrollbar-thin scrollbar-track-transparent scrollbar-thumb-gray-300 dark:scrollbar-thumb-gray-500`}
       >
         <MiniProfile state={settings} />
         <InternetProvider>
           {loading ? (
             <Loading />
           ) : (
-            <div>
-              {messages.map((message, id) => (
-                <Chat
-                  key={id}
-                  role={message.role}
-                  askingForDepts={message.askingForDepts}
-                  depts={message.depts}
-                  message={message.message}
-                  timeSent={new Date(message.timeSent.seconds * 1000)
-                    .toLocaleTimeString()
-                    .replace(/(.*)\D\d+/, "$1")}
-                />
-              ))}
+            <div id="messages">
+              {messages.map((message, id) => {
+                if (containsPlaceholder(message.message)) {
+                  const interpolatedLink = splitLinkToResponse(
+                    message.message,
+                    message.intent
+                  );
+                  return (
+                    <Chat
+                      key={id}
+                      role={message.role}
+                      depts={message.depts}
+                      link={interpolatedLink}
+                      timeSent={new Date(message.timeSent.seconds * 1000)
+                        .toLocaleTimeString()
+                        .replace(/(.*)\D\d+/, "$1")}
+                    />
+                  );
+                } else
+                  return (
+                    <Chat
+                      key={id}
+                      role={message.role}
+                      message={message.message}
+                      depts={message.depts}
+                      timeSent={new Date(message.timeSent.seconds * 1000)
+                        .toLocaleTimeString()
+                        .replace(/(.*)\D\d+/, "$1")}
+                    />
+                  );
+              })}
               {botIsTyping && <Typing />}
             </div>
           )}
@@ -324,23 +322,19 @@ const ChatBox = ({ className, closeUsing }) => {
         <div ref={latestMessage}></div>
       </section>
       <section
-        onMouseDown={handleMouseDown}
-        onMouseLeave={handleMouseLeave}
-        onMouseUp={handleMouseUp}
-        onMouseMove={handleMouseMove}
         ref={faqsWrapper}
         id="suggested-questions"
-        className={`${
-          settings ? "-translate-x-full hidden" : ""
-        } w-full h-[80px] px-4 flex items-center space-x-4 whitespace-nowrap overflow-x-scroll overflow-y-hidden no-scrollbar`}
+        className={`${settings ? "-translate-x-full hidden" : ""}`}
       >
-        {faqs.map((faq, id) => (
-          <SuggestedQuestionBtn
-            key={id}
-            onClick={() => sendFaqToBot(faq.questions[0])}
-            question={faq.questions[0]}
-          />
-        ))}
+        <SuggestedQuestionsCarousel state={isLargeScreen}>
+          {faqs.map((faq, id) => (
+            <SuggestedQuestionBtn
+              key={id}
+              onClick={() => sendFaqToBot(faq.questions[0])}
+              question={faq.questions[0]}
+            />
+          ))}
+        </SuggestedQuestionsCarousel>
       </section>
       <form
         action=""
@@ -348,9 +342,10 @@ const ChatBox = ({ className, closeUsing }) => {
         onSubmit={(e) => sendMessageToBot(e, userMessage)}
         className={`${
           settings ? "-translate-x-full hidden" : ""
-        } w-full flex justify-between items-center gap-2 px-4 py-2`}
+        } w-full flex justify-between items-center gap-2 px-4 pb-2`}
       >
         <TextareaAutosize
+          autoFocus
           name="chat"
           id="chat"
           value={userMessage}
@@ -372,7 +367,7 @@ const ChatBox = ({ className, closeUsing }) => {
         <div
           className={`${
             settings ? "" : ""
-          } px-4 py-6 overflow-y-scroll scrollbar scrollbar-track-transparent scrollbar-thumb-gray-300 dark:scrollbar-thumb-gray-500 hover:scrollbar-thumb-highlight`}
+          } px-4 py-6 overflow-y-scroll scrollbar-thin scrollbar-track-transparent scrollbar-thumb-gray-300 dark:scrollbar-thumb-gray-500`}
         >
           <MiniProfile state={settings} />
           <SettingsTitle text={"change theme"} />

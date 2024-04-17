@@ -1,4 +1,4 @@
-import { BsThreeDotsVertical } from "react-icons/bs";
+import { IoSettingsSharp } from "react-icons/io5";
 
 const SettingsBtn = ({ state, onClick }) => {
   return (
@@ -8,9 +8,7 @@ const SettingsBtn = ({ state, onClick }) => {
         state && "bg-highlight [&>svg>path]:text-white"
       }`}
     >
-      <BsThreeDotsVertical
-        className={`${state && "rotate-90"} dark:text-white`}
-      />
+      <IoSettingsSharp className={`${state && "rotate-90"} dark:text-white`} />
     </button>
   );
 };
