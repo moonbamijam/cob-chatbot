@@ -1,5 +1,14 @@
 # What's New
 
+# [1.7.0](https://github.com/Jireh-sama/cob-chatbot/compare/1.6.0...1.7.0) (2024-04-17)
+
+
+### Features
+
+* add bot greeting if convo history is empty ([e00e35c](https://github.com/Jireh-sama/cob-chatbot/commit/e00e35cdbb801f24933af329edea7a9b1a281f64))
+* add cloud message in chat head ([0c35f42](https://github.com/Jireh-sama/cob-chatbot/commit/0c35f42ee7d92cd5bbf9928c92ab356716e3969b)), closes [#23](https://github.com/Jireh-sama/cob-chatbot/issues/23)
+* add responsive width to chatbox and chathead ([eab13c9](https://github.com/Jireh-sama/cob-chatbot/commit/eab13c98216a9cee9936337593d29f52ba4d0bc6)), closes [#25](https://github.com/Jireh-sama/cob-chatbot/issues/25)
+
 # [1.6.0](https://github.com/Jireh-sama/cob-chatbot/compare/1.5.0...1.6.0) (2024-04-17)
 
 
