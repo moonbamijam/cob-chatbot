@@ -1,4 +1,4 @@
-const hasSymbol = (str) => /@=@/.test(str);
+export const hasSymbol = (str) => /@=@/.test(str);
 let multipleMessage = null;
 
 export const splitMessage = (message) => {
