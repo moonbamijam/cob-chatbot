@@ -1,5 +1,4 @@
 import Mascot from "../../assets/animated-mascot.gif";
-import { IoClose } from "react-icons/io5";
 
 const ChatHead = ({ state, onClick }) => {
   return (
@@ -11,7 +10,7 @@ const ChatHead = ({ state, onClick }) => {
           state ? "opacity-0 translate-y-[100%] invisible" : ""
         }`}
       >
-        <img src={Mascot} alt="" className="w-[250px]" />
+        <img src={Mascot} alt="chat head logo" className="w-[400px]" />
       </button>
     </>
   );
