@@ -3,30 +3,18 @@ import { useContext, useState } from "react";
 // Context & Providers
 import { FontSizeContext } from "../../../providers/FontSizeProvider";
 
-import { chatbot } from "../../../libs/bot-details";
+import { chatbot } from "../../../lib/bot-details";
 
-import { MdSubdirectoryArrowRight } from "react-icons/md";
+import DepartmentBtn from "../buttons/DepartmentBtn";
 
-const Chat = ({ role, message, askingForDepts, depts, timeSent }) => {
+const step = 4;
+
+const Chat = ({ role, message, depts, timeSent, link }) => {
   const [fontSize, setFontSize] = useContext(FontSizeContext);
-  const [one, setOne] = useState(false);
-  const [two, setTwo] = useState(false);
-  const [three, setThree] = useState(false);
+  const [numberOfDeptsToShow, setNumberOfDeptsToShow] = useState(step);
 
-  const toggleOne = () => {
-    setOne(!one);
-    setTwo(false);
-    setThree(false);
-  };
-  const toggleTwo = () => {
-    setOne(false);
-    setTwo(!two);
-    setThree(false);
-  };
-  const toggleThree = () => {
-    setOne(false);
-    setTwo(false);
-    setThree(!three);
+  const loadMore = () => {
+    setNumberOfDeptsToShow(numberOfDeptsToShow + step);
   };
 
   return (
@@ -44,7 +32,7 @@ const Chat = ({ role, message, askingForDepts, depts, timeSent }) => {
             alt="Chatbot Icon"
             width={35}
             height={35}
-            className="rounded-full"
+            className="rounded-full select-none"
           />
         ) : (
           ""
@@ -59,85 +47,35 @@ const Chat = ({ role, message, askingForDepts, depts, timeSent }) => {
           <div
             id="message"
             style={{ fontSize: fontSize }}
-            className="dark:text-white whitespace-pre-line"
+            className="relative dark:text-white whitespace-pre-line"
           >
             {message}
-            {askingForDepts
-              ? depts && (
-                  <div className="flex flex-col mt-2 gap-y-2">
-                    <div
-                      onClick={() => toggleOne()}
-                      className="rounded-3xl px-4 py-3 text-left text-white bg-gray-500 hover:bg-gray-600 dark:bg-gray-700 dark:hover:bg-gray-800 cursor-pointer"
-                    >
-                      <p className="flex gap-1 items-center">OFFICE OF THE CITY MAYOR (MO) <MdSubdirectoryArrowRight /> </p>
-                      <div
-                        className={`${
-                          one ? "block" : "hidden"
-                        } px-4 py-3 rounded-3xl mt-2`}
-                      >
-                        <h3 className="font-bold text-lg mb-2">Service:</h3>
-                        <p className="">
-                          Lorem ipsum dolor sit amet, consectetur adipiscing
-                          elit, sed do eiusmod tempor incididunt ut labore et
-                          dolore magna aliqua. Ut enim ad minim veniam, quis
-                          nostrud exercitation ullamco laboris nisi ut aliquip
-                          ex ea commodo consequat.
-                        </p>
-                      </div>
-                    </div>
-                    <div
-                      onClick={() => toggleTwo()}
-                      className="rounded-3xl px-4 py-3 text-left text-white bg-gray-500 hover:bg-gray-600 dark:bg-gray-700 dark:hover:bg-gray-800 cursor-pointer"
-                    >
-                      <p className="flex gap-1 items-center">OFFICE OF THE CITY VICE MAYOR (OVM) <MdSubdirectoryArrowRight /> </p>
-                      <div
-                        className={`${
-                          two ? "block" : "hidden"
-                        } px-4 py-3 rounded-3xl mt-2`}
-                      >
-                        <h3 className="font-bold text-lg mb-2">Service:</h3>
-                        <p className="">
-                          Lorem ipsum dolor sit amet, consectetur adipiscing
-                          elit, sed do eiusmod tempor incididunt ut labore et
-                          dolore magna aliqua. Blandit massa enim nec dui nunc
-                          mattis enim.
-                        </p>
-
-                        <h3 className="font-bold text-lg mb-2">Steps:</h3>
-                        <p className="">
-                          1. Lorem ipsum dolor sit amet. <br />
-                          2. Lorem ipsum dolor sit amet consectetur adipisicing
-                          elit. <br />
-                          3. Lorem ipsum dolor sit amet, consectetur adipisicing
-                          elit. Deserunt, at.
-                        </p>
-                      </div>
-                    </div>
-                    <div
-                      onClick={() => toggleThree()}
-                      className="rounded-3xl px-4 py-3 text-left text-white bg-gray-500 hover:bg-gray-600 dark:bg-gray-700 dark:hover:bg-gray-800 cursor-pointer"
-                    >
-                      <p className="flex gap-1 items-center">
-                        OFFICE OF THE CITY ADMINISTRATOR (ADMIN) <MdSubdirectoryArrowRight /> 
-                      </p>
-                      <div
-                        className={`${
-                          three ? "block" : "hidden"
-                        } px-4 py-3 rounded-3xl mt-2`}
-                      >
-                        <h3 className="font-bold text-lg mb-2">Requirements:</h3>
-                        <p className="">
-                          * Lorem ipsum dolor sit amet. <br />
-                          * Lorem ipsum dolor sit amet consectetur adipisicing
-                          elit. <br />
-                          * Lorem ipsum dolor sit amet, consectetur adipisicing
-                          elit. Deserunt, at.
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                )
-              : ""}
+            {depts
+              ? depts
+                  .slice(0, numberOfDeptsToShow)
+                  .map((dept, id) => (
+                    <DepartmentBtn
+                      key={id}
+                      deptName={dept.deptName}
+                      service={dept.service}
+                      steps={dept.steps}
+                      requirements={dept.requirements}
+                    />
+                  ))
+              : null}
+            {depts && (
+              <button
+                onClick={() => loadMore()}
+                className={`w-full absolute -bottom-3 bg-gradient-to-t from-bot dark:from-gray-600 from-15% h-[100px] z-[5] backdrop-blur-xs  ${
+                  depts?.length <= numberOfDeptsToShow ? "hidden" : "block"
+                } hover:backdrop-blur-0 [&>p]:hover:opacity-15`}
+              >
+                <p className="font-semibold text-white drop-shadow-lg animate-bounce text-base">Click here to show more</p>
+              </button>
+            )}
+            {link ? (
+              <div className="" dangerouslySetInnerHTML={{ __html: link }} />
+            ) : null}
           </div>
           <div
             id="timeSent"
@@ -145,7 +83,7 @@ const Chat = ({ role, message, askingForDepts, depts, timeSent }) => {
               role == "bot"
                 ? "text-gray-500 dark:text-gray-300"
                 : "text-gray-300"
-            } text-xs text-right`}
+            } text-xs text-right z-[9]`}
           >
             {timeSent}
           </div>
