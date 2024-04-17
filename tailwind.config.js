@@ -34,6 +34,9 @@ export default {
           "Noto Color Emoji",
         ],
       },
+      backdropBlur: {
+        xs: "2px",
+      },
     },
   },
   plugins: [require("tailwind-scrollbar")],
