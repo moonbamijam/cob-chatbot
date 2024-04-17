@@ -21,7 +21,10 @@ const App = () => {
       if (!chatHead.current?.contains(event.target)) setIsChatActive(false);
     };
     document.addEventListener("mousedown", handleChatHead);
-  }, [chatHead]);
+    return () => {
+      document.removeEventListener("mousedown", handleChatHead);
+    };
+  }, [chatHead, isChatActive]);
 
   return (
     <>
