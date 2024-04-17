@@ -1,5 +1,34 @@
 # What's New
 
+# [1.6.0](https://github.com/Jireh-sama/cob-chatbot/compare/1.5.0...1.6.0) (2024-04-17)
+
+
+### Bug Fixes
+
+* bot response doesn't change even in diff msg ([7175186](https://github.com/Jireh-sama/cob-chatbot/commit/7175186e7c6921ec458fdc39ac4dc142c94dca65))
+
+
+### Features
+
+* add DepartmentBtn to bot button components ([52d1bce](https://github.com/Jireh-sama/cob-chatbot/commit/52d1bce844efbe423b93658064e0f61cd22e049b))
+* add new backdrop blur property ([af61f1c](https://github.com/Jireh-sama/cob-chatbot/commit/af61f1c33621e3f6fdfa24f38d1da9c49aa06cb3))
+* add new temporary data for departments ([ef653a7](https://github.com/Jireh-sama/cob-chatbot/commit/ef653a72df872a9e793cfacb7c0befbaea6db8f4))
+* add new transition timing function to all ([921c53b](https://github.com/Jireh-sama/cob-chatbot/commit/921c53b6bc4caaff306ef5dd3bc7679f63ec9f5f))
+* add new type of responses and new ui ([c9e9bdf](https://github.com/Jireh-sama/cob-chatbot/commit/c9e9bdf8ee2a46eb50822f7cd4850b42c7c072e1))
+* add utility to split link in bot response ([d21eb96](https://github.com/Jireh-sama/cob-chatbot/commit/d21eb9693ceab497394b65293fe6ba90a9acb20b))
+* add whitespace pre line to chatbot descript. ([7bf2778](https://github.com/Jireh-sama/cob-chatbot/commit/7bf27780fd83ee531dd71979ad8ed0e2f5098ccf))
+* new settings button icon in chat box ([226ab87](https://github.com/Jireh-sama/cob-chatbot/commit/226ab879ee3edcb12ed2971bb076b2848c4b2f28))
+* new ui to suggested questions ([ebb06d2](https://github.com/Jireh-sama/cob-chatbot/commit/ebb06d233f629c83155d90b4b7ba5059b8f11df1))
+* re position loading ui component ([ffd7e51](https://github.com/Jireh-sama/cob-chatbot/commit/ffd7e515930b016760d78396d2f549dfb5b3391a))
+* set user select none to screen dimmer text ([eefa46c](https://github.com/Jireh-sama/cob-chatbot/commit/eefa46cfe21be9586151a4799585e6129ce2f23a))
+
+
+### Performance Improvements
+
+* add better loading state for messages ([cf3c804](https://github.com/Jireh-sama/cob-chatbot/commit/cf3c804ec5cfd49885c8497cf2b15d1715fabf61))
+* add removeEventListener when component changed ([439ccc1](https://github.com/Jireh-sama/cob-chatbot/commit/439ccc194b82c848b535c3cc8030b98afc5b59df))
+* create a seperate function for split message ([cc9d0b2](https://github.com/Jireh-sama/cob-chatbot/commit/cc9d0b2412b5981c1051e05293c00efe4a8bb669))
+
 # [1.5.0](https://github.com/Jireh-sama/cob-chatbot/compare/1.4.0...1.5.0) (2024-04-13)
 
 
