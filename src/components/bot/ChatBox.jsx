@@ -18,6 +18,7 @@ import InternetProvider from "../../providers/InternetProvider";
 // Libraries
 import { chatbot } from "../../lib/bot-details";
 import { depts, deptsAnswer } from "../../lib/depts";
+import { greet } from "../../lib/greet";
 
 // Utilities
 import { sleep } from "../../utils/sleep";
@@ -217,18 +218,6 @@ const ChatBox = ({ className, closeUsing }) => {
     }
   };
 
-  const startGreetings = async () => {
-    const botResponse = "👋 Hello there! My name is Viviane, your friendly chatbot assistant. Welcome to our conversation! Whether you're here for assistance or information I'm here to help. Feel free to ask me anything or simply say hi."
-    await addDoc(messagesCollectionRef, {
-      intent: 'salutation.greetings',
-      message: botResponse,
-      role: "bot",
-      timeSent: Timestamp.now(),
-      uid: uid,
-    });
-    setBotMessage(botResponse);
-  }
-
   useEffect(() => {
     scrollInto(latestMessage);
   }, [messages, botIsTyping]);
@@ -251,7 +240,7 @@ const ChatBox = ({ className, closeUsing }) => {
 
   useEffect(() => {
     if (!loading && messages.length === 0) {
-      startGreetings(); // initiate bot greetings
+      greet(uid, setBotMessage); // initiate bot greetings
     }
   }, [loading]);
 
