@@ -9,44 +9,26 @@ import {
   orderBy,
   where,
 } from "firebase/firestore";
-import TextareaAutosize from "react-textarea-autosize";
 
 // Contexts & Providers
 import { LargeScreenContext } from "../../providers/LargeScreenProvider";
-import InternetProvider from "../../providers/InternetProvider";
 
 // Libraries
-import { chatbot } from "../../lib/bot-details";
 import { depts, deptsAnswer } from "../../lib/depts";
+import { greet } from "../../lib/greet";
 
 // Utilities
 import { sleep } from "../../utils/sleep";
 import { scrollInto } from "../../utils/scroll-into";
 import { verifiedUID } from "../../utils/uid";
 import { hasSymbol, splitMessage } from "../../utils/split-message";
-import {
-  containsPlaceholder,
-  splitLinkToResponse,
-} from "../../utils/split-link";
 
 // Components
-import Chat from "./ui/Chat";
-import Typing from "./ui/Typing";
-import Loading from "./ui/Loading";
-import SuggestedQuestionBtn from "./buttons/SuggestedQuestionBtn";
-import MaximizeBtn from "./buttons/MaximizeBtn";
-import Error from "./ui/Error";
-import SettingsBtn from "./buttons/SettingsBtn";
-import MiniProfile from "./sections/MiniProfile";
-import SettingsTitle from "./ui/SettingsTitle";
-import ThemeSwitchBtn from "./buttons/ThemeSwitchBtn";
-import FontSizes from "./sections/FontSizes";
-import BackBtn from "./buttons/BackBtn";
-import CloseChatBtn from "./buttons/CloseChatBtn";
-import SuggestedQuestionsCarousel from "./sections/SuggestedQuestionsCarousel";
-
-// Icons
-import { IoSend } from "react-icons/io5";
+import Messages from "./sections/Messages";
+import Header from "./header/Header";
+import SuggestedQuestions from "./sections/SuggestedQuestions";
+import MessageInput from "./input/MessageInput";
+import Settings from "./sections/Settings";
 
 const uid = verifiedUID();
 
@@ -217,31 +199,27 @@ const ChatBox = ({ className, closeUsing }) => {
     }
   };
 
-  const startGreetings = async () => {
-    const botResponse = "👋 Hello there! My name is Viviane, your friendly chatbot assistant. Welcome to our conversation! Whether you're here for assistance or information I'm here to help. Feel free to ask me anything or simply say hi."
-    await addDoc(messagesCollectionRef, {
-      intent: 'salutation.greetings',
-      message: botResponse,
-      role: "bot",
-      timeSent: Timestamp.now(),
-      uid: uid,
-    });
-    setBotMessage(botResponse);
-  }
-
+  // for auto scrolling
   useEffect(() => {
     scrollInto(latestMessage);
   }, [messages, botIsTyping]);
 
+  // for rendering messages
   useEffect(() => {
     getChatHistory();
     getFaqs();
   }, [userMessage, botMessage]);
 
+  // for sending messages when clicking enter
   useEffect(() => {
     const handleSendMessageInEnter = (event) => {
-      if (event.keyCode == 13 && !event.shiftKey && !userMessage == "")
-        sendMessageToBot(event, userMessage);
+      const trimmedMessage = userMessage.trim();
+      if (event.keyCode == 13 && !event.shiftKey && !trimmedMessage == "") {
+        sendMessageToBot(event, trimmedMessage);
+      } else if (event.keyCode == 13 && !event.shiftKey) {
+        event.preventDefault();
+        setUserMessage("");
+      }
     };
     document.addEventListener("keydown", handleSendMessageInEnter);
     return () => {
@@ -249,153 +227,52 @@ const ChatBox = ({ className, closeUsing }) => {
     };
   }, [userMessage]);
 
+  // for bot to greet when the user talks to the bot for the first time
   useEffect(() => {
     if (!loading && messages.length === 0) {
-      startGreetings(); // initiate bot greetings
+      greet(uid, setBotMessage);
     }
   }, [loading]);
 
   return (
     <div
       id="message-box"
-      className={` ${
+      className={`${
         isLargeScreen
           ? "w-[700px] h-[750px] md:w-[750px] lg:w-[800px] xl:w-[1000px] 2xl:w-[1200px]"
           : "w-[500px] h-[700px]"
       } fixed flex flex-col right-36 bottom-32 bg-white dark:bg-gray-800 rounded-xl overflow-hidden z-[100] ${className}`}
     >
-      <header
-        id="chat-ui-header"
-        className="w-full flex items-center justify-between px-8 py-4 mr-auto shadow-md "
-      >
-        <button
-          onClick={() => toggleSettings()}
-          id="chatbot-detai"
-          className="flex items-center gap-4"
-        >
-          <img
-            src={chatbot.logo}
-            alt=""
-            width={45}
-            height={45}
-            className="rounded-full"
-          />
-          <h3 className="text-2xl capitalize font-semibold dark:text-white">
-            {chatbot.nickName}
-          </h3>
-        </button>
-        <menu className="flex gap-1 justify-end">
-          <MaximizeBtn
-            onClick={() => toggleLargeScreen()}
-            state={isLargeScreen}
-          />
-          <SettingsBtn onClick={() => toggleSettings()} state={settings} />
-          <CloseChatBtn onClick={closeUsing} />
-        </menu>
-      </header>
-      <section
-        className={`${
-          settings ? "-translate-x-full hidden" : ""
-        } w-full h-full px-4 py-6 overflow-y-scroll scrollbar-thin scrollbar-track-transparent scrollbar-thumb-gray-300 dark:scrollbar-thumb-gray-500`}
-      >
-        <MiniProfile state={settings} />
-        <InternetProvider>
-          {loading ? (
-            <Loading />
-          ) : (
-            <div id="messages">
-              {messages.map((message, id) => {
-                if (containsPlaceholder(message.message)) {
-                  const interpolatedLink = splitLinkToResponse(
-                    message.message,
-                    message.intent
-                  );
-                  return (
-                    <Chat
-                      key={id}
-                      role={message.role}
-                      depts={message.depts}
-                      link={interpolatedLink}
-                      timeSent={new Date(message.timeSent.seconds * 1000)
-                        .toLocaleTimeString()
-                        .replace(/(.*)\D\d+/, "$1")}
-                    />
-                  );
-                } else
-                  return (
-                    <Chat
-                      key={id}
-                      role={message.role}
-                      message={message.message}
-                      depts={message.depts}
-                      timeSent={new Date(message.timeSent.seconds * 1000)
-                        .toLocaleTimeString()
-                        .replace(/(.*)\D\d+/, "$1")}
-                    />
-                  );
-              })}
-              {botIsTyping && <Typing />}
-            </div>
-          )}
-          {error && <Error message={"something went wrong!"} />}
-        </InternetProvider>
-        <div ref={latestMessage}></div>
-      </section>
-      <section
-        ref={faqsWrapper}
-        id="suggested-questions"
-        className={`${settings ? "-translate-x-full hidden" : ""}`}
-      >
-        <SuggestedQuestionsCarousel state={isLargeScreen}>
-          {faqs.map((faq, id) => (
-            <SuggestedQuestionBtn
-              key={id}
-              onClick={() => sendFaqToBot(faq.questions[0])}
-              question={faq.questions[0]}
-            />
-          ))}
-        </SuggestedQuestionsCarousel>
-      </section>
-      <form
-        action=""
-        method=""
-        onSubmit={(e) => sendMessageToBot(e, userMessage)}
-        className={`${
-          settings ? "-translate-x-full hidden" : ""
-        } w-full flex justify-between items-center gap-2 px-4 pb-2`}
-      >
-        <TextareaAutosize
-          autoFocus
-          name="chat"
-          id="chat"
-          value={userMessage}
-          onChange={(e) => {
-            setUserMessage(e.target.value);
-          }}
-          className="px-4 py-3 w-full rounded-3xl dark:text-white border border-gray-400 dark:border-transparent outline-none dark:bg-gray-700  dark:caret-white"
-          placeholder="Type here..."
-        />
-        <button
-          type="submit"
-          disabled={!userMessage}
-          className="p-4 rounded-full flex items-center justify-center active:translate-x-2 text-2xl text-blue-500 hover:bg-gray-300 dark:hover:bg-gray-700 cursor-pointer"
-        >
-          <IoSend />
-        </button>
-      </form>
+      <Header
+        toggleSettings={toggleSettings}
+        toggleLargeScreen={toggleLargeScreen}
+        isLargeScreen={isLargeScreen}
+        settings={settings}
+        closeUsing={closeUsing}
+      />
+      <Messages
+        settings={settings}
+        loading={loading}
+        messages={messages}
+        botIsTyping={botIsTyping}
+        error={error}
+        latestMessage={latestMessage}
+      />
+      <SuggestedQuestions
+        faqsWrapper={faqsWrapper}
+        settings={settings}
+        isLargeScreen={isLargeScreen}
+        faqs={faqs}
+        sendFaqToBot={sendFaqToBot}
+      />
+      <MessageInput
+        sendMessageToBot={sendMessageToBot}
+        userMessage={userMessage}
+        setUserMessage={setUserMessage}
+        settings={settings}
+      />
       {settings && (
-        <div
-          className={`${
-            settings ? "" : ""
-          } px-4 py-6 overflow-y-scroll scrollbar-thin scrollbar-track-transparent scrollbar-thumb-gray-300 dark:scrollbar-thumb-gray-500`}
-        >
-          <MiniProfile state={settings} />
-          <SettingsTitle text={"change theme"} />
-          <ThemeSwitchBtn />
-          <SettingsTitle text={"change font size"} />
-          <FontSizes />
-          <BackBtn onClick={() => toggleSettings()} text={"back"} />
-        </div>
+        <Settings settings={settings} toggleSettings={toggleSettings} />
       )}
     </div>
   );
