@@ -229,8 +229,13 @@ const ChatBox = ({ className, closeUsing }) => {
 
   useEffect(() => {
     const handleSendMessageInEnter = (event) => {
-      if (event.keyCode == 13 && !event.shiftKey && !userMessage == "")
-        sendMessageToBot(event, userMessage);
+      const trimmedMessage = userMessage.trim();
+      if (event.keyCode == 13 && !event.shiftKey && !trimmedMessage == "") {
+        sendMessageToBot(event, trimmedMessage);
+      } else if (event.keyCode == 13 && !event.shiftKey) {
+        event.preventDefault();
+        setUserMessage("");
+      }
     };
     document.addEventListener("keydown", handleSendMessageInEnter);
     return () => {
