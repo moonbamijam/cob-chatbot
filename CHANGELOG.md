@@ -1,5 +1,23 @@
 # What's New
 
+# [1.8.0](https://github.com/Jireh-sama/cob-chatbot/compare/1.7.0...1.8.0) (2024-04-22)
+
+
+### Bug Fixes
+
+* users can send whitespaces ([#21](https://github.com/Jireh-sama/cob-chatbot/issues/21)) ([2f51488](https://github.com/Jireh-sama/cob-chatbot/commit/2f51488b6794d0a0e50144dd528c9da37e92aabd))
+
+
+### Features
+
+* new preview msg and dynamic timestamp to sample chat ui component ([c4d7545](https://github.com/Jireh-sama/cob-chatbot/commit/c4d754510c7ff519bae69c02c6237485118cd7a1))
+
+
+### Performance Improvements
+
+* code split to chat box ([c89b1ce](https://github.com/Jireh-sama/cob-chatbot/commit/c89b1ce7438606e05e4c8eab4097ecb55983cf59))
+* create a seperate file for bot greeting ([ce5b100](https://github.com/Jireh-sama/cob-chatbot/commit/ce5b1001bc4cac5b67caa72137cb27cb2d5a8e29))
+
 # [1.7.0](https://github.com/Jireh-sama/cob-chatbot/compare/1.6.0...1.7.0) (2024-04-17)
 
 
