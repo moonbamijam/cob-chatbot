@@ -22,7 +22,7 @@ Please describe the tests that you ran to verify your changes. Provide instructi
 * Browser version:
 * Text editor:
 
-# Checklist:
+# Acceptance Criteria:
 
 - [ ] My code follows the style guidelines of this project
 - [ ] I have performed a self-review of my code
