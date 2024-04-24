@@ -17,6 +17,21 @@ const Chat = ({ role, message, depts, timeSent, link }) => {
     setNumberOfDeptsToShow(numberOfDeptsToShow + step);
   };
 
+  const renderDeptsContent = () => {
+    if (depts)
+      return depts
+        .slice(0, numberOfDeptsToShow)
+        .map((dept, id) => (
+          <DepartmentBtn
+            key={id}
+            deptName={dept.deptName}
+            service={dept.service}
+            steps={dept.steps}
+            requirements={dept.requirements}
+          />
+        ));
+  };
+
   return (
     <div className={`${role == "bot" ? "bot message" : "user message"} `}>
       <div
@@ -50,19 +65,7 @@ const Chat = ({ role, message, depts, timeSent, link }) => {
             className="relative dark:text-white whitespace-pre-line"
           >
             {message}
-            {depts
-              ? depts
-                  .slice(0, numberOfDeptsToShow)
-                  .map((dept, id) => (
-                    <DepartmentBtn
-                      key={id}
-                      deptName={dept.deptName}
-                      service={dept.service}
-                      steps={dept.steps}
-                      requirements={dept.requirements}
-                    />
-                  ))
-              : null}
+            {renderDeptsContent()}
             {depts && (
               <button
                 onClick={() => loadMore()}
@@ -70,7 +73,9 @@ const Chat = ({ role, message, depts, timeSent, link }) => {
                   depts?.length <= numberOfDeptsToShow ? "hidden" : "block"
                 } hover:backdrop-blur-0 [&>p]:hover:opacity-15`}
               >
-                <p className="font-semibold text-white drop-shadow-lg animate-bounce text-base">Click here to show more</p>
+                <p className="font-semibold text-white drop-shadow-lg animate-bounce text-base">
+                  Click here to show more
+                </p>
               </button>
             )}
             {link ? (

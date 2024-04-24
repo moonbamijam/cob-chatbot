@@ -1,5 +1,5 @@
 import { useContext, useEffect, useRef, useState } from "react";
-import { db } from "../../utils/firebase-config";
+import { db } from "../../firebase/config";
 import {
   collection,
   getDocs,
@@ -31,6 +31,15 @@ import MessageInput from "./input/MessageInput";
 import Settings from "./sections/Settings";
 
 const uid = verifiedUID();
+const messagesCollectionRef = collection(db, "messages");
+const messagesQuery = query(
+  messagesCollectionRef,
+  orderBy("timeSent", "asc"),
+  where("uid", "==", uid)
+);
+
+const faqsCollectionRef = collection(db, "FAQs");
+const faqsQuery = query(faqsCollectionRef, orderBy("frequency", "desc"));
 
 const ChatBox = ({ className, closeUsing }) => {
   const [isLargeScreen, setIsLargeScreen] = useContext(LargeScreenContext);
@@ -45,16 +54,6 @@ const ChatBox = ({ className, closeUsing }) => {
   const [messages, setMessages] = useState([]);
   const [faqs, setFaqs] = useState([]);
 
-  const messagesCollectionRef = collection(db, "messages");
-  const messagesQuery = query(
-    messagesCollectionRef,
-    orderBy("timeSent", "asc"),
-    where("uid", "==", uid)
-  );
-
-  const faqsCollectionRef = collection(db, "FAQs");
-  const faqsQuery = query(faqsCollectionRef, orderBy("frequency", "desc"));
-
   const toggleLargeScreen = () => {
     setIsLargeScreen(!isLargeScreen);
     scrollInto(latestMessage);
@@ -63,6 +62,25 @@ const ChatBox = ({ className, closeUsing }) => {
   const toggleSettings = () => {
     setSettings(!settings);
     scrollInto(latestMessage);
+  };
+
+  const getChatHistory = async () => {
+    try {
+      const data = await getDocs(messagesQuery);
+      setMessages(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+      if (data) setLoading(false);
+    } catch (error) {
+      setError(true);
+    }
+  };
+
+  const getFaqs = async () => {
+    const data = await getDocs(faqsQuery);
+    try {
+      setFaqs(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+    } catch (error) {
+      setError(true);
+    }
   };
 
   const getReplyFromBot = async (message) => {
@@ -97,6 +115,7 @@ const ChatBox = ({ className, closeUsing }) => {
         });
         setBotIsTyping(false);
         setBotMessage(deptsAnswer);
+        getChatHistory();
         // Above is all temporary
       } else {
         await sleep(3);
@@ -123,6 +142,7 @@ const ChatBox = ({ className, closeUsing }) => {
             });
             setBotIsTyping(false);
             setBotMessage(response);
+            getChatHistory();
           });
           return;
         }
@@ -135,10 +155,10 @@ const ChatBox = ({ className, closeUsing }) => {
           uid: uid,
         });
         setBotMessage(botResponse);
+        getChatHistory();
       }
     } catch (error) {
       setError(true);
-      console.log(error);
     }
   };
 
@@ -151,12 +171,12 @@ const ChatBox = ({ className, closeUsing }) => {
         timeSent: Timestamp.now(),
         uid: uid,
       });
+      getChatHistory();
       setUserMessage("");
       await sleep(1.5);
       await getReplyFromBot(message);
     } catch (error) {
       setError(true);
-      console.log(error);
     }
   };
 
@@ -169,33 +189,12 @@ const ChatBox = ({ className, closeUsing }) => {
         timeSent: Timestamp.now(),
         uid: uid,
       });
+      getChatHistory();
       setUserMessage("");
       await sleep(1.5);
       await getReplyFromBot(message);
     } catch (error) {
       setError(true);
-      console.log(error);
-    }
-  };
-
-  const getChatHistory = async () => {
-    try {
-      const data = await getDocs(messagesQuery);
-      setMessages(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-      if (data) setLoading(false);
-    } catch (error) {
-      setError(true);
-      console.log(error);
-    }
-  };
-
-  const getFaqs = async () => {
-    const data = await getDocs(faqsQuery);
-    try {
-      setFaqs(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-    } catch (error) {
-      setError(true);
-      console.log(error);
     }
   };
 
@@ -204,11 +203,11 @@ const ChatBox = ({ className, closeUsing }) => {
     scrollInto(latestMessage);
   }, [messages, botIsTyping]);
 
-  // for rendering messages
+  // for rendering messages and faqs once
   useEffect(() => {
     getChatHistory();
     getFaqs();
-  }, [userMessage, botMessage]);
+  }, []);
 
   // for sending messages when clicking enter
   useEffect(() => {
@@ -231,6 +230,7 @@ const ChatBox = ({ className, closeUsing }) => {
   useEffect(() => {
     if (!loading && messages.length === 0) {
       greet(uid, setBotMessage);
+      getChatHistory();
     }
   }, [loading]);
 
