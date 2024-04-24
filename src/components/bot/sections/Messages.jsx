@@ -22,6 +22,40 @@ const Messages = ({
   error,
   latestMessage,
 }) => {
+  const renderMessagesContent = () => {
+    if (messages)
+      return messages.map((message, id) => {
+        if (containsPlaceholder(message.message)) {
+          const interpolatedLink = splitLinkToResponse(
+            message.message,
+            message.intent
+          );
+          return (
+            <Chat
+              key={id}
+              role={message.role}
+              depts={message.depts}
+              link={interpolatedLink}
+              timeSent={new Date(message.timeSent.seconds * 1000)
+                .toLocaleTimeString()
+                .replace(/(.*)\D\d+/, "$1")}
+            />
+          );
+        } else
+          return (
+            <Chat
+              key={id}
+              role={message.role}
+              message={message.message}
+              depts={message.depts}
+              timeSent={new Date(message.timeSent.seconds * 1000)
+                .toLocaleTimeString()
+                .replace(/(.*)\D\d+/, "$1")}
+            />
+          );
+      });
+  };
+
   return (
     <section
       className={`${
@@ -34,36 +68,7 @@ const Messages = ({
           <Loading />
         ) : (
           <div id="messages">
-            {messages.map((message, id) => {
-              if (containsPlaceholder(message.message)) {
-                const interpolatedLink = splitLinkToResponse(
-                  message.message,
-                  message.intent
-                );
-                return (
-                  <Chat
-                    key={id}
-                    role={message.role}
-                    depts={message.depts}
-                    link={interpolatedLink}
-                    timeSent={new Date(message.timeSent.seconds * 1000)
-                      .toLocaleTimeString()
-                      .replace(/(.*)\D\d+/, "$1")}
-                  />
-                );
-              } else
-                return (
-                  <Chat
-                    key={id}
-                    role={message.role}
-                    message={message.message}
-                    depts={message.depts}
-                    timeSent={new Date(message.timeSent.seconds * 1000)
-                      .toLocaleTimeString()
-                      .replace(/(.*)\D\d+/, "$1")}
-                  />
-                );
-            })}
+            {renderMessagesContent()}
             {botIsTyping && <Typing />}
           </div>
         )}
