@@ -13,7 +13,7 @@ const SampleBotChat = ({ style }) => {
         />
         <div className="max-w-[80%] rounded-3xl bg-bot dark:bg-gray-600  px-4 py-3 break-words">
           <p id="message" className="dark:text-white">
-            This is a preview message.
+            And {chatbot.name}'s messages will look like this.
           </p>
           <div
             id="timeSent"
