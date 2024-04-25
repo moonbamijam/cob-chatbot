@@ -3,7 +3,7 @@ const SuggestedQuestionBtn = ({ question, onClick, className }) => {
     <button
       onClick={() => onClick()}
       style={{ width: 400 }}
-      className={`rounded-3xl border border-highlight text-highlight dark:text-white px-4 py-3 hover:bg-highlight hover:text-white active:-translate-y-2 ${className}`}
+      className={`rounded-3xl border border-primary text-primary dark:text-white px-4 py-3 hover:bg-primary hover:text-white active:-translate-y-2 ${className}`}
     >
       {question}
     </button>

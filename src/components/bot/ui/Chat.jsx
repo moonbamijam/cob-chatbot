@@ -56,7 +56,7 @@ const Chat = ({ role, message, depts, timeSent, link }) => {
           className={`max-w-[80%] rounded-3xl ${
             role == "bot"
               ? "bg-bot dark:bg-gray-600"
-              : "bg-highlight text-white"
+              : "bg-primary text-white"
           } px-4 py-3 break-words`}
         >
           <div
