@@ -71,8 +71,9 @@ const ChatBox = ({ className, closeUsing }) => {
       setMessages(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
       if (data) setLoading(false);
     } catch (error) {
-      setError(true);
+      if (error) setError(true);
     }
+    if (error == true) setError(false);
   };
 
   const getFaqs = async () => {
@@ -81,8 +82,9 @@ const ChatBox = ({ className, closeUsing }) => {
       faqs.concat(faqs);
       setFaqs(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
     } catch (error) {
-      setError(true);
+      if (error) setError(true);
     }
+    if (error == true) setError(false);
   };
 
   const getReplyFromBot = async (message) => {
@@ -160,8 +162,9 @@ const ChatBox = ({ className, closeUsing }) => {
         getChatHistory();
       }
     } catch (error) {
-      setError(true);
+      if (error) setError(true);
     }
+    if (error == true) setError(false);
   };
 
   const sendMessageToBot = async (event, message) => {
@@ -178,8 +181,9 @@ const ChatBox = ({ className, closeUsing }) => {
       await sleep(1.5);
       await getReplyFromBot(message);
     } catch (error) {
-      setError(true);
+      if (error) setError(true);
     }
+    if (error == true) setError(false);
   };
 
   const sendFaqToBot = async (message) => {
@@ -196,14 +200,15 @@ const ChatBox = ({ className, closeUsing }) => {
       await sleep(1.5);
       await getReplyFromBot(message);
     } catch (error) {
-      setError(true);
+      if (error) setError(true);
     }
+    if (error == true) setError(false);
   };
 
   // for auto scrolling
   useEffect(() => {
     scrollInto(latestMessage);
-  }, [messages, botIsTyping]);
+  }, [messages, botIsTyping, error]);
 
   // for rendering messages and faqs once
   useEffect(() => {
