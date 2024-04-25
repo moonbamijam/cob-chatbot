@@ -33,11 +33,11 @@ const App = () => {
           <LargeScreenProvider>
             <ThemesProvider>
               <FontSizeProvider>
-                <ChatHead state={isChatActive} onClick={() => toggleChat()} />
+                <ChatHead state={isChatActive} onClick={toggleChat} />
                 <ChatBox
                   className={
                     isChatActive
-                      ? "opacity-100"
+                      ? "opacity-100 visible"
                       : "opacity-0 -translate-y-[100%] invisible"
                   }
                   closeUsing={toggleChat}
