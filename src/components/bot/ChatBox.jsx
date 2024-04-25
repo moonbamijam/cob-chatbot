@@ -188,13 +188,13 @@ const ChatBox = ({ className, closeUsing }) => {
 
   const sendFaqToBot = async (message) => {
     try {
-      setUserMessage(message);
       await addDoc(messagesCollectionRef, {
         message: message,
         role: "user",
         timeSent: Timestamp.now(),
         uid: uid,
       });
+      setUserMessage(message);
       getChatHistory();
       setUserMessage("");
       await sleep(1.5);
