@@ -6,7 +6,7 @@ const SampleUserChat = ({ style, message }) => {
           <p id="message">{message}</p>
           <div
             id="timeSent"
-            className="w-full text-gray-300 text-xs text-right"
+            className="w-full text-gray-300 text-xs text-right opacity-80"
           >
             {new Date().toLocaleTimeString().replace(/(.*)\D\d+/, "$1")}
           </div>
