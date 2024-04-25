@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 
 // Providers & Context
 import { FontSizeContext } from "../../../providers/FontSizeProvider";

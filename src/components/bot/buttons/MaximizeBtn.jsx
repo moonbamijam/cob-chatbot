@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { LuMaximize, LuMinimize } from "react-icons/lu";
 
 const MaximizeBtn = ({ state, onClick }) => {
