@@ -9,23 +9,24 @@ const SuggestedQuestions = ({
   faqs,
   sendFaqToBot,
 }) => {
-  return (
-    <section
-      ref={faqsWrapper}
-      id="suggested-questions"
-      className={`${settings ? "-translate-x-full hidden" : ""}`}
-    >
-      <SuggestedQuestionsCarousel state={isLargeScreen}>
-        {faqs.map((faq, id) => (
-          <SuggestedQuestionBtn
-            key={id}
-            onClick={() => sendFaqToBot(faq.questions[0])}
-            question={faq.questions[0]}
-          />
-        ))}
-      </SuggestedQuestionsCarousel>
-    </section>
-  );
+  if (!faqs.length == 0)
+    return (
+      <section
+        ref={faqsWrapper}
+        id="suggested-questions"
+        className={`${settings ? "-translate-x-full hidden" : ""}`}
+      >
+        <SuggestedQuestionsCarousel state={isLargeScreen}>
+          {faqs.map((faq, id) => (
+            <SuggestedQuestionBtn
+              key={id}
+              onClick={() => sendFaqToBot(faq.questions[0])}
+              question={faq.questions[0]}
+            />
+          ))}
+        </SuggestedQuestionsCarousel>
+      </section>
+    );
 };
 
 export default SuggestedQuestions;
