@@ -67,6 +67,7 @@ const ChatBox = ({ className, closeUsing }) => {
   const getChatHistory = async () => {
     try {
       const data = await getDocs(messagesQuery);
+      messages.concat(messages);
       setMessages(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
       if (data) setLoading(false);
     } catch (error) {
@@ -75,8 +76,9 @@ const ChatBox = ({ className, closeUsing }) => {
   };
 
   const getFaqs = async () => {
-    const data = await getDocs(faqsQuery);
     try {
+      const data = await getDocs(faqsQuery);
+      faqs.concat(faqs);
       setFaqs(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
     } catch (error) {
       setError(true);
