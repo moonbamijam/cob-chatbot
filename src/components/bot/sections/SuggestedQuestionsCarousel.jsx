@@ -14,7 +14,7 @@ const SuggestedQuestionsCarousel = ({ children: faqs, state }) => {
   };
 
   return (
-    <section className="relative flex items-center mx-2 overflow-hidden py-2 ">
+    <section className="relative flex items-center mx-2 overflow-hidden py-2">
       <ArrowBtn
         onClick={previous}
         className={
@@ -23,7 +23,9 @@ const SuggestedQuestionsCarousel = ({ children: faqs, state }) => {
         icon={<FaArrowLeft />}
       />
       <div
-        className={`flex items-center whitespace-pre-line ml-10 ${state && "space-x-4"}`}
+        className={`min-h-[74px] flex items-center whitespace-pre-line ml-10 ${
+          state && "space-x-4"
+        }`}
         style={{ transform: `translateX(-${current * 20}%)` }}
       >
         {faqs}
@@ -31,7 +33,7 @@ const SuggestedQuestionsCarousel = ({ children: faqs, state }) => {
       <ArrowBtn
         onClick={next}
         className={
-          "right-0  bg-gradient-to-l from-white dark:from-gray-800 from-70%"
+          "right-0 bg-gradient-to-l from-white dark:from-gray-800 from-70%"
         }
         icon={<FaArrowRight />}
       />
