@@ -1,6 +1,6 @@
 import { chatbot } from "../../../lib/bot-details";
 
-const SampleBotChat = ({ style }) => {
+const SampleBotChat = ({ style, message, linkedMessage }) => {
   return (
     <div style={style} className="bot message">
       <div className="w-full relative flex items-center gap-2 mt-3 mb-2">
@@ -13,7 +13,12 @@ const SampleBotChat = ({ style }) => {
         />
         <div className="max-w-[80%] rounded-3xl bg-bot dark:bg-gray-600  px-4 py-3 break-words">
           <p id="message" className="dark:text-white">
-            And {chatbot.name}'s messages will look like this.
+            {message}
+            {linkedMessage && (
+              <button className="text-left text-blue-500 dark:text-yellow-500 font-semibold uppercase hover:underline">
+                {linkedMessage}
+              </button>
+            )}
           </p>
           <div
             id="timeSent"
