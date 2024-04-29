@@ -44,10 +44,11 @@ const faqsQuery = query(faqsCollectionRef, orderBy("frequency", "desc"));
 const ChatBox = ({ className, closeUsing }) => {
   const [isLargeScreen, setIsLargeScreen] = useContext(LargeScreenContext);
   const latestMessage = useRef();
-  const faqsWrapper = useRef();
+  const faqsRef = useRef();
   const [settings, setSettings] = useState(false);
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [isFaqsMenuActive, setIsFaqsMenuActive] = useState(false);
   const [userMessage, setUserMessage] = useState("");
   const [botMessage, setBotMessage] = useState("");
   const [botIsTyping, setBotIsTyping] = useState(false);
@@ -146,6 +147,7 @@ const ChatBox = ({ className, closeUsing }) => {
             });
             setBotIsTyping(false);
             setBotMessage(response);
+            setIsFaqsMenuActive(false);
             getChatHistory();
           });
           return;
@@ -159,6 +161,7 @@ const ChatBox = ({ className, closeUsing }) => {
           uid: uid,
         });
         setBotMessage(botResponse);
+        setIsFaqsMenuActive(false);
         getChatHistory();
       }
     } catch (error) {
@@ -195,6 +198,7 @@ const ChatBox = ({ className, closeUsing }) => {
         uid: uid,
       });
       setUserMessage(message);
+      setIsFaqsMenuActive(false);
       getChatHistory();
       setUserMessage("");
       await sleep(1.5);
@@ -241,6 +245,17 @@ const ChatBox = ({ className, closeUsing }) => {
     }
   }, [loading]);
 
+  // for handling faqs menu on mouse down
+  useEffect(() => {
+    const handleFaqsMenu = (event) => {
+      if (!faqsRef.current?.contains(event.target)) setIsFaqsMenuActive(false);
+    };
+    document.addEventListener("mousedown", handleFaqsMenu);
+    return () => {
+      document.removeEventListener("mousedown", handleFaqsMenu);
+    };
+  }, [faqsRef, isFaqsMenuActive]);
+
   return (
     <div
       id="message-box"
@@ -265,18 +280,16 @@ const ChatBox = ({ className, closeUsing }) => {
         error={error}
         latestMessage={latestMessage}
       />
-      <SuggestedQuestions
-        faqsWrapper={faqsWrapper}
-        settings={settings}
-        isLargeScreen={isLargeScreen}
-        faqs={faqs}
-        sendFaqToBot={sendFaqToBot}
-      />
       <MessageInput
+        faqsRef={faqsRef}
+        faqs={faqs}
         sendMessageToBot={sendMessageToBot}
+        sendFaqToBot={sendFaqToBot}
         userMessage={userMessage}
         setUserMessage={setUserMessage}
         settings={settings}
+        isFaqsMenuActive={isFaqsMenuActive}
+        setIsFaqsMenuActive={setIsFaqsMenuActive}
       />
       {settings && (
         <Settings settings={settings} toggleSettings={toggleSettings} />
