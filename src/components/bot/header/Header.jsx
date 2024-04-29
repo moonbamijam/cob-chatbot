@@ -16,7 +16,7 @@ const Header = ({
   return (
     <header
       id="chat-ui-header"
-      className="w-full flex items-center justify-between px-8 py-4 mr-auto shadow-md "
+      className="w-full flex items-center justify-between px-4 py-4 mr-auto shadow-md "
     >
       <button
         onClick={toggleSettings}
