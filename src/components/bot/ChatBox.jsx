@@ -26,7 +26,6 @@ import { hasSymbol, splitMessage } from "../../utils/split-message";
 // Components
 import Messages from "./sections/Messages";
 import Header from "./header/Header";
-import SuggestedQuestions from "./sections/SuggestedQuestions";
 import MessageInput from "./input/MessageInput";
 import Settings from "./sections/Settings";
 
