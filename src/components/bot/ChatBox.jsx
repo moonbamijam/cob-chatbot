@@ -3,6 +3,9 @@ import { useContext } from "react";
 // Contexts & Providers
 import { LargeScreenContext } from "../../providers/LargeScreenProvider";
 
+// Utilities
+import { scrollInto } from "../../utils/scroll-into";
+
 // Components
 import Messages from "./sections/Messages";
 import Header from "./header/Header";
