@@ -13,6 +13,7 @@ import Loading from "../ui/Loading";
 import MiniProfile from "./MiniProfile";
 import Chat from "../ui/Chat";
 import Typing from "../ui/Typing";
+import ChatSkeleton from "../skeletons/ChatSkeleton";
 
 const Messages = ({
   settings,
@@ -65,7 +66,7 @@ const Messages = ({
       <MiniProfile state={settings} />
       <InternetProvider>
         {loading ? (
-          <Loading />
+          <ChatSkeleton />
         ) : (
           <div id="messages">
             {renderMessagesContent()}
