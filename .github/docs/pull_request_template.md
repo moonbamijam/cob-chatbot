@@ -4,7 +4,7 @@ _Check what's necessary or check all if applicable. **Please remove options that
 - [ ] BREAKING CHANGE (change that would cause existing functionality to not work as expected)
 - [ ] Feature (change that implements a new feature)
 - [ ] Bug Fix (change that fixed a bug)
-- [ ] Performance Optimization (change that improves performace in code or app)
+- [ ] Performance Optimization (change that improves performance in code or app)
 - [ ] Documentation Update (change in documents)
 - [ ] Refactor (change in moving or renaming files, directories etc...)
 - [ ] Style (change releated to code formatting)
