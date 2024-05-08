@@ -25,7 +25,7 @@ const MessageInput = ({
       return (
         <section
           id="suggested-questions"
-          className={`w-full absolute bottom-0 px-4 py-3 mb-[58px] bg-white dark:bg-gray-800 ${
+          className={`w-full absolute bottom-0 px-4 py-3 mb-[58px] bg-white dark:bg-dm-background z-50 ${
             settings ? "-translate-x-full hidden" : ""
           } ${isFaqsMenuActive ? "" : "translate-x-full opacity-0 "}`}
         >
@@ -55,7 +55,7 @@ const MessageInput = ({
       {renderFaqs()}
       <form
         onSubmit={(e) => sendMessageToBot(e, userMessage)}
-        className="w-full flex justify-between items-center gap-1 px-2 pb-2"
+        className="w-full flex justify-between items-center gap-1 px-2 py-2"
       >
         <FaqsMenuBtn
           isFaqsMenuActive={isFaqsMenuActive}
@@ -70,7 +70,7 @@ const MessageInput = ({
             setUserMessage(e.target.value);
             setIsFaqsMenuActive(false);
           }}
-          className="px-4 py-3 w-full rounded-3xl dark:text-white border border-gray-400 dark:border-transparent outline-none dark:bg-gray-700  dark:caret-white"
+          className="px-4 py-3 w-full rounded-3xl dark:text-white border border-surface-dark focus:border-primary dark:border-transparent outline-none dark:bg-dm-surface dark:focus:bg-dm-surface-light dark:caret-white placeholder:opacity-80"
           placeholder="Type here..."
         />
         <Button

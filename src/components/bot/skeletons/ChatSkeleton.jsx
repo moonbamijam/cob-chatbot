@@ -32,7 +32,7 @@ const ChatSkeleton = () => {
           } mt-3 mb-2`}
         >
           {skeletonizedChat.role == "bot" ? (
-            <div className="bg-gray-300 w-[35px] h-[35px] rounded-full select-none animate-pulse"></div>
+            <div className="bg-surface dark:bg-dm-surface w-[35px] h-[35px] rounded-full select-none animate-pulse"></div>
           ) : null}
           <SkeletonScreen
             id="chat"
@@ -44,7 +44,7 @@ const ChatSkeleton = () => {
             }`}
             customStyles={`${
               skeletonizedChat.role == "bot"
-                ? "bg-gray-300 dark:bg-gray-700"
+                ? "bg-surface dark:bg-dm-surface"
                 : "bg-primary"
             } `}
           />

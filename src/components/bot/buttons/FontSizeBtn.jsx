@@ -12,7 +12,7 @@ const FontSizeBtn = ({ name, value, state, onClick, onChange }) => {
       />
       <label
         htmlFor={name}
-        className="bg-gray-300 hover:bg-primary hover:text-white dark:hover:bg-primary dark:bg-gray-500 dark:text-white peer-checked:bg-primary peer-checked:text-white w-[120px] h-[50px] flex justify-center items-center rounded-3xl capitalize cursor-pointer"
+        className="bg-surface hover:bg-primary hover:text-white dark:hover:bg-primary dark:bg-dm-surface dark:text-white peer-checked:bg-primary peer-checked:hover:bg-primary-dark peer-checked:text-white shadow-md w-[120px] h-[50px] flex justify-center items-center rounded-3xl capitalize cursor-pointer"
       >
         {name}
       </label>

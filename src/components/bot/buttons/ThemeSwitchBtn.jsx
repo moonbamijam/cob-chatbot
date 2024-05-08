@@ -23,19 +23,19 @@ const ThemeSwitchBtn = () => {
           htmlFor="toggle"
           className={`relative border rounded-full w-[130px] h-[60px] shadow-inner cursor-pointer [&>div]:active:w-[55px] ${
             theme === "dark"
-              ? "bg-gray-500 shadow-gray-800 border-transparent"
-              : "bg-gray-300 shadow-gray-400"
+              ? "bg-dm-surface shadow-dm-surface-dark border-transparent"
+              : "bg-surface shadow-surface-dark"
           }`}
         >
           <div
             className={` w-[50px] h-[50px] absolute top-[50%] left-0 translate-y-[-50%] flex justify-center items-center shadow-inner rounded-full ${
               theme === "dark"
-                ? "left-full translate-x-[-110%] bg-gray-700 shadow-gray-800"
-                : "translate-x-[10%] bg-white shadow-gray-400"
+                ? "left-full translate-x-[-110%] bg-dm-surface-light shadow-dm-surface-dark"
+                : "translate-x-[10%] bg-white shadow-surface-dark"
             }`}
           >
             <LuSun
-              className={`absolute w-[30px] h-[30px]  text-yellow-500 ${
+              className={`absolute w-[30px] h-[30px] text-yellow-500 ${
                 theme === "dark" ? "mt-[150%] opacity-0" : "mt-0 opacity-100"
               } `}
             />

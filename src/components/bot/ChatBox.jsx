@@ -45,7 +45,7 @@ const ChatBox = ({ className, closeUsing }) => {
         isLargeScreen
           ? "w-[700px] h-[750px] md:w-[750px] lg:w-[800px] xl:w-[1000px] 2xl:w-[1200px]"
           : "w-[500px] h-[700px]"
-      } fixed flex flex-col right-36 bottom-32 bg-white dark:bg-gray-800 rounded-xl overflow-hidden z-[100] ${className}`}
+      } fixed flex flex-col right-36 bottom-32 bg-background dark:bg-dm-background rounded-xl overflow-hidden z-[100] ${className}`}
     >
       <Header
         toggleSettings={toggleSettings}

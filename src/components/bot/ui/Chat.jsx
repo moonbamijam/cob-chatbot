@@ -4,8 +4,8 @@ import { useContext, useState } from "react";
 import { FontSizeContext } from "../../../providers/FontSizeProvider";
 
 import { chatbot } from "../../../lib/bot-details";
-
 import DepartmentBtn from "../buttons/DepartmentBtn";
+import { BsArrowDownCircleFill } from "react-icons/bs";
 
 const step = 4;
 
@@ -44,7 +44,7 @@ const Chat = ({ role, message, depts, timeSent, link }) => {
               height={35}
               className="rounded-full select-none"
             />
-            <div className="max-w-[80%] rounded-3xl bg-bot dark:bg-gray-700 px-4 py-3 break-words">
+            <div className="max-w-[80%] rounded-3xl shadow bg-surface dark:bg-dm-surface px-4 py-3 break-words">
               <div
                 id="message"
                 style={{ fontSize: fontSize }}
@@ -55,12 +55,13 @@ const Chat = ({ role, message, depts, timeSent, link }) => {
                 {depts && (
                   <button
                     onClick={() => loadMore()}
-                    className={`w-full absolute -bottom-3 bg-gradient-to-t from-bot dark:from-gray-600 from-15% h-[100px] z-[5] backdrop-blur-xs  ${
+                    className={`w-full absolute -bottom-1 bg-gradient-to-t from-surface dark:from-dm-surface from-15% h-[100px] z-[5] backdrop-blur-xs  ${
                       depts?.length <= numberOfDeptsToShow ? "hidden" : "block"
                     } hover:backdrop-blur-0 [&>p]:hover:opacity-15`}
                   >
-                    <p className="font-semibold text-white drop-shadow-lg animate-bounce text-base">
+                    <p className="flex flex-col items-center justify-center gap-1 font-semibold text-primary dark:text-secondary drop-shadow-lg animate-bounce text-base">
                       Click here to show more
+                      <BsArrowDownCircleFill />
                     </p>
                   </button>
                 )}
@@ -88,7 +89,7 @@ const Chat = ({ role, message, depts, timeSent, link }) => {
             className="w-full flex justify-end
             mt-3 mb-2"
           >
-            <div className="max-w-[80%] rounded-3xl bg-primary text-white px-4 py-3 break-words">
+            <div className="max-w-[80%] rounded-3xl shadow bg-primary text-white px-4 py-3 break-words">
               <div
                 id="message"
                 style={{ fontSize: fontSize }}
