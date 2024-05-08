@@ -11,9 +11,9 @@ const Typing = () => {
         className="rounded-full "
       />
       <div className="flex space-x-1 items-center rounded-3xl px-2 py-3 ">
-        <div className="h-2 w-2 bg-gray-500 rounded-full animate-bounce [animation-delay:-0.3s]"></div>
-        <div className="h-2 w-2 bg-gray-500 rounded-full animate-bounce [animation-delay:-0.15s]"></div>
-        <div className="h-2 w-2 bg-gray-500 rounded-full animate-bounce"></div>
+        <div className="h-2 w-2 bg-surface-dark dark:bg-dm-surface-light rounded-full animate-bounce [animation-delay:-0.3s]"></div>
+        <div className="h-2 w-2 bg-surface-dark dark:bg-dm-surface-light rounded-full animate-bounce [animation-delay:-0.15s]"></div>
+        <div className="h-2 w-2 bg-surface-dark dark:bg-dm-surface-light rounded-full animate-bounce"></div>
       </div>
     </div>
   );
