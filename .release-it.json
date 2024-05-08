@@ -21,7 +21,9 @@
     "@release-it/conventional-changelog": {
       "infile": "CHANGELOG.md",
       "header": "# What's New",
-      "preset": "angular"
+      "preset": {
+        "name": "angular"
+      }
     }
   }
 }
