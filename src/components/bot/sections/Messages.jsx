@@ -9,7 +9,6 @@ import {
 
 // Components
 import Error from "../ui/Error";
-import Loading from "../ui/Loading";
 import MiniProfile from "./MiniProfile";
 import Chat from "../ui/Chat";
 import Typing from "../ui/Typing";
@@ -57,18 +56,28 @@ const Messages = ({
       });
   };
 
+  // finds the role per each message
+  // this will decide which background color to use in skeleton chat screen
+  const findRole = () => {
+    let role = null;
+    if (messages) {
+      messages.map((message) => (role = message.role));
+    }
+    return role;
+  };
+
   return (
     <section
       className={`${
         settings ? "-translate-x-full hidden" : ""
-      } w-full h-full px-4 py-6 overflow-y-scroll scrollbar-thin scrollbar-track-transparent scrollbar-thumb-gray-300 dark:scrollbar-thumb-gray-500`}
+      } w-full max-h-[612px] h-full px-4 py-6 overflow-y-scroll scrollbar-thin scrollbar-track-transparent scrollbar-thumb-gray-300 dark:scrollbar-thumb-gray-500`}
     >
       <MiniProfile state={settings} />
       <InternetProvider>
         {loading ? (
-          <ChatSkeleton />
+          <ChatSkeleton role={findRole()} />
         ) : (
-          <div id="messages">
+          <div id="messages" className="">
             {renderMessagesContent()}
             {botIsTyping && <Typing />}
           </div>
