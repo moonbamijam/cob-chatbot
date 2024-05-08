@@ -12,6 +12,7 @@ import Header from "./header/Header";
 import MessageInput from "./input/MessageInput";
 import Settings from "./sections/Settings";
 import useChatbot from "../../hooks/useChatbot";
+import SuggestedMessages from "./sections/SuggestedMessages";
 
 const ChatBox = ({ className, closeUsing }) => {
   const {
@@ -61,6 +62,10 @@ const ChatBox = ({ className, closeUsing }) => {
         botIsTyping={botIsTyping}
         error={error}
         latestMessage={latestMessage}
+      />
+      <SuggestedMessages
+        sendMessageToBot={sendMessageToBot}
+        settings={settings}
       />
       <MessageInput
         faqsRef={faqsRef}

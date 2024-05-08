@@ -7,7 +7,7 @@ import Button from "../ui/Button";
 import { IoSend } from "react-icons/io5";
 import FaqsMenuBtn from "../buttons/FaqsMenuBtn";
 import { chatbot } from "../../../lib/bot-details";
-import SuggestedQuestionBtn from "../buttons/SuggestedQuestionBtn";
+import SuggestedMessageBtn from "../buttons/SuggestedMessageBtn";
 
 const MessageInput = ({
   faqsRef,
@@ -34,10 +34,11 @@ const MessageInput = ({
           </p>
           <div className="flex flex-col items-center gap-2 ">
             {faqs.map((faq, id) => (
-              <SuggestedQuestionBtn
+              <SuggestedMessageBtn
                 key={id}
+                isFaq={true}
                 onClick={() => sendFaqToBot(faq.questions[0])}
-                question={faq.questions[0]}
+                message={faq.questions[0]}
               />
             ))}
           </div>
