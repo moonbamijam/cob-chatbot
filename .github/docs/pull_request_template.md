@@ -8,7 +8,7 @@ _Check what's necessary or check all if applicable. **Please remove options that
 - [ ] Performance Optimization (change that improves performance in code or app)
 - [ ] Documentation Update (change in documents)
 - [ ] Refactor (change in moving or renaming files, directories etc...)
-- [ ] Style (change releated to code formatting)
+- [ ] Style (change related to code formatting)
 - [ ] Chore (change for other operations)
 
 ###
