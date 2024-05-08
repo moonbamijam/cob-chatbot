@@ -10,7 +10,7 @@ const Settings = ({ settings, toggleSettings }) => {
     <section
       className={`${
         settings ? "" : ""
-      } px-4 py-6 overflow-y-scroll scrollbar-thin scrollbar-track-transparent scrollbar-thumb-gray-300 dark:scrollbar-thumb-gray-500`}
+      } px-4 py-6 overflow-y-scroll scrollbar-thin scrollbar-track-transparent scrollbar-thumb-surface-dark dark:scrollbar-thumb-dm-surface`}
     >
       <MiniProfile state={settings} />
       <SettingsTitle text={"change theme"} />

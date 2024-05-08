@@ -4,10 +4,10 @@ const BackBtn = ({ onClick, text }) => {
   return (
     <button
       onClick={() => onClick()}
-      className="w-[120px] h-[50px] rounded-3xl bg-gray-500 hover:bg-red-500 flex justify-center items-center gap-1 ml-auto mt-5"
+      className="w-[120px] h-[50px] rounded-3xl bg-surface hover:bg-primary [&>svg>path]:hover:text-white [&>p]:hover:text-white dark:bg-dm-surface dark:hover:bg-primary text-black dark:text-white shadow-md flex justify-center items-center gap-1 ml-auto mt-5"
     >
-      <IoMdArrowRoundBack className="text-white" />
-      <p className="capitalize text-white">{text}</p>
+      <IoMdArrowRoundBack />
+      <p className="capitalize">{text}</p>
     </button>
   );
 };

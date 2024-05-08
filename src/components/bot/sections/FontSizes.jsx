@@ -1,7 +1,10 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 
 // Providers & Context
 import { FontSizeContext } from "../../../providers/FontSizeProvider";
+
+// Library
+import { chatbot } from "../../../lib/bot-details";
 
 // Components
 import FontSizeBtn from "../buttons/FontSizeBtn";
@@ -77,8 +80,23 @@ const FontSizes = () => {
           <p className="dark:text-white">preview</p>
           <LuArrowBigDown className="text-lg" />
         </div>
-        <SampleUserChat style={{ fontSize: fontSize }} />
-        <SampleBotChat style={{ fontSize: fontSize }} />
+        <SampleUserChat
+          style={{ fontSize: fontSize }}
+          message={`Sometimes, changing font sizes helps us to read text more clearly. Especially when we have eye problems 😵`}
+        />
+        <SampleUserChat
+          style={{ fontSize: fontSize }}
+          message={`You'll see the messages you send to ${chatbot.name} in this size.`}
+        />
+        <SampleBotChat
+          style={{ fontSize: fontSize }}
+          message={`Meanwhile, ${chatbot.name}'s messages will look like this.`}
+        />
+        <SampleBotChat
+          style={{ fontSize: fontSize }}
+          message={`And when ${chatbot.name} send a link message, it will look like this, `}
+          linkedMessage={"Click here to download"}
+        />
       </div>
     </div>
   );

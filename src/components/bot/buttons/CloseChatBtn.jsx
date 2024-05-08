@@ -4,7 +4,7 @@ const CloseChatBtn = ({ onClick }) => {
   return (
     <button
       onClick={() => onClick()}
-      className="rounded-full p-4 hover:bg-red-500 [&>svg>path]:hover:text-white"
+      className="rounded-full p-4 hover:bg-error [&>svg>path]:hover:text-white"
     >
       <IoClose className="dark:text-white" />
     </button>

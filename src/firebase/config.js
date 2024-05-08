@@ -5,10 +5,10 @@ import { getFirestore } from "firebase/firestore";
 // to use the corresponding database configuration
 // REMINDER!: please set up the .env variables before running in dev
 
-const getFirebaseConfig = ( projectMode ) => {
+const getFirebaseConfig = (projectMode) => {
   let config = {};
   // PRODUCTION
-  if (projectMode.toLowerCase() === 'production') {
+  if (projectMode.toLowerCase() === "production") {
     config = {
       apiKey: `${import.meta.env.VITE_APIKEY}`,
       authDomain: `${import.meta.env.AUTHDOMAIN}`,
@@ -19,7 +19,7 @@ const getFirebaseConfig = ( projectMode ) => {
     };
   }
   // DEVELOPMENT
-  if (projectMode.toLowerCase() === 'development') {
+  if (projectMode.toLowerCase() === "development") {
     config = {
       apiKey: `${import.meta.env.VITE_APIKEYDEV}`,
       authDomain: `${import.meta.env.AUTHDOMAINDEV}`,
@@ -30,13 +30,13 @@ const getFirebaseConfig = ( projectMode ) => {
       measurementId: `${import.meta.env.MEASUREMENTIDDEV}`,
     };
   }
-  if (!['production', 'development'].includes(projectMode.toLowerCase())) {
-    console.error('Invalid projectMode:', projectMode);
+  if (!["production", "development"].includes(projectMode.toLowerCase())) {
+    console.error("Invalid projectMode:", projectMode);
   }
   return config;
-}
+};
 // Modify the argument accordingly
-const firebaseConfig = getFirebaseConfig('production');
+const firebaseConfig = getFirebaseConfig("production");
 
 const app = initializeApp(firebaseConfig);
 export const db = getFirestore(app);
