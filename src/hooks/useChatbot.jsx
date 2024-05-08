@@ -33,7 +33,7 @@ const messagesQuery = query(
 const faqsCollectionRef = collection(db, "FAQs");
 const faqsQuery = query(faqsCollectionRef, orderBy("frequency", "desc"));
 
-export default function useChatbot() {
+const useChatbot = () => {
   const latestMessage = useRef();
   const faqsRef = useRef();
   const [settings, setSettings] = useState(false);
@@ -269,5 +269,9 @@ export default function useChatbot() {
     getReplyFromBot,
     sendMessageToBot,
     sendFaqToBot,
+    messagesQuery,
+    faqsQuery,
   };
-}
+};
+
+export default useChatbot;
