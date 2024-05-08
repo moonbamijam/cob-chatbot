@@ -1,20 +1,37 @@
-import React, { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect } from "react";
+import { getAuth, signInAnonymously } from "firebase/auth";
+
 import ChatHead from "./components/bot/ChatHead";
 import ChatBox from "./components/bot/ChatBox";
 import Page from "./components/page/Page";
+
 
 // Providers
 import ThemesProvider from "./providers/ThemesProvider";
 import FontSizeProvider from "./providers/FontSizeProvider";
 import LargeScreenProvider from "./providers/LargeScreenProvider";
 
+
+
 const App = () => {
   const [isChatActive, setIsChatActive] = useState(false);
-
+  const [isSignedIn, setIsSignedIn] = useState(false);
   const chatHead = useRef();
   const toggleChat = () => {
     setIsChatActive(!isChatActive);
   };
+
+  // On render sign in user anonymously
+  useEffect(() => {
+    const auth = getAuth();
+    signInAnonymously(auth)
+      .then(() => {
+        setIsSignedIn(true);
+      })
+      .catch((error) => {
+        console.error('Error occured: ', error);
+      });
+  }, []);
 
   useEffect(() => {
     const handleChatHead = (event) => {
@@ -33,7 +50,12 @@ const App = () => {
           <LargeScreenProvider>
             <ThemesProvider>
               <FontSizeProvider>
-                <ChatHead state={isChatActive} onClick={toggleChat} />
+                {isSignedIn ? (
+                  <ChatHead state={isChatActive} onClick={() => toggleChat()} />
+                ) : (
+                  null
+                )}
+
                 <ChatBox
                   className={
                     isChatActive
