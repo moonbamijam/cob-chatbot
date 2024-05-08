@@ -1,5 +1,44 @@
 # What's New
 
+# [1.9.0](https://github.com/Jireh-sama/cob-chatbot/compare/1.8.0...1.9.0) (2024-05-08)
+
+
+### Bug Fixes
+
+* faq question appearing in text field once clicked ([7b73745](https://github.com/Jireh-sama/cob-chatbot/commit/7b737454e52c5bcc0c568fd8d6fc784f90bbf354))
+* scrollInto func is not defined ([19726e9](https://github.com/Jireh-sama/cob-chatbot/commit/19726e94ba23b3032bb94d3a56f204cebe8425e5))
+* vite incompatibility to named function export ([b56e7cc](https://github.com/Jireh-sama/cob-chatbot/commit/b56e7cc19dbcba44a30967a1959ac407ada0e071))
+* wrong argument passed in the getFirebaseConfig call ([0a8859c](https://github.com/Jireh-sama/cob-chatbot/commit/0a8859c0ff9a97dea4e8744e35e82aaadeabd531))
+
+
+### Features
+
+* add min height to suggested questions carousel ([60fee2f](https://github.com/Jireh-sama/cob-chatbot/commit/60fee2fb2ae16a98c482d18818c75ba0ed9c7dfc))
+* add missing interactive word in bot desc. ([ca3f49b](https://github.com/Jireh-sama/cob-chatbot/commit/ca3f49b89c42e61775375b85a32869eb97868aec))
+* add new color palette to chat ([6126ae3](https://github.com/Jireh-sama/cob-chatbot/commit/6126ae3cee22abedc88cef3033b5e360031e95bf))
+* add new highlight color for links in dark mode ([40b852c](https://github.com/Jireh-sama/cob-chatbot/commit/40b852c571a48a7116837fa058b91821def5d587))
+* add new messages for sample chat ui preview ([627d2a1](https://github.com/Jireh-sama/cob-chatbot/commit/627d2a1cabd3633fbb4c2a68c19b340697683caa))
+* add new styling to bot message bg and timestamp ([f58ce80](https://github.com/Jireh-sama/cob-chatbot/commit/f58ce809b6466fa37e4d2b62c6ec9aa58c74b325))
+* add new ui component ([7276de6](https://github.com/Jireh-sama/cob-chatbot/commit/7276de6a62fd9164750a5dd98a6f57cac39ebbc5))
+* add skeleton screen to chat box ([#30](https://github.com/Jireh-sama/cob-chatbot/issues/30)) ([8cec54d](https://github.com/Jireh-sama/cob-chatbot/commit/8cec54d1568d09d261c69603d00df2769eff2051))
+* add suggested messages to chat box ([2748a0b](https://github.com/Jireh-sama/cob-chatbot/commit/2748a0bfba2c34efadc80c773ff4887ee7850707))
+* add user authentication on app render ([cd65b6a](https://github.com/Jireh-sama/cob-chatbot/commit/cd65b6a0e9b3cc48b135942d178eab493a06a04e))
+* error message will dissapear once the error is gone ([bfe5a54](https://github.com/Jireh-sama/cob-chatbot/commit/bfe5a54a4bab8fd67fec65a637631624720e96af))
+* new message to sample chat in ui components ([f8218db](https://github.com/Jireh-sama/cob-chatbot/commit/f8218db1e448192c9a53508cfa2b2bc61729b0a3))
+* new ui to suggested questions ([92f161e](https://github.com/Jireh-sama/cob-chatbot/commit/92f161e2f0a15b6164abc79ae55b126688e0ea12))
+* only render faqs if its not empty ([fd6986c](https://github.com/Jireh-sama/cob-chatbot/commit/fd6986c1576f6268bf7060904e77bde7b98f6100))
+* update chat skeleton screen to dynamic ([2561762](https://github.com/Jireh-sama/cob-chatbot/commit/2561762bc1de6be99d1611a17d69d5febbfa8613))
+* update firebase configuration setup ([8feec25](https://github.com/Jireh-sama/cob-chatbot/commit/8feec25edcfb19e06d7e2ff179b793fc838759c7))
+
+
+### Performance Improvements
+
+* immutably update messages and faqs states ([a965868](https://github.com/Jireh-sama/cob-chatbot/commit/a9658684e26d12c3e192d958ae5a151510475e4f))
+* improve readability and rendering to chat ui component ([ea759fc](https://github.com/Jireh-sama/cob-chatbot/commit/ea759fce62543b138f2843f2d0fd753373c15cfd))
+* improve rendering of messages to chat box ([668be2b](https://github.com/Jireh-sama/cob-chatbot/commit/668be2beddc5ca48bcd1af94fd915d70f5d7e556))
+* seperate logic to ui in chat box and create custom hook ([72b1706](https://github.com/Jireh-sama/cob-chatbot/commit/72b17060a613a1a974f93a34ba6b231f06691f32))
+* slight improvement to chat head toggle ([9eb478c](https://github.com/Jireh-sama/cob-chatbot/commit/9eb478ca273ec2709c991f4c7124387fc3e5c7da))
+
 # [1.8.0](https://github.com/Jireh-sama/cob-chatbot/compare/1.7.0...1.8.0) (2024-04-22)
 
 
