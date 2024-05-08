@@ -28,8 +28,10 @@ const Button = ({ children, ref, type, disabled, onClick, state }) => {
       type={type}
       onClick={onClick}
       disabled={disabled}
-      className={`p-3 rounded-full flex items-center justify-center text-2xl text-blue-500 cursor-pointer ${buttonTypeStyling} ${stateStyling} ${
-        state ? "" : "hover:bg-gray-300 dark:hover:bg-gray-700"
+      className={`p-3 rounded-full flex items-center justify-center text-2xl text-primary hover:shadow-md cursor-pointer ${buttonTypeStyling} ${stateStyling} ${
+        state
+          ? "hover:bg-primary-dark"
+          : "hover:bg-surface dark:hover:bg-dm-surface"
       }`}
     >
       {children}

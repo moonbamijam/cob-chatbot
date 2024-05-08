@@ -70,7 +70,7 @@ const Messages = ({
     <section
       className={`${
         settings ? "-translate-x-full hidden" : ""
-      } w-full max-h-[612px] h-full px-4 py-6 overflow-y-scroll scrollbar-thin scrollbar-track-transparent scrollbar-thumb-gray-300 dark:scrollbar-thumb-gray-500`}
+      } w-full max-h-[612px] h-full px-4 py-6 overflow-y-scroll scrollbar-thin scrollbar-track-transparent scrollbar-thumb-surface-dark dark:scrollbar-thumb-dm-surface`}
     >
       <MiniProfile state={settings} />
       <InternetProvider>

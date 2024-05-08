@@ -11,11 +11,11 @@ const SampleBotChat = ({ style, message, linkedMessage }) => {
           height={35}
           className="rounded-full"
         />
-        <div className="max-w-[80%] rounded-3xl bg-bot dark:bg-gray-700 px-4 py-3 break-words">
+        <div className="max-w-[80%] rounded-3xl shadow bg-surface dark:bg-dm-surface px-4 py-3 break-words">
           <p id="message" className="dark:text-white">
             {message}
             {linkedMessage && (
-              <button className="text-left text-blue-500 dark:text-yellow-500 font-semibold uppercase hover:underline">
+              <button className="text-left text-primary dark:text-secondary font-semibold uppercase hover:underline">
                 {linkedMessage}
               </button>
             )}
