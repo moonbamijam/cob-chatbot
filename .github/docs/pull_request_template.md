@@ -14,7 +14,7 @@ _Check what's necessary or check all if applicable. **Please remove options that
 
 # Description
 
-_Please provide atleast a short description of this pr._
+_Please provide at least a short description of this pr._
 
 ###
 
