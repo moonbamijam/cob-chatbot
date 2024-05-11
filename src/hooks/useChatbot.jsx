@@ -13,14 +13,18 @@ import {
 import { db } from "../firebase/config";
 
 // Library
-import { greet } from "../lib/greet";
+import { greet } from "../utils/greet";
 import { depts, deptsAnswer } from "../lib/depts";
 
 // Utilities
-import { hasSymbol, splitMessage } from "../utils/split-message";
+import { hasSymbol, splitMessage } from "../utils/splitMessage";
 import { verifiedUID } from "../utils/uid";
-import { scrollInto } from "../utils/scroll-into";
+import { scrollInto } from "../utils/scrollInto";
 import { sleep } from "../utils/sleep";
+import {
+  playMessageNotification,
+  playTypingSound,
+} from "../utils/soundNotifications";
 
 const uid = verifiedUID();
 const messagesCollectionRef = collection(db, "messages");
@@ -41,7 +45,6 @@ const useChatbot = () => {
   const [loading, setLoading] = useState(true);
   const [isFaqsMenuActive, setIsFaqsMenuActive] = useState(false);
   const [userMessage, setUserMessage] = useState("");
-  const [botMessage, setBotMessage] = useState("");
   const [botIsTyping, setBotIsTyping] = useState(false);
   const [messages, setMessages] = useState([]);
   const [faqs, setFaqs] = useState([]);
@@ -77,6 +80,7 @@ const useChatbot = () => {
   const getReplyFromBot = async (message) => {
     try {
       setBotIsTyping(true);
+      playTypingSound();
       let deptMessage = message.toLowerCase();
       // Temporary statements just to display departments
       if (
@@ -105,7 +109,7 @@ const useChatbot = () => {
           uid: uid,
         });
         setBotIsTyping(false);
-        setBotMessage(deptsAnswer);
+        playMessageNotification();
         getChatHistory();
         // Above is all temporary
       } else {
@@ -121,6 +125,7 @@ const useChatbot = () => {
           botHasMultipleMessage.forEach(async (response, i) => {
             if (i == 1) {
               await sleep(1.5);
+              playTypingSound();
               setBotIsTyping(true);
               await sleep(3);
             }
@@ -132,7 +137,7 @@ const useChatbot = () => {
               uid: uid,
             });
             setBotIsTyping(false);
-            setBotMessage(response);
+            playMessageNotification();
             setIsFaqsMenuActive(false);
             getChatHistory();
           });
@@ -146,7 +151,7 @@ const useChatbot = () => {
           timeSent: Timestamp.now(),
           uid: uid,
         });
-        setBotMessage(botResponse);
+        playMessageNotification();
         setIsFaqsMenuActive(false);
         getChatHistory();
       }
@@ -157,8 +162,8 @@ const useChatbot = () => {
   };
 
   const sendMessageToBot = async (event, message) => {
-    event.preventDefault();
     try {
+      event.preventDefault();
       await addDoc(messagesCollectionRef, {
         message: message,
         role: "user",
@@ -167,6 +172,7 @@ const useChatbot = () => {
       });
       getChatHistory();
       setUserMessage("");
+      playMessageNotification();
       await sleep(1.5);
       await getReplyFromBot(message);
     } catch (error) {
@@ -183,10 +189,9 @@ const useChatbot = () => {
         timeSent: Timestamp.now(),
         uid: uid,
       });
-      setUserMessage(message);
       setIsFaqsMenuActive(false);
       getChatHistory();
-      setUserMessage("");
+      playMessageNotification();
       await sleep(1.5);
       await getReplyFromBot(message);
     } catch (error) {
@@ -226,7 +231,7 @@ const useChatbot = () => {
   // for bot to greet when the user talks to the bot for the first time
   useEffect(() => {
     if (!loading && messages.length === 0) {
-      greet(uid, setBotMessage);
+      greet(uid);
       getChatHistory();
     }
   }, [loading]);
@@ -255,8 +260,6 @@ const useChatbot = () => {
     setIsFaqsMenuActive,
     userMessage,
     setUserMessage,
-    botMessage,
-    setBotMessage,
     botIsTyping,
     setBotIsTyping,
     messages,
