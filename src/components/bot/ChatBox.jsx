@@ -4,7 +4,7 @@ import { useContext } from "react";
 import { LargeScreenContext } from "../../providers/LargeScreenProvider";
 
 // Utilities
-import { scrollInto } from "../../utils/scroll-into";
+import { scrollInto } from "../../utils/scrollInto";
 
 // Components
 import Messages from "./sections/Messages";

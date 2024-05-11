@@ -5,7 +5,7 @@ import InternetProvider from "../../../providers/InternetProvider";
 import {
   containsPlaceholder,
   splitLinkToResponse,
-} from "../../../utils/split-link";
+} from "../../../utils/splitLink";
 
 // Components
 import Error from "../ui/Error";

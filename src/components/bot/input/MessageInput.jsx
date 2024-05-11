@@ -6,7 +6,7 @@ import Button from "../ui/Button";
 // Icons
 import { IoSend } from "react-icons/io5";
 import FaqsMenuBtn from "../buttons/FaqsMenuBtn";
-import { chatbot } from "../../../lib/bot-details";
+import { chatbot } from "../../../lib/botDetails";
 import SuggestedMessageBtn from "../buttons/SuggestedMessageBtn";
 
 const MessageInput = ({

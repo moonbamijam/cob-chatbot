@@ -1,5 +1,5 @@
 // Library
-import { chatbot } from "../../../lib/bot-details";
+import { chatbot } from "../../../lib/botDetails";
 
 // Components
 import CloseChatBtn from "../buttons/CloseChatBtn";
