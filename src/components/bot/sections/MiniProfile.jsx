@@ -1,4 +1,4 @@
-import { chatbot } from "../../../lib/bot-details";
+import { chatbot } from "../../../lib/botDetails";
 
 const MiniProfile = ({ state }) => {
   return (
