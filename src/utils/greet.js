@@ -1,5 +1,5 @@
 import { Timestamp, addDoc, collection } from "firebase/firestore";
-import { chatbot } from "./bot-details";
+import { chatbot } from "../lib/bot-details";
 import { db } from "../firebase/config";
 
 const messagesCollectionRef = collection(db, "messages");
