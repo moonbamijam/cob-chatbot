@@ -3,6 +3,9 @@ import { useContext } from "react";
 // Contexts & Providers
 import { LargeScreenContext } from "../../providers/LargeScreenProvider";
 
+// Hooks
+import useChatbot from "../../hooks/useChatbot";
+
 // Utilities
 import { scrollInto } from "../../utils/scrollInto";
 
@@ -11,7 +14,6 @@ import Messages from "./sections/Messages";
 import Header from "./header/Header";
 import MessageInput from "./input/MessageInput";
 import Settings from "./sections/Settings";
-import useChatbot from "../../hooks/useChatbot";
 import SuggestedMessages from "./sections/SuggestedMessages";
 
 const ChatBox = ({ className, closeUsing }) => {
