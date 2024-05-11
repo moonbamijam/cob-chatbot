@@ -1,6 +1,6 @@
-import StrikeScan from "../../../assets/strike-scan.jpg";
+import StrikeScan from "../../../assets/images/strike-scan.jpg";
+import FbPage from "../../../assets/images/fb-page.png";
 import HighlightTitle from "../ui/HighlightTitle";
-import FbPage from "../../../assets/fb-page.png";
 
 const Footer = () => {
   return (
