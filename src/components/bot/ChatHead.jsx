@@ -1,4 +1,4 @@
-import Mascot from "../../assets/animated-mascot.gif";
+import Mascot from "../../assets/gif/animated-mascot.gif";
 
 const ChatHead = ({ state, onClick }) => {
   return (
