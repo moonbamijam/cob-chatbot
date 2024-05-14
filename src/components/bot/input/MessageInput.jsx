@@ -62,18 +62,23 @@ const MessageInput = ({
           isFaqsMenuActive={isFaqsMenuActive}
           setIsFaqsMenuActive={setIsFaqsMenuActive}
         />
-        <ReactTextareaAutosize
-          autoFocus
-          name="chat"
-          id="chat"
-          value={userMessage}
-          onChange={(e) => {
-            setUserMessage(e.target.value);
-            setIsFaqsMenuActive(false);
-          }}
-          className="px-4 py-3 w-full rounded-3xl dark:text-white border border-surface-dark focus:border-primary dark:border-transparent outline-none dark:bg-dm-surface dark:focus:bg-dm-surface-light dark:caret-white placeholder:opacity-80"
-          placeholder="Type here..."
-        />
+        <label
+          htmlFor="chat"
+          className="w-full px-4 py-3 rounded-3xl flex items-center border border-surface-dark focus-within:border-primary dark:border-transparent dark:bg-dm-surface dark:focus-within:bg-dm-surface-light cursor-text"
+        >
+          <ReactTextareaAutosize
+            autoFocus
+            name="chat"
+            id="chat"
+            value={userMessage}
+            onChange={(e) => {
+              setUserMessage(e.target.value);
+              setIsFaqsMenuActive(false);
+            }}
+            className="max-h-[100px] w-full dark:text-white outline-none dark:bg-dm-surface dark:focus:bg-dm-surface-light placeholder:opacity-80 scrollbar-thin scrollbar-track-transparent scrollbar-thumb-surface-dark dark:scrollbar-thumb-dm-surface-dark"
+            placeholder="Type here..."
+          />
+        </label>
         <Button
           onClick={() => setIsFaqsMenuActive(false)}
           type={"submit"}
