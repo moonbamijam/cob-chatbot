@@ -30,21 +30,21 @@ const DepartmentBtn = ({ deptName, service, steps, requirements }) => {
           isActive
             ? "rounded-b-none rounded-t-3xl bg-primary hover:bg-primary-dark dark:hover:bg-primary-dark"
             : "rounded-3xl bg-surface-dark dark:bg-dm-surface-light"
-        } [&>p]:hover:text-white [&>svg>path]:hover:text-white hover:bg-primary dark:hover:bg-primary`}
+        } [&>p]:hover:text-white [&>svg>path]:hover:text-white hover:bg-primary dark:hover:bg-primary z-20`}
       >
         <p className={`max-w-[250px] text-white`}>{deptName}</p>
         <IoIosArrowDown
           className={`${isActive ? "rotate-180 text-white" : "text-gray-400"}`}
         />
       </button>
-      <div>
-        <div
-          className={`w-full px-4 py-3 rounded-b-3xl bg-primary z-10 ${
-            isActive == true
-              ? "block"
-              : "-translate-y-[50%] rounded-3xl opacity-0 hidden"
-          }`}
-        >
+      <div
+        className={`w-full max-h-[1000px] rounded-b-3xl z-10 ${
+          isActive == true
+            ? "translate-y-0 bg-primary"
+            : "-translate-y-[15%] rounded-3xl opacity-0 max-h-0 bg-surface-dark dark:bg-dm-surface-light overflow-hidden invisible"
+        }`}
+      >
+        <div className="px-4 py-3">
           <div className="mb-2">
             <div className="text-white text-lg font-semibold mb-1">
               Here are the services we offer:
