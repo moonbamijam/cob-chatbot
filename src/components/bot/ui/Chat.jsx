@@ -11,7 +11,12 @@ const step = 4;
 
 const Chat = ({ role, message, depts, timeSent, link }) => {
   const [fontSize] = useContext(FontSizeContext);
-  const [numberOfDeptsToShow, setNumberOfDeptsToShow] = useState(step);
+  const [numberOfDeptsToShow, setNumberOfDeptsToShow] = useState(4);
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const indexOfLastDept = currentPage * numberOfDeptsToShow;
+  const indexOfFirstDept = indexOfLastDept - numberOfDeptsToShow;
+  const currentDeptsToShow = depts?.slice(indexOfFirstDept, indexOfLastDept);
 
   const loadMore = () => {
     setNumberOfDeptsToShow(numberOfDeptsToShow + step);
@@ -19,17 +24,15 @@ const Chat = ({ role, message, depts, timeSent, link }) => {
 
   const renderDeptsContent = () => {
     if (depts)
-      return depts
-        .slice(0, numberOfDeptsToShow)
-        .map((dept, id) => (
-          <DepartmentBtn
-            key={id}
-            deptName={dept.deptName}
-            service={dept.service}
-            steps={dept.steps}
-            requirements={dept.requirements}
-          />
-        ));
+      return currentDeptsToShow.map((dept, id) => (
+        <DepartmentBtn
+          key={id}
+          deptName={dept.deptName}
+          service={dept.service}
+          steps={dept.steps}
+          requirements={dept.requirements}
+        />
+      ));
   };
 
   const renderChat = () => {
@@ -55,7 +58,7 @@ const Chat = ({ role, message, depts, timeSent, link }) => {
                 {depts && (
                   <button
                     onClick={() => loadMore()}
-                    className={`w-full absolute -bottom-1 bg-gradient-to-t from-surface dark:from-dm-surface from-15% h-[100px] z-[5] backdrop-blur-xs  ${
+                    className={`w-full absolute -bottom-1 bg-gradient-to-t from-surface dark:from-dm-surface from-15% h-[100px] z-30 backdrop-blur-xs  ${
                       depts?.length <= numberOfDeptsToShow ? "hidden" : "block"
                     } hover:backdrop-blur-0 [&>p]:hover:opacity-15`}
                   >
