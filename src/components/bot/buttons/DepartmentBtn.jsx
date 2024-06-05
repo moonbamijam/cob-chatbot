@@ -38,10 +38,10 @@ const DepartmentBtn = ({ deptName, service, steps, requirements }) => {
         />
       </button>
       <div
-        className={`w-full max-h-[1000px] rounded-b-3xl z-10 ${
+        className={`w-full rounded-b-3xl z-10 overflow-hidden ${
           isActive == true
-            ? "translate-y-0 bg-primary"
-            : "-translate-y-[15%] rounded-3xl opacity-0 max-h-0 bg-surface-dark dark:bg-dm-surface-light overflow-hidden invisible"
+            ? "translate-y-0 bg-primary max-h-[1000px]"
+            : "-translate-y-[15%] rounded-3xl opacity-0 max-h-0 bg-surface-dark dark:bg-dm-surface-light"
         }`}
       >
         <div className="px-4 py-3">
