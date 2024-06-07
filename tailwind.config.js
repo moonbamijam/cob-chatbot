@@ -29,7 +29,7 @@ export default {
         xs: "475px",
       },
       backgroundImage: {
-        "city-hall": "url(/src/assets/bg.jpg)",
+        "city-hall": "url(/src/assets/images/bg.jpg)",
       },
       fontFamily: {
         raleway: [

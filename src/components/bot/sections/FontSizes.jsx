@@ -4,7 +4,7 @@ import { useContext } from "react";
 import { FontSizeContext } from "../../../providers/FontSizeProvider";
 
 // Library
-import { chatbot } from "../../../lib/bot-details";
+import { chatbot } from "../../../lib/botDetails";
 
 // Components
 import FontSizeBtn from "../buttons/FontSizeBtn";
@@ -37,7 +37,7 @@ const fontSizes = [
   },
   {
     name: "2XL",
-    size: 64,
+    size: 48,
   },
 ];
 
@@ -54,7 +54,7 @@ const FontSizes = () => {
     if (name === "default") setFontSize(16);
     if (name === "large") setFontSize(24);
     if (name === "extra large") setFontSize(32);
-    if (name === "2XL") setFontSize(64);
+    if (name === "2XL") setFontSize(48);
     localStorage.setItem("fontSize", fontSize);
   };
 

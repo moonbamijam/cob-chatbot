@@ -63,6 +63,9 @@ importers:
       postcss:
         specifier: ^8.4.38
         version: 8.4.38
+      prettier:
+        specifier: 3.2.5
+        version: 3.2.5
       release-it:
         specifier: ^17.1.1
         version: 17.1.1(typescript@5.4.2)
@@ -2535,6 +2538,11 @@ packages:
   prelude-ls@1.2.1:
     resolution: {integrity: sha512-vkcDPrRZo1QZLbn5RLGPpg/WmIQ65qoWWhcGKf/b5eplkkarX0m9z8ppCat4mlOqUsWpyNuYgO3VRyrYHSzX5g==}
     engines: {node: '>= 0.8.0'}
+
+  prettier@3.2.5:
+    resolution: {integrity: sha512-3/GWa9aOC0YeD7LUfvOG2NiDyhOWRvt1k+rcKhOuYnMY24iiCphgneUfJDyFXd6rZCAnuLBv6UeAULtrhT/F4A==}
+    engines: {node: '>=14'}
+    hasBin: true
 
   promise.allsettled@1.0.7:
     resolution: {integrity: sha512-hezvKvQQmsFkOdrZfYxUxkyxl8mgFQeT259Ajj9PXdbg9VzBCWrItOev72JyWxkCD5VSSqAeHmlN3tWx4DlmsA==}
@@ -5907,6 +5915,8 @@ snapshots:
       source-map-js: 1.2.0
 
   prelude-ls@1.2.1: {}
+
+  prettier@3.2.5: {}
 
   promise.allsettled@1.0.7:
     dependencies:

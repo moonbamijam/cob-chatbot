@@ -1,10 +1,10 @@
 import { Timestamp, addDoc, collection } from "firebase/firestore";
-import { chatbot } from "./bot-details";
+import { chatbot } from "../lib/botDetails";
 import { db } from "../firebase/config";
 
 const messagesCollectionRef = collection(db, "messages");
 
-export const greet = async (uid, setState) => {
+export const greet = async (uid) => {
   await addDoc(messagesCollectionRef, {
     intent: "salutation.greetings",
     message: chatbot.initialGreet,
@@ -12,5 +12,4 @@ export const greet = async (uid, setState) => {
     timeSent: Timestamp.now(),
     uid: uid,
   });
-  setState(chatbot.initialGreet);
 };

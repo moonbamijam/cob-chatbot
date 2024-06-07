@@ -1,4 +1,4 @@
-import chatbotLogo from "../assets/bacoor-mayor-vmayor.jpg";
+import chatbotLogo from "../assets/images/bacoor-mayor-vmayor.jpg";
 
 export const chatbot = {
   logo: chatbotLogo,
