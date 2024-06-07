@@ -5,7 +5,7 @@ import multiPop5 from "../assets/sounds/multi-pop-5.mp3";
 import uwuSound from "../assets/sounds/uwu.mp3";
 
 export const playMessageNotification = () => {
-  let audio = new Audio(uwuSound);
+  let audio = new Audio(multiPop);
   audio.volume = 0.2;
   audio.play();
 };
