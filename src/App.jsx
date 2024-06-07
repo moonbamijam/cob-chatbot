@@ -5,13 +5,10 @@ import ChatHead from "./components/bot/ChatHead";
 import ChatBox from "./components/bot/ChatBox";
 import Page from "./components/page/Page";
 
-
 // Providers
 import ThemesProvider from "./providers/ThemesProvider";
 import FontSizeProvider from "./providers/FontSizeProvider";
 import LargeScreenProvider from "./providers/LargeScreenProvider";
-
-
 
 const App = () => {
   const [isChatActive, setIsChatActive] = useState(false);
@@ -29,7 +26,7 @@ const App = () => {
         setIsSignedIn(true);
       })
       .catch((error) => {
-        console.error('Error occured: ', error);
+        console.error("Error occured: ", error);
       });
   }, []);
 
@@ -52,10 +49,7 @@ const App = () => {
               <FontSizeProvider>
                 {isSignedIn ? (
                   <ChatHead state={isChatActive} onClick={() => toggleChat()} />
-                ) : (
-                  null
-                )}
-
+                ) : null}
                 <ChatBox
                   className={
                     isChatActive
