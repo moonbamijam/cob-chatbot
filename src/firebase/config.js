@@ -36,7 +36,7 @@ const getFirebaseConfig = (projectMode) => {
   return config;
 };
 // Modify the argument accordingly
-const firebaseConfig = getFirebaseConfig("production");
+const firebaseConfig = getFirebaseConfig("development");
 
 const app = initializeApp(firebaseConfig);
 export const db = getFirestore(app);
