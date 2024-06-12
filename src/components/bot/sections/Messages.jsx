@@ -28,7 +28,7 @@ const Messages = ({
         if (containsPlaceholder(message.message)) {
           const interpolatedLink = splitLinkToResponse(
             message.message,
-            message.intent
+            message.intent,
           );
           return (
             <Chat
