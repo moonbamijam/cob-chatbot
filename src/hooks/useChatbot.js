@@ -16,6 +16,9 @@ import { db } from "../firebase/config";
 import { greet } from "../utils/greet";
 import { depts, deptsAnswer } from "../lib/depts";
 
+// hooks
+import { useDebounce } from "./useDebounce";
+
 // Utilities
 import { hasSymbol, splitMessage } from "../utils/splitMessage";
 import { verifiedUID } from "../utils/uid";
@@ -31,7 +34,7 @@ const messagesCollectionRef = collection(db, "messages");
 const messagesQuery = query(
   messagesCollectionRef,
   orderBy("timeSent", "asc"),
-  where("uid", "==", uid)
+  where("uid", "==", uid),
 );
 
 const faqsCollectionRef = collection(db, "FAQs");
@@ -80,7 +83,7 @@ const useChatbot = () => {
   const getReplyFromBot = async (message) => {
     try {
       setBotIsTyping(true);
-      playTypingSound();
+      // playTypingSound();
       let deptMessage = message.toLowerCase();
       // Temporary statements just to display departments
       if (
@@ -115,7 +118,7 @@ const useChatbot = () => {
       } else {
         await sleep(3);
         const response = await fetch(
-          `http://localhost:3001/bot?message=${encodeURIComponent(message)}`
+          `http://localhost:3001/bot?message=${encodeURIComponent(message)}`,
         );
         const data = await response.json();
         const intentRecognizedByBot = data.intent;
@@ -125,7 +128,7 @@ const useChatbot = () => {
           botHasMultipleMessage.forEach(async (response, i) => {
             if (i == 1) {
               await sleep(1.5);
-              playTypingSound();
+              // playTypingSound();
               setBotIsTyping(true);
               await sleep(3);
             }
@@ -161,6 +164,9 @@ const useChatbot = () => {
     if (error == true) setError(false);
   };
 
+  // useDebounce(function to call, seconds to wait before you can call it again)
+  const debouncedMessageToBot = useDebounce(getReplyFromBot, 1.5);
+
   const sendMessageToBot = async (event, message) => {
     try {
       event.preventDefault();
@@ -173,8 +179,7 @@ const useChatbot = () => {
       getChatHistory();
       setUserMessage("");
       playMessageNotification();
-      await sleep(1.5);
-      await getReplyFromBot(message);
+      debouncedMessageToBot(message);
     } catch (error) {
       if (error) setError(true);
     }
@@ -192,8 +197,7 @@ const useChatbot = () => {
       setIsFaqsMenuActive(false);
       getChatHistory();
       playMessageNotification();
-      await sleep(1.5);
-      await getReplyFromBot(message);
+      debouncedMessageToBot(message);
     } catch (error) {
       if (error) setError(true);
     }
@@ -248,6 +252,7 @@ const useChatbot = () => {
   }, [faqsRef, isFaqsMenuActive]);
 
   return {
+    debouncedMessageToBot,
     latestMessage,
     faqsRef,
     settings,

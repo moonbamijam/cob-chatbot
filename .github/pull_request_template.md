@@ -1,5 +1,7 @@
-# Type of Change 
+# Type of Change
+
 <!-- NOTICE!: remove the this description when in pr -->
+
 _Check what's necessary or check all if applicable. **Please remove options that are not checked**_
 
 - [ ] BREAKING CHANGE (change that would cause existing functionality to not work as expected)
@@ -14,13 +16,17 @@ _Check what's necessary or check all if applicable. **Please remove options that
 ###
 
 # Description
+
 <!-- NOTICE!: remove the this description when in pr -->
+
 _Please provide at least a short description of this pr._
 
 ###
 
 # Related Tickets
+
 <!-- NOTICE!: remove the this description when in pr -->
+
 _If this pr contains related or close an issue, please add them here_
 
 - Related Issue(s) #
@@ -29,10 +35,13 @@ _If this pr contains related or close an issue, please add them here_
 ###
 
 # How Has This Been Tested?
+
 <!-- NOTICE!: remove the this description when in pr -->
+
 _Please provide atleast a short description on how to test these changes. List also any relevant details for your test configuration_
 
 **Test Configuration**:
-* Browser:
-* Browser version:
-* Text editor:
+
+- Browser:
+- Browser version:
+- Text editor:

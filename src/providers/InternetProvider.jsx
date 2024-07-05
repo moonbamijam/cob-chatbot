@@ -25,11 +25,7 @@ const InternetProvider = ({ children }) => {
       </InternetContext.Provider>
     );
   } else if (!isOnline) {
-    return (
-      <Error
-        message={"no internet connection."}
-      />
-    );
+    return <Error message={"no internet connection."} />;
   }
 };
 
