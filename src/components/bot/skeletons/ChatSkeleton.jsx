@@ -11,7 +11,7 @@ const ChatSkeleton = () => {
   const getMessagesToSkeletonized = async () => {
     const data = await getDocs(messagesQuery);
     setSkeletonizedChat(
-      data.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
+      data.docs.map((doc) => ({ ...doc.data(), id: doc.id })),
     );
   };
 

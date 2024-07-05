@@ -6,7 +6,7 @@ const parsedIsLargeScreen = localStorage.getItem("isLargeScreen");
 
 const LargeScreenProvider = ({ children }) => {
   const [isLargeScreen, setIsLargeScreen] = useState(
-    parsedIsLargeScreen === "true"
+    parsedIsLargeScreen === "true",
   );
 
   useEffect(() => {

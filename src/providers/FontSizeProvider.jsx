@@ -4,7 +4,7 @@ export const FontSizeContext = React.createContext();
 
 const FontSizeProvider = ({ children }) => {
   const [fontSize, setFontSize] = useState(
-    parseInt(localStorage.getItem("fontSize"))
+    parseInt(localStorage.getItem("fontSize")),
   );
   // REMEMBER TO USE "parseInt" since we're always getting a string in localStorage even it is a number
 
