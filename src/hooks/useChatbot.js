@@ -112,8 +112,8 @@ const useChatbot = () => {
           uid: uid,
         });
         setBotIsTyping(false);
-        playMessageNotification();
         getChatHistory();
+        playMessageNotification();
         // Above is all temporary
       } else {
         await sleep(3);
@@ -140,9 +140,9 @@ const useChatbot = () => {
               uid: uid,
             });
             setBotIsTyping(false);
-            playMessageNotification();
             setIsFaqsMenuActive(false);
             getChatHistory();
+            playMessageNotification();
           });
           return;
         }
@@ -154,9 +154,9 @@ const useChatbot = () => {
           timeSent: Timestamp.now(),
           uid: uid,
         });
-        playMessageNotification();
         setIsFaqsMenuActive(false);
         getChatHistory();
+        playMessageNotification();
       }
     } catch (error) {
       if (error) setError(true);
