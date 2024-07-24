@@ -12,7 +12,7 @@ export default {
         secondary: "#EAB308",
         background: colors.white,
         surface: "#E9E9E9",
-        "surface-dark": "#A3A3A3",
+        "surface-dark": "#c2c2c2",
         error: "#EF4444",
         "dm-background": "#020617",
         "dm-surface": "#1E293B",
