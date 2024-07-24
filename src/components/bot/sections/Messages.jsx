@@ -14,14 +14,7 @@ import Chat from "../ui/Chat";
 import Typing from "../ui/Typing";
 import ChatSkeleton from "../skeletons/ChatSkeleton";
 
-const Messages = ({
-  settings,
-  loading,
-  messages,
-  botIsTyping,
-  error,
-  latestMessage,
-}) => {
+const Messages = ({ loading, messages, botIsTyping, error, latestMessage }) => {
   const renderMessagesContent = () => {
     if (messages)
       return messages.map((message, id) => {
@@ -68,11 +61,8 @@ const Messages = ({
 
   return (
     <section
-      className={`${
-        settings ? "-translate-x-full hidden" : ""
-      } w-full max-h-[612px] h-full px-4 py-6 overflow-y-scroll scrollbar-thin scrollbar-track-transparent scrollbar-thumb-surface-dark dark:scrollbar-thumb-dm-surface`}
+      className={` w-full max-h-[612px] h-full px-4 py-6 overflow-y-scroll scrollbar-thin scrollbar-track-transparent scrollbar-thumb-surface-dark dark:scrollbar-thumb-dm-surface`}
     >
-      <MiniProfile state={settings} />
       <InternetProvider>
         {loading ? (
           <ChatSkeleton role={findRole()} />
