@@ -15,13 +15,11 @@ const suggestedMessages = [
   },
 ];
 
-const SuggestedMessages = ({ sendMessageToBot, settings }) => {
+const SuggestedMessages = ({ sendMessageToBot }) => {
   return (
     <section
       id="suggested-messages"
-      className={`w-full flex justify-center gap-2 px-4 pt-2 ${
-        settings ? "-translate-x-full hidden" : ""
-      }`}
+      className={`w-full flex justify-center gap-2 px-4 pt-2`}
     >
       {suggestedMessages.map((suggestedMessage, id) => (
         <SuggestedMessageBtn
