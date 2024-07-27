@@ -1,6 +1,4 @@
-import { useState } from "react";
-
-const SettingsBtn = ({ name, state, onClick, onChange }) => {
+const SettingsBtn = ({ name, checkedIf, onClick, onChange }) => {
   return (
     <button
       onClick={() => onClick()}
@@ -11,7 +9,7 @@ const SettingsBtn = ({ name, state, onClick, onChange }) => {
         name="settings"
         id={name}
         value={name}
-        checked={state === name}
+        checked={checkedIf}
         onChange={onChange}
         className="hidden peer"
       />
