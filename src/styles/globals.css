@@ -23,12 +23,12 @@
 *,
 ::before,
 ::after {
-  @apply font-raleway box-border p-0 m-0 transition-all ease-out;
+  @apply box-border p-0 m-0 transition-all ease-out;
 }
 
 /* common */
 body {
-  @apply bg-city-hall bg-no-repeat bg-cover bg-fixed;
+  @apply font-raleway bg-city-hall bg-no-repeat bg-cover bg-fixed;
 }
 
 textarea {
