@@ -4,7 +4,7 @@ import SettingsMiniTitle from "../../SettingsMiniTitle";
 import { FontContext } from "../../../../../providers/FontProvider";
 import { defaultFont, fontFamilies } from "../../../../../lib/fontFamilies";
 
-const FontFamily = () => {
+const FontFamilySwitch = () => {
   const { family } = useContext(FontContext);
   const [fontFamily, setFontFamily] = family;
 
@@ -55,4 +55,4 @@ const FontFamily = () => {
   );
 };
 
-export default FontFamily;
+export default FontFamilySwitch;

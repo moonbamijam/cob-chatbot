@@ -1,11 +1,10 @@
 import { useContext } from "react";
+import { ThemesContext } from "../../../../../providers/ThemesProvider";
 import { LuSun } from "react-icons/lu";
 import { FaMoon } from "react-icons/fa6";
+import SettingsMiniTitle from "../../SettingsMiniTitle";
 
-import { ThemesContext } from "../../../providers/ThemesProvider";
-import SettingsMiniTitle from "../settings/SettingsMiniTitle";
-
-const ThemeSwitchBtn = () => {
+const ThemeSwitch = () => {
   const [theme, setTheme] = useContext(ThemesContext);
 
   const toggleTheme = () => {
@@ -61,4 +60,4 @@ const ThemeName = ({ text }) => {
     <p className={`capitalize dark:text-white rounded-3xl px-4 py-3`}>{text}</p>
   );
 };
-export default ThemeSwitchBtn;
+export default ThemeSwitch;

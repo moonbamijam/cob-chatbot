@@ -5,7 +5,7 @@ import FontChangerBtn from "../../../buttons/FontChangerBtn";
 import SettingsMiniTitle from "../../SettingsMiniTitle";
 import { fontSizes } from "../../../../../lib/fontSizes";
 
-const FontSizes = () => {
+const FontSizeSwitch = () => {
   const { size } = useContext(FontContext);
   const [fontSize, setFontSize] = size;
 
@@ -61,4 +61,4 @@ const FontSizes = () => {
   );
 };
 
-export default FontSizes;
+export default FontSizeSwitch;

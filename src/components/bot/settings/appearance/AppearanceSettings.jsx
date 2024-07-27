@@ -1,17 +1,17 @@
-import FontSizes from "./fonts/FontSizes";
 import SettingsTitle from "../SettingsTitle";
-import FontFamily from "./fonts/FontFamily";
 import ChatPreview from "../../ui/ChatPreview";
-import ThemeSwitchBtn from "../../buttons/ThemeSwitchBtn";
+import ThemeSwitch from "./themes/ThemeSwitch";
+import FontFamilySwitch from "./fonts/FontFamilySwitch";
+import FontSizeSwitch from "./fonts/FontSizeSwitch";
 
 const AppearanceSettings = () => {
   return (
     <section className="flex justify-between">
       <div className="flex flex-col gap-8">
         <SettingsTitle text={"appearance"} />
-        <ThemeSwitchBtn />
-        <FontFamily />
-        <FontSizes />
+        <ThemeSwitch />
+        <FontFamilySwitch />
+        <FontSizeSwitch />
       </div>
       <ChatPreview />
     </section>
