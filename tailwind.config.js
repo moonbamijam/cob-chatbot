@@ -27,6 +27,7 @@ export default {
       },
       screens: {
         xs: "475px",
+        "3xl": "1920px",
       },
       backgroundImage: {
         "city-hall": "url(/src/assets/images/bg.jpg)",
