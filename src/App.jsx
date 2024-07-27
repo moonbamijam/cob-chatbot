@@ -7,7 +7,7 @@ import Page from "./components/page/Page";
 
 // Providers
 import ThemesProvider from "./providers/ThemesProvider";
-import FontSizeProvider from "./providers/FontSizeProvider";
+import FontProvider from "./providers/FontProvider";
 import LargeScreenProvider from "./providers/LargeScreenProvider";
 import ScreenDim from "./components/bot/ui/ScreenDim";
 
@@ -47,7 +47,7 @@ const App = () => {
         <div ref={chatHead}>
           <LargeScreenProvider>
             <ThemesProvider>
-              <FontSizeProvider>
+              <FontProvider>
                 {isSignedIn ? (
                   <ChatHead state={isChatActive} onClick={() => toggleChat()} />
                 ) : null}
@@ -59,7 +59,7 @@ const App = () => {
                   }
                   closeUsing={toggleChat}
                 />
-              </FontSizeProvider>
+              </FontProvider>
             </ThemesProvider>
           </LargeScreenProvider>
         </div>

@@ -61,7 +61,7 @@ const Messages = ({ loading, messages, botIsTyping, error, latestMessage }) => {
 
   return (
     <section
-      className={` w-full max-h-[612px] h-full px-4 py-6 overflow-y-scroll scrollbar-thin scrollbar-track-transparent scrollbar-thumb-surface-dark dark:scrollbar-thumb-dm-surface`}
+      className={`w-full max-h-[612px] h-full px-4 py-6 overflow-y-scroll scrollbar-thin scrollbar-track-transparent scrollbar-thumb-surface-dark dark:scrollbar-thumb-dm-surface`}
     >
       <MiniProfile />
       <InternetProvider>
