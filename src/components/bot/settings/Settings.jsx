@@ -7,7 +7,7 @@ import { chatbot } from "../../../lib/botDetails";
 import SettingsNavBar from "./nav/SettingsNavBar";
 import AppearanceSettings from "./appearance/AppearanceSettings";
 
-const Settings = ({ settings, toggleSettings, style }) => {
+const Settings = ({ settings, toggleSettings }) => {
   const [checked, setChecked] = useState("appearance");
 
   const handleSettingsChange = (event) => {
@@ -40,7 +40,6 @@ const Settings = ({ settings, toggleSettings, style }) => {
     <>
       <section
         className={`fixed top-[5%] inset-x-0 mx-auto max-w-[70%] w-full max-h-[90%] h-full rounded-lg overflow-hidden bg-background dark:bg-dm-surface-light flex z-[150]`}
-        style={style}
       >
         <SettingsNavBar
           state={checked}

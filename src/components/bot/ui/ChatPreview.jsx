@@ -1,4 +1,7 @@
+import { useContext } from "react";
+import { IoSend } from "react-icons/io5";
 import ReactTextareaAutosize from "react-textarea-autosize";
+import { FontContext } from "../../../providers/FontProvider";
 import { chatbot } from "../../../lib/botDetails";
 import { suggestedMessages } from "../../../lib/suggestedMessages";
 import FaqsMenuBtn from "../buttons/FaqsMenuBtn";
@@ -6,19 +9,17 @@ import SuggestedMessageBtn from "../buttons/SuggestedMessageBtn";
 import SampleBotChat from "./SampleBotChat";
 import SampleUserChat from "./SampleUserChat";
 import Button from "./Button";
-import { IoSend } from "react-icons/io5";
-import CloseChatBtn from "../buttons/CloseChatBtn";
-import SettingsBtn from "../buttons/SettingsBtn";
-import MaximizeBtn from "../buttons/MaximizeBtn";
-import { useContext } from "react";
-import { FontContext } from "../../../providers/FontProvider";
 
 const ChatPreview = () => {
-  const { size } = useContext(FontContext);
+  const { size, family } = useContext(FontContext);
   const [fontSize] = size;
+  const [fontFamily] = family;
 
   return (
-    <div className="max-w-[500px] w-full h-[700px] flex flex-col bg-background dark:bg-dm-background border border-surface-dark dark:border-dm-surface rounded-xl">
+    <div
+      className="max-w-[500px] w-full h-[700px] flex flex-col bg-background dark:bg-dm-background border border-surface-dark dark:border-dm-surface rounded-xl"
+      style={{ fontFamily: fontFamily }}
+    >
       <header
         id="sample-chat-header"
         className="w-full flex items-center justify-between px-4 py-4 mr-auto shadow-md dark:shadow-dm-surface-dark"
