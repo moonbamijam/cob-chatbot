@@ -2,11 +2,7 @@ import { chatbot } from "./botDetails";
 
 export const settingsList = [
   {
-    name: "themes",
-    settingType: "chat",
-  },
-  {
-    name: "fonts",
+    name: "appearance",
     settingType: "chat",
   },
   {
