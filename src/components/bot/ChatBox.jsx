@@ -90,13 +90,7 @@ const ChatBox = ({ className, closeUsing }) => {
         />
       </div>
       {settings && (
-        <Settings
-          settings={settings}
-          toggleSettings={toggleSettings}
-          style={{
-            fontFamily: fontFamily,
-          }}
-        />
+        <Settings settings={settings} toggleSettings={toggleSettings} />
       )}
     </>
   );
