@@ -28,7 +28,7 @@
 
 /* common */
 body {
-  @apply font-raleway bg-city-hall bg-no-repeat bg-cover bg-fixed;
+  @apply font-sans bg-city-hall bg-no-repeat bg-cover bg-fixed;
 }
 
 textarea {
