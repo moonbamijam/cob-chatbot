@@ -1,6 +1,7 @@
 import { useContext } from "react";
 
 // Contexts & Providers
+import { FontContext } from "../../providers/FontProvider";
 import { LargeScreenContext } from "../../providers/LargeScreenProvider";
 
 // Hooks
@@ -35,7 +36,10 @@ const ChatBox = ({ className, closeUsing }) => {
     sendFaqToBot,
   } = useChatbot();
 
+  const { family } = useContext(FontContext);
+  const [fontFamily] = family;
   const [isLargeScreen, setIsLargeScreen] = useContext(LargeScreenContext);
+
   const toggleLargeScreen = () => {
     setIsLargeScreen(!isLargeScreen);
     scrollInto(latestMessage);
@@ -50,6 +54,9 @@ const ChatBox = ({ className, closeUsing }) => {
             ? "w-[700px] h-[750px] md:w-[750px] lg:w-[800px] xl:w-[1000px] 2xl:w-[1200px]"
             : "w-[500px] h-[700px]"
         } fixed flex flex-col right-36 bottom-32 bg-background dark:bg-dm-background rounded-xl overflow-hidden z-[100] ${className}`}
+        style={{
+          fontFamily: fontFamily,
+        }}
       >
         <Header
           toggleSettings={toggleSettings}
@@ -83,7 +90,13 @@ const ChatBox = ({ className, closeUsing }) => {
         />
       </div>
       {settings && (
-        <Settings settings={settings} toggleSettings={toggleSettings} />
+        <Settings
+          settings={settings}
+          toggleSettings={toggleSettings}
+          style={{
+            fontFamily: fontFamily,
+          }}
+        />
       )}
     </>
   );
