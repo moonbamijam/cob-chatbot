@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { ThemesContext } from "../../../../../providers/ThemesProvider";
+import { ThemesContext } from "../../../../../contexts/ThemesProvider";
 import { LuSun } from "react-icons/lu";
 import { FaMoon } from "react-icons/fa6";
 import SettingsMiniTitle from "../../SettingsMiniTitle";
