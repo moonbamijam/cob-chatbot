@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 
 // Context & Providers
-import { FontContext } from "../../../providers/FontProvider";
+import { FontContext } from "../../../contexts/FontProvider";
 
 import { chatbot } from "../../../lib/botDetails";
 import DepartmentBtn from "../buttons/DepartmentBtn";
@@ -10,8 +10,8 @@ import { BsArrowDownCircleFill } from "react-icons/bs";
 const step = 4;
 
 const Chat = ({ role, message, depts, timeSent, link }) => {
-  const { size } = useContext(FontContext);
-  const [fontSize] = size;
+  const { font } = useContext(FontContext);
+  const [fontSize] = font.size;
   const [numberOfDeptsToShow, setNumberOfDeptsToShow] = useState(4);
   const [currentPage, setCurrentPage] = useState(1);
 

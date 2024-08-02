@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { IoSend } from "react-icons/io5";
 import ReactTextareaAutosize from "react-textarea-autosize";
-import { FontContext } from "../../../providers/FontProvider";
+import { FontContext } from "../../../contexts/FontProvider";
 import { chatbot } from "../../../lib/botDetails";
 import { suggestedMessages } from "../../../lib/suggestedMessages";
 import FaqsMenuBtn from "../buttons/FaqsMenuBtn";
@@ -11,9 +11,9 @@ import SampleUserChat from "./SampleUserChat";
 import Button from "./Button";
 
 const ChatPreview = () => {
-  const { size, family } = useContext(FontContext);
-  const [fontSize] = size;
-  const [fontFamily] = family;
+  const { font } = useContext(FontContext);
+  const [fontSize] = font.size;
+  const [fontFamily] = font.family;
 
   return (
     <div
