@@ -5,10 +5,10 @@ import ChatHead from "./components/bot/ChatHead";
 import ChatBox from "./components/bot/ChatBox";
 import Page from "./components/page/Page";
 
-// Providers
-import ThemesProvider from "./providers/ThemesProvider";
-import FontProvider from "./providers/FontProvider";
-import LargeScreenProvider from "./providers/LargeScreenProvider";
+// Context
+import ThemesProvider from "./contexts/ThemesProvider";
+import FontProvider from "./contexts/FontProvider";
+import LargeScreenProvider from "./contexts/LargeScreenProvider";
 import ScreenDim from "./components/bot/ui/ScreenDim";
 
 const App = () => {

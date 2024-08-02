@@ -1,5 +1,5 @@
 // Contexts & Providers
-import InternetProvider from "../../../providers/InternetProvider";
+import InternetProvider from "../../../contexts/InternetProvider";
 
 // Utilities
 import {
