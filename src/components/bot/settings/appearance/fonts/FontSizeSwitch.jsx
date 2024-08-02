@@ -1,13 +1,13 @@
 // Components
 import { useContext } from "react";
-import { FontContext } from "../../../../../providers/FontProvider";
+import { FontContext } from "../../../../../contexts/FontProvider";
 import FontChangerBtn from "../../../buttons/FontChangerBtn";
 import SettingsMiniTitle from "../../SettingsMiniTitle";
 import { fontSizes } from "../../../../../lib/fontSizes";
 
 const FontSizeSwitch = () => {
-  const { size } = useContext(FontContext);
-  const [fontSize, setFontSize] = size;
+  const { font } = useContext(FontContext);
+  const [fontSize, setFontSize] = font.size;
 
   const handleChange = (event) => {
     setFontSize(event.target.value);

@@ -1,12 +1,12 @@
 import { useContext } from "react";
 import FontChangerBtn from "../../../buttons/FontChangerBtn";
 import SettingsMiniTitle from "../../SettingsMiniTitle";
-import { FontContext } from "../../../../../providers/FontProvider";
+import { FontContext } from "../../../../../contexts/FontProvider";
 import { defaultFont, fontFamilies } from "../../../../../lib/fontFamilies";
 
 const FontFamilySwitch = () => {
-  const { family } = useContext(FontContext);
-  const [fontFamily, setFontFamily] = family;
+  const { font } = useContext(FontContext);
+  const [fontFamily, setFontFamily] = font.family;
 
   const handleChange = (event) => {
     setFontFamily(event.target.value);
@@ -27,7 +27,7 @@ const FontFamilySwitch = () => {
         setFontFamily(value);
         break;
       default:
-        setFontFamily(value);
+        setFontFamily(defaultFont);
         break;
     }
     localStorage.setItem("fontFamily", value);

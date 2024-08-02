@@ -1,8 +1,8 @@
 import { useContext } from "react";
 
 // Contexts & Providers
-import { FontContext } from "../../providers/FontProvider";
-import { LargeScreenContext } from "../../providers/LargeScreenProvider";
+import { FontContext } from "../../contexts/FontProvider";
+import { LargeScreenContext } from "../../contexts/LargeScreenProvider";
 
 // Hooks
 import useChatbot from "../../hooks/useChatbot";
@@ -36,8 +36,8 @@ const ChatBox = ({ className, closeUsing }) => {
     sendFaqToBot,
   } = useChatbot();
 
-  const { family } = useContext(FontContext);
-  const [fontFamily] = family;
+  const { font } = useContext(FontContext);
+  const [fontFamily] = font.family;
   const [isLargeScreen, setIsLargeScreen] = useContext(LargeScreenContext);
 
   const toggleLargeScreen = () => {
