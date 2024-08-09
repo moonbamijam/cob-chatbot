@@ -23,7 +23,7 @@
 *,
 ::before,
 ::after {
-  @apply box-border p-0 m-0 transition-all ease-out;
+  @apply box-border p-0 m-0 transition-all duration-100 ease-out;
 }
 
 /* common */
