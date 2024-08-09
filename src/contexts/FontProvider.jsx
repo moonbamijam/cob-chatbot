@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo } from "react";
-import { defaultFont } from "../lib/fontFamilies";
+import { defaultFont } from "../lib/settings/fontFamilyList";
 
 export const FontContext = React.createContext();
 

@@ -1,4 +1,4 @@
-export const fontSizes = [
+export const fontSizeList = [
   {
     name: "small",
     value: 8,

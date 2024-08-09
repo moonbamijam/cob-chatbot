@@ -1,7 +1,7 @@
 const defaultFont =
   "ui-sans-serif, system-ui, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji";
 
-const fontFamilies = [
+const fontFamilyList = [
   {
     name: "default",
     value: defaultFont,
@@ -20,4 +20,4 @@ const fontFamilies = [
   },
 ];
 
-export { defaultFont, fontFamilies };
+export { defaultFont, fontFamilyList };

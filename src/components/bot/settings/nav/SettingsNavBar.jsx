@@ -1,4 +1,4 @@
-import { settingsList } from "../../../../lib/settingsList";
+import { settingsList } from "../../../../lib//settings/settingsList";
 import SettingsBtn from "../SettingsBtn";
 import SettingsNavSection from "./SettingsNavSection";
 import SettingsNavTitle from "./SettingsNavTitle";
