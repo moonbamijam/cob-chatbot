@@ -2,7 +2,10 @@ import { useContext } from "react";
 import FontChangerBtn from "../../../buttons/FontChangerBtn";
 import SettingsMiniTitle from "../../SettingsMiniTitle";
 import { FontContext } from "../../../../../contexts/FontProvider";
-import { defaultFont, fontFamilies } from "../../../../../lib/fontFamilies";
+import {
+  defaultFont,
+  fontFamilyList,
+} from "../../../../../lib/settings/fontFamilyList";
 
 const FontFamilySwitch = () => {
   const { font } = useContext(FontContext);
@@ -37,7 +40,7 @@ const FontFamilySwitch = () => {
     <div className="">
       <SettingsMiniTitle text="font family" />
       <div className="inline-grid grid-cols-3 gap-5">
-        {fontFamilies.map((font) => (
+        {fontFamilyList.map((font) => (
           <FontChangerBtn
             key={font.value}
             name="font-families"
