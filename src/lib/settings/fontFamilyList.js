@@ -18,6 +18,10 @@ const fontFamilyList = [
     name: "poppins",
     value: "poppins",
   },
+  {
+    name: "monospace",
+    value: "monospace",
+  },
 ];
 
 export { defaultFont, fontFamilyList };

@@ -29,6 +29,9 @@ const FontFamilySwitch = () => {
       case "poppins":
         setFontFamily(value);
         break;
+      case "monospace":
+        setFontFamily(value);
+        break;
       default:
         setFontFamily(defaultFont);
         break;
