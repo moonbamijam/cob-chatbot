@@ -4,12 +4,13 @@ import { getAuth, signInAnonymously } from "firebase/auth";
 import ChatHead from "./components/bot/ChatHead";
 import ChatBox from "./components/bot/ChatBox";
 import Page from "./components/page/Page";
+import ScreenDim from "./components/bot/ui/ScreenDim";
 
-// Context
+// Contexts
 import ThemesProvider from "./contexts/ThemesProvider";
 import FontProvider from "./contexts/FontProvider";
 import LargeScreenProvider from "./contexts/LargeScreenProvider";
-import ScreenDim from "./components/bot/ui/ScreenDim";
+import SoundProvider from "./contexts/SoundProvider";
 
 const App = () => {
   const [isChatActive, setIsChatActive] = useState(false);
@@ -48,17 +49,22 @@ const App = () => {
           <LargeScreenProvider>
             <ThemesProvider>
               <FontProvider>
-                {isSignedIn ? (
-                  <ChatHead state={isChatActive} onClick={() => toggleChat()} />
-                ) : null}
-                <ChatBox
-                  className={
-                    isChatActive
-                      ? "opacity-100 visible"
-                      : "opacity-0 -translate-y-[100%] invisible"
-                  }
-                  closeUsing={toggleChat}
-                />
+                <SoundProvider>
+                  {isSignedIn ? (
+                    <ChatHead
+                      state={isChatActive}
+                      onClick={() => toggleChat()}
+                    />
+                  ) : null}
+                  <ChatBox
+                    className={
+                      isChatActive
+                        ? "opacity-100 visible"
+                        : "opacity-0 -translate-y-[100%] invisible"
+                    }
+                    closeUsing={toggleChat}
+                  />
+                </SoundProvider>
               </FontProvider>
             </ThemesProvider>
           </LargeScreenProvider>
