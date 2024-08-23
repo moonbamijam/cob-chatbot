@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import FontChangerBtn from "../../../buttons/FontChangerBtn";
+import SettingsChangerBtn from "../../../buttons/SettingsChangerBtn";
 import SettingsMiniTitle from "../../SettingsMiniTitle";
 import { SoundContext } from "../../../../../contexts/SoundProvider";
 import {
@@ -48,7 +48,7 @@ const MessageSentSoundSwitch = () => {
       <SettingsMiniTitle text="message sent" />
       <div className="inline-grid grid-cols-3 gap-5">
         {soundNotificationList.map((sound) => (
-          <FontChangerBtn
+          <SettingsChangerBtn
             key={sound.value}
             name="message-sent-sounds"
             id={sound.value}
