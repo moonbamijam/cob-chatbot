@@ -1,27 +1,11 @@
+import { suggestedMessages } from "../../../lib/suggestedMessages";
 import SuggestedMessageBtn from "../buttons/SuggestedMessageBtn";
 
-const suggestedMessages = [
-  {
-    displayedText: "City Hall Location",
-    message: "Where can I find the City Hall of Bacoor?",
-  },
-  {
-    displayedText: "Say Hi!",
-    message: "Hi",
-  },
-  {
-    displayedText: "Who created you?",
-    message: "Who created you?",
-  },
-];
-
-const SuggestedMessages = ({ sendMessageToBot, settings }) => {
+const SuggestedMessages = ({ sendMessageToBot }) => {
   return (
     <section
       id="suggested-messages"
-      className={`w-full flex justify-center gap-2 px-4 pt-2 ${
-        settings ? "-translate-x-full hidden" : ""
-      }`}
+      className={`w-full flex justify-center gap-2 px-4 pt-2`}
     >
       {suggestedMessages.map((suggestedMessage, id) => (
         <SuggestedMessageBtn
@@ -29,7 +13,7 @@ const SuggestedMessages = ({ sendMessageToBot, settings }) => {
           onClick={(e) => sendMessageToBot(e, suggestedMessage.message)}
           message={suggestedMessage.displayedText}
         />
-      ))}{" "}
+      ))}
     </section>
   );
 };
