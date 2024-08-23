@@ -38,7 +38,7 @@ const faqsCollectionRef = collection(db, "FAQs");
 const faqsQuery = query(faqsCollectionRef, orderBy("frequency", "desc"));
 
 const useChatbot = () => {
-  const { playMessageNotification, playTypingSound } = useSound();
+  const { playMessageNotification } = useSound();
   const latestMessage = useRef();
   const faqsRef = useRef();
   const [settings, setSettings] = useState(false);
@@ -81,7 +81,6 @@ const useChatbot = () => {
   const getReplyFromBot = async (message) => {
     try {
       setBotIsTyping(true);
-      // playTypingSound();
       let deptMessage = message.toLowerCase();
       // Temporary statements just to display departments
       if (
@@ -126,7 +125,6 @@ const useChatbot = () => {
           botHasMultipleMessage.forEach(async (response, i) => {
             if (i == 1) {
               await sleep(1.5);
-              // playTypingSound();
               setBotIsTyping(true);
               await sleep(3);
             }
@@ -156,10 +154,13 @@ const useChatbot = () => {
         getChatHistory();
         playMessageNotification();
       }
-    } catch (error) {
-      if (error) setError(true);
+    } catch (catchedError) {
+      if (catchedError) {
+        setBotIsTyping(false);
+        setError(true);
+      }
     }
-    if (error == true) setError(false);
+    if (error) setError(false);
   };
 
   // useDebounce(function to call, seconds to wait before you can call it again)
@@ -178,8 +179,11 @@ const useChatbot = () => {
       setUserMessage("");
       playMessageNotification();
       debouncedMessageToBot(message);
-    } catch (error) {
-      if (error) setError(true);
+    } catch (catchedError) {
+      if (catchedError) {
+        setBotIsTyping(false);
+        setError(true);
+      }
     }
     if (error == true) setError(false);
   };
@@ -196,8 +200,11 @@ const useChatbot = () => {
       getChatHistory();
       playMessageNotification();
       debouncedMessageToBot(message);
-    } catch (error) {
-      if (error) setError(true);
+    } catch (catchedError) {
+      if (catchedError) {
+        setBotIsTyping(false);
+        setError(true);
+      }
     }
     if (error == true) setError(false);
   };
