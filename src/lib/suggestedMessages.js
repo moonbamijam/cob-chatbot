@@ -1,0 +1,14 @@
+export const suggestedMessages = [
+  {
+    displayedText: "City Hall Location",
+    message: "Where can I find the City Hall of Bacoor?",
+  },
+  {
+    displayedText: "Say Hi!",
+    message: "Hi",
+  },
+  {
+    displayedText: "Who created you?",
+    message: "Who created you?",
+  },
+];
