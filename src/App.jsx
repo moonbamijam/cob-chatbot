@@ -4,11 +4,13 @@ import { getAuth, signInAnonymously } from "firebase/auth";
 import ChatHead from "./components/bot/ChatHead";
 import ChatBox from "./components/bot/ChatBox";
 import Page from "./components/page/Page";
+import ScreenDim from "./components/bot/ui/ScreenDim";
 
-// Providers
-import ThemesProvider from "./providers/ThemesProvider";
-import FontSizeProvider from "./providers/FontSizeProvider";
-import LargeScreenProvider from "./providers/LargeScreenProvider";
+// Contexts
+import ThemesProvider from "./contexts/ThemesProvider";
+import FontProvider from "./contexts/FontProvider";
+import LargeScreenProvider from "./contexts/LargeScreenProvider";
+import SoundProvider from "./contexts/SoundProvider";
 
 const App = () => {
   const [isChatActive, setIsChatActive] = useState(false);
@@ -46,33 +48,34 @@ const App = () => {
         <div ref={chatHead}>
           <LargeScreenProvider>
             <ThemesProvider>
-              <FontSizeProvider>
-                {isSignedIn ? (
-                  <ChatHead state={isChatActive} onClick={() => toggleChat()} />
-                ) : null}
-                <ChatBox
-                  className={
-                    isChatActive
-                      ? "opacity-100 visible"
-                      : "opacity-0 -translate-y-[100%] invisible"
-                  }
-                  closeUsing={toggleChat}
-                />
-              </FontSizeProvider>
+              <FontProvider>
+                <SoundProvider>
+                  {isSignedIn ? (
+                    <ChatHead
+                      state={isChatActive}
+                      onClick={() => toggleChat()}
+                    />
+                  ) : null}
+                  <ChatBox
+                    className={
+                      isChatActive
+                        ? "opacity-100 visible"
+                        : "opacity-0 -translate-y-[100%] invisible"
+                    }
+                    closeUsing={toggleChat}
+                  />
+                </SoundProvider>
+              </FontProvider>
             </ThemesProvider>
           </LargeScreenProvider>
         </div>
         <Page />
-        <div
-          id="screen-dimmer"
-          className={`w-full h-full fixed z-[90] bg-black ${
+        <ScreenDim
+          message="Click anywhere to close."
+          className={`bg-black z-50 backdrop-blur ${
             isChatActive ? "opacity-80" : "opacity-0 invisible"
-          } flex justify-center items-center pr-[30%]`}
-        >
-          <p className="text-lg text-gray-300 animate-bounce select-none">
-            Click anywhere to close.
-          </p>
-        </div>
+          }`}
+        />
       </main>
     </>
   );
