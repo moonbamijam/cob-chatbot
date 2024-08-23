@@ -7,20 +7,24 @@ const fontFamilyList = [
     value: defaultFont,
   },
   {
-    name: "raleway",
-    value: "raleway",
+    name: "poppins",
+    value: "poppins",
   },
   {
     name: "cursive",
     value: "cursive",
   },
   {
-    name: "poppins",
-    value: "poppins",
+    name: "raleway",
+    value: "raleway",
   },
   {
     name: "monospace",
     value: "monospace",
+  },
+  {
+    name: "montserrat",
+    value: "montserrat",
   },
 ];
 
