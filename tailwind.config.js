@@ -12,7 +12,7 @@ export default {
         secondary: "#EAB308",
         background: colors.white,
         surface: "#E9E9E9",
-        "surface-dark": "#c2c2c2",
+        "surface-dark": "#A3A3A3",
         error: "#EF4444",
         "dm-background": "#020617",
         "dm-surface": "#1E293B",
@@ -27,7 +27,6 @@ export default {
       },
       screens: {
         xs: "475px",
-        "3xl": "1920px",
       },
       backgroundImage: {
         "city-hall": "url(/src/assets/images/bg.jpg)",
