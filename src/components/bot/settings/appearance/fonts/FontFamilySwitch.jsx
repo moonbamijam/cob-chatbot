@@ -32,6 +32,9 @@ const FontFamilySwitch = () => {
       case "monospace":
         setFontFamily(value);
         break;
+      case "montserrat":
+        setFontFamily(value);
+        break;
       default:
         setFontFamily(defaultFont);
         break;
