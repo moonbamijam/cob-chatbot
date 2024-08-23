@@ -25,6 +25,9 @@ Our capstone project that uses Natural Language Processing (NLP) to deliver smoo
 
 # Try Locally!
 
+> [!note]
+> For trying locally, we can only provide the frontend as of now.
+
 Clone the project
 
 ```bash
@@ -38,6 +41,8 @@ Go to the project directory
 ```
 
 Install dependencies
+> [!note]
+> we use [pnpm](https://pnpm.io/) for our package manager
 
 ```bash
   pnpm install
