@@ -24,10 +24,7 @@ import { hasSymbol, splitMessage } from "../utils/splitMessage";
 import { verifiedUID } from "../utils/uid";
 import { scrollInto } from "../utils/scrollInto";
 import { sleep } from "../utils/sleep";
-import {
-  playMessageNotification,
-  playTypingSound,
-} from "../utils/soundNotifications";
+import useSound from "../hooks/useSound";
 
 const uid = verifiedUID();
 const messagesCollectionRef = collection(db, "messages");
@@ -41,6 +38,7 @@ const faqsCollectionRef = collection(db, "FAQs");
 const faqsQuery = query(faqsCollectionRef, orderBy("frequency", "desc"));
 
 const useChatbot = () => {
+  const { playMessageNotification, playTypingSound } = useSound();
   const latestMessage = useRef();
   const faqsRef = useRef();
   const [settings, setSettings] = useState(false);
