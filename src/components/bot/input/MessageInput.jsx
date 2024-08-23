@@ -16,7 +16,6 @@ const MessageInput = ({
   sendFaqToBot,
   userMessage,
   setUserMessage,
-  settings,
   isFaqsMenuActive,
   setIsFaqsMenuActive,
 }) => {
@@ -25,9 +24,7 @@ const MessageInput = ({
       return (
         <section
           id="suggested-questions"
-          className={`w-full absolute bottom-0 px-4 py-3 mb-[58px] bg-white dark:bg-dm-background z-50 ${
-            settings ? "-translate-x-full hidden" : ""
-          } ${isFaqsMenuActive ? "" : "translate-x-full opacity-0 "}`}
+          className={`w-full absolute bottom-0 px-4 py-3 mb-[58px] bg-white dark:bg-dm-background z-50 ${isFaqsMenuActive ? "" : "translate-x-full opacity-0 "}`}
         >
           <p className="mb-4 font-semibold text-lg dark:text-white">
             Ask {chatbot.name}:
@@ -47,12 +44,7 @@ const MessageInput = ({
   };
 
   return (
-    <div
-      ref={faqsRef}
-      className={`${
-        settings ? "-translate-x-full hidden" : ""
-      } w-full flex justify-between items-center`}
-    >
+    <div ref={faqsRef} className={`w-full flex justify-between items-center`}>
       {renderFaqs()}
       <form
         onSubmit={(e) => sendMessageToBot(e, userMessage)}
