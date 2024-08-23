@@ -1,4 +1,4 @@
-const FontChangerBtn = ({
+const SettingsChangerBtn = ({
   name,
   id,
   value,
@@ -9,7 +9,7 @@ const FontChangerBtn = ({
   displayedText,
 }) => {
   return (
-    <button onClick={() => onClick()} className="active:translate-y-1">
+    <button onClick={onClick} className="active:translate-y-1">
       <input
         type="radio"
         name={name}
@@ -30,4 +30,4 @@ const FontChangerBtn = ({
   );
 };
 
-export default FontChangerBtn;
+export default SettingsChangerBtn;
