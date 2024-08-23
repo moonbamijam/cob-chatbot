@@ -6,6 +6,7 @@ import { useState } from "react";
 import { chatbot } from "../../../lib/botDetails";
 import SettingsNavBar from "./nav/SettingsNavBar";
 import AppearanceSettings from "./appearance/AppearanceSettings";
+import SoundSettings from "./sound/SoundSettings";
 
 const Settings = ({ settings, toggleSettings }) => {
   const [checked, setChecked] = useState("appearance");
@@ -19,6 +20,9 @@ const Settings = ({ settings, toggleSettings }) => {
       case "appearance":
         setChecked(setting);
         break;
+      case "sound":
+        setChecked(setting);
+        break;
       default:
         setChecked("appearance");
         break;
@@ -29,6 +33,8 @@ const Settings = ({ settings, toggleSettings }) => {
     switch (checked) {
       case "appearance":
         return <AppearanceSettings />;
+      case "sound":
+        return <SoundSettings />;
       case chatbot.name.toLowerCase():
         return <MiniProfile state={settings} />;
       default:
@@ -46,7 +52,7 @@ const Settings = ({ settings, toggleSettings }) => {
           handleSettingsChange={handleSettingsChange}
           changeSetting={changeSetting}
         />
-        <div className="w-full flex flex-col p-10 dark:bg-dm-background overflow-y-scroll scrollbar-thin scrollbar-track-transparent scrollbar-thumb-surface-dark dark:scrollbar-thumb-dm-surface-dark">
+        <div className="w-full flex flex-col px-10 py-20 dark:bg-dm-background overflow-y-scroll scrollbar-thin scrollbar-track-transparent scrollbar-thumb-surface-dark dark:scrollbar-thumb-dm-surface-dark">
           <div className="">{renderSettings()}</div>
         </div>
         <BackBtn
