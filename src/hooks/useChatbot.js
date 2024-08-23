@@ -24,7 +24,10 @@ import { hasSymbol, splitMessage } from "../utils/splitMessage";
 import { verifiedUID } from "../utils/uid";
 import { scrollInto } from "../utils/scrollInto";
 import { sleep } from "../utils/sleep";
-import useSound from "../hooks/useSound";
+import {
+  playMessageNotification,
+  playTypingSound,
+} from "../utils/soundNotifications";
 
 const uid = verifiedUID();
 const messagesCollectionRef = collection(db, "messages");
@@ -38,7 +41,6 @@ const faqsCollectionRef = collection(db, "FAQs");
 const faqsQuery = query(faqsCollectionRef, orderBy("frequency", "desc"));
 
 const useChatbot = () => {
-  const { playMessageNotification, playTypingSound } = useSound();
   const latestMessage = useRef();
   const faqsRef = useRef();
   const [settings, setSettings] = useState(false);
@@ -110,8 +112,8 @@ const useChatbot = () => {
           uid: uid,
         });
         setBotIsTyping(false);
-        getChatHistory();
         playMessageNotification();
+        getChatHistory();
         // Above is all temporary
       } else {
         await sleep(3);
@@ -138,9 +140,9 @@ const useChatbot = () => {
               uid: uid,
             });
             setBotIsTyping(false);
+            playMessageNotification();
             setIsFaqsMenuActive(false);
             getChatHistory();
-            playMessageNotification();
           });
           return;
         }
@@ -152,9 +154,9 @@ const useChatbot = () => {
           timeSent: Timestamp.now(),
           uid: uid,
         });
+        playMessageNotification();
         setIsFaqsMenuActive(false);
         getChatHistory();
-        playMessageNotification();
       }
     } catch (error) {
       if (error) setError(true);

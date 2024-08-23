@@ -1,5 +1,5 @@
 // Contexts & Providers
-import InternetProvider from "../../../contexts/InternetProvider";
+import InternetProvider from "../../../providers/InternetProvider";
 
 // Utilities
 import {
@@ -14,7 +14,14 @@ import Chat from "../ui/Chat";
 import Typing from "../ui/Typing";
 import ChatSkeleton from "../skeletons/ChatSkeleton";
 
-const Messages = ({ loading, messages, botIsTyping, error, latestMessage }) => {
+const Messages = ({
+  settings,
+  loading,
+  messages,
+  botIsTyping,
+  error,
+  latestMessage,
+}) => {
   const renderMessagesContent = () => {
     if (messages)
       return messages.map((message, id) => {
@@ -61,9 +68,11 @@ const Messages = ({ loading, messages, botIsTyping, error, latestMessage }) => {
 
   return (
     <section
-      className={`w-full max-h-[612px] h-full px-4 py-6 overflow-y-scroll scrollbar-thin scrollbar-track-transparent scrollbar-thumb-surface-dark dark:scrollbar-thumb-dm-surface`}
+      className={`${
+        settings ? "-translate-x-full hidden" : ""
+      } w-full max-h-[612px] h-full px-4 py-6 overflow-y-scroll scrollbar-thin scrollbar-track-transparent scrollbar-thumb-surface-dark dark:scrollbar-thumb-dm-surface`}
     >
-      <MiniProfile />
+      <MiniProfile state={settings} />
       <InternetProvider>
         {loading ? (
           <ChatSkeleton role={findRole()} />
