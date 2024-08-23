@@ -1,10 +1,10 @@
 import { useContext } from "react";
 import { IoSend } from "react-icons/io5";
+import { LuMenu } from "react-icons/lu";
 import ReactTextareaAutosize from "react-textarea-autosize";
 import { FontContext } from "../../../contexts/FontProvider";
 import { chatbot } from "../../../lib/botDetails";
 import { suggestedMessages } from "../../../lib/suggestedMessages";
-import FaqsMenuBtn from "../buttons/FaqsMenuBtn";
 import SuggestedMessageBtn from "../buttons/SuggestedMessageBtn";
 import SampleBotChat from "./SampleBotChat";
 import SampleUserChat from "./SampleUserChat";
@@ -73,7 +73,9 @@ const ChatPreview = () => {
         ))}
       </section>
       <div className="w-full flex justify-between items-center gap-1 px-2 py-2">
-        <FaqsMenuBtn />
+        <Button type="button">
+          <LuMenu />
+        </Button>
         <label
           htmlFor="sameple-chat"
           className="w-full px-4 py-3 rounded-3xl flex items-center border border-surface-dark focus-within:border-primary dark:border-transparent dark:bg-dm-surface dark:focus-within:bg-dm-surface-light cursor-text"
