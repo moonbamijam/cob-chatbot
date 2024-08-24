@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo } from "react";
-import { defaultFont } from "../lib/settings/fontFamilyList";
+import fontFamilies from '../../static/settings/font_families.json'
 
 export const FontContext = React.createContext();
 
@@ -20,7 +20,7 @@ const FontProvider = ({ children }) => {
       localStorage.setItem("fontSize", initialFontSize);
     }
     if (localStorage.getItem("fontFamily") == null) {
-      const initialFontFamily = defaultFont;
+      const initialFontFamily = fontFamilies.default;
 
       setFontFamily(initialFontFamily);
       localStorage.setItem("fontFamily", initialFontFamily);

@@ -1,0 +1,30 @@
+{
+  "name": "font families",
+  "default": "ui-sans-serif, system-ui, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji",
+  "list": [
+    {
+      "name": "default",
+      "value": "ui-sans-serif, system-ui, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji"
+    },
+    {
+      "name": "poppins",
+      "value": "poppins"
+    },
+    {
+      "name": "cursive",
+      "value": "cursive"
+    },
+    {
+      "name": "raleway",
+      "value": "raleway"
+    },
+    {
+      "name": "monospace",
+      "value": "monospace"
+    },
+    {
+      "name": "montserrat",
+      "value": "montserrat"
+    }
+  ]
+}
