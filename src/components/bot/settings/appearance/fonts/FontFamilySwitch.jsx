@@ -1,11 +1,10 @@
 import { useContext } from "react";
+import { FontContext } from "../../../../../contexts/FontProvider";
+import fontFamilies from '../../../../../../static/settings/font_families.json'
+
+// components
 import SettingsChangerBtn from "../../../buttons/SettingsChangerBtn";
 import SettingsMiniTitle from "../../SettingsMiniTitle";
-import { FontContext } from "../../../../../contexts/FontProvider";
-import {
-  defaultFont,
-  fontFamilyList,
-} from "../../../../../lib/settings/fontFamilyList";
 
 const FontFamilySwitch = () => {
   const { font } = useContext(FontContext);
@@ -17,7 +16,7 @@ const FontFamilySwitch = () => {
 
   const changeFontFamily = (value) => {
     switch (value) {
-      case defaultFont:
+      case fontFamilies.default:
         setFontFamily(value);
         break;
       case "raleway":
@@ -36,7 +35,7 @@ const FontFamilySwitch = () => {
         setFontFamily(value);
         break;
       default:
-        setFontFamily(defaultFont);
+        setFontFamily(fontFamilies.default);
         break;
     }
     localStorage.setItem("fontFamily", value);
@@ -46,7 +45,7 @@ const FontFamilySwitch = () => {
     <div className="">
       <SettingsMiniTitle text="font family" />
       <div className="inline-grid grid-cols-3 gap-5">
-        {fontFamilyList.map((font) => (
+        {fontFamilies.list.map((font) => (
           <SettingsChangerBtn
             key={font.value}
             name="font-families"
