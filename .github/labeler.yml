@@ -1,4 +1,4 @@
-for: ui/ux:
+ui/ux:
 - changed-files:
   - any-glob-to-any-file:
     - src/*
