@@ -1,6 +1,20 @@
 ui/ux:
 - changed-files:
   - any-glob-to-any-file:
-    - src/*
-    - public/*
-    - static/*
+    - src/**
+    - public/**
+    - static/**
+
+devops:
+- changed-files:
+  - any-glob-to-any-file:
+    - .github/**
+
+documentation:
+- changed-files:
+  - any-glob-to-any-file: '**/*.md'
+
+dependencies:
+- changed-files:
+  - any-glob-to-any-file: 
+    - 'pnpm-lock.yaml'
