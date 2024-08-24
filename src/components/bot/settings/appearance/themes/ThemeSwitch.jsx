@@ -1,7 +1,9 @@
 import { useContext } from "react";
 import { ThemesContext } from "../../../../../contexts/ThemesProvider";
+import themes from '../../../../../../static/settings/themes.json'
+
+// components
 import SettingsMiniTitle from "../../SettingsMiniTitle";
-import { themes } from "../../../../../lib/settings/themes";
 import SettingsChangerBtn from "../../../buttons/SettingsChangerBtn";
 
 const ThemeSwitch = () => {
@@ -36,7 +38,7 @@ const ThemeSwitch = () => {
     <div className="">
       <SettingsMiniTitle text="theme" />
       <div className="inline-grid grid-cols-3 gap-5">
-        {themes.map((th, id) => (
+        {themes.modes.map((th, id) => (
           <SettingsChangerBtn
             key={id}
             name="themes"

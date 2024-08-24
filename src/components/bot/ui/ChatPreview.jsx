@@ -1,10 +1,14 @@
 import { useContext } from "react";
-import { IoSend } from "react-icons/io5";
-import { LuMenu } from "react-icons/lu";
-import ReactTextareaAutosize from "react-textarea-autosize";
 import { FontContext } from "../../../contexts/FontProvider";
 import { chatbot } from "../../../lib/botDetails";
-import { suggestedMessages } from "../../../lib/suggestedMessages";
+import Messages from '../../../../static/messages/suggested.json'
+
+// icons
+import { IoSend } from "react-icons/io5";
+import { LuMenu } from "react-icons/lu";
+
+// components
+import ReactTextareaAutosize from "react-textarea-autosize";
 import SuggestedMessageBtn from "../buttons/SuggestedMessageBtn";
 import SampleBotChat from "./SampleBotChat";
 import SampleUserChat from "./SampleUserChat";
@@ -65,10 +69,10 @@ const ChatPreview = () => {
         id="suggested-messages"
         className={`w-full flex justify-center gap-2 px-4 pt-2`}
       >
-        {suggestedMessages.map((suggestedMessage, id) => (
+        {Messages.list.map((message, id) => (
           <SuggestedMessageBtn
             key={id}
-            message={suggestedMessage.displayedText}
+            message={message.displayedText}
           />
         ))}
       </section>
