@@ -1,63 +1,56 @@
 import { useContext } from "react";
 import { ThemesContext } from "../../../../../contexts/ThemesProvider";
-import { LuSun } from "react-icons/lu";
-import { FaMoon } from "react-icons/fa6";
 import SettingsMiniTitle from "../../SettingsMiniTitle";
+import { themes } from "../../../../../lib/settings/themes";
+import SettingsChangerBtn from "../../../buttons/SettingsChangerBtn";
 
 const ThemeSwitch = () => {
   const [theme, setTheme] = useContext(ThemesContext);
+
+  const handleChange = (event) => {
+    setTheme(event.target.value);
+  };
 
   const toggleTheme = () => {
     setTheme(theme === "dark" ? "light" : "dark");
   };
 
+  const changeThemes = (value) => {
+    switch (value) {
+      case "light":
+        setTheme(value);
+        break;
+      case "dark":
+        setTheme(value);
+        break;
+      case "system":
+        setTheme(value);
+        break;
+      default:
+        setTheme("light");
+        break;
+    }
+  };
+
   return (
     <div className="">
       <SettingsMiniTitle text="theme" />
-      <div className="flex overflow-hidden">
-        <input type="checkbox" name="toggle" id="toggle" className="hidden" />
-        <button
-          onClick={() => toggleTheme()}
-          className="display toggle-wrapper flex items-center justify-center gap-1"
-        >
-          <ThemeName text={"light"} />
-          <label
-            htmlFor="toggle"
-            className={`relative border rounded-full w-[130px] h-[60px] shadow-inner cursor-pointer [&>div]:active:w-[55px] ${
-              theme === "dark"
-                ? "bg-dm-surface shadow-dm-surface-dark border-transparent"
-                : "bg-surface shadow-surface-dark"
-            }`}
-          >
-            <div
-              className={` w-[50px] h-[50px] absolute top-[50%] left-0 translate-y-[-50%] flex justify-center items-center shadow-inner rounded-full ${
-                theme === "dark"
-                  ? "left-full translate-x-[-110%] bg-dm-surface-light shadow-dm-surface-dark"
-                  : "translate-x-[10%] bg-white shadow-surface-dark"
-              }`}
-            >
-              <LuSun
-                className={`absolute w-[30px] h-[30px] text-yellow-500 ${
-                  theme === "dark" ? "mt-[150%] opacity-0" : "mt-0 opacity-100"
-                } `}
-              />
-              <FaMoon
-                className={`absolute w-[30px] h-[30px] text-white ${
-                  theme === "dark" ? "mt-0 opacity-100" : "mt-[-150%] opacity-0"
-                } `}
-              />
-            </div>
-          </label>
-          <ThemeName text={"dark"} />
-        </button>
+      <div className="inline-grid grid-cols-3 gap-5">
+        {themes.map((th, id) => (
+          <SettingsChangerBtn
+            key={id}
+            name="themes"
+            id={th.value}
+            value={th.value}
+            checkedIf={theme == th.value}
+            onChange={handleChange}
+            onClick={() => changeThemes(th.value)}
+            displayedText={th.name}
+          />
+        ))}
       </div>
     </div>
   );
 };
 
-const ThemeName = ({ text }) => {
-  return (
-    <p className={`capitalize dark:text-white rounded-3xl px-4 py-3`}>{text}</p>
-  );
-};
 export default ThemeSwitch;
