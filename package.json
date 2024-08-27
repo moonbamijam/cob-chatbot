@@ -10,7 +10,8 @@
     "preview": "vite preview",
     "release": "release-it",
     "prepare": "husky",
-    "pre-commit": "lint-staged"
+    "pre-commit": "lint-staged",
+    "prettier": "prettier . --write"
   },
   "dependencies": {
     "firebase": "^10.13.0",
@@ -27,7 +28,6 @@
     "@types/react-dom": "^18.3.0",
     "@vitejs/plugin-react-swc": "^3.7.0",
     "autoprefixer": "^10.4.20",
-    "dotenv-cli": "^7.4.2",
     "eslint": "^9.9.1",
     "eslint-plugin-react": "^7.35.0",
     "eslint-plugin-react-hooks": "^4.6.2",
@@ -42,7 +42,7 @@
     "vite": "^5.4.2"
   },
   "lint-staged": {
-    "*.{ts,tsx,json,css,html}": "prettier --write",
+    "*.{js,jsx,ts,tsx,json,css,html}": "prettier --write",
     "*.{ts,js}": [
       "prettier --write",
       "eslint"
