@@ -36,6 +36,7 @@ documentation:
   - any-glob-to-any-file: '**/*.md'
 
 dependencies:
+- head-branch: deps
 - changed-files:
   - any-glob-to-any-file: 
     - 'pnpm-lock.yaml'
