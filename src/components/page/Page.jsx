@@ -18,13 +18,13 @@ const Page = () => {
     <>
       <span
         id="time-header-bg"
-        className="hidden w-full h-6 bg-opaqueBlack absolute -z-10"
+        className="hidden xl:block w-full h-6 bg-opaqueBlack absolute -z-10"
       ></span>
-      <Section className="hidden">
+      <Section className="hidden xl:flex">
         <TimeHeader />
         <Logo />
       </Section>
-      <Section className="hidden bg-white">
+      <Section className="hidden xl:flex bg-white">
         <Header />
         <div id="latest-news" className="flex px-6 py-3">
           <div className="bg-black px-3 uppercase text-[#ff0202] font-bold text-sm rounded mr-5">
@@ -57,7 +57,7 @@ const Page = () => {
           <ArticleRight />
         </div>
       </Section>
-      <Section className="hidden bg-footerOpaqueBlack">
+      <Section className="hidden xl:flex bg-footerOpaqueBlack">
         <Footer />
       </Section>
     </>
