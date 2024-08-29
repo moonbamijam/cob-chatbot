@@ -1,9 +1,13 @@
 // Components
 import { useContext } from "react";
 import { FontContext } from "../../../../../contexts/FontProvider";
+import { fontSizeList } from "../../../../../lib/settings/fontSizeList";
+
+// components
 import SettingsChangerBtn from "../../../buttons/SettingsChangerBtn";
 import SettingsMiniTitle from "../../SettingsMiniTitle";
-import { fontSizeList } from "../../../../../lib/settings/fontSizeList";
+import Grid from "../../../common/Grid";
+import SettingSwitch from "../../../sections/SettingSwitch";
 
 const FontSizeSwitch = () => {
   const { font } = useContext(FontContext);
@@ -41,9 +45,9 @@ const FontSizeSwitch = () => {
   };
 
   return (
-    <div className="">
+    <SettingSwitch>
       <SettingsMiniTitle text="font sizes" />
-      <div className="inline-grid grid-cols-3 gap-5">
+      <Grid>
         {fontSizeList.map((font) => (
           <SettingsChangerBtn
             key={font.value}
@@ -56,8 +60,8 @@ const FontSizeSwitch = () => {
             displayedText={font.name}
           />
         ))}
-      </div>
-    </div>
+      </Grid>
+    </SettingSwitch>
   );
 };
 

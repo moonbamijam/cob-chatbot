@@ -1,10 +1,12 @@
 import { useContext } from "react";
 import { FontContext } from "../../../../../contexts/FontProvider";
-import fontFamilies from '../../../../../../static/settings/font_families.json'
+import fontFamilies from "../../../../../../static/settings/font_families.json";
 
 // components
 import SettingsChangerBtn from "../../../buttons/SettingsChangerBtn";
 import SettingsMiniTitle from "../../SettingsMiniTitle";
+import Grid from "../../../common/Grid";
+import SettingSwitch from "../../../sections/SettingSwitch";
 
 const FontFamilySwitch = () => {
   const { font } = useContext(FontContext);
@@ -42,9 +44,9 @@ const FontFamilySwitch = () => {
   };
 
   return (
-    <div className="">
+    <SettingSwitch>
       <SettingsMiniTitle text="font family" />
-      <div className="inline-grid grid-cols-3 gap-5">
+      <Grid>
         {fontFamilies.list.map((font) => (
           <SettingsChangerBtn
             key={font.value}
@@ -58,8 +60,8 @@ const FontFamilySwitch = () => {
             displayedText={font.name}
           />
         ))}
-      </div>
-    </div>
+      </Grid>
+    </SettingSwitch>
   );
 };
 
