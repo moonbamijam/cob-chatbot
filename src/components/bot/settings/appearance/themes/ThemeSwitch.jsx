@@ -1,10 +1,12 @@
 import { useContext } from "react";
 import { ThemesContext } from "../../../../../contexts/ThemesProvider";
-import themes from '../../../../../../static/settings/themes.json'
+import themes from "../../../../../../static/settings/themes.json";
 
 // components
 import SettingsMiniTitle from "../../SettingsMiniTitle";
 import SettingsChangerBtn from "../../../buttons/SettingsChangerBtn";
+import Grid from "../../../common/Grid";
+import SettingSwitch from "../../../sections/SettingSwitch";
 
 const ThemeSwitch = () => {
   const [theme, setTheme] = useContext(ThemesContext);
@@ -35,9 +37,9 @@ const ThemeSwitch = () => {
   };
 
   return (
-    <div className="">
+    <SettingSwitch>
       <SettingsMiniTitle text="theme" />
-      <div className="inline-grid grid-cols-3 gap-5">
+      <Grid>
         {themes.modes.map((th, id) => (
           <SettingsChangerBtn
             key={id}
@@ -50,8 +52,8 @@ const ThemeSwitch = () => {
             displayedText={th.name}
           />
         ))}
-      </div>
-    </div>
+      </Grid>
+    </SettingSwitch>
   );
 };
 
