@@ -32,5 +32,5 @@ body {
 }
 
 textarea {
-  resize: none;
+  @apply resize-none !important;
 }

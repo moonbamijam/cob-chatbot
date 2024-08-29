@@ -1,0 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@media (min-width: 475px) {
+  body {
+    @apply bg-center;
+  }
+}
+@media (min-width: 1536px) {
+  body {
+    @apply bg-top;
+  }
+}

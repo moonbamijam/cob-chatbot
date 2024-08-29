@@ -1,9 +1,10 @@
 import Package from "../../../../package.json";
 
-const Version = ({ className }) => {
+const Version = ({ className, text }) => {
   return (
-    <div>
-      <div className={`${className}`}>Version {Package.version}</div>
+    <div className={`${className}`}>
+      {text}
+      {Package.version}
     </div>
   );
 };

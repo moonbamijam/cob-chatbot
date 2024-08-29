@@ -1,6 +1,8 @@
 const SettingsTitle = ({ text }) => {
   return (
-    <h1 className="capitalize text-3xl font-bold dark:text-white">{text}</h1>
+    <h1 className="capitalize text-3xl font-bold dark:text-white w-max">
+      {text}
+    </h1>
   );
 };
 

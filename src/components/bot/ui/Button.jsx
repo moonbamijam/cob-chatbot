@@ -1,4 +1,12 @@
-const Button = ({ children, ref, type, disabled, onClick, state }) => {
+const Button = ({
+  children,
+  ref,
+  type,
+  disabled,
+  onClick,
+  state,
+  className,
+}) => {
   let buttonTypeStyling = "";
   let stateStyling = "";
 
@@ -32,7 +40,7 @@ const Button = ({ children, ref, type, disabled, onClick, state }) => {
         state
           ? "hover:bg-primary-dark"
           : "hover:bg-surface dark:hover:bg-dm-surface"
-      }`}
+      } ${className}`}
     >
       {children}
     </button>
