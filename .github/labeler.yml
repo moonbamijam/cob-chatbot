@@ -29,6 +29,7 @@ devops:
   - any-glob-to-any-file:
     - .github/**
     - .husky/**
+    - .release-it.json
 
 documentation:
 - head-branch: docs
