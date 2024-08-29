@@ -52,8 +52,8 @@ const ChatBox = ({ className, closeUsing }) => {
         className={`${
           isLargeScreen
             ? "w-[700px] h-[750px] md:w-[750px] lg:w-[800px] xl:w-[1000px] 2xl:w-[1200px]"
-            : "w-[500px] h-[700px]"
-        } fixed flex flex-col right-36 bottom-32 bg-background dark:bg-dm-background rounded-xl overflow-hidden z-[100] ${className}`}
+            : "w-full h-full xl:w-[500px] xl:h-[700px]"
+        } fixed flex flex-col xl:right-24 2xl:right-36 xl:bottom-20 2xl:bottom-32 bg-background dark:bg-dm-background xl:rounded-xl overflow-hidden z-[100] ${className}`}
         style={{
           fontFamily: fontFamily,
         }}
