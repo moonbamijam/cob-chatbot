@@ -1,5 +1,61 @@
 # What's New
 
+# [1.10.0](https://github.com/Jireh-sama/cob-chatbot/compare/1.9.0...1.10.0) (2024-08-30)
+
+
+### Bug Fixes
+
+* bot still typing if something went wrong ([#56](https://github.com/Jireh-sama/cob-chatbot/issues/56)) ([#57](https://github.com/Jireh-sama/cob-chatbot/issues/57)) ([8873188](https://github.com/Jireh-sama/cob-chatbot/commit/88731884f593f57972516aceb1fe031f6c7476ae))
+* changed-files must have valid config structure ([#65](https://github.com/Jireh-sama/cob-chatbot/issues/65)) ([b5a74a5](https://github.com/Jireh-sama/cob-chatbot/commit/b5a74a5623a2aadd5d9795768eeab4e743bccfd5)), closes [#63](https://github.com/Jireh-sama/cob-chatbot/issues/63)
+* chat preview error in faqs menu btn ([6b4a51b](https://github.com/Jireh-sama/cob-chatbot/commit/6b4a51b542f7c28b90fb6cc233507e5664b53bda))
+* could not fast refresh (export is incompatible) ([e0f69b1](https://github.com/Jireh-sama/cob-chatbot/commit/e0f69b1cf4c740fd582cbaea0c3e099535b63a8f))
+* height transition in department buttons ([28fbad5](https://github.com/Jireh-sama/cob-chatbot/commit/28fbad560f6496960b11267ff792b1d2a14f70be))
+* missing mini profile to chatbox ([252df6e](https://github.com/Jireh-sama/cob-chatbot/commit/252df6efe6d7c45a8a75ae5fdfe3e3560097199b))
+* no accordion transition in department buttons ([257a7a2](https://github.com/Jireh-sama/cob-chatbot/commit/257a7a28c3f75e9091fe1ee503beabf66392bb82))
+* revert - new ui to settings ([@moonbamijam](https://github.com/moonbamijam)) ([#55](https://github.com/Jireh-sama/cob-chatbot/issues/55)) ([63cab7c](https://github.com/Jireh-sama/cob-chatbot/commit/63cab7c05f5c6af98e96848d607ddc78675a3f3b))
+* sound is played before a message appeared ([9309586](https://github.com/Jireh-sama/cob-chatbot/commit/930958685814b87ebfc1c55d62794dfd70286776))
+
+
+### Features
+
+* add chat preview ui component ([1d9ad49](https://github.com/Jireh-sama/cob-chatbot/commit/1d9ad49d3de47986dc24768b9ead12cff70aa0e4))
+* add debounce to messages ([#37](https://github.com/Jireh-sama/cob-chatbot/issues/37)) ([77756cb](https://github.com/Jireh-sama/cob-chatbot/commit/77756cbc23c9ddc12e0778f043a288546973fa47))
+* add mini title for settings ([789e79d](https://github.com/Jireh-sama/cob-chatbot/commit/789e79d40d81e27952991a4b1150ec2c85c94dd3))
+* add monospace font family ([789d160](https://github.com/Jireh-sama/cob-chatbot/commit/789d160cb695011fef108238f0d8e8ff4a891c5b))
+* add montserrat font family to settings ([0af020e](https://github.com/Jireh-sama/cob-chatbot/commit/0af020eabcf198364eab914ad9c46c271557e044))
+* add new lists of app specific data to lib ([9c2ae58](https://github.com/Jireh-sama/cob-chatbot/commit/9c2ae582c86f555bc97c5b26a0b07b2f51e1c9c6))
+* add new props params to BackBtn button component ([77651ed](https://github.com/Jireh-sama/cob-chatbot/commit/77651edeaf0af1eaf791356e47e3d36a54872393))
+* add new screen breakpoint ([8caeed1](https://github.com/Jireh-sama/cob-chatbot/commit/8caeed1e8f9c89341de9794424b8d1a55ce794a7))
+* add new styling & scrollbar to message input in chat box ([1f6ee5e](https://github.com/Jireh-sama/cob-chatbot/commit/1f6ee5ea9bf6323ec4166889b5e606ae70c2ab5a))
+* add new ui to settings ([#35](https://github.com/Jireh-sama/cob-chatbot/issues/35)) ([6a06229](https://github.com/Jireh-sama/cob-chatbot/commit/6a06229f914a0afcb54b4bd77bca169c530596e6))
+* add new ui to settings ([#35](https://github.com/Jireh-sama/cob-chatbot/issues/35)) ([8146f48](https://github.com/Jireh-sama/cob-chatbot/commit/8146f484b295ef895b2df53bd9a6ddb7e6fd3346))
+* add ScreenDim to ui components ([57a8653](https://github.com/Jireh-sama/cob-chatbot/commit/57a8653175fd50e252ae272f148ccb5c94cce55a))
+* add scrollbar to textarea global styling ([055b236](https://github.com/Jireh-sama/cob-chatbot/commit/055b236cd218a5b17dc10bd81c35375ea20447fa))
+* add sound notification for messages ([09efa78](https://github.com/Jireh-sama/cob-chatbot/commit/09efa7877f953c3d4baaa2774dceb9f7aefd6fe4))
+* add sound provider context ([#42](https://github.com/Jireh-sama/cob-chatbot/issues/42)) ([d72d4ee](https://github.com/Jireh-sama/cob-chatbot/commit/d72d4eecd2691c2d5ac1b1972a77dc99a621c92f))
+* add sound provider to app ([#42](https://github.com/Jireh-sama/cob-chatbot/issues/42)) ([6b7a1f4](https://github.com/Jireh-sama/cob-chatbot/commit/6b7a1f4ed5e6c8342b7aa587023cf210f1ee265b))
+* add sound settings ([#42](https://github.com/Jireh-sama/cob-chatbot/issues/42)) ([8c6bc58](https://github.com/Jireh-sama/cob-chatbot/commit/8c6bc58bcc7651d61525623d9f4957f9fc684a1f))
+* add transition duration to global styling ([097ea5a](https://github.com/Jireh-sama/cob-chatbot/commit/097ea5a521a0e47523d4e832e45c857756f0380e))
+* add truncation to settings navbar components ([9d8af8b](https://github.com/Jireh-sama/cob-chatbot/commit/9d8af8b6d11e72ae5abc314c4985ee4e4162b3b2))
+* add Version ui component ([1ce1d47](https://github.com/Jireh-sama/cob-chatbot/commit/1ce1d473fce38fa3f3b55872d2ee07067809bf18))
+* adjustments to global styling ([bc7defa](https://github.com/Jireh-sama/cob-chatbot/commit/bc7defa399e104a46c7e7528f6ba2786b7ed8b20))
+* combine font providers for font size and family ([fb86dd1](https://github.com/Jireh-sama/cob-chatbot/commit/fb86dd106b7ca411e09e5ca9d04726cd603acde6))
+* combine themes and font changers to one section ([39b1180](https://github.com/Jireh-sama/cob-chatbot/commit/39b11802337390bbc999cadd9f9cbe4d3f6df02d))
+* font family can only be applied to chatbox ([592bc62](https://github.com/Jireh-sama/cob-chatbot/commit/592bc62be7452a864ed971a398fd51135e3774e1))
+* new global font family ([1ce92f1](https://github.com/Jireh-sama/cob-chatbot/commit/1ce92f1d577af6b950edd543070b1857127cfe53))
+* new hex color code to surface dark ([c3a1e9a](https://github.com/Jireh-sama/cob-chatbot/commit/c3a1e9af166a92189b62c50a00f76e98e269426b))
+* new styling to bot components ([3128597](https://github.com/Jireh-sama/cob-chatbot/commit/3128597b988a96b7307c064969fe41a7b8ef4533))
+* new theme changer button ([#45](https://github.com/Jireh-sama/cob-chatbot/issues/45)) ([#58](https://github.com/Jireh-sama/cob-chatbot/issues/58)) ([bb1227a](https://github.com/Jireh-sama/cob-chatbot/commit/bb1227a0556a55e7655aad1af35111ead06b135b))
+* update font context imports to chat components ([0d5aa19](https://github.com/Jireh-sama/cob-chatbot/commit/0d5aa196ea2a0245eb39f1435fea0d56c07c946f))
+* use multi pop sound for messages ([3e3ec54](https://github.com/Jireh-sama/cob-chatbot/commit/3e3ec544ea0efc3545137a390075cfcc8ea71c2e))
+
+
+### Performance Improvements
+
+* add pagination to department buttons ([10c7c48](https://github.com/Jireh-sama/cob-chatbot/commit/10c7c487edeb978469a30b3ea925ce0861bd6286))
+* nest font related states into one object ([48ef76e](https://github.com/Jireh-sama/cob-chatbot/commit/48ef76ef482276aac51003f4b1a8f13cfcea4f8c))
+* remove unnecessary state in custom hook ([a31f9e4](https://github.com/Jireh-sama/cob-chatbot/commit/a31f9e47dd99d34e47e55756e5e07bf401d9cc4c))
+
 # [1.9.0](https://github.com/Jireh-sama/cob-chatbot/compare/1.8.0...1.9.0) (2024-05-08)
 
 ### Bug Fixes
