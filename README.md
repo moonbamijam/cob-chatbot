@@ -25,9 +25,6 @@ Our capstone project that uses Natural Language Processing (NLP) to deliver smoo
 
 # Try Locally!
 
-> [!note]
-> For trying locally, we can only provide the frontend as of now.
-
 Clone the project
 
 ```bash
@@ -53,6 +50,10 @@ Start the local server
 ```bash
   pnpm run dev
 ```
+
+Talk to the chatbot!
+
+![9-04-2024 (00-06-38)](https://github.com/user-attachments/assets/3d43c63d-805a-4067-9653-b6967357764e)
 
 ###
 
