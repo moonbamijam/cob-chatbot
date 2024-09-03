@@ -37,6 +37,8 @@ const messagesQuery = query(
 const faqsCollectionRef = collection(db, "FAQs");
 const faqsQuery = query(faqsCollectionRef, orderBy("frequency", "desc"));
 
+const url = "https://chatbot-api-0zup.onrender.com/api/chatbot/query";
+
 const useChatbot = () => {
   const { playMessageNotification } = useSound();
   const latestMessage = useRef();
@@ -100,7 +102,7 @@ const useChatbot = () => {
         deptMessage === "list of department" ||
         deptMessage === "give me the list of deparments"
       ) {
-        await sleep(3);
+        await sleep(1);
         await addDoc(messagesCollectionRef, {
           message: deptsAnswer,
           role: "bot",
@@ -113,20 +115,28 @@ const useChatbot = () => {
         playMessageNotification();
         // Above is all temporary
       } else {
-        await sleep(3);
-        const response = await fetch(
-          `http://localhost:3001/bot?message=${encodeURIComponent(message)}`,
-        );
+        await sleep(1);
+        const response = await fetch(url, {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+            authorization: import.meta.env.VITE_API_KEY,
+          },
+          body: JSON.stringify({
+            userQuery: message,
+          }),
+        });
+        // data holds the answer and intent recognized
         const data = await response.json();
-        const intentRecognizedByBot = data.intent;
-        const botResponse = data.answer;
+        const intentRecognizedByBot = data.response.intent;
+        const botResponse = data.response.answer;
         if (hasSymbol(botResponse)) {
           const botHasMultipleMessage = splitMessage(botResponse);
           botHasMultipleMessage.forEach(async (response, i) => {
             if (i == 1) {
               await sleep(1.5);
               setBotIsTyping(true);
-              await sleep(3);
+              await sleep(1);
             }
             await addDoc(messagesCollectionRef, {
               intent: intentRecognizedByBot,
@@ -155,15 +165,18 @@ const useChatbot = () => {
         playMessageNotification();
       }
     } catch (catchedError) {
-      if (catchedError) {
-        setBotIsTyping(false);
-        setError(true);
-      }
+      console.log(catchedError);
+      setBotIsTyping(false);
+      setError(true);
     }
-    if (error) setError(false);
+    if (error) {
+      console.log(error);
+      setError(false);
+    }
   };
 
   // useDebounce(function to call, seconds to wait before you can call it again)
+  // basically a cooldown
   const debouncedMessageToBot = useDebounce(getReplyFromBot, 1.5);
 
   const sendMessageToBot = async (event, message) => {
@@ -224,9 +237,11 @@ const useChatbot = () => {
   useEffect(() => {
     const handleSendMessageInEnter = (event) => {
       const trimmedMessage = userMessage.trim();
+      // message should be sent if its enter key without shift and not empty
       if (event.keyCode == 13 && !event.shiftKey && !trimmedMessage == "") {
         sendMessageToBot(event, trimmedMessage);
       } else if (event.keyCode == 13 && !event.shiftKey) {
+        // this will just clear the spaces if you try to send empty messages using shift + enter
         event.preventDefault();
         setUserMessage("");
       }
