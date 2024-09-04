@@ -1,13 +1,13 @@
-import minimalPop from "../assets/sounds/minimal-pop-click.mp3";
-import happyPop from "../assets/sounds/happy-pop.mp3";
-import multiPop from "../assets/sounds/multi-pop.mp3";
-import multiPop5 from "../assets/sounds/multi-pop-5.mp3";
+import minimalPop from "../../static/sounds/minimal-pop-click.mp3";
+import happyPop from "../../static/sounds/happy-pop.mp3";
+import multiPop from "../../static/sounds/multi-pop.mp3";
+import multiPop5 from "../../static/sounds/multi-pop-5.mp3";
 import { SoundContext } from "../contexts/SoundProvider";
 import { useContext } from "react";
 
 const useSound = () => {
   const { sound } = useContext(SoundContext);
-  const [messageSentSound, setMessageSentSound] = sound.messageSent;
+  const [messageSentSound] = sound.messageSent;
 
   const playMessageNotification = () => {
     let audio;

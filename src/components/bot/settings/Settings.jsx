@@ -53,8 +53,8 @@ const Settings = ({ settings, toggleSettings }) => {
           handleSettingsChange={handleSettingsChange}
           changeSetting={changeSetting}
         />
-        <div className="w-full flex flex-col px-6 xl:px-10 py-20 dark:bg-dm-background overflow-y-scroll scrollbar-thin scrollbar-track-transparent scrollbar-thumb-surface-dark dark:scrollbar-thumb-dm-surface-dark">
-          <div className="">{renderSettings()}</div>
+        <div className="w-full px-6 xl:px-8 py-20 dark:bg-dm-background overflow-y-scroll scrollbar-thin scrollbar-track-transparent scrollbar-thumb-surface-dark dark:scrollbar-thumb-dm-surface-dark">
+          {renderSettings()}
         </div>
         <BackBtn
           onClick={toggleSettings}
