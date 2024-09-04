@@ -39,16 +39,23 @@ Go to the project directory
 
 Install dependencies
 > [!note]
-> we use [pnpm](https://pnpm.io/) for our package manager
+> - we use [pnpm](https://pnpm.io/) for our package manager
+> - [turborepo](https://turbo.build/) for our build system
 
 ```bash
   pnpm install
 ```
 
-Start the local server
+Start locally by typing:
 
 ```bash
-  pnpm run dev
+  pnpm turbo dev
+```
+
+Or if you have turbo installed globally:
+
+```bash
+  turbo dev
 ```
 
 Talk to the chatbot!
