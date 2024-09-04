@@ -1,7 +1,7 @@
-import minimalPopSound from "../../assets/sounds/minimal-pop-click.mp3";
-import happyPopSound from "../../assets/sounds/happy-pop.mp3";
-import multiPopSound from "../../assets/sounds/multi-pop.mp3";
-import uwuSound from "../../assets/sounds/uwu.mp3";
+import minimalPopSound from "../../../static/sounds/minimal-pop-click.mp3";
+import happyPopSound from "../../../static/sounds/happy-pop.mp3";
+import multiPopSound from "../../../static/sounds/multi-pop.mp3";
+import uwuSound from "../../../static/sounds/uwu.mp3";
 
 const minimalPop = minimalPopSound;
 const happyPop = happyPopSound;
