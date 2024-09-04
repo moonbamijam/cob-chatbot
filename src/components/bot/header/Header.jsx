@@ -6,13 +6,7 @@ import CloseChatBtn from "../buttons/CloseChatBtn";
 import MaximizeBtn from "../buttons/MaximizeBtn";
 import SettingsBtn from "../buttons/SettingsBtn";
 
-const Header = ({
-  toggleSettings,
-  toggleLargeScreen,
-  isLargeScreen,
-  settings,
-  closeUsing,
-}) => {
+const Header = ({ toggleSettings, settings, closeUsing }) => {
   return (
     <header
       id="chat-ui-header"
@@ -35,10 +29,6 @@ const Header = ({
         </h3>
       </button>
       <menu className="flex gap-1 justify-end">
-        <MaximizeBtn
-          onClick={() => toggleLargeScreen()}
-          state={isLargeScreen}
-        />
         <SettingsBtn onClick={() => toggleSettings()} state={settings} />
         <CloseChatBtn onClick={closeUsing} />
       </menu>

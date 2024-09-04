@@ -9,7 +9,6 @@ import ScreenDim from "./components/bot/ui/ScreenDim";
 // Contexts
 import ThemesProvider from "./contexts/ThemesProvider";
 import FontProvider from "./contexts/FontProvider";
-import LargeScreenProvider from "./contexts/LargeScreenProvider";
 import SoundProvider from "./contexts/SoundProvider";
 
 const App = () => {
@@ -46,28 +45,23 @@ const App = () => {
     <>
       <main className="flex flex-col">
         <div ref={chatHead}>
-          <LargeScreenProvider>
-            <ThemesProvider>
-              <FontProvider>
-                <SoundProvider>
-                  {isSignedIn ? (
-                    <ChatHead
-                      state={isChatActive}
-                      onClick={() => toggleChat()}
-                    />
-                  ) : null}
-                  <ChatBox
-                    className={
-                      isChatActive
-                        ? "opacity-100 visible"
-                        : "opacity-0 -translate-y-[100%] invisible"
-                    }
-                    closeUsing={toggleChat}
-                  />
-                </SoundProvider>
-              </FontProvider>
-            </ThemesProvider>
-          </LargeScreenProvider>
+          <ThemesProvider>
+            <FontProvider>
+              <SoundProvider>
+                {isSignedIn ? (
+                  <ChatHead state={isChatActive} onClick={() => toggleChat()} />
+                ) : null}
+                <ChatBox
+                  className={
+                    isChatActive
+                      ? "opacity-100 visible"
+                      : "opacity-0 -translate-y-[100%] invisible"
+                  }
+                  closeUsing={toggleChat}
+                />
+              </SoundProvider>
+            </FontProvider>
+          </ThemesProvider>
         </div>
         <Page />
         <ScreenDim
