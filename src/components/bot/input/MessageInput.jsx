@@ -56,7 +56,7 @@ const MessageInput = ({
         />
         <label
           htmlFor="chat"
-          className="w-full px-4 py-3 rounded-3xl flex items-center border border-surface-dark focus-within:border-primary dark:border-transparent dark:bg-dm-surface dark:focus-within:bg-dm-surface-light cursor-text"
+          className="w-full px-2 py-3 rounded-3xl flex items-center border border-surface-dark outline-primary focus-within:border-primary dark:border-transparent dark:bg-dm-surface dark:focus-within:bg-dm-surface-light cursor-text"
         >
           <ReactTextareaAutosize
             autoFocus
@@ -67,7 +67,7 @@ const MessageInput = ({
               setUserMessage(e.target.value);
               setIsFaqsMenuActive(false);
             }}
-            className="max-h-[100px] w-full dark:text-white outline-none dark:bg-dm-surface dark:focus:bg-dm-surface-light placeholder:opacity-80 scrollbar-thin scrollbar-track-transparent scrollbar-thumb-surface-dark dark:scrollbar-thumb-dm-surface-dark"
+            className="max-h-[100px] w-full dark:text-white outline-none placeholder:text-sm px-2 dark:bg-dm-surface dark:focus:bg-dm-surface-light placeholder:opacity-80 scrollbar-thin scrollbar-track-transparent scrollbar-thumb-surface-dark dark:scrollbar-thumb-dm-surface-dark"
             placeholder="Type here..."
           />
         </label>
