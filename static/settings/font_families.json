@@ -25,6 +25,14 @@
     {
       "name": "montserrat",
       "value": "montserrat"
+    },
+    {
+      "name": "futura",
+      "value": "futura"
+    },
+    {
+      "name": "arial",
+      "value": "arial"
     }
   ]
 }
