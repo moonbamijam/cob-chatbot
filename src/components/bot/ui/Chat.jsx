@@ -3,7 +3,7 @@ import { useContext, useState } from "react";
 // Context & Providers
 import { FontContext } from "../../../contexts/FontProvider";
 
-import { chatbot } from "../../../lib/botDetails";
+import { chatbot } from "../../../lib/bot/chatbot";
 import DepartmentBtn from "../buttons/DepartmentBtn";
 import { BsArrowDownCircleFill } from "react-icons/bs";
 

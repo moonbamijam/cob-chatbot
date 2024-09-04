@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { FontContext } from "../../../contexts/FontProvider";
-import { chatbot } from "../../../lib/botDetails";
+import { chatbot } from "../../../lib/bot/chatbot";
 import Messages from "../../../../static/messages/suggested.json";
 
 // icons
