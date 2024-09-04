@@ -9,6 +9,9 @@
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "release": "release-it",
+    "release-patch": "release-it patch",
+    "release-minor": "release-it minor",
+    "release-major": "release-it major",
     "prepare": "husky",
     "pre-commit": "lint-staged",
     "prettier": "prettier . --write"
