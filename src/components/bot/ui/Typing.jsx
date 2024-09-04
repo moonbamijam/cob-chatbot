@@ -1,4 +1,4 @@
-import { chatbot } from "../../../lib/botDetails";
+import { chatbot } from "../../../lib/bot/chatbot";
 
 const Typing = () => {
   return (

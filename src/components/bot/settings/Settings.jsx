@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { chatbot } from "../../../lib/botDetails";
+import { chatbot } from "../../../lib/bot/chatbot";
 
-// Components
+// components
 import MiniProfile from "../sections/MiniProfile";
 import BackBtn from "../buttons/BackBtn";
 import ScreenDim from "../ui/ScreenDim";

@@ -1,12 +1,12 @@
 import ReactTextareaAutosize from "react-textarea-autosize";
 
-// Components
+// components
 import Button from "../ui/Button";
 
-// Icons
+// icons
 import { IoSend } from "react-icons/io5";
 import FaqsMenuBtn from "../buttons/FaqsMenuBtn";
-import { chatbot } from "../../../lib/botDetails";
+import { chatbot } from "../../../lib/bot/chatbot";
 import SuggestedMessageBtn from "../buttons/SuggestedMessageBtn";
 
 const MessageInput = ({

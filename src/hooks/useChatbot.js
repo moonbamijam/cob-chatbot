@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 
-// Database
+// db
 import {
   collection,
   getDocs,
@@ -12,14 +12,15 @@ import {
 } from "firebase/firestore";
 import { db } from "../firebase/config";
 
-// Library
+// library
+import { chatbot } from "../lib/bot/chatbot";
 import { greet } from "../utils/greet";
 import { depts, deptsAnswer } from "../lib/depts";
 
 // hooks
 import { useDebounce } from "./useDebounce";
 
-// Utilities
+// utils
 import { hasSymbol, splitMessage } from "../utils/splitMessage";
 import { verifiedUID } from "../utils/uid";
 import { scrollInto } from "../utils/scrollInto";
@@ -36,8 +37,6 @@ const messagesQuery = query(
 
 const faqsCollectionRef = collection(db, "FAQs");
 const faqsQuery = query(faqsCollectionRef, orderBy("frequency", "desc"));
-
-const url = "https://chatbot-api-0zup.onrender.com/api/chatbot/query";
 
 const useChatbot = () => {
   const { playMessageNotification } = useSound();
@@ -116,7 +115,7 @@ const useChatbot = () => {
         // Above is all temporary
       } else {
         await sleep(1);
-        const response = await fetch(url, {
+        const response = await fetch(chatbot.url, {
           method: "POST",
           headers: {
             "content-type": "application/json",

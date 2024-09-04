@@ -1,7 +1,7 @@
-// Library
-import { chatbot } from "../../../lib/botDetails";
+// library
+import { chatbot } from "../../../lib/bot/chatbot";
 
-// Components
+// components
 import CloseChatBtn from "../buttons/CloseChatBtn";
 import MaximizeBtn from "../buttons/MaximizeBtn";
 import SettingsBtn from "../buttons/SettingsBtn";
