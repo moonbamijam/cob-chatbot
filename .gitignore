@@ -27,3 +27,4 @@ dist-ssr
 
 # development directories and files
 extras
+.turbo
