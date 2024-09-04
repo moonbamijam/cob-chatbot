@@ -1,0 +1,29 @@
+{
+  "$schema": "https://turbo.build/schema.json",
+  "globalEnv": ["VITE_API_KEY"],
+  "tasks": {
+    "build": {
+      "dependsOn": ["^build"],
+      "outputs": ["dist/**"]
+    },
+    "dev": {
+      "dependsOn": ["build"],
+      "env": [
+        "VITE_APIKEYDEV",
+        "AUTHDOMAINDEV",
+        "STORAGEBUCKETDEV",
+        "MESSAGINGSENDERIDDEV",
+        "APPIDDEV",
+        "MEASUREMENTIDDEV"
+      ],
+      "persistent": true,
+      "cache": false
+    },
+    "lint": {
+      "dependsOn": ["lint"]
+    },
+    "preview": {
+      "dependsOn": ["build"]
+    }
+  }
+}
