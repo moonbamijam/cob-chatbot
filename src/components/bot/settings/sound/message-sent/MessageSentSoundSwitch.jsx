@@ -1,6 +1,4 @@
 import { useContext } from "react";
-import SettingsChangerBtn from "../../../buttons/SettingsChangerBtn";
-import SettingsMiniTitle from "../../SettingsMiniTitle";
 import { SoundContext } from "../../../../../contexts/SoundProvider";
 import {
   minimalPop,
@@ -8,7 +6,12 @@ import {
   multiPop,
   soundNotificationList,
 } from "../../../../../lib/settings/soundNotificationList";
+
+// components
+import SettingsChangerBtn from "../../../buttons/SettingsChangerBtn";
+import SettingsMiniTitle from "../../SettingsMiniTitle";
 import useSound from "../../../../../hooks/useSound";
+import Grid from "../../../common/Grid";
 
 const MessageSentSoundSwitch = () => {
   const { playMessageSentSound } = useSound();
@@ -46,7 +49,7 @@ const MessageSentSoundSwitch = () => {
   return (
     <div>
       <SettingsMiniTitle text="message sent" />
-      <div className="inline-grid grid-cols-3 gap-5">
+      <Grid>
         {soundNotificationList.map((sound) => (
           <SettingsChangerBtn
             key={sound.value}
@@ -59,7 +62,7 @@ const MessageSentSoundSwitch = () => {
             displayedText={sound.name}
           />
         ))}
-      </div>
+      </Grid>
     </div>
   );
 };

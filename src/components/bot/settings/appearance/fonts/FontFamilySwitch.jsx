@@ -36,6 +36,12 @@ const FontFamilySwitch = () => {
       case "montserrat":
         setFontFamily(value);
         break;
+      case "futura":
+        setFontFamily(value);
+        break;
+      case "arial":
+        setFontFamily(value);
+        break;
       default:
         setFontFamily(fontFamilies.default);
         break;
