@@ -1,6 +1,6 @@
 import { IoChatbubbleEllipsesOutline } from "react-icons/io5";
 import { FaVolumeHigh, FaRobot } from "react-icons/fa6";
-import { chatbot } from "../botDetails";
+import { chatbot } from "../bot/chatbot";
 
 export const settingsList = [
   {
