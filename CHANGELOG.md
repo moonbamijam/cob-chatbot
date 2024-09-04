@@ -1,5 +1,67 @@
 # What's New
 
+# [2.0.0](https://github.com/Jireh-sama/cob-chatbot/compare/v1.10.0...v2.0.0) (2024-09-04)
+
+
+### Bug Fixes
+
+* eslint no-undef error to tailwind conf ([763de37](https://github.com/Jireh-sama/cob-chatbot/commit/763de37e4a521f46657b5f87a57da47c8bf0f535))
+* header ui on small screens ([d28ecf0](https://github.com/Jireh-sama/cob-chatbot/commit/d28ecf082c6475fa95dad2993c07be19ae30c08f))
+* scrollbar in message input in small screens ([f2cefc5](https://github.com/Jireh-sama/cob-chatbot/commit/f2cefc54ebe2a4bb3fa82e14918602b26cf21224))
+* some letters are being cut in message input ([1392ef3](https://github.com/Jireh-sama/cob-chatbot/commit/1392ef3134940f213b1691c6651151fd5c6641ee))
+* suggested message ui on small screens ([9462aad](https://github.com/Jireh-sama/cob-chatbot/commit/9462aade7b73f331776a7fbcb50bcdc7dd2d7e14))
+* ui to sound settings on small screens ([d4b3ca7](https://github.com/Jireh-sama/cob-chatbot/commit/d4b3ca7ae80d071e48054fd0de476c1f0b34b252))
+
+
+### Code Refactoring
+
+* move chatbot url to chatbot config ([#78](https://github.com/Jireh-sama/cob-chatbot/issues/78)) ([8d329a0](https://github.com/Jireh-sama/cob-chatbot/commit/8d329a03fa8e0a020bac17c729c4fbe358993710))
+
+
+### Features
+
+* add new font families ([e1c2d10](https://github.com/Jireh-sama/cob-chatbot/commit/e1c2d10e380c32c4ddc3bfe7f75fde4fc468c45b))
+* new styling to faqs message ([b9ad75a](https://github.com/Jireh-sama/cob-chatbot/commit/b9ad75aae21defa4fc4bff68210525d1ca637a5e))
+
+
+### BREAKING CHANGES
+
+* new api to chatbot
+
+# Type of Change
+
+<!-- Check what's necessary or check all if applicable. -->
+
+- [x] BREAKING CHANGE (change that would cause existing functionality to
+not work as expected)
+- [ ] Feature (change that implements a new feature)
+- [ ] Bug Fix (change that fixed a bug)
+- [ ] Improvements (change that improves existing features or
+performance)
+- [ ] Documentation (change in documents)
+- [x] Chore (formatting, refactoring, styling or other operations
+commit)
+
+###
+
+# Description
+
+<!-- Please provide at least a short description of this pr. -->
+Move api to chatbot config for file consistency and readability. Also
+move chatbot config to its own directory
+
+###
+
+# Related Tickets
+
+<!-- _If this pr contains related or close an issue, please add them
+here. -->
+
+- Related Issue(s) #
+- Closes #
+
+Co-authored-by: MoonbamiOfficial <141120384+MoonbamiOfficial@users.noreply.github.com>
+
 # [1.10.0](https://github.com/Jireh-sama/cob-chatbot/compare/1.9.0...1.10.0) (2024-08-30)
 
 
