@@ -20,7 +20,7 @@ const SettingsChangerBtn = ({
         className="hidden peer"
       />
       <label
-        htmlFor={name}
+        htmlFor={id}
         className={`bg-surface hover:bg-primary hover:text-white dark:hover:bg-primary dark:bg-dm-surface dark:text-white peer-checked:bg-primary peer-checked:hover:bg-primary-dark peer-checked:text-white shadow-md w-[120px] h-[50px] px-4 py-3 flex justify-center items-center rounded-3xl capitalize cursor-pointer truncate`}
         style={style}
       >
