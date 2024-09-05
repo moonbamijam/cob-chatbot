@@ -4,7 +4,15 @@
   "tasks": {
     "build": {
       "dependsOn": ["^build"],
-      "outputs": ["dist/**"]
+      "outputs": ["dist/**"],
+      "env": [
+        "VITE_APIKEYDEV",
+        "AUTHDOMAINDEV",
+        "STORAGEBUCKETDEV",
+        "MESSAGINGSENDERIDDEV",
+        "APPIDDEV",
+        "MEASUREMENTIDDEV"
+      ]
     },
     "dev": {
       "dependsOn": ["build"],
