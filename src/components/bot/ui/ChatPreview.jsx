@@ -21,17 +21,14 @@ const ChatPreview = () => {
 
   return (
     <>
+      {/* preview for small screens */}
       <div
-        id="message-box"
         className="w-full sm:max-w-[80%] h-full xl:hidden flex flex-col bg-background dark:bg-dm-background xl:rounded-xl overflow-hidden"
         style={{
           fontFamily: fontFamily,
         }}
       >
-        <header
-          id="sample-chat-header"
-          className="w-full flex items-center justify-between px-4 py-4 mr-auto"
-        >
+        <header className="w-full flex items-center justify-between px-4 py-4 mr-auto">
           <div className="flex items-center gap-4">
             <img
               src={chatbot.logo}
@@ -64,10 +61,7 @@ const ChatPreview = () => {
             linkedMessage={"Click here to download"}
           />
         </div>
-        <section
-          id="suggested-messages"
-          className={`w-full flex justify-center gap-2 px-4 pt-2`}
-        >
+        <section className={`w-full flex justify-center gap-2 px-4 pt-2`}>
           {Messages.list.map((message, id) => (
             <SuggestedMessageBtn key={id} message={message.displayedText} />
           ))}
@@ -77,12 +71,12 @@ const ChatPreview = () => {
             <LuMenu />
           </Button>
           <label
-            htmlFor="sameple-chat"
+            htmlFor="sameple-chat-preview-ss"
             className="w-full px-4 py-3 rounded-3xl flex items-center border border-surface-dark focus-within:border-primary dark:border-transparent dark:bg-dm-surface dark:focus-within:bg-dm-surface-light cursor-text"
           >
             <ReactTextareaAutosize
-              name="sameple-chat"
-              id="sameple-chat"
+              name="sameple-chat-preview-ss"
+              id="sameple-chat-preview-ss"
               className="max-h-[100px] w-full dark:text-white outline-none bg-transparent dark:focus:bg-dm-surface-light placeholder:opacity-80 scrollbar-thin scrollbar-track-transparent scrollbar-thumb-surface-dark dark:scrollbar-thumb-dm-surface-dark"
               placeholder="Aa"
             />
@@ -93,14 +87,12 @@ const ChatPreview = () => {
         </div>
       </div>
 
+      {/* preview for large screens */}
       <div
         className="max-w-[500px] w-full h-[700px] hidden xl:flex flex-col bg-background dark:bg-dm-background border border-surface-dark dark:border-dm-surface rounded-xl"
         style={{ fontFamily: fontFamily }}
       >
-        <header
-          id="sample-chat-header"
-          className="w-full flex items-center justify-between px-4 py-4 mr-auto shadow-md dark:shadow-dm-surface-dark"
-        >
+        <header className="w-full flex items-center justify-between px-4 py-4 mr-auto shadow-md dark:shadow-dm-surface-dark">
           <div className="flex items-center gap-4">
             <img
               src={chatbot.logo}
@@ -133,10 +125,7 @@ const ChatPreview = () => {
             linkedMessage={"Click here to download"}
           />
         </div>
-        <section
-          id="suggested-messages"
-          className={`w-full flex justify-center gap-2 px-4 pt-2`}
-        >
+        <section className={`w-full flex justify-center gap-2 px-4 pt-2`}>
           {Messages.list.map((message, id) => (
             <SuggestedMessageBtn key={id} message={message.displayedText} />
           ))}
@@ -146,12 +135,12 @@ const ChatPreview = () => {
             <LuMenu />
           </Button>
           <label
-            htmlFor="sameple-chat"
+            htmlFor="sameple-chat-preview-ls"
             className="w-full px-4 py-3 rounded-3xl flex items-center border border-surface-dark focus-within:border-primary dark:border-transparent dark:bg-dm-surface dark:focus-within:bg-dm-surface-light cursor-text"
           >
             <ReactTextareaAutosize
-              name="sameple-chat"
-              id="sameple-chat"
+              name="sameple-chat-preview-ls"
+              id="sameple-chat-preview-ls"
               className="max-h-[100px] w-full dark:text-white outline-none bg-transparent dark:focus:bg-dm-surface-light placeholder:opacity-80 scrollbar-thin scrollbar-track-transparent scrollbar-thumb-surface-dark dark:scrollbar-thumb-dm-surface-dark"
               placeholder="Aa"
             />
