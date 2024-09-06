@@ -1,13 +1,13 @@
 import ReactTextareaAutosize from "react-textarea-autosize";
+import { chatbot } from "../../../lib/bot/chatbot";
 
 // components
 import Button from "../ui/Button";
+import FaqsMenuBtn from "../buttons/FaqsMenuBtn";
+import SuggestedMessageBtn from "../buttons/SuggestedMessageBtn";
 
 // icons
 import { IoSend } from "react-icons/io5";
-import FaqsMenuBtn from "../buttons/FaqsMenuBtn";
-import { chatbot } from "../../../lib/bot/chatbot";
-import SuggestedMessageBtn from "../buttons/SuggestedMessageBtn";
 
 const MessageInput = ({
   faqsRef,
@@ -59,9 +59,9 @@ const MessageInput = ({
           className="w-full px-2 py-3 rounded-3xl flex items-center border border-surface-dark outline-primary focus-within:border-primary dark:border-transparent dark:bg-dm-surface dark:focus-within:bg-dm-surface-light cursor-text"
         >
           <ReactTextareaAutosize
-            autoFocus
-            name="chat"
             id="chat"
+            name="chat"
+            autoFocus
             value={userMessage}
             onChange={(e) => {
               setUserMessage(e.target.value);
