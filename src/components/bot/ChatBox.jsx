@@ -21,15 +21,12 @@ const ChatBox = ({ className, closeUsing }) => {
     latestMessage,
     faqsRef,
     settings,
-    error,
     loading,
     isFaqsMenuActive,
     setIsFaqsMenuActive,
     userMessage,
     setUserMessage,
     botIsTyping,
-    messages,
-    faqs,
     toggleSettings,
     sendMessageToBot,
     sendFaqToBot,
@@ -55,9 +52,7 @@ const ChatBox = ({ className, closeUsing }) => {
         <Messages
           settings={settings}
           loading={loading}
-          messages={messages}
           botIsTyping={botIsTyping}
-          error={error}
           latestMessage={latestMessage}
         />
         <SuggestedMessages
@@ -66,7 +61,6 @@ const ChatBox = ({ className, closeUsing }) => {
         />
         <MessageInput
           faqsRef={faqsRef}
-          faqs={faqs}
           sendMessageToBot={sendMessageToBot}
           sendFaqToBot={sendFaqToBot}
           userMessage={userMessage}

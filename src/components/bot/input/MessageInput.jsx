@@ -1,5 +1,5 @@
 import ReactTextareaAutosize from "react-textarea-autosize";
-import { chatbot } from "../../../lib/bot/chatbot";
+import { chatbotConfig } from "../../../lib/bot/chatbotConfig";
 
 // components
 import Button from "../ui/Button";
@@ -8,10 +8,11 @@ import SuggestedMessageBtn from "../buttons/SuggestedMessageBtn";
 
 // icons
 import { IoSend } from "react-icons/io5";
+import { useContext } from "react";
+import { ChatbotContext } from "../../../contexts/ChatbotContext";
 
 const MessageInput = ({
   faqsRef,
-  faqs,
   sendMessageToBot,
   sendFaqToBot,
   userMessage,
@@ -19,6 +20,9 @@ const MessageInput = ({
   isFaqsMenuActive,
   setIsFaqsMenuActive,
 }) => {
+  const { chatbot } = useContext(ChatbotContext);
+  const [faqs] = chatbot.faqs;
+
   const renderFaqs = () => {
     if (!faqs.length == 0)
       return (
@@ -27,7 +31,7 @@ const MessageInput = ({
           className={`w-full absolute bottom-0 px-4 py-3 mb-[58px] bg-white dark:bg-dm-background border-t-2 border-t-surface dark:border-t-dm-surface-dark z-50 ${isFaqsMenuActive ? "" : "translate-x-full opacity-0 "}`}
         >
           <p className="mb-4 font-semibold text-lg dark:text-white">
-            Hey {chatbot.name},
+            Hey {chatbotConfig.name},
           </p>
           <div className="flex flex-col items-center md:flex-row xl:flex-col gap-2 ">
             {faqs.map((faq, id) => (

@@ -1,5 +1,13 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useContext } from "react";
+import { chatbotConfig } from "../lib/bot/chatbotConfig";
 import { v4 as uuid } from "uuid";
+import { verifiedUID } from "../utils/uid";
+
+// contexts
+import { ChatbotContext } from "../contexts/ChatbotContext";
+
+// library
+import { depts, deptsAnswer } from "../lib/depts";
 
 // db
 import {
@@ -17,20 +25,15 @@ import {
 } from "firebase/firestore";
 import { db } from "../firebase/config";
 
-// library
-import { chatbot } from "../lib/bot/chatbot";
-import { greet } from "../utils/greet";
-import { depts, deptsAnswer } from "../lib/depts";
-
 // hooks
 import { useDebounce } from "./useDebounce";
+import useSound from "./useSound";
 
 // utils
-import { hasSymbol, splitMessage } from "../utils/splitMessage";
-import { verifiedUID } from "../utils/uid";
-import { scrollInto } from "../utils/scrollInto";
 import { sleep } from "../utils/sleep";
-import useSound from "../hooks/useSound";
+import { hasSymbol, splitMessage } from "../utils/splitMessage";
+import { scrollInto } from "../utils/scrollInto";
+import { greet } from "../utils/greet";
 
 const uid = verifiedUID();
 
@@ -43,17 +46,18 @@ const faqsCollectionRef = collection(db, "FAQs");
 const faqsQuery = query(faqsCollectionRef, orderBy("frequency", "desc"));
 
 const useChatbot = () => {
+  const { chatbot } = useContext(ChatbotContext);
+  const [conversation, setConversation] = chatbot.conversation;
+  const [faqs, setFaqs] = chatbot.faqs;
+  const [error, setError] = chatbot.error;
   const { playMessageNotification } = useSound();
   const latestMessage = useRef();
   const faqsRef = useRef();
   const [settings, setSettings] = useState(false);
-  const [error, setError] = useState(false);
   const [loading, setLoading] = useState(true);
   const [isFaqsMenuActive, setIsFaqsMenuActive] = useState(false);
   const [userMessage, setUserMessage] = useState("");
   const [botIsTyping, setBotIsTyping] = useState(false);
-  const [conversation, setConversation] = useState([]);
-  const [faqs, setFaqs] = useState([]);
 
   const toggleSettings = () => {
     setSettings(!settings);
@@ -76,7 +80,6 @@ const useChatbot = () => {
   const getFaqs = async () => {
     try {
       const data = await getDocs(faqsQuery);
-      faqs.concat(faqs);
       setFaqs(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
     } catch (error) {
       if (error) setError(true);
@@ -142,7 +145,7 @@ const useChatbot = () => {
         // STARTING HERE FROM "ELSE" HANDLES THE DYNAMIC RESPONSES FROM BOT
       } else {
         await sleep(1);
-        const response = await fetch(chatbot.url, {
+        const response = await fetch(chatbotConfig.url, {
           method: "POST",
           headers: {
             "content-type": "application/json",
@@ -296,12 +299,6 @@ const useChatbot = () => {
     scrollInto(latestMessage);
   }, [conversation, botIsTyping, error]);
 
-  // for rendering messages and faqs once
-  useEffect(() => {
-    getChatHistory();
-    getFaqs();
-  }, []);
-
   // for sending messages when clicking enter
   useEffect(() => {
     const handleSendMessageInEnter = (event) => {
@@ -321,17 +318,6 @@ const useChatbot = () => {
     };
   }, [userMessage]);
 
-  // for bot to greet when the user talks to the bot for the first time
-  useEffect(() => {
-    getChatHistory();
-    if (conversation.length == 0) {
-      console.log("this ran");
-      greet(uid);
-    }
-  }, []);
-
-  console.log(`Total messages in this conversation: ${conversation.length}`);
-
   // for handling faqs menu on mouse down
   useEffect(() => {
     const handleFaqsMenu = (event) => {
@@ -343,15 +329,28 @@ const useChatbot = () => {
     };
   }, [faqsRef, isFaqsMenuActive]);
 
+  // for rendering messages and faqs once
+  useEffect(() => {
+    getChatHistory();
+    getFaqs();
+  }, []);
+
+  // for bot to greet when the user talks to the bot for the first time
+  useEffect(() => {
+    getChatHistory();
+    if (conversation.length == 0) {
+      console.log("this ran");
+      greet(uid);
+    }
+  }, []);
+
+  console.log(`Total messages in this conversation: ${conversation.length}`);
+
   return {
-    debouncedMessageToBot,
     latestMessage,
-    usersCollectionRef,
     faqsRef,
     settings,
     setSettings,
-    error,
-    setError,
     loading,
     setLoading,
     isFaqsMenuActive,
@@ -360,17 +359,13 @@ const useChatbot = () => {
     setUserMessage,
     botIsTyping,
     setBotIsTyping,
-    conversation,
-    setConversation,
-    faqs,
-    setFaqs,
     toggleSettings,
+    conversation,
+    faqs,
     getChatHistory,
     getFaqs,
-    getReplyFromBot,
     sendMessageToBot,
     sendFaqToBot,
-    faqsQuery,
   };
 };
 

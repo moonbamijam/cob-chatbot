@@ -13,14 +13,14 @@ import MiniProfile from "./MiniProfile";
 import Chat from "../ui/Chat";
 import Typing from "../ui/Typing";
 import ChatSkeleton from "../skeletons/ChatSkeleton";
+import { useContext } from "react";
+import { ChatbotContext } from "../../../contexts/ChatbotContext";
 
-const Messages = ({
-  loading,
-  conversation,
-  botIsTyping,
-  error,
-  latestMessage,
-}) => {
+const Messages = ({ loading, botIsTyping, latestMessage }) => {
+  const { chatbot } = useContext(ChatbotContext);
+  const [conversation] = chatbot.conversation;
+  const [error] = chatbot.error;
+
   const renderMessagesContent = () => {
     if (conversation)
       return conversation.map((convo) => {
