@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef, useContext } from "react";
-import { chatbotConfig } from "../lib/bot/chatbotConfig";
 import { v4 as uuid } from "uuid";
+import { chatbotConfig } from "../lib/bot/chatbotConfig";
 import { verifiedUID } from "../utils/uid";
 
 // contexts
@@ -34,6 +34,7 @@ import { sleep } from "../utils/sleep";
 import { hasSymbol, splitMessage } from "../utils/splitMessage";
 import { scrollInto } from "../utils/scrollInto";
 import { greet } from "../utils/greet";
+import { useCallback } from "react";
 
 const uid = verifiedUID();
 
@@ -64,31 +65,29 @@ const useChatbot = () => {
     scrollInto(latestMessage);
   };
 
-  const getChatHistory = async () => {
+  const getConversationHistory = useCallback(async () => {
     try {
-      console.log(
-        `Total messages in this conversation: ${conversation.length}`,
-      );
       const data = await getDocs(usersCollectionRef);
       onSnapshot(doc(usersCollectionRef, uid), (doc) => {
         doc.exists() && setConversation(doc.data().conversation);
       });
       if (data) setLoading(false);
     } catch (error) {
-      if (error) setError(true);
-      else if (!error) setError(false);
+      console.log(error);
+      setError(true);
+      if (!error) setError(false);
     }
-  };
+  }, [setConversation, setError]);
 
-  const getFaqs = async () => {
+  const getFaqs = useCallback(async () => {
     try {
       const data = await getDocs(faqsQuery);
       setFaqs(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
     } catch (error) {
-      if (error) setError(true);
+      console.log(error);
+      if (!error) setError(false);
     }
-    if (error == true) setError(false);
-  };
+  }, [setError, setFaqs]);
 
   const getReplyFromBot = async (message) => {
     try {
@@ -140,7 +139,6 @@ const useChatbot = () => {
             timeSent: Timestamp.now(),
           }),
         });
-        getChatHistory();
         playMessageNotification();
         // THE ABOVE CODE BLOCKS ARE FOR HANDLING STATIC DEPARTMENT RESPONSES ONLY
         //
@@ -200,7 +198,6 @@ const useChatbot = () => {
               conversation: arrayUnion(botSplitMessageInfo),
             });
             setIsFaqsMenuActive(false);
-            getChatHistory();
             playMessageNotification();
           });
           console.log(
@@ -222,59 +219,54 @@ const useChatbot = () => {
           conversation: arrayUnion(botMessageInfo),
         });
         setIsFaqsMenuActive(false);
-        getChatHistory();
         playMessageNotification();
       }
-    } catch (catchedError) {
-      console.log(catchedError);
+    } catch (error) {
+      console.log(error);
       setBotIsTyping(false);
       setError(true);
+      if (!error) setError(false);
     }
-    if (error) {
-      console.log(error);
-      setError(false);
-    }
-    console.log(`Total messages in this conversation: ${conversation.length}`);
   };
 
   // useDebounce(function to call, seconds to wait before you can call it again)
   // basically a cooldown
   const debouncedMessageToBot = useDebounce(getReplyFromBot, 1.5);
 
-  const sendMessageToBot = async (event, message) => {
-    const messageInfo = {
-      message: message,
-      messageId: uuid(),
-      role: "user",
-      timeSent: Timestamp.now(),
-    };
-    try {
-      event.preventDefault();
-      const res = doc(usersCollectionRef, uid);
-      const data = await getDoc(res);
-      if (!data.exists()) {
-        // creates a user with verified uid in users collection
-        // then adds a conversation field that will hold all of the user & bot messages
-        await setDoc(doc(usersCollectionRef, uid), {
-          conversation: [messageInfo],
+  const sendMessageToBot = useCallback(
+    async (event, message) => {
+      const messageInfo = {
+        message: message,
+        messageId: uuid(),
+        role: "user",
+        timeSent: Timestamp.now(),
+      };
+      try {
+        event.preventDefault();
+        const res = doc(usersCollectionRef, uid);
+        const data = await getDoc(res);
+        if (!data.exists()) {
+          // creates a user with verified uid in users collection
+          // then adds a conversation field that will hold all of the user & bot messages
+          await setDoc(doc(usersCollectionRef, uid), {
+            conversation: [messageInfo],
+          });
+        }
+        await updateDoc(doc(usersCollectionRef, uid), {
+          conversation: arrayUnion(messageInfo),
         });
-      }
-      await updateDoc(doc(usersCollectionRef, uid), {
-        conversation: arrayUnion(messageInfo),
-      });
-      getChatHistory();
-      setUserMessage("");
-      playMessageNotification();
-      debouncedMessageToBot(message);
-    } catch (catchedError) {
-      if (catchedError) {
+        setUserMessage("");
+        playMessageNotification();
+        debouncedMessageToBot(message);
+      } catch (error) {
+        console.log(error);
         setBotIsTyping(false);
         setError(true);
+        if (!error) setError(false);
       }
-    }
-    if (error == true) setError(false);
-    console.log(`Total messages in this conversation: ${conversation.length}`);
-  };
+    },
+    [debouncedMessageToBot, playMessageNotification, setError],
+  );
 
   const sendFaqToBot = async (message) => {
     const messageInfo = {
@@ -297,17 +289,14 @@ const useChatbot = () => {
         conversation: arrayUnion(messageInfo),
       });
       setIsFaqsMenuActive(false);
-      getChatHistory();
       playMessageNotification();
       debouncedMessageToBot(message);
-    } catch (catchedError) {
-      if (catchedError) {
-        setBotIsTyping(false);
-        setError(true);
-      }
+    } catch (error) {
+      console.log(error);
+      setBotIsTyping(false);
+      setError(true);
+      if (!error) setError(false);
     }
-    if (error == true) setError(false);
-    console.log(`Total messages in this conversation: ${conversation.length}`);
   };
 
   // for auto scrolling
@@ -332,7 +321,7 @@ const useChatbot = () => {
     return () => {
       document.removeEventListener("keydown", handleSendMessageInEnter);
     };
-  }, [userMessage]);
+  }, [sendMessageToBot, userMessage]);
 
   // for handling faqs menu on mouse down
   useEffect(() => {
@@ -345,19 +334,21 @@ const useChatbot = () => {
     };
   }, [faqsRef, isFaqsMenuActive]);
 
-  // for rendering messages and faqs once
+  // for rendering messages and faqs
+  // with the help of useCallback, we can decrease the call of this useEffect
+  // even if the invoked functions inside is in the dependencies
   useEffect(() => {
-    getChatHistory();
+    console.log("Getting conversation and faqs by useEffect");
+    getConversationHistory();
     getFaqs();
-  }, []);
+  }, [getConversationHistory, getFaqs]);
 
   // for bot to greet when the user talks to the bot for the first time
   useEffect(() => {
     if (conversation.length == 0) {
-      console.log("this ran");
       greet(uid);
     }
-  }, []);
+  }, [conversation.length]);
 
   return {
     latestMessage,
@@ -375,7 +366,6 @@ const useChatbot = () => {
     toggleSettings,
     conversation,
     faqs,
-    getChatHistory,
     getFaqs,
     sendMessageToBot,
     sendFaqToBot,
