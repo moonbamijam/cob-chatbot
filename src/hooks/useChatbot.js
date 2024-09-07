@@ -66,6 +66,9 @@ const useChatbot = () => {
 
   const getChatHistory = async () => {
     try {
+      console.log(
+        `Total messages in this conversation: ${conversation.length}`,
+      );
       const data = await getDocs(usersCollectionRef);
       onSnapshot(doc(usersCollectionRef, uid), (doc) => {
         doc.exists() && setConversation(doc.data().conversation);
@@ -169,30 +172,40 @@ const useChatbot = () => {
           timeSent: Timestamp.now(),
         };
         if (hasSymbol(botAnswer)) {
-          setBotIsTyping(false);
           const botHasMultipleMessage = splitMessage(botAnswer);
           botHasMultipleMessage.forEach(async (response, i) => {
             if (i == 1) {
-              await sleep(1.5);
+              await sleep(1);
               setBotIsTyping(true);
               await sleep(1);
             }
+            const botSplitMessageInfo = {
+              intent: intentRecognizedByBot,
+              message: response,
+              messageId: uuid(),
+              role: "bot",
+              timeSent: Timestamp.now(),
+            };
             const docUserId = doc(usersCollectionRef, uid);
             const verifiedDocUserId = await getDoc(docUserId);
             if (!verifiedDocUserId.exists()) {
               // creates a user with verified uid in users collection
               // then add this bot message to conversation array
               await setDoc(doc(usersCollectionRef, uid), {
-                conversation: [botMessageInfo],
+                conversation: [botSplitMessageInfo],
               });
             }
             await updateDoc(doc(usersCollectionRef, uid), {
-              conversation: arrayUnion(botMessageInfo),
+              conversation: arrayUnion(botSplitMessageInfo),
             });
+            setBotIsTyping(false);
             setIsFaqsMenuActive(false);
             getChatHistory();
             playMessageNotification();
           });
+          console.log(
+            `Total messages in this conversation: ${conversation.length}`,
+          );
           return;
         }
         setBotIsTyping(false);
@@ -340,7 +353,6 @@ const useChatbot = () => {
 
   // for bot to greet when the user talks to the bot for the first time
   useEffect(() => {
-    getChatHistory();
     if (conversation.length == 0) {
       console.log("this ran");
       greet(uid);
