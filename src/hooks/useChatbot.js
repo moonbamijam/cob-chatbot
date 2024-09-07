@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import { v4 as uuid } from "uuid";
 
 // db
 import {
@@ -51,9 +52,8 @@ const useChatbot = () => {
   const [isFaqsMenuActive, setIsFaqsMenuActive] = useState(false);
   const [userMessage, setUserMessage] = useState("");
   const [botIsTyping, setBotIsTyping] = useState(false);
-  const [messages, setMessages] = useState([]);
+  const [conversation, setConversation] = useState([]);
   const [faqs, setFaqs] = useState([]);
-  // const [users, setUsers] = useState([]);
 
   const toggleSettings = () => {
     setSettings(!settings);
@@ -64,7 +64,7 @@ const useChatbot = () => {
     try {
       const data = await getDocs(usersCollectionRef);
       onSnapshot(doc(usersCollectionRef, uid), (doc) => {
-        setMessages(doc.data().conversation);
+        doc.exists() && setConversation(doc.data().conversation);
       });
       if (data) setLoading(false);
     } catch (error) {
@@ -115,11 +115,11 @@ const useChatbot = () => {
           await setDoc(doc(usersCollectionRef, uid), {
             conversation: [
               {
+                messageId: uuid(),
                 message: deptsAnswer,
                 role: "bot",
                 depts: depts,
                 timeSent: Timestamp.now(),
-                uid: uid,
               },
             ],
           });
@@ -127,10 +127,10 @@ const useChatbot = () => {
         await updateDoc(doc(usersCollectionRef, uid), {
           conversation: arrayUnion({
             message: deptsAnswer,
+            messageId: uuid(),
             role: "bot",
             depts: depts,
             timeSent: Timestamp.now(),
-            uid: uid,
           }),
         });
         setBotIsTyping(false);
@@ -161,7 +161,7 @@ const useChatbot = () => {
         const botMessageInfo = {
           intent: intentRecognizedByBot,
           message: botAnswer,
-          messageID: uid,
+          messageId: uuid(),
           role: "bot",
           timeSent: Timestamp.now(),
         };
@@ -227,7 +227,7 @@ const useChatbot = () => {
   const sendMessageToBot = async (event, message) => {
     const messageInfo = {
       message: message,
-      messageID: uid,
+      messageId: uuid(),
       role: "user",
       timeSent: Timestamp.now(),
     };
@@ -261,7 +261,7 @@ const useChatbot = () => {
   const sendFaqToBot = async (message) => {
     const messageInfo = {
       message: message,
-      messageID: uid,
+      messageId: uuid(),
       role: "user",
       timeSent: Timestamp.now(),
     };
@@ -294,7 +294,7 @@ const useChatbot = () => {
   // for auto scrolling
   useEffect(() => {
     scrollInto(latestMessage);
-  }, [messages, botIsTyping, error]);
+  }, [conversation, botIsTyping, error]);
 
   // for rendering messages and faqs once
   useEffect(() => {
@@ -324,13 +324,13 @@ const useChatbot = () => {
   // for bot to greet when the user talks to the bot for the first time
   useEffect(() => {
     getChatHistory();
-    if (messages.length == 0) {
+    if (conversation.length == 0) {
       console.log("this ran");
       greet(uid);
     }
   }, []);
 
-  console.log(`Total messages in this conversation: ${messages.length}`);
+  console.log(`Total messages in this conversation: ${conversation.length}`);
 
   // for handling faqs menu on mouse down
   useEffect(() => {
@@ -360,8 +360,8 @@ const useChatbot = () => {
     setUserMessage,
     botIsTyping,
     setBotIsTyping,
-    messages,
-    setMessages,
+    conversation,
+    setConversation,
     faqs,
     setFaqs,
     toggleSettings,

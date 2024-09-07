@@ -1,15 +1,25 @@
-import { Timestamp, addDoc, collection } from "firebase/firestore";
+import { Timestamp, collection, doc, getDoc, setDoc } from "firebase/firestore";
 import { chatbot } from "../lib/bot/chatbot";
 import { db } from "../firebase/config";
+import { v4 as uuid } from "uuid";
 
-const messagesCollectionRef = collection(db, "messages");
+const usersCollectionRef = collection(db, "users");
 
 export const greet = async (uid) => {
-  await addDoc(messagesCollectionRef, {
+  const botMessageInfo = {
     intent: "salutation.greetings",
     message: chatbot.initialGreet,
+    messageId: uuid(),
     role: "bot",
     timeSent: Timestamp.now(),
-    uid: uid,
-  });
+  };
+
+  const res = doc(usersCollectionRef, uid);
+  const data = await getDoc(res);
+  // this if check will avoid replacing all messages in the conversation everytime the page reloads
+  if (!data.exists()) {
+    await setDoc(doc(usersCollectionRef, uid), {
+      conversation: [botMessageInfo],
+    });
+  } else console.log("I've already greeted this user, no need to greet again.");
 };

@@ -14,22 +14,28 @@ import Chat from "../ui/Chat";
 import Typing from "../ui/Typing";
 import ChatSkeleton from "../skeletons/ChatSkeleton";
 
-const Messages = ({ loading, messages, botIsTyping, error, latestMessage }) => {
+const Messages = ({
+  loading,
+  conversation,
+  botIsTyping,
+  error,
+  latestMessage,
+}) => {
   const renderMessagesContent = () => {
-    if (messages)
-      return messages.map((message, id) => {
-        if (containsPlaceholder(message.message)) {
+    if (conversation)
+      return conversation.map((convo) => {
+        if (containsPlaceholder(convo.message)) {
           const interpolatedLink = splitLinkToResponse(
-            message.message,
-            message.intent,
+            convo.message,
+            convo.intent,
           );
           return (
             <Chat
-              key={id}
-              role={message.role}
-              depts={message.depts}
+              key={convo.messageId}
+              role={convo.role}
+              depts={convo.depts}
               link={interpolatedLink}
-              timeSent={new Date(message.timeSent.seconds * 1000)
+              timeSent={new Date(convo.timeSent.seconds * 1000)
                 .toLocaleTimeString()
                 .replace(/(.*)\D\d+/, "$1")}
             />
@@ -37,11 +43,11 @@ const Messages = ({ loading, messages, botIsTyping, error, latestMessage }) => {
         } else
           return (
             <Chat
-              key={id}
-              role={message.role}
-              message={message.message}
-              depts={message.depts}
-              timeSent={new Date(message.timeSent.seconds * 1000)
+              key={convo.messageId}
+              role={convo.role}
+              message={convo.message}
+              depts={convo.depts}
+              timeSent={new Date(convo.timeSent.seconds * 1000)
                 .toLocaleTimeString()
                 .replace(/(.*)\D\d+/, "$1")}
             />
