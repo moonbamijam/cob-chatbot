@@ -49,16 +49,6 @@ const Messages = ({ loading, messages, botIsTyping, error, latestMessage }) => {
       });
   };
 
-  // finds the role per each message
-  // this will decide which background color to use in skeleton chat screen
-  const findRole = () => {
-    let role = null;
-    if (messages) {
-      messages.map((message) => (role = message.role));
-    }
-    return role;
-  };
-
   return (
     <section
       className={`w-full xl:max-h-[612px] h-full px-4 py-6 overflow-y-scroll scrollbar-thin scrollbar-track-transparent scrollbar-thumb-surface-dark dark:scrollbar-thumb-dm-surface`}
@@ -66,7 +56,7 @@ const Messages = ({ loading, messages, botIsTyping, error, latestMessage }) => {
       <MiniProfile />
       <InternetProvider>
         {loading ? (
-          <ChatSkeleton role={findRole()} />
+          <ChatSkeleton />
         ) : (
           <div id="messages" className="">
             {renderMessagesContent()}

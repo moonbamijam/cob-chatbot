@@ -4,11 +4,15 @@ import { useState, useEffect, useRef } from "react";
 import {
   collection,
   getDocs,
-  addDoc,
   Timestamp,
   query,
   orderBy,
-  where,
+  doc,
+  setDoc,
+  arrayUnion,
+  getDoc,
+  updateDoc,
+  onSnapshot,
 } from "firebase/firestore";
 import { db } from "../firebase/config";
 
@@ -28,12 +32,11 @@ import { sleep } from "../utils/sleep";
 import useSound from "../hooks/useSound";
 
 const uid = verifiedUID();
-const messagesCollectionRef = collection(db, "messages");
-const messagesQuery = query(
-  messagesCollectionRef,
-  orderBy("timeSent", "asc"),
-  where("uid", "==", uid),
-);
+
+// firebase queries and references
+const usersCollectionRef = collection(db, "users");
+// for future use
+// const userQuery = query(usersCollectionRef, orderBy("conversation", "asc"));
 
 const faqsCollectionRef = collection(db, "FAQs");
 const faqsQuery = query(faqsCollectionRef, orderBy("frequency", "desc"));
@@ -50,6 +53,7 @@ const useChatbot = () => {
   const [botIsTyping, setBotIsTyping] = useState(false);
   const [messages, setMessages] = useState([]);
   const [faqs, setFaqs] = useState([]);
+  // const [users, setUsers] = useState([]);
 
   const toggleSettings = () => {
     setSettings(!settings);
@@ -58,9 +62,23 @@ const useChatbot = () => {
 
   const getChatHistory = async () => {
     try {
-      const data = await getDocs(messagesQuery);
-      messages.concat(messages);
-      setMessages(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+      const data = await getDocs(usersCollectionRef);
+      const docUserId = doc(usersCollectionRef, uid);
+      const verifiedDocUserId = await getDoc(docUserId);
+      const getChats = () => {
+        const findConversationUID = onSnapshot(
+          doc(usersCollectionRef, uid),
+          (doc) => {
+            setMessages(doc.data().conversation);
+          },
+        );
+        return () => {
+          findConversationUID();
+        };
+      };
+
+      //
+      if (verifiedDocUserId.exists) getChats();
       if (data) setLoading(false);
     } catch (error) {
       if (error) setError(true);
@@ -102,17 +120,39 @@ const useChatbot = () => {
         deptMessage === "give me the list of deparments"
       ) {
         await sleep(1);
-        await addDoc(messagesCollectionRef, {
-          message: deptsAnswer,
-          role: "bot",
-          depts: depts,
-          timeSent: Timestamp.now(),
-          uid: uid,
+        const docUserId = doc(usersCollectionRef, uid);
+        const verifiedDocUserId = await getDoc(docUserId);
+        if (!verifiedDocUserId.exists()) {
+          // creates a user with verified uid in users collection
+          // then add this bot message to conversation array
+          await setDoc(doc(usersCollectionRef, uid), {
+            conversation: [
+              {
+                message: deptsAnswer,
+                role: "bot",
+                depts: depts,
+                timeSent: Timestamp.now(),
+                uid: uid,
+              },
+            ],
+          });
+        }
+        await updateDoc(doc(usersCollectionRef, uid), {
+          conversation: arrayUnion({
+            message: deptsAnswer,
+            role: "bot",
+            depts: depts,
+            timeSent: Timestamp.now(),
+            uid: uid,
+          }),
         });
         setBotIsTyping(false);
         getChatHistory();
         playMessageNotification();
-        // Above is all temporary
+        // THE ABOVE CODE BLOCKS ARE FOR HANDLING STATIC DEPARTMENT RESPONSES ONLY
+        //
+        //
+        // STARTING HERE FROM "ELSE" HANDLES THE DYNAMIC RESPONSES FROM BOT
       } else {
         await sleep(1);
         const response = await fetch(chatbot.url, {
@@ -127,22 +167,36 @@ const useChatbot = () => {
         });
         // data holds the answer and intent recognized
         const data = await response.json();
+        // assign those to a variables
+        // will improve this later
         const intentRecognizedByBot = data.response.intent;
-        const botResponse = data.response.answer;
-        if (hasSymbol(botResponse)) {
-          const botHasMultipleMessage = splitMessage(botResponse);
+        const botAnswer = data.response.answer;
+        const botMessageInfo = {
+          intent: intentRecognizedByBot,
+          message: botAnswer,
+          messageID: uid,
+          role: "bot",
+          timeSent: Timestamp.now(),
+        };
+        if (hasSymbol(botAnswer)) {
+          const botHasMultipleMessage = splitMessage(botAnswer);
           botHasMultipleMessage.forEach(async (response, i) => {
             if (i == 1) {
               await sleep(1.5);
               setBotIsTyping(true);
               await sleep(1);
             }
-            await addDoc(messagesCollectionRef, {
-              intent: intentRecognizedByBot,
-              message: response,
-              role: "bot",
-              timeSent: Timestamp.now(),
-              uid: uid,
+            const docUserId = doc(usersCollectionRef, uid);
+            const verifiedDocUserId = await getDoc(docUserId);
+            if (!verifiedDocUserId.exists()) {
+              // creates a user with verified uid in users collection
+              // then add this bot message to conversation array
+              await setDoc(doc(usersCollectionRef, uid), {
+                conversation: [botMessageInfo],
+              });
+            }
+            await updateDoc(doc(usersCollectionRef, uid), {
+              conversation: arrayUnion(botMessageInfo),
             });
             setBotIsTyping(false);
             setIsFaqsMenuActive(false);
@@ -151,14 +205,19 @@ const useChatbot = () => {
           });
           return;
         }
-        setBotIsTyping(false);
-        await addDoc(messagesCollectionRef, {
-          intent: intentRecognizedByBot,
-          message: botResponse,
-          role: "bot",
-          timeSent: Timestamp.now(),
-          uid: uid,
+        const docUserId = doc(usersCollectionRef, uid);
+        const verifiedDocUserId = await getDoc(docUserId);
+        if (!verifiedDocUserId.exists()) {
+          // creates a user with verified uid in users collection
+          // then add this bot message to conversation array
+          await setDoc(doc(usersCollectionRef, uid), {
+            conversation: [botMessageInfo],
+          });
+        }
+        await updateDoc(doc(usersCollectionRef, uid), {
+          conversation: arrayUnion(botMessageInfo),
         });
+        setBotIsTyping(false);
         setIsFaqsMenuActive(false);
         getChatHistory();
         playMessageNotification();
@@ -179,13 +238,25 @@ const useChatbot = () => {
   const debouncedMessageToBot = useDebounce(getReplyFromBot, 1.5);
 
   const sendMessageToBot = async (event, message) => {
+    const messageInfo = {
+      message: message,
+      messageID: uid,
+      role: "user",
+      timeSent: Timestamp.now(),
+    };
     try {
       event.preventDefault();
-      await addDoc(messagesCollectionRef, {
-        message: message,
-        role: "user",
-        timeSent: Timestamp.now(),
-        uid: uid,
+      const res = doc(usersCollectionRef, uid);
+      const data = await getDoc(res);
+      if (!data.exists()) {
+        // creates a user with verified uid in users collection
+        // then adds a conversation field that will hold all of the user & bot messages
+        await setDoc(doc(usersCollectionRef, uid), {
+          conversation: [messageInfo],
+        });
+      }
+      await updateDoc(doc(usersCollectionRef, uid), {
+        conversation: arrayUnion(messageInfo),
       });
       getChatHistory();
       setUserMessage("");
@@ -201,12 +272,24 @@ const useChatbot = () => {
   };
 
   const sendFaqToBot = async (message) => {
+    const messageInfo = {
+      message: message,
+      messageID: uid,
+      role: "user",
+      timeSent: Timestamp.now(),
+    };
     try {
-      await addDoc(messagesCollectionRef, {
-        message: message,
-        role: "user",
-        timeSent: Timestamp.now(),
-        uid: uid,
+      const res = doc(usersCollectionRef, uid);
+      const data = await getDoc(res);
+      if (!data.exists()) {
+        // creates a user with verified uid in users collection
+        // then adds a conversation field that will hold all of the user & bot messages
+        await setDoc(doc(usersCollectionRef, uid), {
+          conversation: [messageInfo],
+        });
+      }
+      await updateDoc(doc(usersCollectionRef, uid), {
+        conversation: arrayUnion(messageInfo),
       });
       setIsFaqsMenuActive(false);
       getChatHistory();
@@ -253,11 +336,14 @@ const useChatbot = () => {
 
   // for bot to greet when the user talks to the bot for the first time
   useEffect(() => {
-    if (!loading && messages.length === 0) {
+    getChatHistory();
+    if (messages.length == 0) {
+      console.log("this ran");
       greet(uid);
-      getChatHistory();
     }
-  }, [loading]);
+  }, []);
+
+  console.log(`Total messages in this conversation: ${messages.length}`);
 
   // for handling faqs menu on mouse down
   useEffect(() => {
@@ -273,6 +359,7 @@ const useChatbot = () => {
   return {
     debouncedMessageToBot,
     latestMessage,
+    usersCollectionRef,
     faqsRef,
     settings,
     setSettings,
@@ -296,7 +383,6 @@ const useChatbot = () => {
     getReplyFromBot,
     sendMessageToBot,
     sendFaqToBot,
-    messagesQuery,
     faqsQuery,
   };
 };
