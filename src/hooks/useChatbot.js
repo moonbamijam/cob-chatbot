@@ -63,27 +63,14 @@ const useChatbot = () => {
   const getChatHistory = async () => {
     try {
       const data = await getDocs(usersCollectionRef);
-      const docUserId = doc(usersCollectionRef, uid);
-      const verifiedDocUserId = await getDoc(docUserId);
-      const getChats = () => {
-        const findConversationUID = onSnapshot(
-          doc(usersCollectionRef, uid),
-          (doc) => {
-            setMessages(doc.data().conversation);
-          },
-        );
-        return () => {
-          findConversationUID();
-        };
-      };
-
-      //
-      if (verifiedDocUserId.exists) getChats();
+      onSnapshot(doc(usersCollectionRef, uid), (doc) => {
+        setMessages(doc.data().conversation);
+      });
       if (data) setLoading(false);
     } catch (error) {
       if (error) setError(true);
+      else if (!error) setError(false);
     }
-    if (error == true) setError(false);
   };
 
   const getFaqs = async () => {
