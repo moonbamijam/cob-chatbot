@@ -221,6 +221,7 @@ const useChatbot = () => {
       console.log(error);
       setError(false);
     }
+    console.log(`Total messages in this conversation: ${conversation.length}`);
   };
 
   // useDebounce(function to call, seconds to wait before you can call it again)
@@ -259,6 +260,7 @@ const useChatbot = () => {
       }
     }
     if (error == true) setError(false);
+    console.log(`Total messages in this conversation: ${conversation.length}`);
   };
 
   const sendFaqToBot = async (message) => {
@@ -292,6 +294,7 @@ const useChatbot = () => {
       }
     }
     if (error == true) setError(false);
+    console.log(`Total messages in this conversation: ${conversation.length}`);
   };
 
   // for auto scrolling
@@ -343,8 +346,6 @@ const useChatbot = () => {
       greet(uid);
     }
   }, []);
-
-  console.log(`Total messages in this conversation: ${conversation.length}`);
 
   return {
     latestMessage,
