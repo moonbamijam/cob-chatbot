@@ -3,7 +3,7 @@ import { useContext, useState } from "react";
 // Context & Providers
 import { FontContext } from "../../../contexts/FontProvider";
 
-import { chatbot } from "../../../lib/bot/chatbot";
+import { chatbotConfig } from "../../../lib/bot/chatbotConfig";
 import DepartmentBtn from "../buttons/DepartmentBtn";
 import { BsArrowDownCircleFill } from "react-icons/bs";
 
@@ -42,7 +42,7 @@ const Chat = ({ role, message, depts, timeSent, link }) => {
         <div className="bot message">
           <div className="w-full relative flex items-center gap-2 mt-3 mb-2">
             <img
-              src={chatbot.logo}
+              src={chatbotConfig.logo}
               alt="Chatbot Icon"
               width={35}
               height={35}

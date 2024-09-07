@@ -1,5 +1,5 @@
 import { Timestamp, collection, doc, getDoc, setDoc } from "firebase/firestore";
-import { chatbot } from "../lib/bot/chatbot";
+import { chatbotConfig } from "../lib/bot/chatbotConfig";
 import { db } from "../firebase/config";
 import { v4 as uuid } from "uuid";
 
@@ -8,7 +8,7 @@ const usersCollectionRef = collection(db, "users");
 export const greet = async (uid) => {
   const botMessageInfo = {
     intent: "salutation.greetings",
-    message: chatbot.initialGreet,
+    message: chatbotConfig.initialGreet,
     messageId: uuid(),
     role: "bot",
     timeSent: Timestamp.now(),

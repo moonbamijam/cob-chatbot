@@ -1,6 +1,6 @@
 import { IoChatbubbleEllipsesOutline } from "react-icons/io5";
 import { FaVolumeHigh, FaRobot } from "react-icons/fa6";
-import { chatbot } from "../bot/chatbot";
+import { chatbotConfig } from "../bot/chatbotConfig";
 
 export const settingsList = [
   {
@@ -14,7 +14,7 @@ export const settingsList = [
     icon: FaVolumeHigh,
   },
   {
-    name: chatbot.name.toLowerCase(),
+    name: chatbotConfig.name.toLowerCase(),
     settingType: "about",
     icon: FaRobot,
   },

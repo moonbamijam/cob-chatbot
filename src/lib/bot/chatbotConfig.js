@@ -1,6 +1,6 @@
 import chatbotLogo from "../../assets/images/bacoor-mayor-vmayor.jpg";
 
-export const chatbot = {
+export const chatbotConfig = {
   url: "https://chatbot-api-0zup.onrender.com/api/chatbot/query",
   logo: chatbotLogo,
   name: "Viviane",

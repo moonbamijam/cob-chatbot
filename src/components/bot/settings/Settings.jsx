@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { chatbot } from "../../../lib/bot/chatbot";
+import { chatbotConfig } from "../../../lib/bot/chatbotConfig";
 
 // components
 import MiniProfile from "../sections/MiniProfile";
@@ -36,7 +36,7 @@ const Settings = ({ settings, toggleSettings }) => {
         return <AppearanceSettings />;
       case "sound":
         return <SoundSettings />;
-      case chatbot.name.toLowerCase():
+      case chatbotConfig.name.toLowerCase():
         return <MiniProfile state={settings} />;
       default:
         return <AppearanceSettings />;

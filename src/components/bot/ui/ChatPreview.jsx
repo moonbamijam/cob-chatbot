@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { FontContext } from "../../../contexts/FontProvider";
-import { chatbot } from "../../../lib/bot/chatbot";
+import { chatbotConfig } from "../../../lib/bot/chatbotConfig";
 import Messages from "../../../../static/messages/suggested.json";
 
 // icons
@@ -31,7 +31,7 @@ const ChatPreview = () => {
         <header className="w-full flex items-center justify-between px-4 py-4 mr-auto">
           <div className="flex items-center gap-4">
             <img
-              src={chatbot.logo}
+              src={chatbotConfig.logo}
               alt=""
               width={45}
               height={45}
@@ -49,15 +49,15 @@ const ChatPreview = () => {
           />
           <SampleUserChat
             style={{ fontSize: fontSize }}
-            message={`You'll see the messages you send to ${chatbot.name} in this size.`}
+            message={`You'll see the messages you send to ${chatbotConfig.name} in this size.`}
           />
           <SampleBotChat
             style={{ fontSize: fontSize }}
-            message={`Meanwhile, ${chatbot.name}'s messages will look like this.`}
+            message={`Meanwhile, ${chatbotConfig.name}'s messages will look like this.`}
           />
           <SampleBotChat
             style={{ fontSize: fontSize }}
-            message={`And when ${chatbot.name} send a link message, it will look like this, `}
+            message={`And when ${chatbotConfig.name} send a link message, it will look like this, `}
             linkedMessage={"Click here to download"}
           />
         </div>
@@ -95,7 +95,7 @@ const ChatPreview = () => {
         <header className="w-full flex items-center justify-between px-4 py-4 mr-auto shadow-md dark:shadow-dm-surface-dark">
           <div className="flex items-center gap-4">
             <img
-              src={chatbot.logo}
+              src={chatbotConfig.logo}
               alt=""
               width={45}
               height={45}
@@ -113,15 +113,15 @@ const ChatPreview = () => {
           />
           <SampleUserChat
             style={{ fontSize: fontSize }}
-            message={`You'll see the messages you send to ${chatbot.name} in this size.`}
+            message={`You'll see the messages you send to ${chatbotConfig.name} in this size.`}
           />
           <SampleBotChat
             style={{ fontSize: fontSize }}
-            message={`Meanwhile, ${chatbot.name}'s messages will look like this.`}
+            message={`Meanwhile, ${chatbotConfig.name}'s messages will look like this.`}
           />
           <SampleBotChat
             style={{ fontSize: fontSize }}
-            message={`And when ${chatbot.name} send a link message, it will look like this, `}
+            message={`And when ${chatbotConfig.name} send a link message, it will look like this, `}
             linkedMessage={"Click here to download"}
           />
         </div>

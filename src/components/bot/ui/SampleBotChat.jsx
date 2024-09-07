@@ -1,11 +1,11 @@
-import { chatbot } from "../../../lib/bot/chatbot";
+import { chatbotConfig } from "../../../lib/bot/chatbotConfig";
 
 const SampleBotChat = ({ style, message, linkedMessage }) => {
   return (
     <div style={style} className="bot message">
       <div className="w-full relative flex items-center gap-2 mt-3 mb-2">
         <img
-          src={chatbot.logo}
+          src={chatbotConfig.logo}
           alt="Chatbot Icon"
           width={35}
           height={35}

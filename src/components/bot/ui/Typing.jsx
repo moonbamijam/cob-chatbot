@@ -1,10 +1,10 @@
-import { chatbot } from "../../../lib/bot/chatbot";
+import { chatbotConfig } from "../../../lib/bot/chatbotConfig";
 
 const Typing = () => {
   return (
     <div className="w-full mt-3 mb-2 rounded-3xl flex gap-2 items-center ">
       <img
-        src={chatbot.logo}
+        src={chatbotConfig.logo}
         alt="Chatbot Icon"
         width={35}
         height={35}
