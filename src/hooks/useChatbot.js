@@ -186,6 +186,7 @@ const useChatbot = () => {
               role: "bot",
               timeSent: Timestamp.now(),
             };
+            setBotIsTyping(false);
             const docUserId = doc(usersCollectionRef, uid);
             const verifiedDocUserId = await getDoc(docUserId);
             if (!verifiedDocUserId.exists()) {
@@ -198,7 +199,6 @@ const useChatbot = () => {
             await updateDoc(doc(usersCollectionRef, uid), {
               conversation: arrayUnion(botSplitMessageInfo),
             });
-            setBotIsTyping(false);
             setIsFaqsMenuActive(false);
             getChatHistory();
             playMessageNotification();
