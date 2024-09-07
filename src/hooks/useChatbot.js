@@ -110,6 +110,7 @@ const useChatbot = () => {
         deptMessage === "give me the list of deparments"
       ) {
         await sleep(1);
+        setBotIsTyping(false);
         const docUserId = doc(usersCollectionRef, uid);
         const verifiedDocUserId = await getDoc(docUserId);
         if (!verifiedDocUserId.exists()) {
@@ -136,7 +137,6 @@ const useChatbot = () => {
             timeSent: Timestamp.now(),
           }),
         });
-        setBotIsTyping(false);
         getChatHistory();
         playMessageNotification();
         // THE ABOVE CODE BLOCKS ARE FOR HANDLING STATIC DEPARTMENT RESPONSES ONLY
@@ -169,6 +169,7 @@ const useChatbot = () => {
           timeSent: Timestamp.now(),
         };
         if (hasSymbol(botAnswer)) {
+          setBotIsTyping(false);
           const botHasMultipleMessage = splitMessage(botAnswer);
           botHasMultipleMessage.forEach(async (response, i) => {
             if (i == 1) {
@@ -188,13 +189,13 @@ const useChatbot = () => {
             await updateDoc(doc(usersCollectionRef, uid), {
               conversation: arrayUnion(botMessageInfo),
             });
-            setBotIsTyping(false);
             setIsFaqsMenuActive(false);
             getChatHistory();
             playMessageNotification();
           });
           return;
         }
+        setBotIsTyping(false);
         const docUserId = doc(usersCollectionRef, uid);
         const verifiedDocUserId = await getDoc(docUserId);
         if (!verifiedDocUserId.exists()) {
@@ -207,7 +208,6 @@ const useChatbot = () => {
         await updateDoc(doc(usersCollectionRef, uid), {
           conversation: arrayUnion(botMessageInfo),
         });
-        setBotIsTyping(false);
         setIsFaqsMenuActive(false);
         getChatHistory();
         playMessageNotification();
