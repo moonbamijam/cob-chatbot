@@ -1,8 +1,12 @@
 import { chatbotConfig } from "../../../lib/bot/chatbotConfig";
 
-const MiniProfile = ({ state }) => {
+const MiniProfile = ({ state, className, miniProfileRef }) => {
   return (
-    <section id="bot-profile" className="flex flex-col items-center mb-8">
+    <section
+      id="bot-profile"
+      className={`flex flex-col items-center ${className}`}
+      ref={miniProfileRef}
+    >
       <img
         src={chatbotConfig.logo}
         alt=""
@@ -14,7 +18,7 @@ const MiniProfile = ({ state }) => {
         <h1 className="font-bold text-4xl mb-1 dark:text-white">
           {chatbotConfig.name}
         </h1>
-        <h3 className="dark:text-white mb-3">{chatbotConfig.slogan}</h3>
+        <h3 className="dark:text-white text-lg mb-6">{chatbotConfig.slogan}</h3>
         {state && (
           <p className="dark:text-white text-sm opacity-70 whitespace-pre-line">
             {chatbotConfig.desc}
