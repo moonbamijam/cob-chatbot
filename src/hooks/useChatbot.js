@@ -275,6 +275,7 @@ const useChatbot = () => {
       timeSent: Timestamp.now(),
     };
     try {
+      setIsFaqsMenuActive(false);
       const res = doc(usersCollectionRef, uid);
       const data = await getDoc(res);
       if (!data.exists()) {
@@ -287,7 +288,6 @@ const useChatbot = () => {
       await updateDoc(doc(usersCollectionRef, uid), {
         conversation: arrayUnion(messageInfo),
       });
-      setIsFaqsMenuActive(false);
       playMessageNotification();
       debouncedMessageToBot(message);
     } catch (error) {
