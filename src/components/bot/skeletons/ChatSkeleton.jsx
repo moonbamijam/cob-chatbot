@@ -1,24 +1,23 @@
-import { getDocs } from "firebase/firestore";
-import { useState, useEffect } from "react";
-import useChatbot from "../../../hooks/useChatbot";
 import SkeletonScreen from "../ui/SkeletonScreen";
 
 const ChatSkeleton = () => {
-  const { messagesQuery } = useChatbot();
-  const [skeletonizedChat, setSkeletonizedChat] = useState([]);
-
-  // get messages independently from useChatbot hook
-  const getMessagesToSkeletonized = async () => {
-    const data = await getDocs(messagesQuery);
-    setSkeletonizedChat(
-      data.docs.map((doc) => ({ ...doc.data(), id: doc.id })),
-    );
-  };
-
-  // render those skeletonized messages once
-  useEffect(() => {
-    getMessagesToSkeletonized();
-  }, []);
+  const skeletonizedChat = [
+    {
+      role: "bot",
+    },
+    {
+      role: "user",
+    },
+    {
+      role: "bot",
+    },
+    {
+      role: "user",
+    },
+    {
+      role: "bot",
+    },
+  ];
 
   return (
     <div className="">

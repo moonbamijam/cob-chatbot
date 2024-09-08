@@ -21,20 +21,15 @@ const ChatBox = ({ className, closeUsing }) => {
     latestMessage,
     faqsRef,
     settings,
-    error,
-    loading,
     isFaqsMenuActive,
     setIsFaqsMenuActive,
     userMessage,
     setUserMessage,
     botIsTyping,
-    messages,
-    faqs,
     toggleSettings,
     sendMessageToBot,
     sendFaqToBot,
   } = useChatbot();
-
   const { font } = useContext(FontContext);
   const [fontFamily] = font.family;
 
@@ -42,7 +37,7 @@ const ChatBox = ({ className, closeUsing }) => {
     <>
       <div
         id="message-box"
-        className={`w-full h-full xl:w-[500px] xl:h-[700px] fixed flex flex-col xl:right-24 2xl:right-36 xl:bottom-20 2xl:bottom-32 bg-background dark:bg-dm-background xl:rounded-xl overflow-hidden z-[100] ${className}`}
+        className={`w-full h-full xl:w-[500px] xl:h-[700px] fixed flex flex-col items-center xl:right-24 2xl:right-36 xl:bottom-20 2xl:bottom-32 bg-background dark:bg-dm-background xl:rounded-xl overflow-hidden z-[100] ${className}`}
         style={{
           fontFamily: fontFamily,
         }}
@@ -54,10 +49,7 @@ const ChatBox = ({ className, closeUsing }) => {
         />
         <Messages
           settings={settings}
-          loading={loading}
-          messages={messages}
           botIsTyping={botIsTyping}
-          error={error}
           latestMessage={latestMessage}
         />
         <SuggestedMessages
@@ -66,7 +58,6 @@ const ChatBox = ({ className, closeUsing }) => {
         />
         <MessageInput
           faqsRef={faqsRef}
-          faqs={faqs}
           sendMessageToBot={sendMessageToBot}
           sendFaqToBot={sendFaqToBot}
           userMessage={userMessage}

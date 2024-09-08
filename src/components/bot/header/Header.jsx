@@ -1,9 +1,8 @@
 // library
-import { chatbot } from "../../../lib/bot/chatbot";
+import { chatbotConfig } from "../../../lib/bot/chatbotConfig";
 
 // components
 import CloseChatBtn from "../buttons/CloseChatBtn";
-import MaximizeBtn from "../buttons/MaximizeBtn";
 import SettingsBtn from "../buttons/SettingsBtn";
 
 const Header = ({ toggleSettings, settings, closeUsing }) => {
@@ -18,14 +17,14 @@ const Header = ({ toggleSettings, settings, closeUsing }) => {
         className="flex items-center gap-4"
       >
         <img
-          src={chatbot.logo}
+          src={chatbotConfig.logo}
           alt=""
           width={40}
           height={40}
           className="rounded-full sm:w-[45px] sm:h-[45px]"
         />
         <h3 className="text-xl sm:text-2xl capitalize font-semibold dark:text-white">
-          {chatbot.nickName}
+          {chatbotConfig.nickName}
         </h3>
       </button>
       <menu className="flex gap-1 justify-end">
