@@ -32,16 +32,13 @@ import useSound from "./useSound";
 // utils
 import { sleep } from "../utils/sleep";
 import { hasSymbol, splitMessage } from "../utils/splitMessage";
-import { scrollInto } from "../utils/scrollInto";
+import { smoothScrollInto } from "../utils/scrollInto";
 import { greet } from "../utils/greet";
 
 const uid = verifiedUID();
 
 // firebase queries and references
 const usersCollectionRef = collection(db, "users");
-// for future use
-// const userQuery = query(usersCollectionRef, orderBy("conversation", "asc"));
-
 const faqsCollectionRef = collection(db, "FAQs");
 const faqsQuery = query(faqsCollectionRef, orderBy("frequency", "desc"));
 
@@ -61,7 +58,7 @@ const useChatbot = () => {
 
   const toggleSettings = () => {
     setSettings(!settings);
-    scrollInto(latestMessage);
+    smoothScrollInto(latestMessage);
   };
 
   const getConversationHistory = useCallback(async () => {
@@ -297,8 +294,7 @@ const useChatbot = () => {
 
   // for auto scrolling
   useEffect(() => {
-    console.log(`Scrolling into ${conversation.length} chats`);
-    scrollInto(latestMessage);
+    smoothScrollInto(latestMessage);
   }, [conversation, botIsTyping, error]);
 
   // for sending messages when clicking enter
