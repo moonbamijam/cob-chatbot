@@ -10,7 +10,7 @@ import {
 // Components
 import Error from "../ui/Error";
 import MiniProfile from "./MiniProfile";
-import Chat from "../ui/Chat";
+import Chat from "../Chat";
 import Typing from "../ui/Typing";
 import ChatSkeleton from "../skeletons/ChatSkeleton";
 import { useContext } from "react";
