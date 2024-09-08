@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useContext } from "react";
+import { useState, useEffect, useRef, useContext, useCallback } from "react";
 import { v4 as uuid } from "uuid";
 import { chatbotConfig } from "../lib/bot/chatbotConfig";
 import { verifiedUID } from "../utils/uid";
@@ -34,7 +34,6 @@ import { sleep } from "../utils/sleep";
 import { hasSymbol, splitMessage } from "../utils/splitMessage";
 import { scrollInto } from "../utils/scrollInto";
 import { greet } from "../utils/greet";
-import { useCallback } from "react";
 
 const uid = verifiedUID();
 
