@@ -199,9 +199,6 @@ const useChatbot = () => {
             setIsFaqsMenuActive(false);
             playMessageNotification();
           });
-          console.log(
-            `Total messages in this conversation: ${conversation.length}`,
-          );
           return;
         }
         setBotIsTyping(false);
@@ -300,6 +297,7 @@ const useChatbot = () => {
 
   // for auto scrolling
   useEffect(() => {
+    console.log(`Scrolling into ${conversation.length} chats`);
     scrollInto(latestMessage);
   }, [conversation, botIsTyping, error]);
 
