@@ -1,5 +1,25 @@
 # What's New
 
+# [2.1.0](https://github.com/moonbamijam/cob-chatbot/compare/v2.0.0...v2.1.0) (2024-09-09)
+
+
+### Bug Fixes
+
+* api url exposure ([#87](https://github.com/moonbamijam/cob-chatbot/issues/87)) ([a6b53cb](https://github.com/moonbamijam/cob-chatbot/commit/a6b53cbe270af142e2c0eba4e10ee50f7c9e1283))
+* error still display even if response is ok ([c0256d6](https://github.com/moonbamijam/cob-chatbot/commit/c0256d68c494bcf13196efec716bf3a3fd8235fb))
+* firebase error auth/api key not valid ([5384a15](https://github.com/moonbamijam/cob-chatbot/commit/5384a15b84250a85573a0b0d8ea1082628ccf1ee))
+* html tag issues to from console ([#82](https://github.com/moonbamijam/cob-chatbot/issues/82)) ([7e9346a](https://github.com/moonbamijam/cob-chatbot/commit/7e9346a3cbf2bbb76863069802e2369bef2b543e))
+* unauthorized request to chatbot api ([de6b3c1](https://github.com/moonbamijam/cob-chatbot/commit/de6b3c1224d2b4176500915786fc25b9a0a841fc))
+
+
+### Features
+
+* add infinite scrolling to chat ([#83](https://github.com/moonbamijam/cob-chatbot/issues/83)) ([dc68e21](https://github.com/moonbamijam/cob-chatbot/commit/dc68e217d55f78bdcced27d141bdb4ff94e7552a)), closes [#29](https://github.com/moonbamijam/cob-chatbot/issues/29) [#86](https://github.com/moonbamijam/cob-chatbot/issues/86) [#86](https://github.com/moonbamijam/cob-chatbot/issues/86)
+* add new meta tags for seo ([d707495](https://github.com/moonbamijam/cob-chatbot/commit/d707495fe34bac31cd292893e04dee3b2140d196))
+* add pwa support ([#80](https://github.com/moonbamijam/cob-chatbot/issues/80)) ([0f953ca](https://github.com/moonbamijam/cob-chatbot/commit/0f953ca9119751cd569069059fd449c1ead96fa1))
+* introduce Libra ([540b311](https://github.com/moonbamijam/cob-chatbot/commit/540b311cf92518a12041b9ea5afb909079b92543))
+* new chatbot description ([6690a18](https://github.com/moonbamijam/cob-chatbot/commit/6690a18f290609867fb17f88b7cc674a1add72ad))
+
 # [2.0.0](https://github.com/Jireh-sama/cob-chatbot/compare/v1.10.0...v2.0.0) (2024-09-04)
 
 
