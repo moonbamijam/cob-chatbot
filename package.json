@@ -54,7 +54,7 @@
     "vite-plugin-pwa": "^0.20.5"
   },
   "lint-staged": {
-    "*.{js,jsx,ts,tsx,json,css,html}": "prettier --write",
+    "*.{js,jsx,json,css,html}": "prettier --write",
     "*.{ts,js}": [
       "prettier --write",
       "eslint"
