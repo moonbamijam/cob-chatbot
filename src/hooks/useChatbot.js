@@ -152,6 +152,10 @@ const useChatbot = () => {
             userQuery: message,
           }),
         });
+
+        if (response.ok) setError(false);
+        else setError(true);
+
         // data holds the answer and intent recognized
         const data = await response.json();
         // assign those to a variables
