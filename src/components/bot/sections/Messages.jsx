@@ -49,7 +49,6 @@ const Messages = ({ botIsTyping, latestMessage }) => {
   // handles infinite scrolling
   const handleScroll = async (e) => {
     const chatBoxHeight = e.target.scrollTop;
-    console.log(chatBoxHeight);
 
     // handles the scroll to latest arrow button
     if ((chatBoxHeight >= 0 && chatBoxHeight <= 50) || chatBoxHeight <= 800)
