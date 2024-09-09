@@ -146,7 +146,7 @@ const useChatbot = () => {
           method: "POST",
           headers: {
             "content-type": "application/json",
-            authorization: import.meta.env.VITE_API_KEY,
+            authorization: import.meta.env.VITE_CHATBOT_API_KEY,
           },
           body: JSON.stringify({
             userQuery: message,
