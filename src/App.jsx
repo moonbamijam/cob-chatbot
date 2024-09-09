@@ -3,7 +3,7 @@ import { getAuth, signInAnonymously } from "firebase/auth";
 
 import ChatHead from "./components/bot/ChatHead";
 import ChatBox from "./components/bot/ChatBox";
-import Page from "./components/page/Page";
+import CityHallPage from "./components/pages/city-hall/CityHallPage";
 import ScreenDim from "./components/bot/ui/ScreenDim";
 
 // Contexts
@@ -69,7 +69,7 @@ const App = () => {
             </ThemesProvider>
           </ChatbotProvider>
         </div>
-        <Page />
+        <CityHallPage />
         <ScreenDim
           message="Click anywhere to close."
           className={`bg-black z-50 backdrop-blur ${

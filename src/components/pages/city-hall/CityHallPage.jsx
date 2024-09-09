@@ -7,13 +7,13 @@ import ArticleLeft from "./articles/ArticleLeft";
 import ArticleRight from "./articles/ArticleRight";
 
 // Assets
-import LandingImg from "../../assets/images/landing.png";
+import LandingImg from "../../../assets/images/landing.png";
 
 // Icons
 import { RiArrowLeftSLine, RiArrowRightSLine } from "react-icons/ri";
 import Footer from "./footer/Footer";
 
-const Page = () => {
+const CityHallPage = () => {
   return (
     <>
       <span
@@ -64,4 +64,4 @@ const Page = () => {
   );
 };
 
-export default Page;
+export default CityHallPage;
