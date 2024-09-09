@@ -146,12 +146,16 @@ const useChatbot = () => {
           method: "POST",
           headers: {
             "content-type": "application/json",
-            authorization: import.meta.env.VITE_API_KEY,
+            authorization: import.meta.env.VITE_CHATBOT_API_KEY,
           },
           body: JSON.stringify({
             userQuery: message,
           }),
         });
+
+        if (response.ok) setError(false);
+        else setError(true);
+
         // data holds the answer and intent recognized
         const data = await response.json();
         // assign those to a variables

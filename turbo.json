@@ -1,28 +1,21 @@
 {
   "$schema": "https://turbo.build/schema.json",
-  "globalEnv": ["VITE_API_KEY"],
+  "globalEnv": ["VITE_CHATBOT_API_KEY"],
   "tasks": {
     "build": {
       "dependsOn": ["^build"],
-      "outputs": ["dist/**"],
-      "env": [
-        "VITE_APIKEYDEV",
-        "AUTHDOMAINDEV",
-        "STORAGEBUCKETDEV",
-        "MESSAGINGSENDERIDDEV",
-        "APPIDDEV",
-        "MEASUREMENTIDDEV"
-      ]
+      "outputs": ["dist/**"]
     },
     "dev": {
       "dependsOn": ["build"],
       "env": [
-        "VITE_APIKEYDEV",
-        "AUTHDOMAINDEV",
-        "STORAGEBUCKETDEV",
-        "MESSAGINGSENDERIDDEV",
-        "APPIDDEV",
-        "MEASUREMENTIDDEV"
+        "VITE_API_KEY",
+        "AUTH_DOMAIN",
+        "VITE_PROJECT_ID",
+        "STORAGE_BUCKET",
+        "MESSAGING_SENDER_ID",
+        "APP_ID",
+        "MEASUREMENT_ID"
       ],
       "persistent": true,
       "cache": false
