@@ -6,6 +6,71 @@
   :root {
     --opaque-black: 40 40 40;
   }
+
+  @font-face {
+    font-family: "Helvetica";
+    font-style: normal;
+    font-weight: normal;
+    src:
+      local("Helvetica"),
+      url("/static/fonts/Helvetica.woff") format("woff");
+  }
+
+  @font-face {
+    font-family: "Helvetica Oblique";
+    font-style: normal;
+    font-weight: normal;
+    src:
+      local("Helvetica Oblique"),
+      url("/static/fonts/Helvetica-Oblique.woff") format("woff");
+  }
+
+  @font-face {
+    font-family: "Helvetica Compressed";
+    font-style: normal;
+    font-weight: normal;
+    src:
+      local("Helvetica Compressed"),
+      url("/static/fonts/helvetica-compressed-5871d14b6903a.woff")
+        format("woff");
+  }
+
+  @font-face {
+    font-family: "Helvetica Rounded Bold";
+    font-style: normal;
+    font-weight: normal;
+    src:
+      local("Helvetica Rounded Bold"),
+      url("/static/fonts/helvetica-rounded-bold-5871d05ead8de.woff")
+        format("woff");
+  }
+
+  @font-face {
+    font-family: "Helvetica Bold";
+    font-style: normal;
+    font-weight: normal;
+    src:
+      local("Helvetica"),
+      url("/static/fonts/Helvetica-Bold.woff") format("woff");
+  }
+
+  @font-face {
+    font-family: "Helvetica Bold Oblique";
+    font-style: normal;
+    font-weight: normal;
+    src:
+      local("Helvetica Bold Oblique"),
+      url("/static/fonts/Helvetica-BoldOblique.woff") format("woff");
+  }
+
+  @font-face {
+    font-family: "Helvetica Light";
+    font-style: normal;
+    font-weight: normal;
+    src:
+      local("Helvetica Light"),
+      url("/static/fonts/helvetica-light-587ebe5a59211.woff") format("woff");
+  }
 }
 
 @layer utilities {
@@ -13,10 +78,13 @@
   .no-scrollbar::-webkit-scrollbar {
     display: none;
   }
+
   /* Hide scrollbar for IE, Edge and Firefox */
   .no-scrollbar {
-    -ms-overflow-style: none; /* IE and Edge */
-    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
   }
 }
 
@@ -28,7 +96,7 @@
 
 /* common */
 body {
-  @apply font-sans bg-city-hall bg-no-repeat bg-cover bg-fixed;
+  @apply font-helvetica bg-city-hall bg-no-repeat bg-cover bg-fixed;
 }
 
 textarea {

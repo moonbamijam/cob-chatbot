@@ -34,16 +34,13 @@ export default {
         "city-hall": "url(/src/assets/images/bg.jpg)",
       },
       fontFamily: {
-        raleway: [
-          "Raleway",
-          "ui-sans-serif",
-          "system-ui",
-          "sans-serif",
-          "Apple Color Emoji",
-          "Segoe UI Emoji",
-          "Segoe UI Symbol",
-          "Noto Color Emoji",
-        ],
+        helvetica: "Helvetica",
+        "helvetica-oblique": "Helvetica Oblique",
+        "helvetica-compressed": "Helvetica Compressed",
+        "helvetica-rounded-bold": "Helvetica Rounded Bold",
+        "helvetica-bold": "Helvetica Bold",
+        "helvetica-bold-oblique": "Helvetica Bold Oblique",
+        "helvetica-light": "Helvetica Light",
       },
       backdropBlur: {
         xs: "2px",
