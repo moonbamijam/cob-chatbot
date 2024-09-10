@@ -1,11 +1,36 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import App from "./App.jsx";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+
+// providers
+import ThemesProvider from "./contexts/ThemesProvider.jsx";
+
+// pages
+import Home from "./app/Home.jsx";
+import CityHall from "./components/pages/city-hall/CityHallUI.jsx";
+import Error from "./app/Error.jsx";
+
+// css
 import "./styles/globals.css";
 import "./styles/custom-media-query.css";
+import "./styles/city-hall.css";
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Home />,
+    errorElement: <Error />,
+  },
+  {
+    path: "/bacoor-gov",
+    element: <CityHall />,
+  },
+]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <App />
+    <ThemesProvider>
+      <RouterProvider router={router} />
+    </ThemesProvider>
   </React.StrictMode>,
 );
