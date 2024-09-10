@@ -11,10 +11,7 @@ const PageCard = ({ img, name, comingSoon }) => {
     if (comingSoon) {
       return (
         <Card>
-          <Link
-            to="/bacoor-gov"
-            className="relative max-w-[400px] max-h-[150px] flex justify-center items-center bg-dm-surface-dark rounded-lg overflow-hidden group"
-          >
+          <button className="relative max-w-[400px] max-h-[150px] flex justify-center items-center bg-dm-surface-dark rounded-lg overflow-hidden group">
             <img
               src={CityHallCloseUp}
               alt=""
@@ -23,7 +20,7 @@ const PageCard = ({ img, name, comingSoon }) => {
             <h3 className="absolute opacity-100 text-white text-3xl font-helvetica-rounded-bold">
               Coming soon
             </h3>
-          </Link>
+          </button>
         </Card>
       );
     } else {
