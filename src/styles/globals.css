@@ -1,3 +1,5 @@
+@import url("./animations.css");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -91,12 +93,11 @@
 *,
 ::before,
 ::after {
-  @apply box-border p-0 m-0 transition-all duration-100 ease-out;
+  @apply box-border p-0 m-0 transition-all duration-300 ease-out;
 }
 
-/* common */
 body {
-  @apply font-helvetica bg-city-hall bg-no-repeat bg-cover bg-fixed;
+  @apply font-helvetica bg-background dark:bg-dm-background;
 }
 
 textarea {
