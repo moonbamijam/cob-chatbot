@@ -1,5 +1,5 @@
-const GridUI = ({ children, className }) => {
+const Grid = ({ children, className }) => {
   return <div className={`${className} inline-grid`}>{children}</div>;
 };
 
-export default GridUI;
+export default Grid;
