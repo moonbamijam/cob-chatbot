@@ -13,7 +13,6 @@ import Error from "./app/Error.jsx";
 // css
 import "./styles/globals.css";
 import "./styles/custom-media-query.css";
-import "./styles/city-hall.css";
 
 const router = createBrowserRouter([
   {
