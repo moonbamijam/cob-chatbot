@@ -13,7 +13,7 @@ import LandingImg from "../../../assets/images/landing.png";
 import { RiArrowLeftSLine, RiArrowRightSLine } from "react-icons/ri";
 import Footer from "./footer/Footer";
 
-const CityHallPage = () => {
+const CityHall = () => {
   return (
     <>
       <span
@@ -64,4 +64,4 @@ const CityHallPage = () => {
   );
 };
 
-export default CityHallPage;
+export default CityHall;
