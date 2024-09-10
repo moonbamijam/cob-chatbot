@@ -36,7 +36,7 @@ documentation:
 - changed-files:
   - any-glob-to-any-file: '**/*.md'
 
-packages:
+package:
 - head-branch: deps
 - changed-files:
   - any-glob-to-any-file: 'pnpm-lock.yaml'
