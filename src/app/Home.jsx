@@ -8,23 +8,18 @@ import { ThemesContext } from "../contexts/ThemesProvider";
 // components
 import ScreenDim from "../components/bot/ui/ScreenDim";
 import ImageCredits from "../components/bot/ui/ImageCredits";
-import GridUI from "../components/bot/common/GridUI";
+import Grid from "../components/common/Grid";
 
 // assets
 import Bacoor from "../../static/assets/images/bacoor.jpg";
 import Cityhall from "../../static/assets/images/city-hall.jpg";
 
-// icons
-import { LuSun, LuMoon } from "react-icons/lu";
+import PageCard from "../components/cards/PageCard";
+import Header from "../components/header/Header";
 
 const Home = () => {
-  const [theme, setTheme] = useContext(ThemesContext);
   const [isModalActive, setIsModalActive] = useState(false);
   const modalRef = useRef();
-
-  const toggleTheme = () => {
-    setTheme(theme === "dark" ? "light" : "dark");
-  };
 
   const toggleModal = () => {
     setIsModalActive(!isModalActive);
@@ -42,16 +37,7 @@ const Home = () => {
 
   return (
     <>
-      <header className="fixed top-0 left-[50%] -translate-x-[50%] container w-full h-[60px] px-[4vw] flex items-center justify-between z-30">
-        <Link to="/" className="text-2xl dark:text-white">
-          {chatbotConfig.name}
-        </Link>
-        <div className="" onClick={toggleTheme}>
-          <button className="text-2xl rounded-full hover:bg-surface dark:hover:bg-dm-surface p-2 [&>svg>path]:dark:text-white [&>svg>circle]:dark:text-white">
-            {theme === "light" ? <LuMoon /> : <LuSun />}
-          </button>
-        </div>
-      </header>
+      <Header />
       <main className="container w-full h-screen flex flex-col-reverse lg:flex-row justify-center lg:justify-between xl:justify-around lg:items-center px-[8vw] gap-6 xl:gap-16 2xl:px-52 ">
         <section className="max-w-[400px]">
           <div className="">
@@ -94,46 +80,13 @@ const Home = () => {
         className={`${isModalActive ? "animate-open-modal opacity-100 visible" : "opacity-0 invisible"} fixed top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%] w-[1200px] h-[800px] bg-surface dark:bg-dm-surface z-40 py-20 px-16 rounded-xl`}
       >
         <div className="text-4xl w-max dark:text-white">
-          <h1 className="">You can ask me about,</h1>
+          <h1>Hello Bacooreños!</h1>
+          <h2 className="opacity-70">You can ask me about,</h2>
         </div>
-        <GridUI className="grid-cols-3 gap-8 mt-16">
-          <div className="">
-            <h3 className="text-center text-xl text-black/70 dark:text-white/70 capitalize">
-              Bacoor City Hall
-            </h3>
-            <Link
-              to="/bacoor-gov"
-              className="relative max-w-[400px] max-h-[150px] flex justify-center items-center bg-dm-surface-dark rounded-lg overflow-hidden group"
-            >
-              <img
-                src={Cityhall}
-                alt=""
-                className="w-[400px] h-[150px] object-cover opacity-90 group-hover:opacity-30"
-              />
-              <h3 className="absolute opacity-0 group-hover:opacity-100 text-white text-3xl">
-                Bacoor City Hall
-              </h3>
-            </Link>
-          </div>
-          <div className="">
-            <h3 className="text-center text-xl text-black/70 dark:text-white/70 capitalize">
-              Coming soon
-            </h3>
-            <Link
-              to="/bacoor-gov"
-              className="relative max-w-[400px] max-h-[150px] flex justify-center items-center bg-dm-surface-dark rounded-lg overflow-hidden group"
-            >
-              <img
-                src={Cityhall}
-                alt=""
-                className="w-[400px] h-[150px] object-cover opacity-30 group-hover:opacity-20"
-              />
-              <h3 className="absolute opacity-100 text-white text-3xl">
-                Coming soon
-              </h3>
-            </Link>
-          </div>
-        </GridUI>
+        <Grid className="grid-cols-3 gap-8 mt-16">
+          <PageCard name="Bacoor city hall" img={Cityhall} />
+          <PageCard comingSoon />
+        </Grid>
         <button onClick={toggleModal}></button>
       </section>
       <ScreenDim
