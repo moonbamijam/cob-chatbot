@@ -11,7 +11,7 @@ export default {
         "primary-light": "#27A3FF",
         secondary: "#EAB308",
         tertiary: "#EE3851",
-        background: "FDFCFA",
+        background: "#FDFCFA",
         surface: "#E9E9E9",
         "surface-dark": "#c2c2c2",
         error: "#EF4444",
