@@ -162,13 +162,23 @@ const useChatbot = () => {
         // will improve this later
         const intentRecognizedByBot = data.response.intent;
         const botAnswer = data.response.answer;
-        const botMessageInfo = {
-          intent: intentRecognizedByBot,
-          message: botAnswer,
-          messageId: uuid(),
-          role: "bot",
-          timeSent: Timestamp.now(),
-        };
+        let botMessageInfo = {};
+        if (intentRecognizedByBot == "None") {
+          botMessageInfo = {
+            intent: intentRecognizedByBot,
+            message: chatbotConfig.errorMessage,
+            messageId: uuid(),
+            role: "bot",
+            timeSent: Timestamp.now(),
+          };
+        } else
+          botMessageInfo = {
+            intent: intentRecognizedByBot,
+            message: botAnswer,
+            messageId: uuid(),
+            role: "bot",
+            timeSent: Timestamp.now(),
+          };
         if (hasSymbol(botAnswer)) {
           const botHasMultipleMessage = splitMessage(botAnswer);
           botHasMultipleMessage.forEach(async (response, i) => {

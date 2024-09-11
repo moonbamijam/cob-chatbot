@@ -10,4 +10,6 @@ export const chatbotConfig = {
   introduction: "The interactive chatbot for the city of Bacoor, Cavite.",
   initialGreet:
     "👋 Hello there! My name is Viviane, your friendly chatbot assistant. Welcome to our conversation! Whether you're here for assistance or information I'm here to help. Feel free to ask me anything or simply say hi.",
+  errorMessage:
+    "Sorry, I can't seem to understand what your saying. Could you please try it again?",
 };
