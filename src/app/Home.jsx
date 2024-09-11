@@ -1,5 +1,4 @@
-import { useState, useEffect, useRef, useContext } from "react";
-import { Link } from "react-router-dom";
+import { useState, useEffect, useRef } from "react";
 import { chatbotConfig } from "../lib/bot/chatbotConfig";
 
 // components
@@ -7,13 +6,15 @@ import { Button } from "../components/ui/Button";
 import ScreenDim from "../components/bot/ui/ScreenDim";
 import ImageCredits from "../components/bot/ui/ImageCredits";
 import Grid from "../components/common/Grid";
+import PageCard from "../components/cards/PageCard";
+import Header from "../components/header/Header";
 
 // assets
 import Bacoor from "../../static/assets/images/bacoor.jpg";
 import Cityhall from "../../static/assets/images/city-hall.jpg";
 
-import PageCard from "../components/cards/PageCard";
-import Header from "../components/header/Header";
+// icons
+import { CgClose } from "react-icons/cg";
 
 const Home = () => {
   const [isModalActive, setIsModalActive] = useState(false);
@@ -77,10 +78,18 @@ const Home = () => {
       </main>
       <section
         ref={modalRef}
-        className={`${isModalActive ? "animate-open-modal opacity-100 visible" : "opacity-0 invisible"} fixed top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%] w-[1200px] h-[800px] bg-surface dark:bg-dm-surface z-40 py-20 px-16 rounded-xl`}
+        className={`${isModalActive ? "animate-open-modal opacity-100 visible" : "opacity-0 invisible"} fixed top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%] w-[90%] max-w-[1200px] h-full max-h-[800px] flex flex-col bg-surface dark:bg-dm-surface z-40 px-8 py-10 xl:py-20 xl:px-16 rounded-xl`}
       >
+        <Button
+          onClick={toggleModal}
+          variant="icon"
+          size="icon"
+          className="sm:hidden border ml-auto text-black/50 border-error hover:bg-error [&>svg>path]:hover:text-white mb-6"
+        >
+          <CgClose />
+        </Button>
         <div className="flex justify-between items-center">
-          <div className="text-4xl w-max dark:text-white">
+          <div className="text-xl sm:text-2xl md:text-3xl xl:text-4xl w-max dark:text-white">
             <h1>Hello Bacooreños!</h1>
             <h2 className="opacity-70">You can ask me about,</h2>
           </div>
@@ -88,12 +97,12 @@ const Home = () => {
             onClick={toggleModal}
             variant="destructiveOutline"
             size="lg"
-            className={`hover:text-white ${!isModalActive && "pointer-events-none"}`}
+            className={`hidden sm:block hover:text-white ${!isModalActive && "pointer-events-none"}`}
           >
             back
           </Button>
         </div>
-        <Grid className="grid-cols-3 gap-8 mt-16">
+        <Grid className="lg:grid-cols-3 sm:justify-center gap-8 mt-8 xs:mt-10 xl:mt-16">
           <PageCard name="Bacoor city hall" img={Cityhall} />
           <PageCard comingSoon />
         </Grid>

@@ -1,5 +1,5 @@
 const Grid = ({ children, className }) => {
-  return <div className={`${className} inline-grid`}>{children}</div>;
+  return <div className={`inline-grid ${className}`}>{children}</div>;
 };
 
 export default Grid;
