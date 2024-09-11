@@ -2,10 +2,8 @@ import { useState, useEffect, useRef, useContext } from "react";
 import { Link } from "react-router-dom";
 import { chatbotConfig } from "../lib/bot/chatbotConfig";
 
-// context
-import { ThemesContext } from "../contexts/ThemesProvider";
-
 // components
+import { Button } from "../components/ui/Button";
 import ScreenDim from "../components/bot/ui/ScreenDim";
 import ImageCredits from "../components/bot/ui/ImageCredits";
 import Grid from "../components/common/Grid";
@@ -51,12 +49,14 @@ const Home = () => {
           <p className="text-xl text-black/50 dark:text-white/50 mt-6">
             {chatbotConfig.introduction}
           </p>
-          <button
+          <Button
             onClick={toggleModal}
-            className="max-w-[200px] w-full py-4 mt-8 rounded-[64px] bg-primary hover:bg-primary-dark lg:text-lg 2xl:text-xl text-white capitalize"
+            variant="cta"
+            size="lg"
+            className="mt-8 rounded-[64px] bg-primary hover:bg-primary-dark lg:text-lg 2xl:text-xl text-white capitalize"
           >
             ask {chatbotConfig.name}
-          </button>
+          </Button>
         </section>
         <div>
           <div className="relative group">
@@ -87,7 +87,6 @@ const Home = () => {
           <PageCard name="Bacoor city hall" img={Cityhall} />
           <PageCard comingSoon />
         </Grid>
-        <button onClick={toggleModal}></button>
       </section>
       <ScreenDim
         className={`bg-black z-30 backdrop-blur ${

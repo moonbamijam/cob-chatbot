@@ -5,6 +5,9 @@ import { Link } from "react-router-dom";
 // context
 import { ThemesContext } from "../../contexts/ThemesProvider";
 
+// components
+import { Button } from "../ui/Button";
+
 // icons
 import { LuSun, LuMoon } from "react-icons/lu";
 
@@ -20,11 +23,14 @@ const Header = () => {
       <Link to="/" className="text-2xl dark:text-white">
         {chatbotConfig.name}
       </Link>
-      <div className="" onClick={toggleTheme}>
-        <button className="text-2xl rounded-full hover:bg-surface dark:hover:bg-dm-surface p-2 [&>svg>path]:dark:text-white [&>svg>circle]:dark:text-white">
-          {theme === "light" ? <LuMoon /> : <LuSun />}
-        </button>
-      </div>
+      <Button
+        onClick={toggleTheme}
+        variant="icon"
+        size="icon"
+        className=" hover:bg-surface dark:hover:bg-dm-surface [&>svg>path]:dark:text-white [&>svg>circle]:dark:text-white"
+      >
+        {theme === "light" ? <LuMoon /> : <LuSun />}
+      </Button>
     </header>
   );
 };
