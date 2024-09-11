@@ -8,6 +8,7 @@ import ArticleRight from "./articles/ArticleRight";
 
 // Assets
 import LandingImg from "../../../assets/images/landing.png";
+import CityHallBG from "../../../assets/images/bg.jpg";
 
 // Icons
 import { RiArrowLeftSLine, RiArrowRightSLine } from "react-icons/ri";
@@ -16,6 +17,10 @@ import Footer from "./footer/Footer";
 const CityHall = () => {
   return (
     <>
+      <img
+        src={CityHallBG}
+        className="fixed top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%] w-[100%] -z-50 bg-no-repeat bg-cover"
+      ></img>
       <span
         id="time-header-bg"
         className="hidden xl:block w-full h-6 bg-opaqueBlack absolute -z-10"
@@ -24,7 +29,7 @@ const CityHall = () => {
         <TimeHeader />
         <Logo />
       </Section>
-      <Section className="hidden xl:flex bg-white">
+      <Section className="container hidden xl:flex bg-white">
         <Header />
         <div id="latest-news" className="flex px-6 py-3">
           <div className="bg-black px-3 uppercase text-[#ff0202] font-bold text-sm rounded mr-5">
