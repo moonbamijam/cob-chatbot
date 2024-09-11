@@ -12,9 +12,6 @@ import FontProvider from "../contexts/FontProvider";
 import SoundProvider from "../contexts/SoundProvider";
 import ChatbotProvider from "../providers/ChatbotProvider";
 
-// style
-import "../styles/city-hall.css";
-
 const Home = () => {
   const [isChatActive, setIsChatActive] = useState(false);
   const [isSignedIn, setIsSignedIn] = useState(false);
@@ -54,7 +51,9 @@ const Home = () => {
               <SoundProvider>
                 {isSignedIn ? (
                   <ChatHead state={isChatActive} onClick={() => toggleChat()} />
-                ) : null}
+                ) : (
+                  console.log("Oops, can't sign in")
+                )}
                 <ChatBox
                   className={
                     isChatActive
