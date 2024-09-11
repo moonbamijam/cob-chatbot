@@ -52,7 +52,7 @@ const Home = () => {
           <Button
             onClick={toggleModal}
             variant="cta"
-            size="lg"
+            size="xl"
             className="mt-8 rounded-[64px] bg-primary hover:bg-primary-dark lg:text-lg 2xl:text-xl text-white capitalize"
           >
             ask {chatbotConfig.name}
@@ -79,9 +79,19 @@ const Home = () => {
         ref={modalRef}
         className={`${isModalActive ? "animate-open-modal opacity-100 visible" : "opacity-0 invisible"} fixed top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%] w-[1200px] h-[800px] bg-surface dark:bg-dm-surface z-40 py-20 px-16 rounded-xl`}
       >
-        <div className="text-4xl w-max dark:text-white">
-          <h1>Hello Bacooreños!</h1>
-          <h2 className="opacity-70">You can ask me about,</h2>
+        <div className="flex justify-between items-center">
+          <div className="text-4xl w-max dark:text-white">
+            <h1>Hello Bacooreños!</h1>
+            <h2 className="opacity-70">You can ask me about,</h2>
+          </div>
+          <Button
+            onClick={toggleModal}
+            variant="destructiveOutline"
+            size="lg"
+            className="hover:text-white"
+          >
+            back
+          </Button>
         </div>
         <Grid className="grid-cols-3 gap-8 mt-16">
           <PageCard name="Bacoor city hall" img={Cityhall} />
