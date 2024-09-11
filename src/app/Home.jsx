@@ -54,7 +54,7 @@ const Home = () => {
             onClick={toggleModal}
             variant="cta"
             size="xl"
-            className="mt-8 rounded-[64px] bg-primary hover:bg-primary-dark lg:text-lg 2xl:text-xl text-white capitalize"
+            className="h-max mt-8 rounded-[64px] bg-primary hover:bg-primary-dark lg:text-lg 2xl:text-xl text-white capitalize"
           >
             ask {chatbotConfig.name}
           </Button>
