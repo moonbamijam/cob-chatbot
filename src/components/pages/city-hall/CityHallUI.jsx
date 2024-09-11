@@ -16,11 +16,7 @@ import Footer from "./footer/Footer";
 
 const CityHall = () => {
   return (
-    <>
-      <img
-        src={CityHallBG}
-        className="fixed top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%] w-[100%] -z-50 bg-no-repeat bg-cover"
-      ></img>
+    <div className="city-hall-page-body">
       <span
         id="time-header-bg"
         className="hidden xl:block w-full h-6 bg-opaqueBlack absolute -z-10"
@@ -65,7 +61,7 @@ const CityHall = () => {
       <Section className="hidden xl:flex bg-footerOpaqueBlack">
         <Footer />
       </Section>
-    </>
+    </div>
   );
 };
 

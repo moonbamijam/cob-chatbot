@@ -1,4 +1,5 @@
 @import url("./animations.css");
+@import url("./custom-media-query.css");
 
 @tailwind base;
 @tailwind components;
@@ -72,6 +73,12 @@
     src:
       local("Helvetica Light"),
       url("/static/fonts/helvetica-light-587ebe5a59211.woff") format("woff");
+  }
+}
+
+@layer components {
+  .city-hall-page-body {
+    @apply bg-city-hall bg-no-repeat bg-cover bg-top bg-fixed;
   }
 }
 
