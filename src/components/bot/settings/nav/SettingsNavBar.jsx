@@ -67,7 +67,7 @@ const SettingsNavBar = ({ state, handleSettingsChange, changeSetting }) => {
           </SettingsNavSection>
         </div>
         <Version
-          className="text-xs px-4 text-black/60 dark:text-white/50 mt-auto"
+          className="text-xs px-2 md:px-4 text-black/60 dark:text-white/50 mt-auto"
           text={`${isSideNavActive ? "Version " : "v"}`}
         />
       </nav>

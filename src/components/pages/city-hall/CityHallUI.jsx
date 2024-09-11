@@ -7,15 +7,16 @@ import ArticleLeft from "./articles/ArticleLeft";
 import ArticleRight from "./articles/ArticleRight";
 
 // Assets
-import LandingImg from "../../assets/images/landing.png";
+import LandingImg from "../../../assets/images/landing.png";
+import CityHallBG from "../../../assets/images/bg.jpg";
 
 // Icons
 import { RiArrowLeftSLine, RiArrowRightSLine } from "react-icons/ri";
 import Footer from "./footer/Footer";
 
-const Page = () => {
+const CityHall = () => {
   return (
-    <>
+    <div className="city-hall-page-body">
       <span
         id="time-header-bg"
         className="hidden xl:block w-full h-6 bg-opaqueBlack absolute -z-10"
@@ -24,7 +25,7 @@ const Page = () => {
         <TimeHeader />
         <Logo />
       </Section>
-      <Section className="hidden xl:flex bg-white">
+      <Section className="container hidden xl:flex bg-white">
         <Header />
         <div id="latest-news" className="flex px-6 py-3">
           <div className="bg-black px-3 uppercase text-[#ff0202] font-bold text-sm rounded mr-5">
@@ -60,8 +61,8 @@ const Page = () => {
       <Section className="hidden xl:flex bg-footerOpaqueBlack">
         <Footer />
       </Section>
-    </>
+    </div>
   );
 };
 
-export default Page;
+export default CityHall;

@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { chatbotConfig } from "../../../lib/bot/chatbotConfig";
 
 const MiniProfile = ({ state, className, miniProfileRef }) => {
@@ -25,6 +26,12 @@ const MiniProfile = ({ state, className, miniProfileRef }) => {
           </p>
         )}
       </div>
+      <Link
+        to="/"
+        className="hover:underline text-primary dark:text-primary-light capitalize mb-8"
+      >
+        back to homepage
+      </Link>
       <hr className="w-full" />
     </section>
   );

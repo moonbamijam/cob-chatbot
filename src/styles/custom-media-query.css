@@ -2,13 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
-@media (min-width: 475px) {
-  body {
+@media (min-width: 0px) {
+  .city-hall-page-body {
     @apply bg-center;
   }
 }
+
 @media (min-width: 1536px) {
-  body {
+  .city-hall-page-body {
     @apply bg-top;
   }
 }

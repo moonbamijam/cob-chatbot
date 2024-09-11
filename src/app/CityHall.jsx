@@ -1,18 +1,18 @@
 import { useState, useRef, useEffect } from "react";
 import { getAuth, signInAnonymously } from "firebase/auth";
 
-import ChatHead from "./components/bot/ChatHead";
-import ChatBox from "./components/bot/ChatBox";
-import Page from "./components/page/Page";
-import ScreenDim from "./components/bot/ui/ScreenDim";
+import ChatHead from "../components/bot/ChatHead";
+import ChatBox from "../components/bot/ChatBox";
+import ScreenDim from "../components/bot/ui/ScreenDim";
+
+import CityHallUI from "../components/pages/city-hall/CityHallUI";
 
 // Contexts
-import ThemesProvider from "./contexts/ThemesProvider";
-import FontProvider from "./contexts/FontProvider";
-import SoundProvider from "./contexts/SoundProvider";
-import ChatbotProvider from "./providers/ChatbotProvider";
+import FontProvider from "../contexts/FontProvider";
+import SoundProvider from "../contexts/SoundProvider";
+import ChatbotProvider from "../providers/ChatbotProvider";
 
-const App = () => {
+const Home = () => {
   const [isChatActive, setIsChatActive] = useState(false);
   const [isSignedIn, setIsSignedIn] = useState(false);
   const chatHead = useRef();
@@ -47,29 +47,26 @@ const App = () => {
       <main className="flex flex-col">
         <div ref={chatHead}>
           <ChatbotProvider>
-            <ThemesProvider>
-              <FontProvider>
-                <SoundProvider>
-                  {isSignedIn ? (
-                    <ChatHead
-                      state={isChatActive}
-                      onClick={() => toggleChat()}
-                    />
-                  ) : null}
-                  <ChatBox
-                    className={
-                      isChatActive
-                        ? "opacity-100 visible"
-                        : "opacity-0 -translate-y-[100%] invisible"
-                    }
-                    closeUsing={toggleChat}
-                  />
-                </SoundProvider>
-              </FontProvider>
-            </ThemesProvider>
+            <FontProvider>
+              <SoundProvider>
+                {isSignedIn ? (
+                  <ChatHead state={isChatActive} onClick={() => toggleChat()} />
+                ) : (
+                  console.log("Oops, can't sign in")
+                )}
+                <ChatBox
+                  className={
+                    isChatActive
+                      ? "opacity-100 visible"
+                      : "opacity-0 -translate-y-[100%] invisible"
+                  }
+                  closeUsing={toggleChat}
+                />
+              </SoundProvider>
+            </FontProvider>
           </ChatbotProvider>
         </div>
-        <Page />
+        <CityHallUI />
         <ScreenDim
           message="Click anywhere to close."
           className={`bg-black z-50 backdrop-blur ${
@@ -81,4 +78,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default Home;

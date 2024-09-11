@@ -51,8 +51,7 @@ const Messages = ({ botIsTyping, latestMessage }) => {
     const chatBoxHeight = e.target.scrollTop;
 
     // handles the scroll to latest arrow button
-    if ((chatBoxHeight >= 0 && chatBoxHeight <= 50) || chatBoxHeight <= 800)
-      setBackToView("show");
+    if (chatBoxHeight >= 0 && chatBoxHeight <= 50) setBackToView("show");
     else if (chatBoxHeight <= 100 || chatBoxHeight == chatBoxHeight)
       setBackToView("hide");
 

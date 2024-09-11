@@ -1,7 +1,7 @@
-import ArticleImageOne from "../../../assets/articles/article-image-1.jpg";
-import ArticleImageTwo from "../../../assets/articles/article-image-2.png";
-import ArticleImageThree from "../../../assets/articles/article-image-3.png";
-import ArticleImageFour from "../../../assets/articles/article-image-4.png";
+import ArticleImageOne from "../../../../assets/articles/article-image-1.jpg";
+import ArticleImageTwo from "../../../../assets/articles/article-image-2.png";
+import ArticleImageThree from "../../../../assets/articles/article-image-3.png";
+import ArticleImageFour from "../../../../assets/articles/article-image-4.png";
 
 const ArticleLeft = () => {
   return (

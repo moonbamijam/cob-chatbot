@@ -1,6 +1,5 @@
 /* eslint-disable no-undef */
 /** @type {import('tailwindcss').Config} */
-const colors = require("tailwindcss/colors");
 export default {
   darkMode: "class",
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
@@ -11,7 +10,8 @@ export default {
         "primary-dark": "#2F5CEA",
         "primary-light": "#27A3FF",
         secondary: "#EAB308",
-        background: colors.white,
+        tertiary: "#EE3851",
+        background: "#FDFCFA",
         surface: "#E9E9E9",
         "surface-dark": "#c2c2c2",
         error: "#EF4444",
@@ -30,20 +30,21 @@ export default {
         xs: "475px",
         "3xl": "1920px",
       },
+      animation: {
+        "open-modal": "open-modal 500ms ease-in-out",
+        "close-modal": "close-modal 500ms ease-in-out",
+      },
       backgroundImage: {
         "city-hall": "url(/src/assets/images/bg.jpg)",
       },
       fontFamily: {
-        raleway: [
-          "Raleway",
-          "ui-sans-serif",
-          "system-ui",
-          "sans-serif",
-          "Apple Color Emoji",
-          "Segoe UI Emoji",
-          "Segoe UI Symbol",
-          "Noto Color Emoji",
-        ],
+        helvetica: "Helvetica",
+        "helvetica-oblique": "Helvetica Oblique",
+        "helvetica-compressed": "Helvetica Compressed",
+        "helvetica-rounded-bold": "Helvetica Rounded Bold",
+        "helvetica-bold": "Helvetica Bold",
+        "helvetica-bold-oblique": "Helvetica Bold Oblique",
+        "helvetica-light": "Helvetica Light",
       },
       backdropBlur: {
         xs: "2px",
