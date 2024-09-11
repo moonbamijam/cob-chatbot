@@ -88,7 +88,7 @@ const Home = () => {
             onClick={toggleModal}
             variant="destructiveOutline"
             size="lg"
-            className="hover:text-white"
+            className={`hover:text-white ${!isModalActive && "pointer-events-none"}`}
           >
             back
           </Button>
