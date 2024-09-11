@@ -4,13 +4,13 @@ import { chatbotConfig } from "../lib/bot/chatbotConfig";
 // components
 import { Button } from "../components/ui/Button";
 import ScreenDim from "../components/bot/ui/ScreenDim";
-import ImageCredits from "../components/bot/ui/ImageCredits";
 import Grid from "../components/common/Grid";
 import PageCard from "../components/cards/PageCard";
 import Header from "../components/header/Header";
 
 // assets
-import Bacoor from "../../static/assets/images/bacoor.jpg";
+import LandingCoverLight from "../../static/assets/gif/landing-convo-light.gif";
+import LandingCoverDark from "../../static/assets/gif/landing-convo-dark.gif";
 import Cityhall from "../../static/assets/images/city-hall.jpg";
 
 // icons
@@ -37,17 +37,17 @@ const Home = () => {
   return (
     <>
       <Header />
-      <main className="container w-full h-screen flex flex-col-reverse lg:flex-row justify-center lg:justify-between xl:justify-around lg:items-center px-[8vw] gap-6 xl:gap-16 2xl:px-52 ">
+      <main className="container w-full h-screen flex flex-col-reverse lg:flex-row justify-center lg:justify-between 2xl:justify-around lg:items-center px-[2vw] lg:px-[4vw] 2xl:px-[8vw] gap-6">
         <section className="max-w-[400px]">
           <div className="">
             <h1 className="w-max font-helvetica text-6xl md:text-7xl lg:text-8xl xl:text-9xl bg-gradient-to-tr from-primary from-35% via-tertiary via-70% to-secondary bg-clip-text text-transparent">
               {chatbotConfig.name}
             </h1>
-            <p className="text-2xl lg:text-3xl 2xl:text-4xl dark:text-white">
+            <p className="text-2xl lg:text-3xl 2xl:text-4xl dark:text-white max-w-[350px]">
               {chatbotConfig.slogan}
             </p>
           </div>
-          <p className="text-xl text-black/50 dark:text-white/50 mt-6">
+          <p className="text-xl text-black/50 dark:text-white/50 mt-6 max-w-[350px]">
             {chatbotConfig.introduction}
           </p>
           <Button
@@ -62,16 +62,18 @@ const Home = () => {
         <div>
           <div className="relative group">
             <img
-              src={Bacoor}
+              src={LandingCoverLight}
               alt="City Hall"
-              width={500}
-              height={350}
-              className="2xl:w-[500px] 2xl:h-[350px] max-w-[500px max-h-[350px] rounded-2xl object-cover"
+              width={550}
+              height={800}
+              className="dark:hidden lg:border border-surface p-2 lg:w-full max-h-[500px] lg:h-full lg:max-w-[550]px lg:max-h-[800px] rounded-2xl object-contain lg:object-cover"
             />
-            <ImageCredits
-              link="https://www.google.com/url?sa=i&url=https%3A%2F%2Fmedium.com%2F%40silayushi%2Fbacoor-city-a-journey-through-history-progress-and-community-4a06c6cda9c1&psig=AOvVaw2dXhahggF8q0w2UCgERnl0&ust=1726067665394000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCPDG76LVuIgDFQAAAAAdAAAAABAn"
-              displayedText="source"
-              className="bottom-0 py-2 px-4 text-white opacity-0 hover:underline group-hover:opacity-100"
+            <img
+              src={LandingCoverDark}
+              alt="City Hall"
+              width={550}
+              height={800}
+              className="hidden lg:border dark:border-dm-surface p-2 dark:block lg:w-full max-h-[500px] lg:h-full lg:max-w-[550]px lg:max-h-[800px] rounded-2xl object-contain lg:object-cover"
             />
           </div>
         </div>
