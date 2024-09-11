@@ -7,7 +7,7 @@ import ThemesProvider from "./contexts/ThemesProvider.jsx";
 
 // pages
 import Home from "./app/Home.jsx";
-import CityHall from "./components/pages/city-hall/CityHallUI.jsx";
+import CityHall from "./app/CityHall.jsx";
 import Error from "./app/Error.jsx";
 
 // css
