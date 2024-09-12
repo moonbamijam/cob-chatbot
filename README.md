@@ -1,6 +1,6 @@
 <h1 align="center">Interactive Chatbot for the City of Bacoor, Cavite</h1>
 
-![masterhead](https://github.com/user-attachments/assets/4c64f1e7-7e5c-41a5-9579-07ebcdb06dfd)
+![masterhead](https://github.com/user-attachments/assets/187eea3f-7496-4b82-a24c-3b8d8e5c1ee7)
 
 ###
 
@@ -60,7 +60,6 @@ Or if you have turbo installed globally:
 
 Talk to the chatbot!
 
-![9-04-2024 (00-06-38)](https://github.com/user-attachments/assets/3d43c63d-805a-4067-9653-b6967357764e)
 
 ###
 
