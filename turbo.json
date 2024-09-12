@@ -24,7 +24,16 @@
       "dependsOn": ["lint"]
     },
     "preview": {
-      "dependsOn": ["build"]
+      "dependsOn": ["build"],
+      "env": [
+        "VITE_API_KEY",
+        "AUTH_DOMAIN",
+        "VITE_PROJECT_ID",
+        "STORAGE_BUCKET",
+        "MESSAGING_SENDER_ID",
+        "APP_ID",
+        "MEASUREMENT_ID"
+      ]
     }
   }
 }
