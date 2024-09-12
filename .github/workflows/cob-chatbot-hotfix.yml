@@ -7,7 +7,7 @@ on:
     branches:
       - 'hotfix/**'
 jobs:
-  Deploy-Production:
+  Preview-Hotfix:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
