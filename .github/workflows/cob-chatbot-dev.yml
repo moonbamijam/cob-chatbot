@@ -1,0 +1,31 @@
+name: COB Chatbot Dev
+env:
+  VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+  VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+on:
+  pull_request:
+    branches-ignore:
+      - 'main'
+
+jobs:
+  Preview-Development:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v3
+        with:
+          version: 9
+
+      - name: Install Vercel CLI
+        run: npm install --global vercel@latest
+
+      - name: Pull Vercel Environment Information
+        run: vercel pull --yes --environment=development --token=${{ secrets.COB_CHATBOT_VERCEL }}
+
+      - name: Build Project Artifacts
+        run: vercel build --token=${{ secrets.COB_CHATBOT_VERCEL }}
+
+      - name: Deploy Project Artifacts to Vercel
+        run: vercel deploy --prebuilt --token=${{ secrets.COB_CHATBOT_VERCEL }}
