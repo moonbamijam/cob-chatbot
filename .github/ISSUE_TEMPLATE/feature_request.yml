@@ -1,5 +1,5 @@
 name: Feature request
-about: Suggest an idea for this project
+description: Suggest an idea for COB Chatbot!
 labels: "feature"
 
 body:
@@ -9,10 +9,17 @@ body:
         Thank you for your time helping COB Chatbot improve!
 
   - type: textarea
-      id: description
-      attributes:
-        label: Description
-        description: Please describe the feature you want us to add.
-        placeholder: Start by adding...
-      validations:
-        required: true
+    attributes:
+      label: Description
+      description: Please describe the feature you want us to add.
+      placeholder: Start by adding...
+    validations:
+      required: true
+
+  - type: textarea
+    attributes:
+      label: Reason(s) for adding
+      description: Is there any reason for us to add this feature? So that we can add this asap.
+      placeholder: Yes, because...
+    validations:
+      required: false

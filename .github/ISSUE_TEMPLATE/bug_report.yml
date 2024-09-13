@@ -1,5 +1,5 @@
 name: Bug report
-about: Report a bug to help tsukiwa improve!
+description: Report a bug to help COB Chatbot improve!
 labels: "bug"
 
 body:
@@ -9,28 +9,27 @@ body:
         Thank you for your time helping COB Chatbot improve!
 
   - type: textarea
-      id: description
-      attributes:
-        label: Description
-        description: Please describe the bug and how did it happen.
-        placeholder: It start off with...
-      validations:
-        required: true
+    attributes:
+      label: Description
+      description: Please describe the bug and how did it happen.
+      placeholder: It start off with...
+    validations:
+      required: true
 
   - type: dropdown
-      id: device
-      attributes:
-        label: Device
-        description: Type of device used.
-        multiple: true
-        options:
-          - Mobile
-          - PC
-      validations:
-        required: false
+    attributes:
+      label: Device(s)
+      description: Type of device(s) used.
+      multiple: true
+      options:
+        - Mobile
+        - PC
+    validations:
+      required: false
 
   - type: textarea
-      id: environment
+    attributes:
+      label: Device Version
       description: |
         e.g:
           - **OS**: Windows 10 / Android(is using mobile)
@@ -44,9 +43,8 @@ body:
       required: false
 
   - type: textarea
-      id: screenshotvid
-      attributes:
-        label: Screenshots or Videos
-        description: You can provide screenshots or videos to let us find it quicker.
-      validations:
+    attributes:
+      label: Screenshots or Videos
+      description: You can provide screenshots or videos to let us find it quicker.
+    validations:
       required: false
