@@ -1,6 +1,6 @@
 <h1 align="center">Interactive Chatbot for the City of Bacoor, Cavite</h1>
 
-![masterhead](https://github.com/user-attachments/assets/187eea3f-7496-4b82-a24c-3b8d8e5c1ee7)
+![masterhead](https://github.com/user-attachments/assets/ec71a2ed-957e-4baf-a3ed-ddbea6ed0eb3)
 
 ###
 
