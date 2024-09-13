@@ -18,8 +18,8 @@ body:
 
   - type: dropdown
     attributes:
-      label: Device
-      description: Type of device used.
+      label: Device(s)
+      description: Type of device(s) used.
       multiple: true
       options:
         - Mobile
