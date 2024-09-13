@@ -37,45 +37,43 @@ const Home = () => {
   return (
     <>
       <Header />
-      <main className="container w-full h-screen flex flex-col-reverse lg:flex-row justify-center lg:justify-between 2xl:justify-around lg:items-center px-[2vw] lg:px-[4vw] 2xl:px-[8vw] gap-6">
+      <main className="container w-full h-screen flex flex-col-reverse lg:flex-row justify-center lg:justify-between 2xl:justify-around lg:items-center px-[2vw] lg:px-[4vw] 2xl:px-[6vw] gap-6">
         <section className="max-w-[400px]">
           <div className="">
-            <h1 className="w-max font-helvetica text-6xl md:text-7xl lg:text-8xl xl:text-9xl bg-gradient-to-tr from-primary from-35% via-tertiary via-70% to-secondary bg-clip-text text-transparent">
+            <h1 className="w-max font-helvetica text-6xl md:text-7xl lg:text-8xl xl:text-9xl bg-gradient-to-tr from-primary from-35% via-tertiary via-70% to-secondary bg-clip-text text-transparent cursor-default select-none">
               {chatbotConfig.name}
             </h1>
-            <p className="text-2xl lg:text-3xl 2xl:text-4xl dark:text-white max-w-[350px]">
+            <p className="text-2xl lg:text-3xl 2xl:text-4xl ml-2 dark:text-white max-w-[350px]">
               {chatbotConfig.slogan}
             </p>
           </div>
-          <p className="text-xl text-black/50 dark:text-white/50 mt-6 max-w-[350px]">
+          <p className="text-xl text-black/50 dark:text-white/50 ml-2 mt-6 max-w-[350px]">
             {chatbotConfig.introduction}
           </p>
           <Button
             onClick={toggleModal}
             variant="cta"
             size="xl"
-            className="h-max mt-8 rounded-[64px] bg-primary hover:bg-primary-dark lg:text-lg 2xl:text-xl text-white capitalize"
+            className="h-max mt-8 rounded-[64px] ml-2 bg-primary hover:bg-primary-dark lg:text-lg 2xl:text-xl text-white capitalize"
           >
             ask {chatbotConfig.name}
           </Button>
         </section>
-        <div>
-          <div className="relative group">
-            <img
-              src={LandingCoverLight}
-              alt="City Hall"
-              width={550}
-              height={800}
-              className="dark:hidden lg:border border-surface p-2 lg:w-full max-h-[500px] lg:h-full lg:max-w-[550]px lg:max-h-[800px] rounded-2xl object-contain lg:object-cover"
-            />
-            <img
-              src={LandingCoverDark}
-              alt="City Hall"
-              width={550}
-              height={800}
-              className="hidden lg:border dark:border-dm-surface p-2 dark:block lg:w-full max-h-[500px] lg:h-full lg:max-w-[550]px lg:max-h-[800px] rounded-2xl object-contain lg:object-cover"
-            />
-          </div>
+        <div className="relative group lg:border border-surface dark:border-dm-surface rounded-2xl w-max h-max">
+          <img
+            src={LandingCoverLight}
+            alt="City Hall"
+            width={400}
+            height={800}
+            className="dark:hidden p-2 lg:w-full max-h-[500px] lg:h-full lg:max-w-[400]px lg:max-h-[800px] rounded-2xl object-contain lg:object-cover"
+          />
+          <img
+            src={LandingCoverDark}
+            alt="City Hall"
+            width={400}
+            height={800}
+            className="hidden p-2 dark:block lg:w-full max-h-[500px] lg:h-full lg:max-w-[400]px lg:max-h-[800px] rounded-2xl object-contain lg:object-cover"
+          />
         </div>
       </main>
       <section
