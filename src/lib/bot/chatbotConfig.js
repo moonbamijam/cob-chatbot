@@ -1,4 +1,4 @@
-import chatbotLogo from "../../assets/images/bacoor-mayor-vmayor.jpg";
+import chatbotLogo from "../../../static/assets/images/logo.png";
 
 export const chatbotConfig = {
   url: import.meta.env.VITE_CHATBOT_API_URL,
