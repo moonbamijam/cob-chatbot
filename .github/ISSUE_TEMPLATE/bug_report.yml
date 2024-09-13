@@ -1,5 +1,5 @@
 name: Bug report
-about: Report a bug to help tsukiwa improve!
+description: Report a bug to help tsukiwa improve!
 labels: "bug"
 
 body:
@@ -29,6 +29,7 @@ body:
 
   - type: textarea
     attributes:
+      label: Device Version
       description: |
         e.g:
           - **OS**: Windows 10 / Android(is using mobile)
@@ -46,4 +47,4 @@ body:
       label: Screenshots or Videos
       description: You can provide screenshots or videos to let us find it quicker.
     validations:
-    required: false
+      required: false
