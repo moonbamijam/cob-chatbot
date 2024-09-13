@@ -5,7 +5,7 @@ export const chatbotConfig = {
   logo: chatbotLogo,
   name: "Libra",
   nickName: "Libra",
-  slogan: "Tanong mo, sagot ko. Dahil at home ka dito!",
+  slogan: "Tanong mo, sagot ko, dahil at home ka dito!",
   desc: "Introducing Bacoor, Cavite's interactive chatbot. Libra, a chatbot tasked with responding to inquiries about Bacoor.",
   introduction: "The interactive chatbot for the city of Bacoor, Cavite.",
   initialGreet:
