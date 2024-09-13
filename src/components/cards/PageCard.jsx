@@ -1,5 +1,3 @@
-import { Link } from "react-router-dom";
-
 // assets
 import CityHallCloseUp from "../../../static/assets/images/default-page-card.jpg";
 
@@ -20,8 +18,8 @@ const PageCard = ({ img, name, comingSoon }) => {
       );
     } else {
       return (
-        <Link
-          to="/bacoor-gov"
+        <a
+          href="/bacoor-gov"
           className="relative w-full max-w-[400px] h-full max-h-[150px] flex justify-center items-center bg-dm-surface-dark rounded-lg overflow-hidden group"
         >
           <img
@@ -32,7 +30,7 @@ const PageCard = ({ img, name, comingSoon }) => {
           <h3 className="absolute opacity-100 group-hover:opacity-0 text-white text-3xl capitalize font-helvetica-rounded-bold">
             {name}
           </h3>
-        </Link>
+        </a>
       );
     }
   };

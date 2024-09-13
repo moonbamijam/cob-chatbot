@@ -43,22 +43,26 @@ const Messages = ({ botIsTyping, latestMessage }) => {
   );
 
   // for referencing html tags
+  const chatAreaRef = useRef(null);
   const scrollRef = useRef(null);
   const miniProfileRef = useRef(null);
 
   // handles infinite scrolling
   const handleScroll = async (e) => {
-    const chatBoxHeight = e.target.scrollTop;
+    const chatBoxScrollTop = e.target.scrollTop;
+    const componentFullHeight = e.target.scrollHeight;
+    const componentHalfHeight = (componentFullHeight - 457) / 2;
+    const totalChatsDisplayed = chatAreaRef.current.children.length;
 
     // handles the scroll to latest arrow button
-    if (chatBoxHeight >= 0 && chatBoxHeight <= 50) setBackToView("show");
-    else if (chatBoxHeight <= 100 || chatBoxHeight == chatBoxHeight)
-      setBackToView("hide");
+    if (chatBoxScrollTop <= componentHalfHeight && totalChatsDisplayed > 10) {
+      setBackToView("show");
+    } else setBackToView("hide");
 
     // checks wether is there more chats to load or no
     if (
       conversationToDisplay.length != conversation.length &&
-      chatBoxHeight <= 10
+      chatBoxScrollTop <= 10
     ) {
       console.log(`Getting ${step} chats`);
       setLoadingMoreChats(true);
@@ -124,7 +128,7 @@ const Messages = ({ botIsTyping, latestMessage }) => {
         {loadingMoreChats && <Loading />}
         <InternetProvider>
           {conversation ? (
-            <div id="messages" className="">
+            <div id="messages" ref={chatAreaRef}>
               {renderMessagesContent()}
               {botIsTyping && <Typing />}
             </div>

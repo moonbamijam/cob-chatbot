@@ -1,5 +1,23 @@
 # What's New
 
+## [2.1.1](https://github.com/moonbamijam/cob-chatbot/compare/v2.1.0...v2.1.1) (2024-09-12)
+
+
+### Bug Fixes
+
+* faqs menu can be selected by tab ([#93](https://github.com/moonbamijam/cob-chatbot/issues/93)) ([1d53e70](https://github.com/moonbamijam/cob-chatbot/commit/1d53e70f73398d9e78a90e424d560123c0cc29d0))
+* firebase insufficient permission ([#106](https://github.com/moonbamijam/cob-chatbot/issues/106)) ([be71f82](https://github.com/moonbamijam/cob-chatbot/commit/be71f82ecc599a026c6a1005be16418f3e6f3f1b))
+* landing cta button size in small screen ([6fe5fc8](https://github.com/moonbamijam/cob-chatbot/commit/6fe5fc8917062d10a6c5603016e8a0c30f702aaa))
+* link to homepage appears in chatbox ([ef4b88e](https://github.com/moonbamijam/cob-chatbot/commit/ef4b88ee0e31a29222c15925e00a9f4073655bf7))
+* undefined bot response ([#104](https://github.com/moonbamijam/cob-chatbot/issues/104)) ([01e934c](https://github.com/moonbamijam/cob-chatbot/commit/01e934c1616ca2edbdf2e434cc56d634f35f9c90)), closes [#99](https://github.com/moonbamijam/cob-chatbot/issues/99) [#99](https://github.com/moonbamijam/cob-chatbot/issues/99)
+
+
+### Features
+
+* add new landing page ([#95](https://github.com/moonbamijam/cob-chatbot/issues/95)) ([0521965](https://github.com/moonbamijam/cob-chatbot/commit/05219655573bdf8b83a9f46f2e3a6b5c62bea3b9)), closes [#44](https://github.com/moonbamijam/cob-chatbot/issues/44)
+* adjust landing page ui ([#103](https://github.com/moonbamijam/cob-chatbot/issues/103)) ([bda5f97](https://github.com/moonbamijam/cob-chatbot/commit/bda5f9721ffc41b155e8d9b1c5e80ce6d68db66a))
+* responsive modal ui ([#102](https://github.com/moonbamijam/cob-chatbot/issues/102)) ([cde05c3](https://github.com/moonbamijam/cob-chatbot/commit/cde05c3b615048f978b42201ce73dfbc0bfc6a71))
+
 # [2.1.0](https://github.com/moonbamijam/cob-chatbot/compare/v2.0.0...v2.1.0) (2024-09-09)
 
 
