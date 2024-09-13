@@ -34,6 +34,7 @@ const Messages = ({ botIsTyping, latestMessage }) => {
   const [error] = chatbot.error;
   const [displayedChats, setDisplayedChats] = useState(chatPerPage);
   const [loadingMoreChats, setLoadingMoreChats] = useState(false);
+  const [isOnLatest, setIsOnLatest] = useState(false);
   const { backToView, setBackToView, handleScrollIntoView } =
     useScrollIntoView();
 
@@ -54,22 +55,31 @@ const Messages = ({ botIsTyping, latestMessage }) => {
     const componentHalfHeight = (componentFullHeight - 457) / 2;
     const totalChatsDisplayed = chatAreaRef.current.children.length;
 
-    // handles the scroll to latest arrow button
-    if (chatBoxScrollTop <= componentHalfHeight && totalChatsDisplayed > 10) {
-      setBackToView("show");
-    } else setBackToView("hide");
+    try {
+      if (typeof latestMessage.current == "object") {
+        if (
+          chatBoxScrollTop <= componentHalfHeight &&
+          totalChatsDisplayed > 10
+        ) {
+          // handles the scroll to latest arrow button
+          setBackToView("show");
+        } else setBackToView("hide");
 
-    // checks wether is there more chats to load or no
-    if (
-      conversationToDisplay.length != conversation.length &&
-      chatBoxScrollTop <= 10
-    ) {
-      console.log(`Getting ${step} chats`);
-      setLoadingMoreChats(true);
-      await sleep(1); // mock loading
-      setLoadingMoreChats(false);
-      setDisplayedChats(displayedChats + step);
-      scrollInto(miniProfileRef);
+        // checks wether is there more chats to load or no
+        if (
+          conversationToDisplay.length != conversation.length &&
+          chatBoxScrollTop <= 10
+        ) {
+          console.log(`Getting ${step} chats`);
+          setLoadingMoreChats(true);
+          await sleep(1); // mock loading
+          setLoadingMoreChats(false);
+          setDisplayedChats(displayedChats + step);
+          scrollInto(miniProfileRef);
+        }
+      }
+    } catch (error) {
+      console.log(error);
     }
   };
 
