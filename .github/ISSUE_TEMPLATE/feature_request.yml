@@ -15,3 +15,11 @@ body:
       placeholder: Start by adding...
     validations:
       required: true
+
+  - type: textarea
+    attributes:
+      label: Reason(s) for adding
+      description: Is there any reason for us to add this feature? So that we can add this asap.
+      placeholder: Yes, because...
+    validations:
+      required: false
