@@ -62,7 +62,7 @@ const Messages = ({ botIsTyping, latestMessage }) => {
     // checks wether is there more chats to load or no
     if (
       conversationToDisplay.length != conversation.length &&
-      chatBoxHeight <= 10
+      chatBoxScrollTop <= 10
     ) {
       console.log(`Getting ${step} chats`);
       setLoadingMoreChats(true);
