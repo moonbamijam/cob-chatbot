@@ -9,9 +9,9 @@ body:
         Thank you for your time helping COB Chatbot improve!
 
   - type: textarea
-      attributes:
-        label: Description
-        description: Please describe the feature you want us to add.
-        placeholder: Start by adding...
-      validations:
-        required: true
+    attributes:
+      label: Description
+      description: Please describe the feature you want us to add.
+      placeholder: Start by adding...
+    validations:
+      required: true
