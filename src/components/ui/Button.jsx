@@ -6,7 +6,8 @@ import { cn } from "../../utils/cn";
 const buttonVariants = cva("w-full h-full rounded-full", {
   variants: {
     variant: {
-      default: "bg-surface dark:bg-dm-surface",
+      default:
+        "border dark:border-dm-surface-light bg-surface dark:bg-dm-surface",
       icon: "text-2xl rounded-full p-2 flex justify-center items-center",
       outline: "px-8 py-4 border border-primary",
       cta: "px-8 py-4 capitalize truncate",
