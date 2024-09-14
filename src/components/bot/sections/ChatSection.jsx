@@ -12,7 +12,7 @@ import {
 import { sleep } from "../../../utils/sleep";
 import { scrollInto } from "../../../utils/scrollInto";
 
-// Components
+// components
 import Error from "../ui/Error";
 import MiniProfile from "./MiniProfile";
 import Chat from "../Chat";
@@ -21,6 +21,8 @@ import ChatSkeleton from "../skeletons/ChatSkeleton";
 import Loading from "../ui/Loading";
 import Button from "../ui/Button";
 import useScrollIntoView from "../../../hooks/useScrollIntoView";
+
+// icons
 import { FaArrowDown } from "react-icons/fa6";
 
 import "../../../styles/utils.css";
@@ -28,15 +30,14 @@ import "../../../styles/utils.css";
 const chatPerPage = 15;
 const step = 10;
 
-const Messages = ({ botIsTyping, latestMessage }) => {
+const ChatSection = ({ botIsTyping, latestChat }) => {
   const { chatbot } = useContext(ChatbotContext);
   const [conversation] = chatbot.conversation;
   const [error] = chatbot.error;
-  const [displayedChats, setDisplayedChats] = useState(chatPerPage);
-  const [loadingMoreChats, setLoadingMoreChats] = useState(false);
-  const [isOnLatest, setIsOnLatest] = useState(false);
   const { backToView, setBackToView, handleScrollIntoView } =
     useScrollIntoView();
+  const [displayedChats, setDisplayedChats] = useState(chatPerPage);
+  const [loadingMoreChats, setLoadingMoreChats] = useState(false);
 
   // this holds the number of chats that only needed to display
   const conversationToDisplay = conversation.slice(
@@ -56,7 +57,7 @@ const Messages = ({ botIsTyping, latestMessage }) => {
     const totalChatsDisplayed = chatAreaRef.current.children.length;
 
     try {
-      if (typeof latestMessage.current == "object") {
+      if (typeof latestChat.current == "object") {
         if (
           chatBoxScrollTop <= componentHalfHeight &&
           totalChatsDisplayed > 10
@@ -83,7 +84,7 @@ const Messages = ({ botIsTyping, latestMessage }) => {
     }
   };
 
-  const renderMessagesContent = () => {
+  const renderChatsContent = () => {
     if (conversation) {
       return conversationToDisplay.map((convo) => {
         if (containsPlaceholder(convo.message)) {
@@ -122,12 +123,12 @@ const Messages = ({ botIsTyping, latestMessage }) => {
     <>
       <Button
         className={`${backToView} absolute bottom-[150px] animate-bounce bg-surface hover:bg-primary [&>svg>path]:hover:text-white dark:bg-dm-surface dark:border-transparent dark:hover:bg-dm-surface-dark [&>svg>path]:dark:hover:text-primary z-50`}
-        onClick={() => handleScrollIntoView(latestMessage)}
+        onClick={() => handleScrollIntoView(latestChat)}
       >
         <FaArrowDown />
       </Button>
       <section
-        className={`relative w-full xl:max-h-[612px] h-full px-4 py-6 overflow-y-scroll scrollbar-thin scrollbar-track-transparent scrollbar-thumb-surface-dark dark:scrollbar-thumb-dm-surface`}
+        className={`relative w-full xl:max-h-[600px] h-full px-4 py-6 overflow-y-scroll scrollbar-thin scrollbar-track-transparent scrollbar-thumb-surface-dark dark:scrollbar-thumb-dm-surface`}
         onScroll={handleScroll}
       >
         <div
@@ -139,7 +140,7 @@ const Messages = ({ botIsTyping, latestMessage }) => {
         <InternetProvider>
           {conversation ? (
             <div id="messages" ref={chatAreaRef}>
-              {renderMessagesContent()}
+              {renderChatsContent()}
               {botIsTyping && <Typing />}
             </div>
           ) : (
@@ -147,10 +148,10 @@ const Messages = ({ botIsTyping, latestMessage }) => {
           )}
           {error && <Error message={"something went wrong!"} />}
         </InternetProvider>
-        <div ref={latestMessage}></div>
+        <div ref={latestChat}></div>
       </section>
     </>
   );
 };
 
-export default Messages;
+export default ChatSection;

@@ -4,7 +4,7 @@ import themes from "../../../../../../static/settings/themes.json";
 
 // components
 import SettingsMiniTitle from "../../SettingsMiniTitle";
-import SettingsChangerBtn from "../../../buttons/SettingsChangerBtn";
+import RadioButton from "../../../buttons/RadioButton";
 import Grid from "../../../common/Grid";
 import SettingSwitch from "../../../sections/SettingSwitch";
 
@@ -41,7 +41,7 @@ const ThemeSwitch = () => {
       <SettingsMiniTitle text="theme" />
       <Grid>
         {themes.modes.map((th, id) => (
-          <SettingsChangerBtn
+          <RadioButton
             key={id}
             name="themes"
             id={th.value}

@@ -9,10 +9,10 @@ import { LuMenu } from "react-icons/lu";
 
 // components
 import ReactTextareaAutosize from "react-textarea-autosize";
-import SuggestedMessageBtn from "../buttons/SuggestedMessageBtn";
 import SampleBotChat from "./SampleBotChat";
 import SampleUserChat from "./SampleUserChat";
-import Button from "./Button";
+import { Button } from "../../ui/Button";
+import SuggestedChatButton from "../buttons/SuggestedChatButton";
 
 const ChatPreview = () => {
   const { font } = useContext(FontContext);
@@ -45,11 +45,11 @@ const ChatPreview = () => {
         <div className="w-full max-h-[612px] h-full px-4 py-6 overflow-y-scroll scrollbar-thin scrollbar-track-transparent scrollbar-thumb-surface-dark dark:scrollbar-thumb-dm-surface">
           <SampleUserChat
             style={{ fontSize: fontSize }}
-            message={`Sometimes, changing font sizes helps us to read text more clearly. Especially when we have eye problems 😵`}
+            message={`Sometimes, changing fonts helps us to read text clearly. Especially when we have eye problems 😵`}
           />
           <SampleUserChat
             style={{ fontSize: fontSize }}
-            message={`You'll see the messages you send to ${chatbotConfig.name} in this size.`}
+            message={`Your messages to ${chatbotConfig.name} will look like this.`}
           />
           <SampleBotChat
             style={{ fontSize: fontSize }}
@@ -57,17 +57,24 @@ const ChatPreview = () => {
           />
           <SampleBotChat
             style={{ fontSize: fontSize }}
-            message={`And when ${chatbotConfig.name} send a link message, it will look like this, `}
-            linkedMessage={"Click here to download"}
+            message={`And when ${chatbotConfig.name} send a link, it will look like this, `}
+            linkedMessage="Click here"
           />
         </div>
         <section className={`w-full flex justify-center gap-2 px-4 pt-2`}>
           {Messages.list.map((message, id) => (
-            <SuggestedMessageBtn key={id} message={message.displayedText} />
+            <SuggestedChatButton key={id}>
+              {message.displayedText}
+            </SuggestedChatButton>
           ))}
         </section>
         <div className="w-full flex justify-between items-center gap-1 px-2 py-2">
-          <Button type="button">
+          <Button
+            variant="icon"
+            size="icon"
+            className="text-primary hover:bg-surface dark:hover:bg-dm-surface"
+            type="button"
+          >
             <LuMenu />
           </Button>
           <label
@@ -81,7 +88,12 @@ const ChatPreview = () => {
               placeholder="Aa"
             />
           </label>
-          <Button>
+          <Button
+            variant="icon"
+            size="icon"
+            className="text-primary active:translate-x-2 hover:bg-surface dark:hover:bg-dm-surface cursor-pointer"
+            type="submit"
+          >
             <IoSend />
           </Button>
         </div>
@@ -109,11 +121,11 @@ const ChatPreview = () => {
         <div className="w-full max-h-[612px] h-full px-4 py-6 overflow-y-scroll scrollbar-thin scrollbar-track-transparent scrollbar-thumb-surface-dark dark:scrollbar-thumb-dm-surface">
           <SampleUserChat
             style={{ fontSize: fontSize }}
-            message={`Sometimes, changing font sizes helps us to read text more clearly. Especially when we have eye problems 😵`}
+            message={`Sometimes, changing fonts helps us to read text clearly. Especially when we have eye problems 😵`}
           />
           <SampleUserChat
             style={{ fontSize: fontSize }}
-            message={`You'll see the messages you send to ${chatbotConfig.name} in this size.`}
+            message={`Your messages to ${chatbotConfig.name} will look like this.`}
           />
           <SampleBotChat
             style={{ fontSize: fontSize }}
@@ -121,17 +133,24 @@ const ChatPreview = () => {
           />
           <SampleBotChat
             style={{ fontSize: fontSize }}
-            message={`And when ${chatbotConfig.name} send a link message, it will look like this, `}
-            linkedMessage={"Click here to download"}
+            message={`And when ${chatbotConfig.name} send a link, it will look like this, `}
+            linkedMessage="Click here"
           />
         </div>
         <section className={`w-full flex justify-center gap-2 px-4 pt-2`}>
           {Messages.list.map((message, id) => (
-            <SuggestedMessageBtn key={id} message={message.displayedText} />
+            <SuggestedChatButton key={id}>
+              {message.displayedText}
+            </SuggestedChatButton>
           ))}
         </section>
         <div className="w-full flex justify-between items-center gap-1 px-2 py-2">
-          <Button type="button">
+          <Button
+            variant="icon"
+            size="icon"
+            className="text-primary hover:bg-surface dark:hover:bg-dm-surface"
+            type="button"
+          >
             <LuMenu />
           </Button>
           <label
@@ -145,7 +164,12 @@ const ChatPreview = () => {
               placeholder="Aa"
             />
           </label>
-          <Button>
+          <Button
+            variant="icon"
+            size="icon"
+            className="text-primary active:translate-x-2 hover:bg-surface dark:hover:bg-dm-surface cursor-pointer"
+            type="submit"
+          >
             <IoSend />
           </Button>
         </div>

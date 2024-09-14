@@ -8,7 +8,7 @@ import {
 } from "../../../../../lib/settings/soundNotificationList";
 
 // components
-import SettingsChangerBtn from "../../../buttons/SettingsChangerBtn";
+import RadioButton from "../../../buttons/RadioButton";
 import SettingsMiniTitle from "../../SettingsMiniTitle";
 import useSound from "../../../../../hooks/useSound";
 import Grid from "../../../common/Grid";
@@ -51,7 +51,7 @@ const MessageSentSoundSwitch = () => {
       <SettingsMiniTitle text="message sent" />
       <Grid>
         {soundNotificationList.map((sound) => (
-          <SettingsChangerBtn
+          <RadioButton
             key={sound.value}
             name="message-sent-sounds"
             id={sound.value}

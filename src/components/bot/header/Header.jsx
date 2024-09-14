@@ -2,10 +2,13 @@
 import { chatbotConfig } from "../../../lib/bot/chatbotConfig";
 
 // components
-import CloseChatBtn from "../buttons/CloseChatBtn";
-import SettingsBtn from "../buttons/SettingsBtn";
+import { Button } from "../../ui/Button";
 
-const Header = ({ toggleSettings, settings, closeUsing }) => {
+// icons
+import { IoSettingsSharp } from "react-icons/io5";
+import { IoClose } from "react-icons/io5";
+
+const Header = ({ toggleSettings, closeUsing }) => {
   return (
     <header
       id="chat-ui-header"
@@ -27,9 +30,23 @@ const Header = ({ toggleSettings, settings, closeUsing }) => {
           {chatbotConfig.nickName}
         </h3>
       </button>
-      <menu className="flex gap-1 justify-end">
-        <SettingsBtn onClick={() => toggleSettings()} state={settings} />
-        <CloseChatBtn onClick={closeUsing} />
+      <menu className="flex gap-4 justify-end items-center">
+        <Button
+          variant="icon"
+          size="icon"
+          className="rounded-full hover:bg-primary hover:rotate-180 [&>svg>path]:hover:text-white [&>svg>path]:dark:text-white"
+          onClick={() => toggleSettings()}
+        >
+          <IoSettingsSharp />
+        </Button>
+        <Button
+          variant="icon"
+          size="icon"
+          className="rounded-full hover:bg-error group [&>svg>path]:hover:text-white [&>svg>path]:dark:text-white"
+          onClick={closeUsing}
+        >
+          <IoClose className="" />
+        </Button>
       </menu>
     </header>
   );
