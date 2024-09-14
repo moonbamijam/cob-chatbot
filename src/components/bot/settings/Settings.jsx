@@ -2,12 +2,15 @@ import { useState } from "react";
 import { chatbotConfig } from "../../../lib/bot/chatbotConfig";
 
 // components
+import { Button } from "../../ui/Button";
 import MiniProfile from "../sections/MiniProfile";
-import BackBtn from "../buttons/BackBtn";
 import ScreenDim from "../ui/ScreenDim";
 import SettingsNavBar from "./nav/SettingsNavBar";
 import AppearanceSettings from "./appearance/AppearanceSettings";
 import SoundSettings from "./sound/SoundSettings";
+
+// icons
+import { CgClose } from "react-icons/cg";
 
 const Settings = ({ settings, toggleSettings }) => {
   const [checked, setChecked] = useState("appearance");
@@ -56,11 +59,22 @@ const Settings = ({ settings, toggleSettings }) => {
         <div className="w-full px-6 xl:px-8 py-20 dark:bg-dm-background overflow-y-scroll scrollbar-thin scrollbar-track-transparent scrollbar-thumb-surface-dark dark:scrollbar-thumb-dm-surface-dark">
           {renderSettings()}
         </div>
-        <BackBtn
+        <Button
+          variant="destructiveOutline"
+          size="lg"
+          className="hidden sm:block absolute top-4 right-20"
           onClick={toggleSettings}
-          className={"absolute top-4 right-4"}
-          text={"back"}
-        />
+        >
+          back
+        </Button>
+        <Button
+          variant="icon"
+          size="icon"
+          className="sm:hidden border ml-auto text-error border-error hover:bg-error [&>svg>path]:hover:text-white absolute top-4 right-10"
+          onClick={toggleSettings}
+        >
+          <CgClose />
+        </Button>
       </section>
       <ScreenDim
         className={`${settings ? "backdrop-blur" : "opacity-0 invisible"} bg-black/30 z-[140]`}
