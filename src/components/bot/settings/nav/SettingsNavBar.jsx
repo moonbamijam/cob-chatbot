@@ -21,7 +21,6 @@ const SettingsNavBar = ({ state, handleSettingsChange, changeSetting }) => {
 
   useEffect(() => {
     const handleSideNav = (event) => {
-      console.log("running");
       if (!sideNavRef.current?.contains(event.target))
         setIsSideNavActive(false);
     };
