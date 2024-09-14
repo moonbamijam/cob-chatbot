@@ -10,7 +10,7 @@ import useChatbot from "../../hooks/useChatbot";
 import { scrollInto } from "../../utils/scrollInto";
 
 // Components
-import Messages from "./sections/Messages";
+import ChatSection from "./sections/ChatSection";
 import Header from "./header/Header";
 import MessageInput from "./input/MessageInput";
 import Settings from "./settings/Settings";
@@ -47,10 +47,10 @@ const ChatBox = ({ className, closeUsing }) => {
           settings={settings}
           closeUsing={closeUsing}
         />
-        <Messages
+        <ChatSection
           settings={settings}
           botIsTyping={botIsTyping}
-          latestMessage={latestMessage}
+          latestChat={latestMessage}
         />
         <SuggestedMessages
           sendMessageToBot={sendMessageToBot}
