@@ -9,18 +9,18 @@ const buttonVariants = cva("w-full h-full rounded-full", {
       default:
         "border dark:border-dm-surface-light bg-surface dark:bg-dm-surface",
       icon: "text-2xl rounded-full p-2 flex justify-center items-center",
-      outline: "px-8 py-4 border border-primary",
+      outline: "px-4 py-3 border border-primary",
       cta: "px-8 py-4 capitalize truncate",
       destructive: "px-8 py-4 bg-error hover:bg-error/80 capitalize",
       destructiveOutline:
-        "px-8 py-4 border border-error hover:text-white dark:text-white hover:bg-error capitalize",
+        "px-4 py-3 border border-error hover:text-white dark:text-white hover:bg-error capitalize",
     },
     size: {
       default: "max-w-[50px]",
       sm: "max-w-[30px]",
-      md: "max-w-[100px]",
-      lg: "max-w-[150px]",
-      xl: "max-w-[200px]",
+      md: "max-w-[100px] max-h-[40px]",
+      lg: "max-w-[150px] max-h-[60px]",
+      xl: "max-w-[200px] max-h-[80px]",
       icon: "max-w-[40px] max-h-[40px]",
     },
   },
