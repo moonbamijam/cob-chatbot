@@ -1,4 +1,4 @@
-import { Button, buttonVariants } from "../../ui/Button";
+import { buttonVariants } from "../../ui/Button";
 
 const SettingsBtn = ({ name, checkedIf, onClick, onChange, icon, state }) => {
   return (
