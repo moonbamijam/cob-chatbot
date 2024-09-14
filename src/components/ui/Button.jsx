@@ -16,7 +16,7 @@ const buttonVariants = cva("w-full h-full rounded-full", {
         "px-4 py-3 border border-error hover:text-white dark:text-white hover:bg-error capitalize",
     },
     size: {
-      default: "max-w-[50px]",
+      default: "w-max h-max",
       sm: "max-w-[30px]",
       md: "max-w-[100px] max-h-[40px]",
       lg: "max-w-[150px] max-h-[60px]",
