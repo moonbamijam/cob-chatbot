@@ -1,5 +1,23 @@
 # What's New
 
+# [2.2.0](https://github.com/moonbamijam/cob-chatbot/compare/v2.1.1...v2.2.0) (2024-09-14)
+
+
+### Bug Fixes
+
+* require full refresh to gain permission ([#111](https://github.com/moonbamijam/cob-chatbot/issues/111)) ([4913653](https://github.com/moonbamijam/cob-chatbot/commit/4913653a14574d837b20ec9243b91c2fac98400d)), closes [#109](https://github.com/moonbamijam/cob-chatbot/issues/109) [#109](https://github.com/moonbamijam/cob-chatbot/issues/109)
+* scroll into view not working properly ([#110](https://github.com/moonbamijam/cob-chatbot/issues/110)) ([6313788](https://github.com/moonbamijam/cob-chatbot/commit/6313788eda1ea38272b7bad0c75869c93f92ea07))
+* scrolling on reload ([#113](https://github.com/moonbamijam/cob-chatbot/issues/113)) ([6197ad2](https://github.com/moonbamijam/cob-chatbot/commit/6197ad20cdfae17315af57b048275b682df55984)), closes [#100](https://github.com/moonbamijam/cob-chatbot/issues/100) [#100](https://github.com/moonbamijam/cob-chatbot/issues/100)
+* splitted links are not working ([#114](https://github.com/moonbamijam/cob-chatbot/issues/114)) ([ebc31dc](https://github.com/moonbamijam/cob-chatbot/commit/ebc31dccb06b6c8699fba44da6674c9f1f9c5af4)), closes [#112](https://github.com/moonbamijam/cob-chatbot/issues/112) [#112](https://github.com/moonbamijam/cob-chatbot/issues/112)
+* undefined variable used in handleScroll ([1305bb2](https://github.com/moonbamijam/cob-chatbot/commit/1305bb2bf9186c54cd6d4a691652933a36d30e10))
+
+
+### Features
+
+* adjust landing page ui ([#116](https://github.com/moonbamijam/cob-chatbot/issues/116)) ([ac079d0](https://github.com/moonbamijam/cob-chatbot/commit/ac079d06cf4e152d46b862289d53460260cfcf90))
+* chatbox re ui ([#117](https://github.com/moonbamijam/cob-chatbot/issues/117)) ([dd11aec](https://github.com/moonbamijam/cob-chatbot/commit/dd11aec13d4948491d93bee1b2ac3729f951e6ed))
+* seo and assets update ([#115](https://github.com/moonbamijam/cob-chatbot/issues/115)) ([ae83770](https://github.com/moonbamijam/cob-chatbot/commit/ae83770d3ad5f862c336d3f7a4139e2833b6cbd0))
+
 ## [2.1.1](https://github.com/moonbamijam/cob-chatbot/compare/v2.1.0...v2.1.1) (2024-09-12)
 
 
