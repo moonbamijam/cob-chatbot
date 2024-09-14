@@ -6,13 +6,10 @@ import { FontContext } from "../../contexts/FontProvider";
 // Hooks
 import useChatbot from "../../hooks/useChatbot";
 
-// Utilities
-import { scrollInto } from "../../utils/scrollInto";
-
 // Components
 import ChatSection from "./sections/ChatSection";
 import Header from "./header/Header";
-import MessageInput from "./sections/ChatInputSection";
+import ChatInputSection from "./sections/ChatInputSection";
 import Settings from "./settings/Settings";
 import SuggestedChatSection from "./sections/SuggestedChatSection";
 
@@ -37,7 +34,7 @@ const ChatBox = ({ className, closeUsing }) => {
     <>
       <div
         id="message-box"
-        className={`w-full h-full xl:w-[500px] xl:h-[700px] fixed flex flex-col items-center xl:right-24 2xl:right-36 xl:bottom-20 2xl:bottom-32 bg-background dark:bg-dm-background xl:rounded-xl overflow-hidden z-[100] ${className}`}
+        className={`w-full h-full xl:w-[500px] xl:h-[800px] fixed flex flex-col items-center xl:right-[10%] xl:top-[8%] bg-background dark:bg-dm-background xl:rounded-xl overflow-hidden z-[100] ${className}`}
         style={{
           fontFamily: fontFamily,
         }}
@@ -49,7 +46,7 @@ const ChatBox = ({ className, closeUsing }) => {
         />
         <ChatSection botIsTyping={botIsTyping} latestChat={latestMessage} />
         <SuggestedChatSection sendMessageToBot={sendMessageToBot} />
-        <MessageInput
+        <ChatInputSection
           faqsRef={faqsRef}
           sendMessageToBot={sendMessageToBot}
           sendFaqToBot={sendFaqToBot}
