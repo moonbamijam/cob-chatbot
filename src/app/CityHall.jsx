@@ -52,7 +52,7 @@ const Home = () => {
                 {isSignedIn ? (
                   <ChatHead state={isChatActive} onClick={() => toggleChat()} />
                 ) : (
-                  console.log("Oops, can't sign in")
+                  console.log("Logging in anonymously, please wait")
                 )}
                 <ChatBox
                   className={
