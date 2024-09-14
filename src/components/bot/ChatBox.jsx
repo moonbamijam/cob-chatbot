@@ -12,9 +12,9 @@ import { scrollInto } from "../../utils/scrollInto";
 // Components
 import ChatSection from "./sections/ChatSection";
 import Header from "./header/Header";
-import MessageInput from "./input/MessageInput";
+import MessageInput from "./sections/ChatInputSection";
 import Settings from "./settings/Settings";
-import SuggestedMessages from "./sections/SuggestedMessages";
+import SuggestedChatSection from "./sections/SuggestedChatSection";
 
 const ChatBox = ({ className, closeUsing }) => {
   const {
@@ -47,22 +47,14 @@ const ChatBox = ({ className, closeUsing }) => {
           settings={settings}
           closeUsing={closeUsing}
         />
-        <ChatSection
-          settings={settings}
-          botIsTyping={botIsTyping}
-          latestChat={latestMessage}
-        />
-        <SuggestedMessages
-          sendMessageToBot={sendMessageToBot}
-          settings={settings}
-        />
+        <ChatSection botIsTyping={botIsTyping} latestChat={latestMessage} />
+        <SuggestedChatSection sendMessageToBot={sendMessageToBot} />
         <MessageInput
           faqsRef={faqsRef}
           sendMessageToBot={sendMessageToBot}
           sendFaqToBot={sendFaqToBot}
           userMessage={userMessage}
           setUserMessage={setUserMessage}
-          settings={settings}
           isFaqsMenuActive={isFaqsMenuActive}
           setIsFaqsMenuActive={setIsFaqsMenuActive}
         />
