@@ -4,7 +4,7 @@ import { FontContext } from "../../../../../contexts/FontProvider";
 import { fontSizeList } from "../../../../../lib/settings/fontSizeList";
 
 // components
-import SettingsChangerBtn from "../../../buttons/SettingsChangerBtn";
+import RadioButton from "../../../buttons/RadioButton";
 import SettingsMiniTitle from "../../SettingsMiniTitle";
 import Grid from "../../../common/Grid";
 import SettingSwitch from "../../../sections/SettingSwitch";
@@ -49,7 +49,7 @@ const FontSizeSwitch = () => {
       <SettingsMiniTitle text="font sizes" />
       <Grid>
         {fontSizeList.map((font) => (
-          <SettingsChangerBtn
+          <RadioButton
             key={font.value}
             name="font-sizes"
             id={font.value}

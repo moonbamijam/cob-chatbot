@@ -14,6 +14,8 @@ const buttonVariants = cva("w-full h-full rounded-full", {
       destructive: "px-8 py-4 bg-error hover:bg-error/80 capitalize",
       destructiveOutline:
         "px-4 py-3 border border-error hover:text-white dark:text-white hover:bg-error capitalize",
+      radio:
+        "bg-surface has-[input]:hover:bg-primary [&>label]:hover:text-white has-[input]:dark:hover:bg-primary dark:bg-dm-surface [&>label]:dark:text-white has-[:checked]:bg-primary has-[:checked]:dark:bg-primary has-[:checked]:hover:bg-primary-dark has-[:checked]:text-white shadow-md px-4 py-3 flex justify-center items-center rounded-3xl",
     },
     size: {
       default: "w-max h-max",

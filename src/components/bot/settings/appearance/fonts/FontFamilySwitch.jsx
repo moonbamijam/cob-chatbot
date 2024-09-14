@@ -3,7 +3,8 @@ import { FontContext } from "../../../../../contexts/FontProvider";
 import fontFamilies from "../../../../../../static/settings/font_families.json";
 
 // components
-import SettingsChangerBtn from "../../../buttons/SettingsChangerBtn";
+import { Button } from "../../../../ui/Button";
+import RadioButton from "../../../buttons/RadioButton";
 import SettingsMiniTitle from "../../SettingsMiniTitle";
 import Grid from "../../../common/Grid";
 import SettingSwitch from "../../../sections/SettingSwitch";
@@ -54,7 +55,7 @@ const FontFamilySwitch = () => {
       <SettingsMiniTitle text="font family" />
       <Grid>
         {fontFamilies.list.map((font) => (
-          <SettingsChangerBtn
+          <RadioButton
             key={font.value}
             name="font-families"
             id={font.value}
