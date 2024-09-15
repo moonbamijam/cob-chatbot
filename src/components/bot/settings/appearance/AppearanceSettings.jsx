@@ -17,9 +17,7 @@ const AppearanceSettings = () => {
             <FontFamilySwitch />
             <FontSizeSwitch />
           </SettingsWrapper>
-          <div className="hidden md:block">
-            <ChatPreview />
-          </div>
+          <ChatPreview />
         </div>
       </section>
     </>

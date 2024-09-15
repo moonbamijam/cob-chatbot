@@ -23,7 +23,7 @@ const ChatPreview = ({ className }) => {
     <>
       {/* preview for large screens */}
       <div
-        className="max-w-[500px] w-full h-[700px] hidden xl:flex flex-col bg-background dark:bg-dm-background border border-surface-dark dark:border-dm-surface rounded-xl"
+        className="max-w-[500px] w-full h-[700px] hidden md:flex flex-col bg-background dark:bg-dm-background border border-surface-dark dark:border-dm-surface rounded-xl"
         style={{ fontFamily: fontFamily }}
       >
         <header className="w-full flex items-center justify-between px-4 py-4 mr-auto shadow-md dark:shadow-dm-surface-dark">
