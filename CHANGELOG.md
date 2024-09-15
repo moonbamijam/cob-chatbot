@@ -1,5 +1,28 @@
 # What's New
 
+# [2.3.0](https://github.com/moonbamijam/cob-chatbot/compare/v2.2.0...v2.3.0) (2024-09-15)
+
+
+### Bug Fixes
+
+* landing image inconsistent height ([e01ab00](https://github.com/moonbamijam/cob-chatbot/commit/e01ab00214f546a42bb54a68ff0e52f9c81cf5ce))
+* requires full refresh for permission ([#119](https://github.com/moonbamijam/cob-chatbot/issues/119)) ([49097f0](https://github.com/moonbamijam/cob-chatbot/commit/49097f0aff7b70c8d6800c8c5dac1d7464cae7b5)), closes [#118](https://github.com/moonbamijam/cob-chatbot/issues/118)
+
+
+### Features
+
+* add context api to auth ([e0f4440](https://github.com/moonbamijam/cob-chatbot/commit/e0f44406d9409547c8325f5a08894ff628d76512))
+* add height breakpoints to modal in homepage ([61f4824](https://github.com/moonbamijam/cob-chatbot/commit/61f482442277bff39ed876c851c4bd2174aec8af))
+* add loading ui to chathead by auth ([3bdea2d](https://github.com/moonbamijam/cob-chatbot/commit/3bdea2d35679c6ffd7990f56773df550f47b1a39))
+* adjust chat preview breakpoint to medium screens ([dff4872](https://github.com/moonbamijam/cob-chatbot/commit/dff4872b703e93b1ee81dd156633a89c2acfbf52))
+* landing page ui adjustments ([09e87b7](https://github.com/moonbamijam/cob-chatbot/commit/09e87b7d294e70fbbfa96a621a86b5d1ac2c0741))
+* ui adjustment to settings ([89afa90](https://github.com/moonbamijam/cob-chatbot/commit/89afa909a83e6d09cf575776a2f5f755ca444a84))
+
+
+### Performance Improvements
+
+* reduce global transistion duration ([c09cb4c](https://github.com/moonbamijam/cob-chatbot/commit/c09cb4cf2cb1c46feceed0608d0a2138a1f616ad))
+
 # [2.2.0](https://github.com/moonbamijam/cob-chatbot/compare/v2.1.1...v2.2.0) (2024-09-14)
 
 
