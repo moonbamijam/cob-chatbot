@@ -3,11 +3,11 @@ import { chatbotConfig } from "../../../lib/bot/chatbotConfig";
 
 // components
 import { Button } from "../../ui/Button";
-import MiniProfile from "../sections/MiniProfile";
 import ScreenDim from "../ui/ScreenDim";
 import SettingsNavBar from "./nav/SettingsNavBar";
 import AppearanceSettings from "./appearance/AppearanceSettings";
 import SoundSettings from "./sound/SoundSettings";
+import About from "./about/About";
 
 // icons
 import { CgClose } from "react-icons/cg";
@@ -40,7 +40,7 @@ const Settings = ({ settings, toggleSettings }) => {
       case "sound":
         return <SoundSettings />;
       case chatbotConfig.name.toLowerCase():
-        return <MiniProfile state={settings} />;
+        return <About settings={settings} />;
       default:
         return <AppearanceSettings />;
     }
@@ -56,13 +56,13 @@ const Settings = ({ settings, toggleSettings }) => {
           handleSettingsChange={handleSettingsChange}
           changeSetting={changeSetting}
         />
-        <div className="w-full px-6 xl:px-8 py-20 dark:bg-dm-background overflow-y-scroll scrollbar-thin scrollbar-track-transparent scrollbar-thumb-surface-dark dark:scrollbar-thumb-dm-surface-dark">
+        <div className="w-full pl-[23%] sm:pl-[18%] md:pl-[23%] pr-6 xl:pr-8 py-20 dark:bg-dm-background overflow-y-scroll scrollbar-thin scrollbar-track-transparent scrollbar-thumb-surface-dark dark:scrollbar-thumb-dm-surface-dark">
           {renderSettings()}
         </div>
         <Button
           variant="destructiveOutline"
           size="lg"
-          className="hidden sm:block absolute top-4 right-20"
+          className="hidden sm:block absolute top-4 right-20 border-surface dark:border-dm-surface bg-surface dark:bg-dm-surface hover:text-white dark:hover:text-white"
           onClick={toggleSettings}
         >
           back
@@ -70,7 +70,7 @@ const Settings = ({ settings, toggleSettings }) => {
         <Button
           variant="icon"
           size="icon"
-          className="sm:hidden border ml-auto text-error border-error hover:bg-error [&>svg>path]:hover:text-white absolute top-4 right-10"
+          className="sm:hidden border ml-auto text-error border-surface dark:border-dm-surface bg-surface dark:bg-dm-surface dark:hover:bg-error hover:bg-error [&>svg>path]:hover:text-white absolute top-4 right-10"
           onClick={toggleSettings}
         >
           <CgClose />

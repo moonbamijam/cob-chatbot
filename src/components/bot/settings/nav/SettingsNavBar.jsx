@@ -87,7 +87,6 @@ const SettingsNavBar = ({ state, handleSettingsChange, changeSetting }) => {
           text={`${isSideNavActive ? "Version " : "v"}`}
         />
       </nav>
-      <div className="settings-box max-w-[20%] w-full"></div>
     </>
   );
 };
