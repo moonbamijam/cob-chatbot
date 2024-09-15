@@ -7,7 +7,7 @@ const usersCollectionRef = collection(db, "users");
 
 export const greet = async (uid) => {
   const botMessageInfo = {
-    intent: "salutation.greetings",
+    intent: "greetings",
     message: chatbotConfig.initialGreet,
     messageId: uuid(),
     role: "bot",
@@ -21,5 +21,5 @@ export const greet = async (uid) => {
     await setDoc(doc(usersCollectionRef, uid), {
       conversation: [botMessageInfo],
     });
-  } else console.log("I've already greeted this user, no need to greet again.");
+  }
 };

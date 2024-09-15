@@ -65,7 +65,8 @@ const useChatbot = () => {
     try {
       const data = await getDocs(usersCollectionRef);
       onSnapshot(doc(usersCollectionRef, uid), (doc) => {
-        doc.exists() && setConversation(doc.data().conversation);
+        if (doc.exists()) setConversation(doc.data().conversation);
+        else greet(uid);
       });
       if (data) setLoading(false);
     } catch (error) {
@@ -349,13 +350,6 @@ const useChatbot = () => {
     getConversationHistory();
     getFaqs();
   }, [getConversationHistory, getFaqs]);
-
-  // for bot to greet when the user talks to the bot for the first time
-  useEffect(() => {
-    if (conversation.length == 0) {
-      greet(uid);
-    }
-  }, [conversation.length]);
 
   return {
     latestMessage,
