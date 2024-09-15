@@ -37,7 +37,7 @@ const Home = () => {
   return (
     <>
       <Header />
-      <main className="container w-full flex flex-col lg:flex-row items-center justify-center lg:justify-between 2xl:justify-around lg:items-center py-[100px] px-[2vw] lg:px-[4vw] 2xl:px-[6vw] gap-6">
+      <main className="container w-full lg:h-screen flex flex-col-reverse lg:flex-row items-center justify-center lg:justify-between 2xl:justify-around lg:items-center py-[100px] px-[2vw] lg:px-[4vw] 2xl:px-[6vw] gap-6">
         <section className="text-center lg:text-left">
           <div className="max-w-[400px]">
             <h1 className="font-helvetica text-6xl md:text-7xl lg:text-8xl bg-gradient-to-tr from-primary from-35% via-tertiary via-70% to-secondary bg-clip-text text-transparent cursor-default select-none">
@@ -59,20 +59,20 @@ const Home = () => {
             ask {chatbotConfig.name}
           </Button>
         </section>
-        <div className="relative group border border-surface dark:border-dm-surface rounded-2xl w-max h-max">
+        <div className="pb-2 lg:border border-surface dark:border-dm-surface rounded-2xl overflow-hidden">
           <img
             src={LandingCoverLight}
-            alt="City Hall"
-            width={300}
-            height={800}
-            className="dark:hidden p-2 lg:w-full max-h-[500px] lg:h-full lg:max-w-[300]px lg:max-h-[800px] rounded-2xl object-contain lg:object-cover"
+            alt="Chatbot"
+            width={400}
+            height={600}
+            className="block dark:hidden w-[400px] h-[600px] lg:w-[500px] lg:h-[700px] rounded-2xl object-contain"
           />
           <img
             src={LandingCoverDark}
-            alt="City Hall"
-            width={300}
-            height={800}
-            className="hidden p-2 dark:block lg:w-full max-h-[500px] lg:h-full lg:max-w-[300]px lg:max-h-[800px] rounded-2xl object-contain lg:object-cover"
+            alt="Chatbot"
+            width={400}
+            height={600}
+            className="hidden dark:block w-[400px] h-[600px] lg:w-[500px] lg:h-[700px] rounded-2xl object-contain"
           />
         </div>
       </main>
