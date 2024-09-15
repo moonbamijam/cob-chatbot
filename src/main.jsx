@@ -4,6 +4,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 // providers
 import ThemesProvider from "./contexts/ThemesProvider.jsx";
+import AuthProvider from "./providers/AuthProvider.jsx";
 
 // pages
 import Home from "./app/Home.jsx";
@@ -28,8 +29,10 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <ThemesProvider>
-      <RouterProvider router={router} />
-    </ThemesProvider>
+    <AuthProvider>
+      <ThemesProvider>
+        <RouterProvider router={router} />
+      </ThemesProvider>
+    </AuthProvider>
   </React.StrictMode>,
 );
