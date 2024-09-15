@@ -10,6 +10,9 @@ release:
 chore:
 - head-branch: chore
 
+enhancement:
+- head-branch: impr
+
 ui/ux:
 - changed-files:
   - any-glob-to-any-file:
