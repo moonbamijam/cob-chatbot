@@ -1,36 +1,27 @@
-import { useState, useRef, useEffect } from "react";
-import { getAuth, signInAnonymously } from "firebase/auth";
+import { useState, useRef, useEffect, useContext } from "react";
 
 import ChatHead from "../components/bot/ChatHead";
 import ChatBox from "../components/bot/ChatBox";
 import ScreenDim from "../components/bot/ui/ScreenDim";
 
+// components
 import CityHallUI from "../components/pages/city-hall/CityHallUI";
 
 // Contexts
+import { AuthContext } from "../contexts/AuthContext";
 import FontProvider from "../contexts/FontProvider";
 import SoundProvider from "../contexts/SoundProvider";
 import ChatbotProvider from "../providers/ChatbotProvider";
 
 const Home = () => {
   const [isChatActive, setIsChatActive] = useState(false);
-  const [isSignedIn, setIsSignedIn] = useState(false);
+  const { auth } = useContext(AuthContext);
+  const [isSignedIn] = auth.user;
+
   const chatHead = useRef();
   const toggleChat = () => {
     setIsChatActive(!isChatActive);
   };
-
-  // On render sign in user anonymously
-  useEffect(() => {
-    const auth = getAuth();
-    signInAnonymously(auth)
-      .then(() => {
-        setIsSignedIn(true);
-      })
-      .catch((error) => {
-        console.error("Error occured: ", error);
-      });
-  }, []);
 
   useEffect(() => {
     const handleChatHead = (event) => {
@@ -44,24 +35,22 @@ const Home = () => {
 
   return (
     <>
-      <main className="flex flex-col">
+      <main className="">
         <div ref={chatHead}>
           <ChatbotProvider>
             <FontProvider>
               <SoundProvider>
-                {isSignedIn ? (
-                  <ChatHead state={isChatActive} onClick={() => toggleChat()} />
-                ) : (
-                  console.log("Logging in anonymously, please wait")
+                <ChatHead state={isChatActive} onClick={() => toggleChat()} />
+                {isSignedIn && (
+                  <ChatBox
+                    className={
+                      isChatActive
+                        ? "opacity-100 visible"
+                        : "opacity-0 -translate-y-[100%] invisible"
+                    }
+                    closeUsing={toggleChat}
+                  />
                 )}
-                <ChatBox
-                  className={
-                    isChatActive
-                      ? "opacity-100 visible"
-                      : "opacity-0 -translate-y-[100%] invisible"
-                  }
-                  closeUsing={toggleChat}
-                />
               </SoundProvider>
             </FontProvider>
           </ChatbotProvider>

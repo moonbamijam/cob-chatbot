@@ -37,10 +37,10 @@ const Home = () => {
   return (
     <>
       <Header />
-      <main className="container w-full h-screen flex flex-col-reverse lg:flex-row justify-center lg:justify-between 2xl:justify-around lg:items-center px-[2vw] lg:px-[4vw] 2xl:px-[6vw] gap-6">
-        <section className="max-w-[400px]">
-          <div className="">
-            <h1 className="w-max font-helvetica text-6xl md:text-7xl lg:text-8xl xl:text-9xl bg-gradient-to-tr from-primary from-35% via-tertiary via-70% to-secondary bg-clip-text text-transparent cursor-default select-none">
+      <main className="container w-full lg:h-screen flex flex-col-reverse lg:flex-row items-center justify-center lg:justify-between 2xl:justify-around lg:items-center py-[100px] px-[2vw] lg:px-[4vw] 2xl:px-[6vw] gap-6">
+        <section className="text-center lg:text-left">
+          <div className="max-w-[400px]">
+            <h1 className="font-helvetica text-6xl md:text-7xl lg:text-8xl bg-gradient-to-tr from-primary from-35% via-tertiary via-70% to-secondary bg-clip-text text-transparent cursor-default select-none">
               {chatbotConfig.name}
             </h1>
             <p className="text-2xl lg:text-3xl 2xl:text-4xl ml-2 dark:text-white max-w-[350px]">
@@ -59,32 +59,32 @@ const Home = () => {
             ask {chatbotConfig.name}
           </Button>
         </section>
-        <div className="relative group lg:border border-surface dark:border-dm-surface rounded-2xl w-max h-max">
+        <div className="pb-2 lg:border border-surface dark:border-dm-surface rounded-2xl overflow-hidden">
           <img
             src={LandingCoverLight}
-            alt="City Hall"
+            alt="Chatbot"
             width={400}
-            height={800}
-            className="dark:hidden p-2 lg:w-full max-h-[500px] lg:h-full lg:max-w-[400]px lg:max-h-[800px] rounded-2xl object-contain lg:object-cover"
+            height={600}
+            className="block dark:hidden w-[400px] h-[600px] lg:w-[500px] lg:h-[700px] rounded-2xl object-contain"
           />
           <img
             src={LandingCoverDark}
-            alt="City Hall"
+            alt="Chatbot"
             width={400}
-            height={800}
-            className="hidden p-2 dark:block lg:w-full max-h-[500px] lg:h-full lg:max-w-[400]px lg:max-h-[800px] rounded-2xl object-contain lg:object-cover"
+            height={600}
+            className="hidden dark:block w-[400px] h-[600px] lg:w-[500px] lg:h-[700px] rounded-2xl object-contain"
           />
         </div>
       </main>
       <section
         ref={modalRef}
-        className={`${isModalActive ? "animate-open-modal opacity-100 visible" : "opacity-0 invisible"} fixed top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%] w-[90%] max-w-[1200px] h-full max-h-[800px] flex flex-col bg-surface dark:bg-dm-surface z-40 px-8 py-10 xl:py-20 xl:px-16 rounded-xl`}
+        className={`${isModalActive ? "animate-open-modal opacity-100 visible" : "opacity-0 invisible"} fixed top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%] w-[90%] max-w-[1200px] h-full max-h-[650px] sm:max-h-[700px] lg:max-h-[750px] xl:max-h-[800px] flex flex-col bg-surface dark:bg-dm-surface z-40 px-8 py-10 xl:py-20 xl:px-16 rounded-xl`}
       >
         <Button
           onClick={toggleModal}
           variant="icon"
           size="icon"
-          className="sm:hidden border ml-auto text-black/50 border-error hover:bg-error [&>svg>path]:hover:text-white mb-6"
+          className="sm:hidden border ml-auto text-error border-error hover:bg-error [&>svg>path]:hover:text-white mb-6"
         >
           <CgClose />
         </Button>
