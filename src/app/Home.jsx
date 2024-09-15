@@ -78,7 +78,7 @@ const Home = () => {
       </main>
       <section
         ref={modalRef}
-        className={`${isModalActive ? "animate-open-modal opacity-100 visible" : "opacity-0 invisible"} fixed top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%] w-[90%] max-w-[1200px] h-full max-h-[800px] flex flex-col bg-surface dark:bg-dm-surface z-40 px-8 py-10 xl:py-20 xl:px-16 rounded-xl`}
+        className={`${isModalActive ? "animate-open-modal opacity-100 visible" : "opacity-0 invisible"} fixed top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%] w-[90%] max-w-[1200px] h-full max-h-[650px] sm:max-h-[700px] lg:max-h-[750px] xl:max-h-[800px] flex flex-col bg-surface dark:bg-dm-surface z-40 px-8 py-10 xl:py-20 xl:px-16 rounded-xl`}
       >
         <Button
           onClick={toggleModal}
