@@ -251,6 +251,7 @@ const useChatbot = () => {
       };
       try {
         event.preventDefault();
+        setUserMessage("");
         const res = doc(usersCollectionRef, uid);
         const data = await getDoc(res);
         if (!data.exists()) {
@@ -263,7 +264,6 @@ const useChatbot = () => {
         await updateDoc(doc(usersCollectionRef, uid), {
           conversation: arrayUnion(messageInfo),
         });
-        setUserMessage("");
         playMessageNotification();
         debouncedMessageToBot(message);
       } catch (error) {
