@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import ReactTextareaAutosize from "react-textarea-autosize";
+import EmojiPicker from "emoji-picker-react";
 
 // contexts
 import { ChatbotContext } from "../../../contexts/ChatbotContext";
@@ -10,6 +11,9 @@ import { Button } from "../../ui/Button";
 // icons
 import { IoSend } from "react-icons/io5";
 import { LuMenu } from "react-icons/lu";
+import { MdEmojiEmotions } from "react-icons/md";
+import { useState } from "react";
+import { useRef } from "react";
 
 const MessageInput = ({
   faqsRef,
@@ -22,9 +26,25 @@ const MessageInput = ({
 }) => {
   const { chatbot } = useContext(ChatbotContext);
   const [faqs] = chatbot.faqs;
+  const [isEmojiActive, setIsEmojiActive] = useState(false);
 
   const toggleFaqsMenu = () => {
     setIsFaqsMenuActive(!isFaqsMenuActive);
+  };
+
+  const toggleEmoji = () => {
+    setIsEmojiActive(!isEmojiActive);
+  };
+
+  const ref = useRef(null);
+  const onEmojiClick = (event, emojiObject) => {
+    console.log(emojiObject);
+    const cursor = ref.current.selectionStart;
+    const text =
+      userMessage.slice(0, cursor) +
+      emojiObject.target +
+      userMessage.slice(cursor);
+    setUserMessage(text);
   };
 
   const renderFaqs = () => {
@@ -69,9 +89,10 @@ const MessageInput = ({
         </Button>
         <label
           htmlFor="chat"
-          className="w-full px-2 py-3 rounded-3xl flex items-center border border-surface-dark outline-primary focus-within:border-primary dark:border-transparent dark:bg-dm-surface dark:focus-within:bg-dm-surface-light cursor-text"
+          className="relative w-full px-2 py-3 rounded-3xl flex items-center justify-center border border-surface-dark outline-primary focus-within:border-primary dark:border-transparent dark:bg-dm-surface dark:focus-within:bg-dm-surface-light cursor-text"
         >
           <ReactTextareaAutosize
+            ref={ref}
             id="chat"
             name="chat"
             autoFocus
@@ -82,6 +103,26 @@ const MessageInput = ({
             }}
             className="max-h-[100px] w-full dark:text-white outline-none bg-transparent placeholder:text-sm sm:placeholder:text-base px-2 dark:bg-dm-surface dark:focus:bg-dm-surface-light placeholder:opacity-80 scrollbar-thin scrollbar-track-transparent scrollbar-thumb-surface-dark dark:scrollbar-thumb-dm-surface-dark"
             placeholder="Type here..."
+          />
+          <Button
+            variant="icon"
+            size="icon"
+            type="button"
+            className="h-full p-0 [&>svg>path]:dark:text-surface-dark hover:bg-dm-surface-light"
+            onClick={toggleEmoji}
+          >
+            <MdEmojiEmotions />
+          </Button>
+          <EmojiPicker
+            theme="dark"
+            emojiStyle="facebook"
+            skinTonesDisabled
+            height="50%"
+            width="25em"
+            style={{ position: "fixed", bottom: "15%" }}
+            open={isEmojiActive}
+            onEmojiClick={onEmojiClick}
+            className="bottom-[20$] dark:bg-dm-surface-dark"
           />
         </label>
         <Button
