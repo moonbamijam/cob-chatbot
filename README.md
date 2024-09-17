@@ -23,46 +23,6 @@ Our capstone project that uses Natural Language Processing (NLP) to deliver smoo
 
 ###
 
-# Try Locally!
-
-Clone the project
-
-```bash
-  git clone https://github.com/Jireh-sama/cob-chatbot
-```
-
-Go to the project directory
-
-```bash
-  cd cob-chatbot
-```
-
-Install dependencies
-> [!note]
-> - we use [pnpm](https://pnpm.io/) for our package manager
-> - [turborepo](https://turbo.build/) for our build system
-
-```bash
-  pnpm install
-```
-
-Start locally by typing:
-
-```bash
-  pnpm turbo dev
-```
-
-Or if you have turbo installed globally:
-
-```bash
-  turbo dev
-```
-
-Talk to the chatbot!
-
-
-###
-
 # Contributing
 
 We currently do not accept direct contributions such as creating pull request [excluding the code owners](https://github.com/Jireh-sama/cob-chatbot/graphs/contributors)
