@@ -1,7 +1,8 @@
 import { useContext } from "react";
 
-// Contexts & Providers
+// contexts
 import { FontContext } from "../../contexts/FontProvider";
+import { ChatContext } from "../../contexts/ChatContext";
 
 // Hooks
 import useChatbot from "../../hooks/useChatbot";
@@ -13,7 +14,7 @@ import ChatInputSection from "./sections/ChatInputSection";
 import Settings from "./settings/Settings";
 import SuggestedChatSection from "./sections/SuggestedChatSection";
 
-const ChatBox = ({ className, closeUsing }) => {
+const ChatBox = ({ closeUsing }) => {
   const {
     latestMessage,
     faqsRef,
@@ -29,12 +30,18 @@ const ChatBox = ({ className, closeUsing }) => {
   } = useChatbot();
   const { font } = useContext(FontContext);
   const [fontFamily] = font.family;
+  const { chat } = useContext(ChatContext);
+  const [isChatActive] = chat.active;
 
   return (
     <>
       <div
         id="message-box"
-        className={`w-full h-full xl:w-[500px] xl:h-[800px] fixed flex flex-col items-center xl:right-[10%] xl:top-[8%] bg-background dark:bg-dm-background xl:rounded-xl overflow-hidden z-[100] ${className}`}
+        className={`w-full h-full xl:w-[500px] xl:h-[800px] fixed flex flex-col items-center xl:right-[10%] xl:top-[8%] bg-background dark:bg-dm-background xl:rounded-xl overflow-hidden z-[100] ${
+          isChatActive
+            ? "opacity-100 visible"
+            : "opacity-0 -translate-y-[100%] invisible"
+        }`}
         style={{
           fontFamily: fontFamily,
         }}
