@@ -1,11 +1,20 @@
 import { useContext } from "react";
-import Mascot from "../../assets/gif/animated-mascot.gif";
+
+// contexts
 import { AuthContext } from "../../contexts/AuthContext";
+import { ChatContext } from "../../contexts/ChatContext";
+
+// components
 import Loading from "./ui/Loading";
 
-const ChatHead = ({ state, onClick }) => {
+// assets
+import Mascot from "../../assets/gif/animated-mascot.gif";
+
+const ChatHead = ({ onClick }) => {
   const { auth } = useContext(AuthContext);
   const [isSignedIn] = auth.user;
+  const { chat } = useContext(ChatContext);
+  const [isChatActive] = chat.active;
 
   return (
     <>
@@ -14,7 +23,7 @@ const ChatHead = ({ state, onClick }) => {
           onClick={() => onClick()}
           id=""
           className={`fixed right-12 bottom-12 rounded-full z-[100] ${
-            state ? "opacity-0 translate-y-[100%] invisible" : ""
+            isChatActive ? "opacity-0 translate-y-[100%] invisible" : ""
           }`}
         >
           <img src={Mascot} alt="chat head logo" className="w-[400px]" />

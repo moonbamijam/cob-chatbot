@@ -5,6 +5,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 // providers
 import ThemesProvider from "./contexts/ThemesProvider.jsx";
 import AuthProvider from "./providers/AuthProvider.jsx";
+import ChatProvider from "./providers/ChatProvider.jsx";
 
 // pages
 import Home from "./app/Home.jsx";
@@ -31,7 +32,9 @@ ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <AuthProvider>
       <ThemesProvider>
-        <RouterProvider router={router} />
+        <ChatProvider>
+          <RouterProvider router={router} />
+        </ChatProvider>
       </ThemesProvider>
     </AuthProvider>
   </React.StrictMode>,
