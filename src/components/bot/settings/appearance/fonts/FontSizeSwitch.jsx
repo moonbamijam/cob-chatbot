@@ -1,6 +1,6 @@
 // Components
 import { useContext } from "react";
-import { FontContext } from "../../../../../contexts/FontProvider";
+import { FontContext } from "../../../../../contexts/FontContext";
 import { fontSizeList } from "../../../../../lib/settings/fontSizeList";
 
 // components

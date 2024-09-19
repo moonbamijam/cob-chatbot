@@ -47,6 +47,7 @@ const useChatbot = () => {
   const [conversation, setConversation] = chatbot.conversation;
   const [faqs, setFaqs] = chatbot.faqs;
   const [error, setError] = chatbot.error;
+  const [isOnline] = chatbot.online;
   const { playMessageNotification } = useSound();
   const latestMessage = useRef();
   const faqsRef = useRef();
@@ -310,7 +311,7 @@ const useChatbot = () => {
   // for auto scrolling
   useEffect(() => {
     smoothScrollInto(latestMessage);
-  }, [conversation, botIsTyping, error]);
+  }, [conversation, botIsTyping, error, isOnline]);
 
   // for sending messages when clicking enter
   useEffect(() => {

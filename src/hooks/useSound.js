@@ -1,9 +1,13 @@
+import { useContext } from "react";
+
+// assets
 import minimalPop from "../../static/sounds/minimal-pop-click.mp3";
 import happyPop from "../../static/sounds/happy-pop.mp3";
 import multiPop from "../../static/sounds/multi-pop.mp3";
 import multiPop5 from "../../static/sounds/multi-pop-5.mp3";
-import { SoundContext } from "../contexts/SoundProvider";
-import { useContext } from "react";
+
+// contexts
+import { SoundContext } from "../contexts/SoundContext";
 
 const useSound = () => {
   const { sound } = useContext(SoundContext);

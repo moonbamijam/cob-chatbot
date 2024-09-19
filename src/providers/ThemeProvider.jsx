@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from "react";
-
-export const ThemesContext = React.createContext();
+import { useState, useEffect, useMemo } from "react";
+import { ThemeContext } from "../contexts/ThemeContext";
 
 const ThemeMode = {
   Light: {
@@ -11,13 +10,9 @@ const ThemeMode = {
     name: "dark",
     match: window.matchMedia("prefers-color-scheme: dark"),
   },
-  System: {
-    name: "system",
-    match: window.matchMedia("prefers-color-scheme: dark"),
-  },
 };
 
-const ThemesProvider = ({ children }) => {
+const ThemeProvider = ({ children }) => {
   const [theme, setTheme] = useState(localStorage.getItem("theme"));
 
   useEffect(() => {
@@ -26,50 +21,37 @@ const ThemesProvider = ({ children }) => {
         localStorage.setItem("theme", ThemeMode.Light.name);
         document.documentElement.setAttribute("theme", ThemeMode.Light.name);
         document.documentElement.classList.add(ThemeMode.Light.name);
-        document.documentElement.classList.remove(
-          ThemeMode.Dark.name,
-          ThemeMode.System.name,
-        );
+        document.documentElement.classList.remove(ThemeMode.Dark.name);
         ThemeMode.Light.match;
         break;
       case ThemeMode.Dark.name:
         localStorage.setItem("theme", ThemeMode.Dark.name);
         document.documentElement.setAttribute("theme", ThemeMode.Dark.name);
         document.documentElement.classList.add(ThemeMode.Dark.name);
-        document.documentElement.classList.remove(
-          ThemeMode.Light.name,
-          ThemeMode.System.name,
-        );
+        document.documentElement.classList.remove(ThemeMode.Light.name);
         ThemeMode.Dark.match;
-        break;
-      case ThemeMode.System.name:
-        localStorage.setItem("theme", ThemeMode.System.name);
-        document.documentElement.setAttribute("theme", ThemeMode.System.name);
-        document.documentElement.classList.add(ThemeMode.Dark.name);
-        document.documentElement.classList.remove(
-          ThemeMode.Light.name,
-          ThemeMode.System.name,
-        );
-        ThemeMode.System.match;
         break;
       default:
         localStorage.setItem("theme", ThemeMode.Light.name);
         document.documentElement.setAttribute("theme", ThemeMode.Light.name);
         document.documentElement.classList.add(ThemeMode.Light.name);
-        document.documentElement.classList.remove(
-          ThemeMode.Dark.name,
-          ThemeMode.System.name,
-        );
+        document.documentElement.classList.remove(ThemeMode.Dark.name);
         ThemeMode.Light.match;
         break;
     }
   }, [theme]);
 
+  const themes = useMemo(() => {
+    return {
+      themes: {
+        default: [theme, setTheme],
+      },
+    };
+  }, [theme, setTheme]);
+
   return (
-    <ThemesContext.Provider value={[theme, setTheme]}>
-      {children}
-    </ThemesContext.Provider>
+    <ThemeContext.Provider value={themes}>{children}</ThemeContext.Provider>
   );
 };
 
-export default ThemesProvider;
+export default ThemeProvider;

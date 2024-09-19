@@ -1,7 +1,6 @@
 import { useState, useContext, useRef } from "react";
 
-// Contexts & Providers
-import InternetProvider from "../../../contexts/InternetProvider";
+// context
 import { ChatbotContext } from "../../../contexts/ChatbotContext";
 
 // utils
@@ -25,6 +24,7 @@ import useScrollIntoView from "../../../hooks/useScrollIntoView";
 // icons
 import { FaArrowDown } from "react-icons/fa6";
 
+// styles
 import "../../../styles/utils.css";
 
 const chatPerPage = 15;
@@ -34,6 +34,7 @@ const ChatSection = ({ botIsTyping, latestChat }) => {
   const { chatbot } = useContext(ChatbotContext);
   const [conversation] = chatbot.conversation;
   const [error] = chatbot.error;
+  const [isOnline] = chatbot.online;
   const { backToView, setBackToView, handleScrollIntoView } =
     useScrollIntoView();
   const [displayedChats, setDisplayedChats] = useState(chatPerPage);
@@ -137,17 +138,16 @@ const ChatSection = ({ botIsTyping, latestChat }) => {
         ></div>
         <MiniProfile className="mt-10 mb-8" miniProfileRef={miniProfileRef} />
         {loadingMoreChats && <Loading />}
-        <InternetProvider>
-          {conversation ? (
-            <div id="messages" ref={chatAreaRef}>
-              {renderChatsContent()}
-              {botIsTyping && <Typing />}
-            </div>
-          ) : (
-            <ChatSkeleton />
-          )}
-          {error && <Error message={"something went wrong!"} />}
-        </InternetProvider>
+        {conversation ? (
+          <div id="messages" ref={chatAreaRef}>
+            {renderChatsContent()}
+            {botIsTyping && <Typing />}
+          </div>
+        ) : (
+          <ChatSkeleton />
+        )}
+        {error && <Error message={"something went wrong!"} />}
+        {!isOnline && <Error message={"no internet connection."} />}
         <div ref={latestChat}></div>
       </section>
     </>

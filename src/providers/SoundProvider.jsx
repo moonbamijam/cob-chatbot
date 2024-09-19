@@ -1,6 +1,5 @@
-import React, { useState, useEffect, useMemo } from "react";
-
-export const SoundContext = React.createContext();
+import { useState, useEffect, useMemo } from "react";
+import { SoundContext } from "../contexts/SoundContext";
 
 const SoundProvider = ({ children }) => {
   const [messageSentSound, setMessageSentSound] = useState(
