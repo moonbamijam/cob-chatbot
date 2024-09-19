@@ -1,8 +1,8 @@
 import { useContext, useState } from "react";
 import { chatbotConfig } from "../../lib/bot/chatbotConfig";
 
-// Context & Providers
-import { FontContext } from "../../contexts/FontProvider";
+// contexts
+import { FontContext } from "../../contexts/FontContext";
 
 // components
 import ChatUI from "./ui/ChatUI";

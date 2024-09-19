@@ -7,12 +7,14 @@ import ScreenDim from "../components/bot/ui/ScreenDim";
 // components
 import CityHallUI from "../components/pages/city-hall/CityHallUI";
 
-// Contexts
+// contexts
 import { AuthContext } from "../contexts/AuthContext";
-import FontProvider from "../contexts/FontProvider";
 import SoundProvider from "../contexts/SoundProvider";
 import ChatbotProvider from "../providers/ChatbotProvider";
 import { ChatContext } from "../contexts/ChatContext";
+
+// providers
+import FontProvider from "../providers/FontProvider";
 
 const Home = () => {
   const { auth } = useContext(AuthContext);

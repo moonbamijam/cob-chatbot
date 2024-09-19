@@ -1,17 +1,19 @@
 import { useContext } from "react";
-import { FontContext } from "../../../contexts/FontProvider";
 import { chatbotConfig } from "../../../lib/bot/chatbotConfig";
 import Messages from "../../../../static/messages/suggested.json";
+
+// contexts
+import { FontContext } from "../../../contexts/FontContext";
 
 // icons
 import { IoSend } from "react-icons/io5";
 import { LuMenu } from "react-icons/lu";
 
 // components
+import { Button } from "../../ui/Button";
 import ReactTextareaAutosize from "react-textarea-autosize";
 import SampleBotChat from "./SampleBotChat";
 import SampleUserChat from "./SampleUserChat";
-import { Button } from "../../ui/Button";
 import SuggestedChatButton from "../buttons/SuggestedChatButton";
 
 const ChatPreview = ({ className }) => {

@@ -1,9 +1,8 @@
 import { useContext } from "react";
-import { FontContext } from "../../../../../contexts/FontProvider";
+import { FontContext } from "../../../../../contexts/FontContext";
 import fontFamilies from "../../../../../../static/settings/font_families.json";
 
 // components
-import { Button } from "../../../../ui/Button";
 import RadioButton from "../../../buttons/RadioButton";
 import SettingsMiniTitle from "../../SettingsMiniTitle";
 import Grid from "../../../common/Grid";

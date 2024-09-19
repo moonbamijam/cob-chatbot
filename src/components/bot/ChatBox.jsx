@@ -1,7 +1,7 @@
 import { useContext } from "react";
 
 // contexts
-import { FontContext } from "../../contexts/FontProvider";
+import { FontContext } from "../../contexts/FontContext";
 import { ChatContext } from "../../contexts/ChatContext";
 
 // Hooks
