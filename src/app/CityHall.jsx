@@ -31,14 +31,14 @@ const Home = () => {
     <>
       <main className="">
         <div ref={chatHead}>
-          <ChatbotProvider>
-            <FontProvider>
-              <SoundProvider>
-                <ChatHead onClick={() => toggleChat()} />
+          <FontProvider>
+            <SoundProvider>
+              <ChatHead onClick={() => toggleChat()} />
+              <ChatbotProvider>
                 {isSignedIn && <ChatBox closeUsing={toggleChat} />}
-              </SoundProvider>
-            </FontProvider>
-          </ChatbotProvider>
+              </ChatbotProvider>
+            </SoundProvider>
+          </FontProvider>
         </div>
         <CityHallUI />
         <ScreenDim
