@@ -2,10 +2,6 @@
   "name": "themes",
   "modes": [
     {
-      "name": "system",
-      "value": "system"
-    },
-    {
       "name": "light",
       "value": "light"
     },

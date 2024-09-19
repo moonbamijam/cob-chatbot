@@ -3,7 +3,7 @@ import { chatbotConfig } from "../../lib/bot/chatbotConfig";
 import { Link } from "react-router-dom";
 
 // context
-import { ThemesContext } from "../../contexts/ThemesProvider";
+import { ThemeContext } from "../../contexts/ThemeContext";
 
 // components
 import { Button } from "../ui/Button";
@@ -12,7 +12,8 @@ import { Button } from "../ui/Button";
 import { LuSun, LuMoon } from "react-icons/lu";
 
 const Header = () => {
-  const [theme, setTheme] = useContext(ThemesContext);
+  const { themes } = useContext(ThemeContext);
+  const [theme, setTheme] = themes.default;
 
   const toggleTheme = () => {
     setTheme(theme === "dark" ? "light" : "dark");

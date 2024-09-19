@@ -3,7 +3,7 @@ import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 // providers
-import ThemesProvider from "./contexts/ThemesProvider.jsx";
+import ThemeProvider from "./providers/ThemeProvider.jsx";
 import AuthProvider from "./providers/AuthProvider.jsx";
 import ChatProvider from "./providers/ChatProvider.jsx";
 
@@ -31,11 +31,11 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <AuthProvider>
-      <ThemesProvider>
+      <ThemeProvider>
         <ChatProvider>
           <RouterProvider router={router} />
         </ChatProvider>
-      </ThemesProvider>
+      </ThemeProvider>
     </AuthProvider>
   </React.StrictMode>,
 );
