@@ -9,43 +9,52 @@ import { FlatCompat } from "@eslint/eslintrc";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const compat = new FlatCompat({
-    baseDirectory: __dirname,
-    recommendedConfig: js.configs.recommended,
-    allConfig: js.configs.all
+  baseDirectory: __dirname,
+  recommendedConfig: js.configs.recommended,
+  allConfig: js.configs.all,
 });
 
-export default [{
+export default [
+  {
     ignores: ["**/dist", "**/.eslintrc.cjs"],
-}, ...fixupConfigRules(compat.extends(
-    "eslint:recommended",
-    "plugin:react/recommended",
-    "plugin:react/jsx-runtime",
-    "plugin:react-hooks/recommended",
-)), {
+  },
+  ...fixupConfigRules(
+    compat.extends(
+      "eslint:recommended",
+      "plugin:react/recommended",
+      "plugin:react/jsx-runtime",
+      "plugin:react-hooks/recommended",
+    ),
+  ),
+  {
     plugins: {
-        "react-refresh": reactRefresh,
+      "react-refresh": reactRefresh,
     },
 
     languageOptions: {
-        globals: {
-            ...globals.browser,
-        },
+      globals: {
+        ...globals.browser,
+      },
 
-        ecmaVersion: "latest",
-        sourceType: "module",
+      ecmaVersion: "latest",
+      sourceType: "module",
     },
 
     settings: {
-        react: {
-            version: "18.2",
-        },
+      react: {
+        version: "18.2",
+      },
     },
 
     rules: {
-        "react/jsx-no-target-blank": "off",
+      "react/jsx-no-target-blank": "off",
 
-        "react-refresh/only-export-components": ["warn", {
-            allowConstantExport: true,
-        }],
+      "react-refresh/only-export-components": [
+        "warn",
+        {
+          allowConstantExport: true,
+        },
+      ],
     },
-}];
+  },
+];
