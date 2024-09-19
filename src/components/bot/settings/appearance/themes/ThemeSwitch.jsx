@@ -36,16 +36,16 @@ const ThemeSwitch = () => {
     <SettingSwitch>
       <SettingsMiniTitle text="theme" />
       <Grid>
-        {themes_list.modes.map((theme, id) => (
+        {themes_list.modes.map((thm, id) => (
           <RadioButton
             key={id}
             name="themes"
-            id={theme.value}
-            value={theme.value}
-            checkedIf={theme == theme.value}
+            id={thm.value}
+            value={thm.value}
+            checkedIf={theme == thm.value}
             onChange={handleChange}
-            onClick={() => changeThemes(theme.value)}
-            displayedText={theme.name}
+            onClick={() => changeThemes(thm.value)}
+            displayedText={thm.name}
           />
         ))}
       </Grid>
