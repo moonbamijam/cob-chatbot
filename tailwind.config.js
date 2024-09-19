@@ -19,9 +19,6 @@ export default {
         "dm-surface": "#1E293B",
         "dm-surface-dark": "#0F172A",
         "dm-surface-light": "#334155",
-        // outside chatbox colors
-        opaqueBlack: "rgb(var(--opaque-black) / 0.3)",
-        footerOpaqueBlack: "rgb(var(--opaque-black) / 0.8)",
       },
       container: {
         center: true,

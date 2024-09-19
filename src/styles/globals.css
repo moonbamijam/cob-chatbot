@@ -6,10 +6,6 @@
 @tailwind utilities;
 
 @layer base {
-  :root {
-    --opaque-black: 40 40 40;
-  }
-
   @font-face {
     font-family: "Helvetica";
     font-style: normal;

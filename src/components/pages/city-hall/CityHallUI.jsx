@@ -19,7 +19,7 @@ const CityHall = () => {
     <div className="city-hall-page-body">
       <span
         id="time-header-bg"
-        className="hidden xl:block w-full h-6 bg-opaqueBlack absolute -z-10"
+        className="hidden xl:block w-full h-6 bg-black/40 absolute"
       ></span>
       <Section className="hidden xl:flex">
         <TimeHeader />
@@ -58,7 +58,7 @@ const CityHall = () => {
           <ArticleRight />
         </div>
       </Section>
-      <Section className="hidden xl:flex bg-footerOpaqueBlack">
+      <Section className="hidden xl:flex bg-black/70">
         <Footer />
       </Section>
     </div>
