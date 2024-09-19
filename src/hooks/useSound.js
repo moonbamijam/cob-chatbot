@@ -11,11 +11,11 @@ import { SoundContext } from "../contexts/SoundContext";
 
 const useSound = () => {
   const { sound } = useContext(SoundContext);
-  const [messageSentSound] = sound.messageSent;
+  const [chatSentSound] = sound.messageSent;
 
   const playMessageNotification = () => {
     let audio;
-    switch (messageSentSound) {
+    switch (chatSentSound) {
       case "minimalpop":
         audio = new Audio(minimalPop);
         break;
@@ -39,7 +39,7 @@ const useSound = () => {
     audio.play();
   };
 
-  const playMessageSentSound = (audioParams) => {
+  const playChatSentSound = (audioParams) => {
     let audio = new Audio(audioParams);
     audio.volume = 0.2;
     audio.play();
@@ -48,7 +48,7 @@ const useSound = () => {
   return {
     playMessageNotification,
     playTypingSound,
-    playMessageSentSound,
+    playChatSentSound,
   };
 };
 
