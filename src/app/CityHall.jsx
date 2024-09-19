@@ -9,12 +9,12 @@ import CityHallUI from "../components/pages/city-hall/CityHallUI";
 
 // contexts
 import { AuthContext } from "../contexts/AuthContext";
-import SoundProvider from "../contexts/SoundProvider";
 import ChatbotProvider from "../providers/ChatbotProvider";
 import { ChatContext } from "../contexts/ChatContext";
 
 // providers
 import FontProvider from "../providers/FontProvider";
+import SoundProvider from "../providers/SoundProvider";
 
 const Home = () => {
   const { auth } = useContext(AuthContext);

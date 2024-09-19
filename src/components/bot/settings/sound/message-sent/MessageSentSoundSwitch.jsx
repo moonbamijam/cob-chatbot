@@ -1,5 +1,6 @@
 import { useContext } from "react";
-import { SoundContext } from "../../../../../contexts/SoundProvider";
+
+// lib
 import {
   minimalPop,
   happyPop,
@@ -12,6 +13,9 @@ import RadioButton from "../../../buttons/RadioButton";
 import SettingsMiniTitle from "../../SettingsMiniTitle";
 import useSound from "../../../../../hooks/useSound";
 import Grid from "../../../common/Grid";
+
+// contexts
+import { SoundContext } from "../../../../../contexts/SoundContext";
 
 const MessageSentSoundSwitch = () => {
   const { playMessageSentSound } = useSound();
