@@ -75,6 +75,7 @@ const MessageInput = ({
             id="chat"
             name="chat"
             autoFocus
+            spellCheck={false}
             value={userMessage}
             onChange={(e) => {
               setUserMessage(e.target.value);
