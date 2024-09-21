@@ -255,6 +255,7 @@ const useChatbot = () => {
         setUserMessage("");
         const res = doc(usersCollectionRef, uid);
         const data = await getDoc(res);
+        playMessageNotification();
         if (!data.exists()) {
           // creates a user with verified uid in users collection
           // then adds a conversation field that will hold all of the user & bot messages
@@ -265,7 +266,6 @@ const useChatbot = () => {
         await updateDoc(doc(usersCollectionRef, uid), {
           conversation: arrayUnion(messageInfo),
         });
-        playMessageNotification();
         debouncedMessageToBot(message);
       } catch (error) {
         console.log(error);
@@ -288,6 +288,7 @@ const useChatbot = () => {
       setIsFaqsMenuActive(false);
       const res = doc(usersCollectionRef, uid);
       const data = await getDoc(res);
+      playMessageNotification();
       if (!data.exists()) {
         // creates a user with verified uid in users collection
         // then adds a conversation field that will hold all of the user & bot messages
@@ -298,7 +299,6 @@ const useChatbot = () => {
       await updateDoc(doc(usersCollectionRef, uid), {
         conversation: arrayUnion(messageInfo),
       });
-      playMessageNotification();
       debouncedMessageToBot(message);
     } catch (error) {
       console.log(error);
@@ -347,7 +347,7 @@ const useChatbot = () => {
   // with the help of useCallback, we can decrease the call of this useEffect
   // even if the invoked functions inside is in the dependencies
   useEffect(() => {
-    console.log("Getting conversation and faqs by useEffect");
+    console.log("Getting conversation and faqs...");
     getConversationHistory();
     getFaqs();
   }, [getConversationHistory, getFaqs]);
