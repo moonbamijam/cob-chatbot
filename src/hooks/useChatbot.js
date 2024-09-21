@@ -34,6 +34,7 @@ import { sleep } from "../utils/sleep";
 import { hasSymbol, splitMessage } from "../utils/splitMessage";
 import { smoothScrollInto } from "../utils/scrollInto";
 import { greet } from "../utils/greet";
+import { AuthContext } from "../contexts/AuthContext";
 
 const uid = verifiedUID();
 
@@ -43,13 +44,16 @@ const faqsCollectionRef = collection(db, "FAQs");
 const faqsQuery = query(faqsCollectionRef, orderBy("frequency", "desc"));
 
 const useChatbot = () => {
+  const { auth } = useContext(AuthContext);
+  const [isSignedIn] = auth.user;
   const { chatbot } = useContext(ChatbotContext);
   const [conversation, setConversation] = chatbot.conversation;
   const [faqs, setFaqs] = chatbot.faqs;
   const [error, setError] = chatbot.error;
   const [isOnline] = chatbot.online;
   const { playMessageNotification } = useSound();
-  const latestMessage = useRef();
+  const latestChat = useRef();
+  const [isAtLatestChat, setIsAtLatestChat] = useState(false);
   const faqsRef = useRef();
   const [settings, setSettings] = useState(false);
   const [loading, setLoading] = useState(true);
@@ -59,7 +63,7 @@ const useChatbot = () => {
 
   const toggleSettings = () => {
     setSettings(!settings);
-    smoothScrollInto(latestMessage);
+    smoothScrollInto(latestChat);
   };
 
   const getConversationHistory = useCallback(async () => {
@@ -255,6 +259,7 @@ const useChatbot = () => {
         setUserMessage("");
         const res = doc(usersCollectionRef, uid);
         const data = await getDoc(res);
+        playMessageNotification();
         if (!data.exists()) {
           // creates a user with verified uid in users collection
           // then adds a conversation field that will hold all of the user & bot messages
@@ -265,7 +270,6 @@ const useChatbot = () => {
         await updateDoc(doc(usersCollectionRef, uid), {
           conversation: arrayUnion(messageInfo),
         });
-        playMessageNotification();
         debouncedMessageToBot(message);
       } catch (error) {
         console.log(error);
@@ -288,6 +292,7 @@ const useChatbot = () => {
       setIsFaqsMenuActive(false);
       const res = doc(usersCollectionRef, uid);
       const data = await getDoc(res);
+      playMessageNotification();
       if (!data.exists()) {
         // creates a user with verified uid in users collection
         // then adds a conversation field that will hold all of the user & bot messages
@@ -298,7 +303,6 @@ const useChatbot = () => {
       await updateDoc(doc(usersCollectionRef, uid), {
         conversation: arrayUnion(messageInfo),
       });
-      playMessageNotification();
       debouncedMessageToBot(message);
     } catch (error) {
       console.log(error);
@@ -310,8 +314,9 @@ const useChatbot = () => {
 
   // for auto scrolling
   useEffect(() => {
-    smoothScrollInto(latestMessage);
-  }, [conversation, botIsTyping, error, isOnline]);
+    const atLatestChat = smoothScrollInto(latestChat);
+    if (isSignedIn && atLatestChat) setIsAtLatestChat(true);
+  }, [conversation, botIsTyping, error, isOnline, isSignedIn]);
 
   // for sending messages when clicking enter
   useEffect(() => {
@@ -347,13 +352,14 @@ const useChatbot = () => {
   // with the help of useCallback, we can decrease the call of this useEffect
   // even if the invoked functions inside is in the dependencies
   useEffect(() => {
-    console.log("Getting conversation and faqs by useEffect");
+    console.log("Getting conversation and faqs...");
     getConversationHistory();
     getFaqs();
   }, [getConversationHistory, getFaqs]);
 
   return {
-    latestMessage,
+    isAtLatestChat,
+    latestChat,
     faqsRef,
     settings,
     setSettings,

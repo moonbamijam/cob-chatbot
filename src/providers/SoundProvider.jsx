@@ -2,26 +2,26 @@ import { useState, useEffect, useMemo } from "react";
 import { SoundContext } from "../contexts/SoundContext";
 
 const SoundProvider = ({ children }) => {
-  const [messageSentSound, setMessageSentSound] = useState(
-    localStorage.getItem("messageSentSound"),
+  const [chatSentSound, setChatSentSound] = useState(
+    localStorage.getItem("chatSentSound"),
   );
 
   useEffect(() => {
-    if (localStorage.getItem("messageSentSound") == null) {
+    if (localStorage.getItem("chatSentSound") == null) {
       const initialMessegeSentSound = "minimalpop";
 
-      setMessageSentSound(initialMessegeSentSound);
-      localStorage.setItem("messageSentSound", initialMessegeSentSound);
+      setChatSentSound(initialMessegeSentSound);
+      localStorage.setItem("chatSentSound", initialMessegeSentSound);
     }
   }, []);
 
   const sound = useMemo(() => {
     return {
       sound: {
-        messageSent: [messageSentSound, setMessageSentSound],
+        messageSent: [chatSentSound, setChatSentSound],
       },
     };
-  }, [messageSentSound, setMessageSentSound]);
+  }, [chatSentSound, setChatSentSound]);
 
   return (
     <SoundContext.Provider value={sound}>{children}</SoundContext.Provider>

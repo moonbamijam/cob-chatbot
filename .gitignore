@@ -32,3 +32,6 @@ extras
 
 # vercel
 .vercel
+
+# others
+misc/

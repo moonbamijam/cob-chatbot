@@ -17,42 +17,42 @@ import Grid from "../../../common/Grid";
 // contexts
 import { SoundContext } from "../../../../../contexts/SoundContext";
 
-const MessageSentSoundSwitch = () => {
-  const { playMessageSentSound } = useSound();
+const ChatSentSoundSwitch = () => {
+  const { playChatSentSound } = useSound();
   const { sound } = useContext(SoundContext);
-  const [messageSentSound, setMessageSentSound] = sound.messageSent;
+  const [chatSentSound, setChatSentSound] = sound.messageSent;
 
-  const handleMessageChange = (event) => {
-    setMessageSentSound(event.target.value);
+  const handleChatSentSound = (event) => {
+    setChatSentSound(event.target.value);
   };
 
   const changeMessageSentSound = (value) => {
     switch (value) {
       case "minimalpop":
-        setMessageSentSound(value);
-        localStorage.setItem("messageSentSound", value);
-        playMessageSentSound(minimalPop);
+        setChatSentSound(value);
+        localStorage.setItem("chatSentSound", value);
+        playChatSentSound(minimalPop);
         break;
       case "happypop":
-        setMessageSentSound(value);
-        localStorage.setItem("messageSentSound", value);
-        playMessageSentSound(happyPop);
+        setChatSentSound(value);
+        localStorage.setItem("chatSentSound", value);
+        playChatSentSound(happyPop);
         break;
       case "multipop":
-        setMessageSentSound(value);
-        localStorage.setItem("messageSentSound", value);
-        playMessageSentSound(multiPop);
+        setChatSentSound(value);
+        localStorage.setItem("chatSentSound", value);
+        playChatSentSound(multiPop);
         break;
       default:
-        setMessageSentSound("multipop");
-        playMessageSentSound(multiPop);
+        setChatSentSound("multipop");
+        playChatSentSound(multiPop);
         break;
     }
   };
 
   return (
     <div>
-      <SettingsMiniTitle text="message sent" />
+      <SettingsMiniTitle text="chat sent" />
       <Grid>
         {soundNotificationList.map((sound) => (
           <RadioButton
@@ -60,8 +60,8 @@ const MessageSentSoundSwitch = () => {
             name="message-sent-sounds"
             id={sound.value}
             value={sound.value}
-            checkedIf={messageSentSound == sound.value}
-            onChange={handleMessageChange}
+            checkedIf={chatSentSound == sound.value}
+            onChange={handleChatSentSound}
             onClick={() => changeMessageSentSound(sound.value)}
             displayedText={sound.name}
           />
@@ -71,4 +71,4 @@ const MessageSentSoundSwitch = () => {
   );
 };
 
-export default MessageSentSoundSwitch;
+export default ChatSentSoundSwitch;

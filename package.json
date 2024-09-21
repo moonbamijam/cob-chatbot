@@ -11,7 +11,7 @@
     "preview": "vite preview",
     "prepare": "husky",
     "pre-commit": "lint-staged",
-    "prettier": "prettier . --write",
+    "pretty": "prettier . --write",
     "release": "release-it",
     "release-patch": "release-it patch",
     "release-minor": "release-it minor",
