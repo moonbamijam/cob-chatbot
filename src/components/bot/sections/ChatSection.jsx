@@ -47,7 +47,6 @@ const ChatSection = ({ botIsTyping, latestChat }) => {
 
   // for referencing html tags
   const chatAreaRef = useRef(null);
-  const scrollRef = useRef(null);
   const miniProfileRef = useRef(null);
 
   // handles infinite scrolling
@@ -56,7 +55,6 @@ const ChatSection = ({ botIsTyping, latestChat }) => {
     const componentFullHeight = e.target.scrollHeight;
     const componentHalfHeight = (componentFullHeight - 457) / 2;
     const totalChatsDisplayed = chatAreaRef.current.children.length;
-
     try {
       if (typeof latestChat.current == "object") {
         if (
@@ -70,9 +68,9 @@ const ChatSection = ({ botIsTyping, latestChat }) => {
         // checks wether is there more chats to load or no
         if (
           conversationToDisplay.length != conversation.length &&
-          chatBoxScrollTop <= 10
+          chatBoxScrollTop == 0 // absolute zero to avoid loading of previous chats on refresh
         ) {
-          console.log(`Getting ${step} chats`);
+          console.log(`Loading ${step} more chats`);
           setLoadingMoreChats(true);
           await sleep(1); // mock loading
           setLoadingMoreChats(false);
@@ -132,10 +130,9 @@ const ChatSection = ({ botIsTyping, latestChat }) => {
         className={`relative w-full xl:max-h-[600px] h-full px-4 py-6 overflow-y-scroll scrollbar-thin scrollbar-track-transparent scrollbar-thumb-surface-dark dark:scrollbar-thumb-dm-surface`}
         onScroll={handleScroll}
       >
-        <div
+        {/* <div
           className="scrollhere absolute top-[-50px] h-[50px]"
-          ref={scrollRef}
-        ></div>
+        ></div> */}
         <MiniProfile className="mt-10 mb-8" miniProfileRef={miniProfileRef} />
         {loadingMoreChats && <Loading />}
         {conversation ? (

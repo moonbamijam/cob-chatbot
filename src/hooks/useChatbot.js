@@ -34,6 +34,7 @@ import { sleep } from "../utils/sleep";
 import { hasSymbol, splitMessage } from "../utils/splitMessage";
 import { smoothScrollInto } from "../utils/scrollInto";
 import { greet } from "../utils/greet";
+import { AuthContext } from "../contexts/AuthContext";
 
 const uid = verifiedUID();
 
@@ -43,13 +44,16 @@ const faqsCollectionRef = collection(db, "FAQs");
 const faqsQuery = query(faqsCollectionRef, orderBy("frequency", "desc"));
 
 const useChatbot = () => {
+  const { auth } = useContext(AuthContext);
+  const [isSignedIn] = auth.user;
   const { chatbot } = useContext(ChatbotContext);
   const [conversation, setConversation] = chatbot.conversation;
   const [faqs, setFaqs] = chatbot.faqs;
   const [error, setError] = chatbot.error;
   const [isOnline] = chatbot.online;
   const { playMessageNotification } = useSound();
-  const latestMessage = useRef();
+  const latestChat = useRef();
+  const [isAtLatestChat, setIsAtLatestChat] = useState(false);
   const faqsRef = useRef();
   const [settings, setSettings] = useState(false);
   const [loading, setLoading] = useState(true);
@@ -59,7 +63,7 @@ const useChatbot = () => {
 
   const toggleSettings = () => {
     setSettings(!settings);
-    smoothScrollInto(latestMessage);
+    smoothScrollInto(latestChat);
   };
 
   const getConversationHistory = useCallback(async () => {
@@ -310,8 +314,9 @@ const useChatbot = () => {
 
   // for auto scrolling
   useEffect(() => {
-    smoothScrollInto(latestMessage);
-  }, [conversation, botIsTyping, error, isOnline]);
+    const atLatestChat = smoothScrollInto(latestChat);
+    if (isSignedIn && atLatestChat) setIsAtLatestChat(true);
+  }, [conversation, botIsTyping, error, isOnline, isSignedIn]);
 
   // for sending messages when clicking enter
   useEffect(() => {
@@ -353,7 +358,8 @@ const useChatbot = () => {
   }, [getConversationHistory, getFaqs]);
 
   return {
-    latestMessage,
+    isAtLatestChat,
+    latestChat,
     faqsRef,
     settings,
     setSettings,

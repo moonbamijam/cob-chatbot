@@ -4,6 +4,9 @@ import { useContext } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
 import { ChatContext } from "../../contexts/ChatContext";
 
+// hooks
+import useChatbot from "../../hooks/useChatbot";
+
 // components
 import Loading from "./ui/Loading";
 
@@ -11,6 +14,7 @@ import Loading from "./ui/Loading";
 import Mascot from "../../assets/gif/animated-mascot.gif";
 
 const ChatHead = ({ onClick }) => {
+  const { isAtLatestChat } = useChatbot();
   const { auth } = useContext(AuthContext);
   const [isSignedIn] = auth.user;
   const { chat } = useContext(ChatContext);
@@ -18,7 +22,7 @@ const ChatHead = ({ onClick }) => {
 
   return (
     <>
-      {isSignedIn ? (
+      {isSignedIn && isAtLatestChat ? (
         <button
           onClick={() => onClick()}
           id=""

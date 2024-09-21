@@ -16,7 +16,7 @@ import SuggestedChatSection from "./sections/SuggestedChatSection";
 
 const ChatBox = ({ closeUsing }) => {
   const {
-    latestMessage,
+    latestChat,
     faqsRef,
     settings,
     isFaqsMenuActive,
@@ -51,7 +51,7 @@ const ChatBox = ({ closeUsing }) => {
           settings={settings}
           closeUsing={closeUsing}
         />
-        <ChatSection botIsTyping={botIsTyping} latestChat={latestMessage} />
+        <ChatSection botIsTyping={botIsTyping} latestChat={latestChat} />
         <SuggestedChatSection sendMessageToBot={sendMessageToBot} />
         <ChatInputSection
           faqsRef={faqsRef}

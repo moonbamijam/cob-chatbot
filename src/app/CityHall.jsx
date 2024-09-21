@@ -33,8 +33,8 @@ const Home = () => {
         <div ref={chatHead}>
           <FontProvider>
             <SoundProvider>
-              <ChatHead onClick={() => toggleChat()} />
               <ChatbotProvider>
+                <ChatHead onClick={() => toggleChat()} />
                 {isSignedIn && <ChatBox closeUsing={toggleChat} />}
               </ChatbotProvider>
             </SoundProvider>
