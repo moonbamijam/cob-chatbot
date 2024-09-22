@@ -14,10 +14,14 @@ const RadioButton = ({
     <Button
       variant="radio"
       size="lg"
-      className="w-[120px] capitalize truncate active:translate-y-1"
+      className="w-[120px] 2xl:w-[150px] capitalize active:translate-y-1"
       onClick={onClick}
     >
-      <label htmlFor={id} className="pointer-events-none" style={style}>
+      <label
+        htmlFor={id}
+        className="pointer-events-none truncate"
+        style={style}
+      >
         <input
           type="radio"
           name={name}
