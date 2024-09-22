@@ -45,7 +45,7 @@ const FontFamilySwitch = () => {
       case "Playpen Sans":
         setFontFamily(value);
         break;
-      case "Teko":
+      case "Caveat":
         setFontFamily(value);
         break;
       default:
