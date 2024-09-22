@@ -7,32 +7,40 @@
       "value": "Helvetica, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji"
     },
     {
-      "name": "poppins",
-      "value": "poppins"
-    },
-    {
       "name": "cursive",
       "value": "cursive"
-    },
-    {
-      "name": "raleway",
-      "value": "raleway"
     },
     {
       "name": "monospace",
       "value": "monospace"
     },
     {
+      "name": "poppins",
+      "value": "Poppins"
+    },
+    {
+      "name": "raleway",
+      "value": "Raleway"
+    },
+    {
       "name": "montserrat",
-      "value": "montserrat"
+      "value": "Montserrat"
     },
     {
-      "name": "futura",
-      "value": "futura"
+      "name": "lato",
+      "value": "Lato"
     },
     {
-      "name": "arial",
-      "value": "arial"
+      "name": "kanit",
+      "value": "Kanit"
+    },
+    {
+      "name": "playpen sans",
+      "value": "Playpen Sans"
+    },
+    {
+      "name": "teko",
+      "value": "Teko"
     }
   ]
 }

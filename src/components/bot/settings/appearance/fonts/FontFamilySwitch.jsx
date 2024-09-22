@@ -21,25 +21,31 @@ const FontFamilySwitch = () => {
       case fontFamilies.default:
         setFontFamily(value);
         break;
-      case "raleway":
-        setFontFamily(value);
-        break;
       case "cursive":
-        setFontFamily(value);
-        break;
-      case "poppins":
         setFontFamily(value);
         break;
       case "monospace":
         setFontFamily(value);
         break;
-      case "montserrat":
+      case "Poppins":
         setFontFamily(value);
         break;
-      case "futura":
+      case "Raleway":
         setFontFamily(value);
         break;
-      case "arial":
+      case "Montserrat":
+        setFontFamily(value);
+        break;
+      case "Lato":
+        setFontFamily(value);
+        break;
+      case "Kanit":
+        setFontFamily(value);
+        break;
+      case "Playpen Sans":
+        setFontFamily(value);
+        break;
+      case "Teko":
         setFontFamily(value);
         break;
       default:
