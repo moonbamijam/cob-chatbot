@@ -20,7 +20,7 @@ const Header = () => {
   };
 
   return (
-    <header className="fixed top-0 left-[50%] -translate-x-[50%] container w-full h-[60px] px-[4vw] md:px-[2vw] lg:px-[4vw] flex items-center justify-between z-30">
+    <header className="fixed top-0 left-[50%] -translate-x-[50%] container w-full h-[70px] px-[4vw] md:px-[2vw] lg:px-[4vw] flex items-center justify-between z-30">
       <Link to="/" className="text-2xl dark:text-white">
         {chatbotConfig.name}
       </Link>
