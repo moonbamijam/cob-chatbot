@@ -14,7 +14,7 @@ const RadioButton = ({
     <Button
       variant="radio"
       size="lg"
-      className="w-[120px] 2xl:w-[150px] capitalize active:translate-y-1"
+      className="w-[120px] capitalize active:translate-y-1"
       onClick={onClick}
     >
       <label
