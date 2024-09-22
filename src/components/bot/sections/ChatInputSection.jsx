@@ -88,7 +88,7 @@ const MessageInput = ({
         <Button
           variant="icon"
           size="icon"
-          className="text-primary active:translate-x-2 hover:bg-surface dark:hover:bg-dm-surface cursor-pointer"
+          className="text-primary active:translate-x-1 hover:bg-surface dark:hover:bg-dm-surface cursor-pointer"
           type="submit"
           onClick={() => setIsFaqsMenuActive(false)}
           disabled={!userMessage}

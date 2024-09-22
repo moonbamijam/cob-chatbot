@@ -46,7 +46,7 @@ const FontSizeSwitch = () => {
 
   return (
     <SettingSwitch>
-      <SettingsMiniTitle text="font sizes" />
+      <SettingsMiniTitle text="font size" />
       <Grid>
         {fontSizeList.map((font) => (
           <RadioButton
