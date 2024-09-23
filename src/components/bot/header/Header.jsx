@@ -22,7 +22,7 @@ const Header = ({ toggleSettings, closeUsing }) => {
       <button
         onClick={toggleSettings}
         id="chatbot-detai"
-        className="flex items-center gap-4"
+        className="max-w-[60%] w-full flex items-center gap-4"
       >
         <img
           src={configuration.icon}
@@ -31,7 +31,7 @@ const Header = ({ toggleSettings, closeUsing }) => {
           height={40}
           className="rounded-full sm:w-[45px] sm:h-[45px]"
         />
-        <h3 className="text-xl sm:text-2xl capitalize font-semibold dark:text-white">
+        <h3 className="max-w-max text-xl sm:text-2xl capitalize font-semibold dark:text-white truncate">
           {configuration.name}
         </h3>
       </button>

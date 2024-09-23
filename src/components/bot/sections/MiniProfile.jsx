@@ -19,11 +19,16 @@ const MiniProfile = ({ state, className, miniProfileRef }) => {
         height={100}
         className="rounded-full mb-2"
       />
-      <div id="details" className="text-center mb-4">
-        <h1 className="font-bold text-4xl mb-1 dark:text-white capitalize">
+      <div
+        id="details"
+        className="w-full flex flex-col items-center text-center mb-4"
+      >
+        <h1 className="max-w-full font-bold text-2xl sm:text-4xl mb-1 dark:text-white capitalize line-clamp-5">
           {configuration.name}
         </h1>
-        <h3 className="dark:text-white text-lg mb-6">{configuration.slogan}</h3>
+        <h3 className="max-w-full dark:text-white sm:text-lg mb-6 line-clamp-5">
+          {configuration.slogan}
+        </h3>
         {state && (
           <p className="dark:text-white text-sm opacity-70 whitespace-pre-line"></p>
         )}
