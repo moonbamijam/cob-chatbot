@@ -14,14 +14,14 @@ const MiniProfile = ({ state, className, miniProfileRef }) => {
     >
       <img
         src={configuration.icon}
-        alt=""
+        alt="Chatbot Icon"
         width={100}
         height={100}
-        className="rounded-full mb-2"
+        className="rounded-full mb-2 aspect-square object-cover select-none"
       />
       <div
         id="details"
-        className="w-full flex flex-col items-center text-center mb-4"
+        className="w-full flex flex-col items-center text-center mb-4 p-2"
       >
         <h1 className="max-w-full font-bold text-2xl sm:text-4xl mb-1 dark:text-white capitalize line-clamp-5">
           {configuration.name}

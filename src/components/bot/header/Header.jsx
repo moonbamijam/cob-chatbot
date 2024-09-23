@@ -26,10 +26,10 @@ const Header = ({ toggleSettings, closeUsing }) => {
       >
         <img
           src={configuration.icon}
-          alt=""
+          alt="Chatbot Icon"
           width={40}
           height={40}
-          className="rounded-full sm:w-[45px] sm:h-[45px]"
+          className="rounded-full sm:w-[45px] sm:h-[45px] aspect-square object-cover select-none"
         />
         <h3 className="max-w-max text-xl sm:text-2xl capitalize font-semibold dark:text-white truncate">
           {configuration.name}
