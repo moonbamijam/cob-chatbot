@@ -35,7 +35,7 @@ const ChatPreview = () => {
             alt=""
             width={45}
             height={45}
-            className="rounded-full"
+            className="rounded-full sm:w-[45px] sm:h-[45px] aspect-square object-cover select-none"
           />
           <h3 className="text-2xl capitalize font-semibold dark:text-white">
             preview
