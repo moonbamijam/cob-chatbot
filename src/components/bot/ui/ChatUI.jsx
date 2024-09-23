@@ -70,7 +70,7 @@ const ChatUI = ({
                   <source src={SampleVideo} type="video/mp4" />
                 </video>
               )}
-              <div className="max-w-[80%] rounded-3xl shadow bg-surface dark:bg-dm-surface px-4 py-3 break-words">
+              <div className="max-w-[80%] rounded-3xl shadow bg-surface dark:bg-dm-surface px-4 py-3 space-y-2 break-words">
                 <div
                   id="message"
                   style={{ fontSize: fontSize }}
@@ -95,7 +95,7 @@ const ChatUI = ({
               className="w-full flex justify-end
             mt-3 mb-2"
             >
-              <div className="max-w-[80%] rounded-3xl shadow bg-primary text-white px-4 py-3 break-words">
+              <div className="max-w-[80%] rounded-3xl shadow bg-primary text-white px-4 py-3 space-y-2 break-words">
                 <div
                   id="message"
                   style={{ fontSize: fontSize }}

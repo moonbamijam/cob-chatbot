@@ -84,7 +84,7 @@ const ChatPreview = () => {
           <ReactTextareaAutosize
             name="sameple-chat-preview-ls"
             id="sameple-chat-preview-ls"
-            className="max-h-[100px] w-full dark:text-white outline-none bg-transparent dark:focus:bg-dm-surface-light placeholder:text-sm sm:placeholder:text-base placeholder:opacity-80 scrollbar-thin scrollbar-track-transparent scrollbar-thumb-surface-dark dark:scrollbar-thumb-dm-surface-dark"
+            className="max-h-[100px] w-full dark:text-white outline-none bg-transparent dark:focus:bg-dm-surface-light placeholder:text-sm sm:placeholder:text-base placeholder:opacity-80 caret-primary dark:caret-secondary scrollbar-thin scrollbar-track-transparent scrollbar-thumb-surface-dark dark:scrollbar-thumb-dm-surface-dark"
             placeholder="The fonts only apply to chat"
           />
         </label>

@@ -81,7 +81,7 @@ const MessageInput = ({
               setUserMessage(e.target.value);
               setIsFaqsMenuActive(false);
             }}
-            className="max-h-[100px] w-full dark:text-white outline-none bg-transparent placeholder:text-sm sm:placeholder:text-base px-2 dark:bg-dm-surface dark:focus:bg-dm-surface-light placeholder:opacity-80 caret-primary dark:caret-surface scrollbar-thin scrollbar-track-transparent scrollbar-thumb-surface-dark dark:scrollbar-thumb-dm-surface-dark"
+            className="max-h-[100px] w-full dark:text-white outline-none bg-transparent placeholder:text-sm sm:placeholder:text-base px-2 dark:bg-dm-surface dark:focus:bg-dm-surface-light placeholder:opacity-80 caret-primary dark:caret-secondary scrollbar-thin scrollbar-track-transparent scrollbar-thumb-surface-dark dark:scrollbar-thumb-dm-surface-dark"
             placeholder="Type here..."
           />
         </label>

@@ -12,7 +12,7 @@ const Typing = () => {
         alt="Chatbot Icon"
         width={35}
         height={35}
-        className="rounded-full "
+        className="rounded-full aspect-square object-cover select-none"
       />
       <div className="flex space-x-1 items-center rounded-3xl px-2 py-3 ">
         <div className="h-2 w-2 bg-surface-dark dark:bg-dm-surface-light rounded-full animate-bounce [animation-delay:-0.3s]"></div>

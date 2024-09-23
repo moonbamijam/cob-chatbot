@@ -17,7 +17,7 @@ const SampleBotChat = ({ style, message, linkedMessage }) => {
           height={35}
           className="rounded-full aspect-square object-cover select-none"
         />
-        <div className="max-w-[80%] rounded-3xl shadow bg-surface dark:bg-dm-surface px-4 py-3 break-words">
+        <div className="max-w-[80%] rounded-3xl shadow bg-surface dark:bg-dm-surface px-4 py-3 space-y-2 break-words">
           <p id="message" className="dark:text-white">
             {message}
             {linkedMessage && (

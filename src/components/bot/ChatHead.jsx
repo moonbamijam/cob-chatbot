@@ -37,7 +37,7 @@ const ChatHead = ({ onClick }) => {
           />
         </button>
       ) : (
-        <div className="fixed bottom-[10%] right-[20%] lg:right-[10%] z-[100] [&>div>svg>path]:text-primary">
+        <div className="fixed bottom-[10%] right-[20%] lg:right-[10%] z-[100] [&>div>svg>path]:text-primary xl:[&>div>svg>path]:text-white ">
           <Loading />
         </div>
       )}
