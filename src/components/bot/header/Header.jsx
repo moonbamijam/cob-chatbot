@@ -1,13 +1,14 @@
+import { useContext } from "react";
+
+// context
+import { ChatbotContext } from "../../../contexts/ChatbotContext";
+
 // components
 import { Button } from "../../ui/Button";
 
 // icons
 import { IoSettingsSharp } from "react-icons/io5";
 import { IoClose } from "react-icons/io5";
-
-import LoadingImage from "../../../../misc/miyako.jpg";
-import { useContext } from "react";
-import { ChatbotContext } from "../../../contexts/ChatbotContext";
 
 const Header = ({ toggleSettings, closeUsing }) => {
   const { chatbot } = useContext(ChatbotContext);
@@ -24,7 +25,7 @@ const Header = ({ toggleSettings, closeUsing }) => {
         className="flex items-center gap-4"
       >
         <img
-          src={configuration.icon ? configuration.icon : LoadingImage}
+          src={configuration.icon}
           alt=""
           width={40}
           height={40}
