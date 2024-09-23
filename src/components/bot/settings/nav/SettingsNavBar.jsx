@@ -1,5 +1,8 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useContext } from "react";
 import { settingsList } from "../../../../lib/settings/settingsList";
+
+// context
+import { ChatbotContext } from "../../../../contexts/ChatbotContext";
 
 // components
 import { Button } from "../../../ui/Button";
@@ -10,8 +13,11 @@ import Version from "../../ui/Version";
 
 // icons
 import { LuMenu } from "react-icons/lu";
+import { FaRobot } from "react-icons/fa6";
 
 const SettingsNavBar = ({ state, handleSettingsChange, changeSetting }) => {
+  const { chatbot } = useContext(ChatbotContext);
+  const [configuration] = chatbot.configuration;
   const [isSideNavActive, setIsSideNavActive] = useState(false);
   const sideNavRef = useRef(null);
 
@@ -65,6 +71,14 @@ const SettingsNavBar = ({ state, handleSettingsChange, changeSetting }) => {
           </SettingsNavSection>
           <SettingsNavSection>
             <SettingsNavTitle name="about" />
+            <SettingsBtn
+              name={configuration.name}
+              checkedIf={state == configuration.name}
+              onClick={() => changeSetting(configuration.name)}
+              onChange={handleSettingsChange}
+              icon={<FaRobot />}
+              state={isSideNavActive}
+            />
             {settingsList
               .filter((setting) => {
                 return setting.settingType === "about";

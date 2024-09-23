@@ -1,5 +1,4 @@
 import { useContext } from "react";
-import { chatbotConfig } from "../../../lib/bot/chatbotConfig";
 import Messages from "../../../../static/messages/suggested.json";
 
 // contexts
@@ -15,8 +14,11 @@ import ReactTextareaAutosize from "react-textarea-autosize";
 import SampleBotChat from "./SampleBotChat";
 import SampleUserChat from "./SampleUserChat";
 import SuggestedChatButton from "../buttons/SuggestedChatButton";
+import { ChatbotContext } from "../../../contexts/ChatbotContext";
 
 const ChatPreview = () => {
+  const { chatbot } = useContext(ChatbotContext);
+  const [configuration] = chatbot.configuration;
   const { font } = useContext(FontContext);
   const [fontSize] = font.size;
   const [fontFamily] = font.family;
@@ -29,7 +31,7 @@ const ChatPreview = () => {
       <header className="w-full flex items-center justify-between px-4 py-4 mr-auto shadow-md dark:shadow-dm-surface-dark">
         <div className="flex items-center gap-4">
           <img
-            src={chatbotConfig.logo}
+            src={configuration.icon}
             alt=""
             width={45}
             height={45}
@@ -47,15 +49,15 @@ const ChatPreview = () => {
         />
         <SampleUserChat
           style={{ fontSize: fontSize }}
-          message={`Your messages to ${chatbotConfig.name} will look like this.`}
+          message={`Your messages to ${configuration.name} will look like this.`}
         />
         <SampleBotChat
           style={{ fontSize: fontSize }}
-          message={`Meanwhile, ${chatbotConfig.name}'s messages will look like this.`}
+          message={`Meanwhile, ${configuration.name}'s messages will look like this.`}
         />
         <SampleBotChat
           style={{ fontSize: fontSize }}
-          message={`And when ${chatbotConfig.name} send a link, it will look like this, `}
+          message={`And when ${configuration.name} send a link, it will look like this, `}
           linkedMessage="Click here"
         />
       </div>

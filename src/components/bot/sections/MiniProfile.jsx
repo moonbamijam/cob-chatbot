@@ -1,7 +1,11 @@
 import { Link } from "react-router-dom";
-import { chatbotConfig } from "../../../lib/bot/chatbotConfig";
+import { useContext } from "react";
+import { ChatbotContext } from "../../../contexts/ChatbotContext";
 
 const MiniProfile = ({ state, className, miniProfileRef }) => {
+  const { chatbot } = useContext(ChatbotContext);
+  const [configuration] = chatbot.configuration;
+
   return (
     <section
       id="bot-profile"
@@ -9,21 +13,19 @@ const MiniProfile = ({ state, className, miniProfileRef }) => {
       ref={miniProfileRef}
     >
       <img
-        src={chatbotConfig.logo}
+        src={configuration.icon}
         alt=""
         width={100}
         height={100}
         className="rounded-full mb-2"
       />
       <div id="details" className="text-center mb-4">
-        <h1 className="font-bold text-4xl mb-1 dark:text-white">
-          {chatbotConfig.name}
+        <h1 className="font-bold text-4xl mb-1 dark:text-white capitalize">
+          {configuration.name}
         </h1>
-        <h3 className="dark:text-white text-lg mb-6">{chatbotConfig.slogan}</h3>
+        <h3 className="dark:text-white text-lg mb-6">{configuration.slogan}</h3>
         {state && (
-          <p className="dark:text-white text-sm opacity-70 whitespace-pre-line">
-            {chatbotConfig.desc}
-          </p>
+          <p className="dark:text-white text-sm opacity-70 whitespace-pre-line"></p>
         )}
       </div>
       {state && (
