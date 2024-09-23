@@ -17,10 +17,10 @@ const SettingsBtn = ({ name, checkedIf, onClick, onChange, icon, state }) => {
         className="hidden"
       />
       {state ? (
-        <span className="md:block">{name}</span>
+        <span className="md:block max-w-full truncate">{name}</span>
       ) : (
         <>
-          <span className="hidden md:block">{name}</span>
+          <span className="hidden md:block max-w-full truncate">{name}</span>
           <div className="text-xl p-0 md:hidden">{icon}</div>
         </>
       )}

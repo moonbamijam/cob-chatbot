@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { chatbotConfig } from "../../../lib/bot/chatbotConfig";
 
 // components
 import { Button } from "../../ui/Button";
@@ -11,8 +10,12 @@ import About from "./about/About";
 
 // icons
 import { CgClose } from "react-icons/cg";
+import { useContext } from "react";
+import { ChatbotContext } from "../../../contexts/ChatbotContext";
 
 const Settings = ({ settings, toggleSettings }) => {
+  const { chatbot } = useContext(ChatbotContext);
+  const [configuration] = chatbot.configuration;
   const [checked, setChecked] = useState("appearance");
 
   const handleSettingsChange = (event) => {
@@ -27,6 +30,9 @@ const Settings = ({ settings, toggleSettings }) => {
       case "sound":
         setChecked(setting);
         break;
+      case configuration.name:
+        setChecked(setting);
+        break;
       default:
         setChecked("appearance");
         break;
@@ -39,7 +45,7 @@ const Settings = ({ settings, toggleSettings }) => {
         return <AppearanceSettings />;
       case "sound":
         return <SoundSettings />;
-      case chatbotConfig.name.toLowerCase():
+      case configuration.name:
         return <About settings={settings} />;
       default:
         return <AppearanceSettings />;

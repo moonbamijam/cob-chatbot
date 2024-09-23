@@ -3,6 +3,7 @@ import { useContext } from "react";
 // contexts
 import { AuthContext } from "../../contexts/AuthContext";
 import { ChatContext } from "../../contexts/ChatContext";
+import { ChatbotContext } from "../../contexts/ChatbotContext";
 
 // hooks
 import useChatbot from "../../hooks/useChatbot";
@@ -10,19 +11,18 @@ import useChatbot from "../../hooks/useChatbot";
 // components
 import Loading from "./ui/Loading";
 
-// assets
-import Mascot from "../../assets/gif/animated-mascot.gif";
-
 const ChatHead = ({ onClick }) => {
-  const { isAtLatestChat } = useChatbot();
   const { auth } = useContext(AuthContext);
   const [isSignedIn] = auth.user;
+  const { chatbot } = useContext(ChatbotContext);
+  const [configuration] = chatbot.configuration;
   const { chat } = useContext(ChatContext);
   const [isChatActive] = chat.active;
+  const { isAtLatestChat } = useChatbot();
 
   return (
     <>
-      {isSignedIn && isAtLatestChat ? (
+      {isSignedIn && isAtLatestChat && configuration.widgetIcon ? (
         <button
           onClick={() => onClick()}
           id=""
@@ -30,7 +30,11 @@ const ChatHead = ({ onClick }) => {
             isChatActive ? "opacity-0 translate-y-[100%] invisible" : ""
           }`}
         >
-          <img src={Mascot} alt="chat head logo" className="w-[400px]" />
+          <img
+            src={configuration.widgetIcon}
+            alt="chat head logo"
+            className="w-[400px]"
+          />
         </button>
       ) : (
         <div className="fixed bottom-[10%] right-[20%] lg:right-[10%] z-[100] [&>div>svg>path]:text-primary">

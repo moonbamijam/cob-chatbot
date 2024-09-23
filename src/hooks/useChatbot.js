@@ -1,10 +1,10 @@
 import { useState, useEffect, useRef, useContext, useCallback } from "react";
 import { v4 as uuid } from "uuid";
-import { chatbotConfig } from "../lib/bot/chatbotConfig";
 import { verifiedUID } from "../utils/uid";
 
 // contexts
 import { ChatbotContext } from "../contexts/ChatbotContext";
+import { AuthContext } from "../contexts/AuthContext";
 
 // library
 import { depts, deptsAnswer } from "../lib/depts";
@@ -34,7 +34,6 @@ import { sleep } from "../utils/sleep";
 import { hasSymbol, splitMessage } from "../utils/splitMessage";
 import { smoothScrollInto } from "../utils/scrollInto";
 import { greet } from "../utils/greet";
-import { AuthContext } from "../contexts/AuthContext";
 
 const uid = verifiedUID();
 
@@ -47,6 +46,7 @@ const useChatbot = () => {
   const { auth } = useContext(AuthContext);
   const [isSignedIn] = auth.user;
   const { chatbot } = useContext(ChatbotContext);
+  const [configuration] = chatbot.configuration;
   const [conversation, setConversation] = chatbot.conversation;
   const [faqs, setFaqs] = chatbot.faqs;
   const [error, setError] = chatbot.error;
@@ -71,7 +71,10 @@ const useChatbot = () => {
       const data = await getDocs(usersCollectionRef);
       onSnapshot(doc(usersCollectionRef, uid), (doc) => {
         if (doc.exists()) setConversation(doc.data().conversation);
-        else greet(uid);
+        // data in configuration will take time and we have to check if its there
+        // this will prevent greet to get undefined 2nd argument that will cause error
+        else if (!doc.exists() && configuration.initialGreet)
+          greet(uid, configuration.initialGreet);
       });
       if (data) setLoading(false);
     } catch (error) {
@@ -79,7 +82,7 @@ const useChatbot = () => {
       setError(true);
       if (!error) setError(false);
     }
-  }, [setConversation, setError]);
+  }, [configuration.initialGreet, setConversation, setError]);
 
   const getFaqs = useCallback(async () => {
     try {
@@ -148,7 +151,7 @@ const useChatbot = () => {
         // STARTING HERE FROM "ELSE" HANDLES THE DYNAMIC RESPONSES FROM BOT
       } else {
         await sleep(1);
-        const response = await fetch(chatbotConfig.url, {
+        const response = await fetch(configuration.url, {
           method: "POST",
           headers: {
             "content-type": "application/json",
@@ -172,7 +175,7 @@ const useChatbot = () => {
         if (intentRecognizedByBot == "None") {
           botMessageInfo = {
             intent: intentRecognizedByBot,
-            message: chatbotConfig.errorMessage,
+            message: configuration.errorMessage,
             messageId: uuid(),
             role: "bot",
             timeSent: Timestamp.now(),

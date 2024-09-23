@@ -1,5 +1,4 @@
 import { useContext, useState } from "react";
-import { chatbotConfig } from "../../lib/bot/chatbotConfig";
 
 // contexts
 import { FontContext } from "../../contexts/FontContext";
@@ -10,10 +9,13 @@ import DepartmentBtn from "./buttons/DepartmentBtn";
 
 // icons
 import { BsArrowDownCircleFill } from "react-icons/bs";
+import { ChatbotContext } from "../../contexts/ChatbotContext";
 
 const step = 4;
 
 const Chat = ({ role, message, depts, timeSent, link }) => {
+  const { chatbot } = useContext(ChatbotContext);
+  const [configuration] = chatbot.configuration;
   const { font } = useContext(FontContext);
   const [fontSize] = font.size;
   const [numberOfDeptsToShow, setNumberOfDeptsToShow] = useState(4);
@@ -45,7 +47,7 @@ const Chat = ({ role, message, depts, timeSent, link }) => {
       return (
         <ChatUI
           messageBy={role}
-          img={chatbotConfig.logo}
+          img={configuration.icon}
           timeSent={timeSent}
           fontSize={fontSize}
         >

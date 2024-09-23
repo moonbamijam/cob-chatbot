@@ -1,15 +1,21 @@
-import { chatbotConfig } from "../../../lib/bot/chatbotConfig";
+import { useContext } from "react";
+
+// context
+import { ChatbotContext } from "../../../contexts/ChatbotContext";
 
 const SampleBotChat = ({ style, message, linkedMessage }) => {
+  const { chatbot } = useContext(ChatbotContext);
+  const [configuration] = chatbot.configuration;
+
   return (
     <div style={style} className="bot message">
       <div className="w-full relative flex items-center gap-2 mt-3 mb-2">
         <img
-          src={chatbotConfig.logo}
+          src={configuration.icon}
           alt="Chatbot Icon"
           width={35}
           height={35}
-          className="rounded-full"
+          className="rounded-full aspect-square object-cover select-none"
         />
         <div className="max-w-[80%] rounded-3xl shadow bg-surface dark:bg-dm-surface px-4 py-3 break-words">
           <p id="message" className="dark:text-white">

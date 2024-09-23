@@ -1,10 +1,14 @@
-import { chatbotConfig } from "../../../lib/bot/chatbotConfig";
+import { useContext } from "react";
+import { ChatbotContext } from "../../../contexts/ChatbotContext";
 
 const Typing = () => {
+  const { chatbot } = useContext(ChatbotContext);
+  const [configuration] = chatbot.configuration;
+
   return (
     <div className="w-full mt-3 mb-2 rounded-3xl flex gap-2 items-center ">
       <img
-        src={chatbotConfig.logo}
+        src={configuration.icon}
         alt="Chatbot Icon"
         width={35}
         height={35}
