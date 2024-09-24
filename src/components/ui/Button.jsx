@@ -3,7 +3,7 @@ import { cva } from "class-variance-authority";
 // utils
 import { cn } from "../../utils/cn";
 
-const buttonVariants = cva("w-full h-full", {
+const buttonVariants = cva("w-full h-full select-none", {
   variants: {
     variant: {
       default:
