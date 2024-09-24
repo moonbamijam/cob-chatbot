@@ -15,6 +15,7 @@ import Cityhall from "../../static/assets/images/city-hall.jpg";
 
 // icons
 import { CgClose } from "react-icons/cg";
+import Version from "../components/bot/ui/Version";
 
 const Home = () => {
   const [isModalActive, setIsModalActive] = useState(false);
@@ -37,7 +38,7 @@ const Home = () => {
   return (
     <>
       <Header />
-      <main className="container w-full lg:h-screen flex flex-col-reverse lg:flex-row items-center justify-center lg:justify-between 2xl:justify-around lg:items-center py-[100px] px-[2vw] lg:px-[4vw] 2xl:px-[6vw] gap-6">
+      <main className="container relative w-full lg:h-screen flex flex-col-reverse lg:flex-row items-center justify-center lg:justify-between 2xl:justify-around lg:items-center py-[100px] px-[2vw] lg:px-[4vw] 2xl:px-[6vw] gap-6">
         <section className="text-center lg:text-left">
           <div className="max-w-[400px]">
             <h1 className="font-helvetica text-6xl md:text-7xl lg:text-8xl bg-gradient-to-tr from-primary from-35% via-tertiary via-70% to-secondary bg-clip-text text-transparent cursor-default select-none">
@@ -59,7 +60,7 @@ const Home = () => {
             ask {chatbotConfig.name}
           </Button>
         </section>
-        <div className="pb-2 lg:border border-surface dark:border-dm-surface rounded-2xl overflow-hidden">
+        <div className="pb-2 lg:border border-surface dark:border-dm-surface rounded-2xl overflow-hidden select-none">
           <img
             src={LandingCoverLight}
             alt="Chatbot"
@@ -75,6 +76,10 @@ const Home = () => {
             className="hidden dark:block w-[400px] h-[600px] lg:w-[500px] lg:h-[700px] rounded-2xl object-contain"
           />
         </div>
+        <Version
+          text="v"
+          className="fixed left-[2%] bottom-[2.5%] text-sm text-black/50"
+        />
       </main>
       <section
         ref={modalRef}
