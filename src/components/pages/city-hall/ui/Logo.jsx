@@ -4,7 +4,7 @@ const Logo = () => {
   return (
     <a
       aria-label="Bacoor City Hall Logo"
-      href="/"
+      href="/bacoor-gov"
       className="w-[125px] h-[125px] mx-auto"
     >
       <img
