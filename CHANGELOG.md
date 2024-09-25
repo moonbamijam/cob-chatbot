@@ -1,5 +1,35 @@
 # What's New
 
+# [2.4.0](https://github.com/moonbamijam/cob-chatbot/compare/v2.3.0...v2.4.0) (2024-09-25)
+
+
+### Bug Fixes
+
+* dummy page logo redirecting to landing page ([3c57850](https://github.com/moonbamijam/cob-chatbot/commit/3c578506a3d12eb562ccd5e1d45e6936b729abe7))
+* fonts not applying to other device ([#126](https://github.com/moonbamijam/cob-chatbot/issues/126)) ([cb4af5c](https://github.com/moonbamijam/cob-chatbot/commit/cb4af5cdbba76c3c3768d6c14a40854beabd8aab))
+* loading previous chat on refresh ([1ae63ed](https://github.com/moonbamijam/cob-chatbot/commit/1ae63ed36fbc5d4262316eac716bc125eace7bda))
+* no displayed active theme in settings ([fbe6076](https://github.com/moonbamijam/cob-chatbot/commit/fbe607677bc79a958db67a5f0d95ac8e727c7701))
+* slight delay clearing sent chat ([647ebc4](https://github.com/moonbamijam/cob-chatbot/commit/647ebc486adeaf7fcd51de991f9450ecc8d77a49))
+
+
+### Features
+
+* add caret colors to chat input ([43062a2](https://github.com/moonbamijam/cob-chatbot/commit/43062a2655a908edecca8648ea286276d114ca42))
+* add chat preview for image and video ([#123](https://github.com/moonbamijam/cob-chatbot/issues/123)) ([c522fa8](https://github.com/moonbamijam/cob-chatbot/commit/c522fa8eda8c0697fc5f43bd37d54110eb316de1)), closes [#94](https://github.com/moonbamijam/cob-chatbot/issues/94)
+* add dynamic chatbot configurations ([#129](https://github.com/moonbamijam/cob-chatbot/issues/129)) ([6ca4df7](https://github.com/moonbamijam/cob-chatbot/commit/6ca4df72f83d3f92fde140bf2f1ae53d7c88729a))
+* add glass bg to header items under sm screens ([1070f98](https://github.com/moonbamijam/cob-chatbot/commit/1070f98751d2334600fffbb1b985fce913f8b40d))
+* add version number to landing page ([c9ad5a3](https://github.com/moonbamijam/cob-chatbot/commit/c9ad5a3068cea4296c013aee2b4dca4efa0bb64b))
+* adjustment to send button active transition ([38e1229](https://github.com/moonbamijam/cob-chatbot/commit/38e1229cf4f89874672bcc1c822ac40a548f4143))
+* slight height increase to header ([92fd5b1](https://github.com/moonbamijam/cob-chatbot/commit/92fd5b1e2f239fba63af40a043e00d1a00d84c2d))
+* slight styling update to city hall page ([e50c17c](https://github.com/moonbamijam/cob-chatbot/commit/e50c17ca6e1b8db3512dd503d43221c6bfb2de82))
+* small ui changes and adjustments ([4507ce6](https://github.com/moonbamijam/cob-chatbot/commit/4507ce6cc440dac71810eed26fab7513024d9b10))
+* small ux adjustment to appearance setting ([a50d21d](https://github.com/moonbamijam/cob-chatbot/commit/a50d21d94d31c5aaefc5db66e3c35ceca15c3cb0))
+
+
+### Performance Improvements
+
+* chat head position ([bd5e949](https://github.com/moonbamijam/cob-chatbot/commit/bd5e9491704c0b8d660e76dd6f1917835683700e))
+
 # [2.3.0](https://github.com/moonbamijam/cob-chatbot/compare/v2.2.0...v2.3.0) (2024-09-15)
 
 
