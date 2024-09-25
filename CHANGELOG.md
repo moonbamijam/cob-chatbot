@@ -1,5 +1,12 @@
 # What's New
 
+## [2.4.3](https://github.com/moonbamijam/cob-chatbot/compare/v2.4.2...v2.4.3) (2024-09-25)
+
+
+### Bug Fixes
+
+* 404 not found on hard refresh ([#131](https://github.com/moonbamijam/cob-chatbot/issues/131)) ([8b1b146](https://github.com/moonbamijam/cob-chatbot/commit/8b1b146b5f60e2bb19deccb097e55b1c2d1fb5c4))
+
 ## [2.4.2](https://github.com/moonbamijam/cob-chatbot/compare/v2.4.1...v2.4.2) (2024-09-25)
 
 
