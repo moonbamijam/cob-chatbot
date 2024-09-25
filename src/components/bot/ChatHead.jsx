@@ -26,7 +26,7 @@ const ChatHead = ({ onClick }) => {
         <button
           onClick={() => onClick()}
           id=""
-          className={`fixed right-12 bottom-12 rounded-full z-[100] ${
+          className={`fixed right-[2%] bottom-[2%] rounded-full z-[100] ${
             isChatActive ? "opacity-0 translate-y-[100%] invisible" : ""
           }`}
         >
