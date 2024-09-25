@@ -1,5 +1,12 @@
 # What's New
 
+## [2.4.2](https://github.com/moonbamijam/cob-chatbot/compare/v2.4.1...v2.4.2) (2024-09-25)
+
+
+### Bug Fixes
+
+* header bg remains in large screen dark mode ([3df8604](https://github.com/moonbamijam/cob-chatbot/commit/3df860495084665de834d023322d26fdf77f02e8))
+
 ## [2.4.1](https://github.com/moonbamijam/cob-chatbot/compare/v2.4.0...v2.4.1) (2024-09-25)
 
 
