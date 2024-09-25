@@ -78,7 +78,7 @@ const Home = () => {
         </div>
         <Version
           text="v"
-          className="fixed left-[2%] bottom-[2.5%] text-sm text-black/50"
+          className="fixed left-[2%] bottom-[2.5%] text-sm text-black/50 dark:text-white/50"
         />
       </main>
       <section
