@@ -3,5 +3,11 @@
     "deploymentEnabled": {
       "main": false
     }
-  }
+  },
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "dist/index.html"
+    }
+  ]
 }
