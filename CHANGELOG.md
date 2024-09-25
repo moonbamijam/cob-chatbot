@@ -1,5 +1,13 @@
 # What's New
 
+## [2.4.1](https://github.com/moonbamijam/cob-chatbot/compare/v2.4.0...v2.4.1) (2024-09-25)
+
+
+### Bug Fixes
+
+* undefined variable import ([#130](https://github.com/moonbamijam/cob-chatbot/issues/130)) ([fbd2fd5](https://github.com/moonbamijam/cob-chatbot/commit/fbd2fd5ef1d97354028c832af694d8894deb5bee))
+* version & header item styling in dark mode ([cfcab11](https://github.com/moonbamijam/cob-chatbot/commit/cfcab1112ab8faba05c5f72cdf564743a7d4ae9e))
+
 # [2.4.0](https://github.com/moonbamijam/cob-chatbot/compare/v2.3.0...v2.4.0) (2024-09-25)
 
 
