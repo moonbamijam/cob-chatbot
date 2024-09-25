@@ -1,6 +1,8 @@
 import { useState, useEffect, useMemo } from "react";
 import { FontContext } from "../contexts/FontContext";
 
+import fontFamilies from "../../static/settings/font_families.json";
+
 const FontProvider = ({ children }) => {
   const [fontSize, setFontSize] = useState(
     parseInt(localStorage.getItem("fontSize")),
