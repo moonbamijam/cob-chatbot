@@ -26,14 +26,14 @@ const ChatHead = ({ onClick }) => {
         <button
           onClick={() => onClick()}
           id=""
-          className={`fixed right-[2%] bottom-[2%] rounded-full z-[100] ${
+          className={`fixed right-[2%] bottom-[2%] rounded-full overflow-hidden z-[100] ${
             isChatActive ? "opacity-0 translate-y-[100%] invisible" : ""
           }`}
         >
           <img
             src={configuration.widgetIcon}
             alt="chat head logo"
-            className="w-[400px]"
+            className="w-[400px] aspect-square object-cover"
           />
         </button>
       ) : (
