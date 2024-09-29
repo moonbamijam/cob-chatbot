@@ -5,6 +5,7 @@ import ThemeSwitch from "./themes/ThemeSwitch";
 import FontFamilySwitch from "./fonts/FontFamilySwitch";
 import FontSizeSwitch from "./fonts/FontSizeSwitch";
 import SettingsWrapper from "../SettingsWrapper";
+import ChatHeadSwitch from "./chathead/ChatHeadSwitch";
 
 const AppearanceSettings = () => {
   return (
@@ -16,6 +17,7 @@ const AppearanceSettings = () => {
             <ThemeSwitch />
             <FontFamilySwitch />
             <FontSizeSwitch />
+            <ChatHeadSwitch />
           </SettingsWrapper>
           <ChatPreview />
         </div>

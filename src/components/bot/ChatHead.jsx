@@ -18,6 +18,7 @@ const ChatHead = ({ onClick }) => {
   const [configuration] = chatbot.configuration;
   const { chat } = useContext(ChatContext);
   const [isChatActive] = chat.active;
+  const [chatHeadSize] = chat.chatHeadSize;
   const { isAtLatestChat } = useChatbot();
 
   return (
@@ -26,18 +27,23 @@ const ChatHead = ({ onClick }) => {
         <button
           onClick={() => onClick()}
           id=""
-          className={`fixed right-[2%] bottom-[2%] rounded-full z-[100] ${
+          className={`fixed right-[2%] bottom-[2%] rounded-full overflow-hidden z-[100] ${
             isChatActive ? "opacity-0 translate-y-[100%] invisible" : ""
           }`}
         >
           <img
             src={configuration.widgetIcon}
             alt="chat head logo"
-            className="w-[400px]"
+            width={chatHeadSize}
+            height={chatHeadSize}
+            className="aspect-square object-cover"
           />
         </button>
       ) : (
-        <div className="fixed bottom-[10%] right-[20%] lg:right-[10%] z-[100] [&>div>svg>path]:text-primary xl:[&>div>svg>path]:text-white ">
+        <div
+          style={{ width: chatHeadSize, height: chatHeadSize }}
+          className="fixed right-[2%] bottom-[2%] flex items-center justify-center z-[100] [&>div>svg>path]:text-primary xl:[&>div>svg>path]:text-white "
+        >
           <Loading />
         </div>
       )}
