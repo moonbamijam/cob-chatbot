@@ -37,11 +37,11 @@ const ChatBox = ({ closeUsing }) => {
     <>
       <div
         id="message-box"
-        className={`w-full h-full xl:w-[500px] xl:h-[800px] fixed flex flex-col items-center xl:right-[10%] xl:top-[8%] bg-background dark:bg-dm-background xl:rounded-xl overflow-hidden z-[100] ${
+        className={`w-full h-full xl:max-w-[500px] xl:max-h-[800px] fixed flex flex-col items-center xl:right-[10%] xl:bottom-[8%] bg-background dark:bg-dm-background xl:rounded-xl overflow-hidden z-[100] ${
           isChatActive
             ? "opacity-100 visible"
             : "opacity-0 -translate-y-[100%] invisible"
-        }`}
+        } [@media_((min-height:0px)_and_(min-width:1280px))]:max-h-[85%]`}
         style={{
           fontFamily: fontFamily,
         }}

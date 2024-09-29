@@ -127,7 +127,7 @@ const ChatSection = ({ botIsTyping, latestChat }) => {
         <FaArrowDown />
       </Button>
       <section
-        className={`relative w-full xl:max-h-[600px] h-full px-4 py-6 overflow-y-scroll scrollbar-thin scrollbar-track-transparent scrollbar-thumb-surface-dark dark:scrollbar-thumb-dm-surface`}
+        className={`relative w-full h-full px-4 py-3 overflow-y-scroll scrollbar-thin scrollbar-track-transparent scrollbar-thumb-surface-dark dark:scrollbar-thumb-dm-surface`}
         onScroll={handleScroll}
       >
         {/* <div
