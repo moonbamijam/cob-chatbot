@@ -3,7 +3,7 @@ import { ChatContext } from "../contexts/ChatContext";
 
 const getInitialStates = () => {
   const chatHeadSize = parseInt(localStorage.getItem("chatHeadSize"));
-  return chatHeadSize ? chatHeadSize : 100;
+  return chatHeadSize ? chatHeadSize : 200;
 };
 
 const ChatProvider = ({ children }) => {
