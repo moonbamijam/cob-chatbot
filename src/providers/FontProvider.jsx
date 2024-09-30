@@ -3,35 +3,91 @@ import { FontContext } from "../contexts/FontContext";
 
 import fontFamilies from "../../static/settings/font_families.json";
 
+const getFontSize = () => {
+  const fontSize = parseInt(localStorage.getItem("fontSize"));
+  return fontSize ? fontSize : 16;
+};
+
+const getFontFamily = () => {
+  const fontFamily = localStorage.getItem("fontFamily");
+  return fontFamily ? fontFamily : fontFamilies.default;
+};
+
 const FontProvider = ({ children }) => {
-  const [fontSize, setFontSize] = useState(
-    parseInt(localStorage.getItem("fontSize")),
-  );
-  // REMEMBER TO USE "parseInt" since we're always getting a string in localStorage even it is a number
-  const [fontFamily, setFontFamily] = useState(
-    localStorage.getItem("fontFamily"),
-  );
+  const [fontSize, setFontSize] = useState(getFontSize);
+  const [fontFamily, setFontFamily] = useState(getFontFamily);
 
+  // listener
   useEffect(() => {
-    if (localStorage.getItem("fontSize") == null) {
-      const initialFontSize = 16;
+    localStorage.setItem("fontSize", fontSize);
+    localStorage.setItem("fontFamily", fontFamily);
+  }, [fontSize, fontFamily]);
 
-      setFontSize(initialFontSize);
-      localStorage.setItem("fontSize", initialFontSize);
+  const changeFontSize = (value) => {
+    switch (value) {
+      case 8:
+        setFontSize(value);
+        break;
+      case 12:
+        setFontSize(value);
+        break;
+      case 16:
+        setFontSize(value);
+        break;
+      case 24:
+        setFontSize(value);
+        break;
+      case 32:
+        setFontSize(value);
+        break;
+      case 48:
+        setFontSize(value);
+        break;
     }
-    if (localStorage.getItem("fontFamily") == null) {
-      const initialFontFamily = fontFamilies.default;
+  };
 
-      setFontFamily(initialFontFamily);
-      localStorage.setItem("fontFamily", initialFontFamily);
+  const changeFontFamily = (value) => {
+    switch (value) {
+      case fontFamilies.default:
+        setFontFamily(value);
+        break;
+      case "cursive":
+        setFontFamily(value);
+        break;
+      case "monospace":
+        setFontFamily(value);
+        break;
+      case "Poppins":
+        setFontFamily(value);
+        break;
+      case "Raleway":
+        setFontFamily(value);
+        break;
+      case "Montserrat":
+        setFontFamily(value);
+        break;
+      case "Lato":
+        setFontFamily(value);
+        break;
+      case "Kanit":
+        setFontFamily(value);
+        break;
+      case "Playpen Sans":
+        setFontFamily(value);
+        break;
+      case "Caveat":
+        setFontFamily(value);
+        break;
     }
-  }, []);
+  };
 
   const font = useMemo(() => {
     return {
       font: {
         size: [fontSize, setFontSize],
+        changeFontSize: changeFontSize,
         family: [fontFamily, setFontFamily],
+        changeFontFamily: changeFontFamily,
       },
     };
   }, [fontSize, setFontSize, fontFamily, setFontFamily]);
