@@ -12,24 +12,10 @@ import SettingSwitch from "../../../sections/SettingSwitch";
 
 const ThemeSwitch = () => {
   const { themes } = useContext(ThemeContext);
-  const [theme, setTheme] = themes.default;
+  const [resolvedTheme, setTheme] = themes.default;
 
   const handleChange = (event) => {
     setTheme(event.target.value);
-  };
-
-  const changeThemes = (value) => {
-    switch (value) {
-      case "light":
-        setTheme(value);
-        break;
-      case "dark":
-        setTheme(value);
-        break;
-      default:
-        setTheme("light");
-        break;
-    }
   };
 
   return (
@@ -42,9 +28,9 @@ const ThemeSwitch = () => {
             name="themes"
             id={thm.value}
             value={thm.value}
-            checkedIf={theme == thm.value}
+            checkedIf={resolvedTheme == thm.value}
             onChange={handleChange}
-            onClick={() => changeThemes(thm.value)}
+            onClick={() => themes.changeTheme(thm.value)}
             displayedText={thm.name}
           />
         ))}
