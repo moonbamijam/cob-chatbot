@@ -21,8 +21,6 @@ const getTheme = () => {
 const ThemeProvider = ({ children }) => {
   const [resolvedTheme, setTheme] = useState(getTheme);
 
-  console.log("resolved theme: ", resolvedTheme);
-
   const toggleTheme = () => {
     // resolvedTheme can have three(3) values and we cannot toggle through it
     // setTheme(resolvedTheme === "dark" ? "light" : "dark");
