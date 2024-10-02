@@ -9,11 +9,22 @@ import { ThemeContext } from "../../contexts/ThemeContext";
 import { Button } from "../ui/Button";
 
 // icons
-import { LuSun, LuMoon } from "react-icons/lu";
+import { LuSun, LuMoon, LuMonitor } from "react-icons/lu";
 
 const Header = () => {
   const { themes } = useContext(ThemeContext);
   const [resolvedTheme] = themes.default;
+
+  const renderThemeIcon = () => {
+    switch (resolvedTheme) {
+      case "dark":
+        return <LuSun />;
+      case "light":
+        return <LuMoon />;
+      case "system":
+        return <LuMonitor />;
+    }
+  };
 
   return (
     <header className="fixed top-0 left-[50%] -translate-x-[50%] container w-full h-[70px] px-[4vw] md:px-[2vw] lg:px-[4vw] flex items-center justify-between z-30">
@@ -27,9 +38,9 @@ const Header = () => {
         onClick={themes.toggleTheme}
         variant="icon"
         size="icon"
-        className="bg-surface/30 dark:bg-dm-surface/50 backdrop-blur-sm sm:bg-transparent sm:dark:bg-transparent sm:backdrop-blur-none hover:bg-surface dark:hover:bg-dm-surface [&>svg>path]:dark:text-white [&>svg>circle]:dark:text-white"
+        className="bg-surface/30 dark:bg-dm-surface/50 backdrop-blur-sm sm:bg-transparent sm:dark:bg-transparent sm:backdrop-blur-none hover:bg-surface dark:hover:bg-dm-surface [&>svg>path]:dark:text-white [&>svg>circle]:dark:text-white [&>svg>rect]:dark:text-white [&>svg>line]:dark:text-white"
       >
-        {resolvedTheme === "light" ? <LuMoon /> : <LuSun />}
+        {renderThemeIcon()}
       </Button>
     </header>
   );
