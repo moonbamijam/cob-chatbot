@@ -39,7 +39,7 @@ const MessageInput = ({
               <Button
                 key={id}
                 variant="outline"
-                className="rounded-3xl w-full border border-primary text-xs xs:text-sm text-primary dark:text-white hover:bg-primary hover:text-white active:translate-y-1"
+                className="rounded-3xl w-full h-full border border-primary text-xs xs:text-sm text-primary dark:text-white hover:bg-primary hover:text-white active:translate-y-1"
                 onClick={() => sendFaqToBot(faq.questions[0])}
                 message={faq.questions[0]}
               >
