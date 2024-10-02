@@ -17,47 +17,20 @@ const FontSizeSwitch = () => {
     setFontSize(event.target.value);
   };
 
-  const changeFontSize = (value) => {
-    switch (value) {
-      case 8:
-        setFontSize(value);
-        break;
-      case 12:
-        setFontSize(value);
-        break;
-      case 16:
-        setFontSize(value);
-        break;
-      case 24:
-        setFontSize(value);
-        break;
-      case 32:
-        setFontSize(value);
-        break;
-      case 48:
-        setFontSize(value);
-        break;
-      default:
-        setFontSize(16);
-        break;
-    }
-    localStorage.setItem("fontSize", value);
-  };
-
   return (
     <SettingSwitch>
       <SettingsMiniTitle text="font size" />
       <Grid>
-        {fontSizeList.map((font) => (
+        {fontSizeList.map((f) => (
           <RadioButton
-            key={font.value}
+            key={f.value}
             name="font-sizes"
-            id={font.value}
-            value={font.value}
-            checkedIf={fontSize == font.value}
+            id={f.value}
+            value={f.value}
+            checkedIf={fontSize == f.value}
             onChange={handleChange}
-            onClick={() => changeFontSize(font.value)}
-            displayedText={font.name}
+            onClick={() => font.changeFontSize(f.value)}
+            displayedText={f.name}
           />
         ))}
       </Grid>

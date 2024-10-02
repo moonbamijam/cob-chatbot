@@ -10,6 +10,7 @@ import {
 } from "../../../utils/splitLink";
 import { sleep } from "../../../utils/sleep";
 import { scrollInto } from "../../../utils/scrollInto";
+import { timestamp } from "../../../utils/timestamp";
 
 // components
 import Error from "../ui/Error";
@@ -97,9 +98,9 @@ const ChatSection = ({ botIsTyping, latestChat }) => {
               role={convo.role}
               depts={convo.depts}
               link={interpolatedLink}
-              timeSent={new Date(convo.timeSent.seconds * 1000)
-                .toLocaleTimeString()
-                .replace(/(.*)\D\d+/, "$1")}
+              timeSent={timestamp.format(
+                new Date(convo.timeSent.seconds * 1000),
+              )}
             />
           );
         } else
@@ -109,9 +110,9 @@ const ChatSection = ({ botIsTyping, latestChat }) => {
               role={convo.role}
               message={convo.message}
               depts={convo.depts}
-              timeSent={new Date(convo.timeSent.seconds * 1000)
-                .toLocaleTimeString()
-                .replace(/(.*)\D\d+/, "$1")}
+              timeSent={timestamp.format(
+                new Date(convo.timeSent.seconds * 1000),
+              )}
             />
           );
       });

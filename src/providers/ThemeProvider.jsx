@@ -4,50 +4,80 @@ import { ThemeContext } from "../contexts/ThemeContext";
 const ThemeMode = {
   Light: {
     name: "light",
-    match: window.matchMedia("prefers-color-scheme: light"),
   },
   Dark: {
     name: "dark",
-    match: window.matchMedia("prefers-color-scheme: dark"),
+  },
+  System: {
+    name: "system",
   },
 };
 
-const ThemeProvider = ({ children }) => {
-  const [theme, setTheme] = useState(localStorage.getItem("theme"));
+const getTheme = () => {
+  const theme = localStorage.getItem("theme");
+  return theme ? theme : "light";
+};
 
-  useEffect(() => {
-    switch (theme) {
+const ThemeProvider = ({ children }) => {
+  const [resolvedTheme, setTheme] = useState(getTheme);
+
+  const toggleTheme = () => {
+    // resolvedTheme can have three(3) values and we cannot toggle through it
+    // setTheme(resolvedTheme === "dark" ? "light" : "dark");
+
+    // so instead, just check the localStorage directly as of now
+    setTheme(localStorage.getItem("theme") === "dark" ? "light" : "dark");
+  };
+
+  const changeTheme = (value) => {
+    switch (value) {
       case ThemeMode.Light.name:
-        localStorage.setItem("theme", ThemeMode.Light.name);
-        document.documentElement.setAttribute("theme", ThemeMode.Light.name);
-        document.documentElement.classList.add(ThemeMode.Light.name);
-        document.documentElement.classList.remove(ThemeMode.Dark.name);
-        ThemeMode.Light.match;
+        setTheme(value);
         break;
       case ThemeMode.Dark.name:
-        localStorage.setItem("theme", ThemeMode.Dark.name);
-        document.documentElement.setAttribute("theme", ThemeMode.Dark.name);
-        document.documentElement.classList.add(ThemeMode.Dark.name);
-        document.documentElement.classList.remove(ThemeMode.Light.name);
-        ThemeMode.Dark.match;
+        setTheme(value);
         break;
-      default:
-        localStorage.setItem("theme", ThemeMode.Light.name);
-        document.documentElement.setAttribute("theme", ThemeMode.Light.name);
+      case ThemeMode.System.name:
+        setTheme(value);
+    }
+  };
+
+  // listener
+  useEffect(() => {
+    switch (resolvedTheme) {
+      case ThemeMode.Light.name:
+        localStorage.setItem("theme", resolvedTheme);
         document.documentElement.classList.add(ThemeMode.Light.name);
         document.documentElement.classList.remove(ThemeMode.Dark.name);
-        ThemeMode.Light.match;
+        break;
+      case ThemeMode.Dark.name:
+        localStorage.setItem("theme", resolvedTheme);
+        document.documentElement.classList.add(ThemeMode.Dark.name);
+        document.documentElement.classList.remove(ThemeMode.Light.name);
+        break;
+      case ThemeMode.System.name:
+        if (matchMedia("(prefers-color-scheme: light)").matches) {
+          localStorage.setItem("theme", ThemeMode.Light.name);
+          document.documentElement.classList.add(ThemeMode.Light.name);
+          document.documentElement.classList.remove(ThemeMode.Dark.name);
+        } else {
+          localStorage.setItem("theme", ThemeMode.Dark.name);
+          document.documentElement.classList.add(ThemeMode.Dark.name);
+          document.documentElement.classList.remove(ThemeMode.Light.name);
+        }
         break;
     }
-  }, [theme]);
+  }, [resolvedTheme]);
 
   const themes = useMemo(() => {
     return {
       themes: {
-        default: [theme, setTheme],
+        default: [resolvedTheme, setTheme],
+        toggleTheme: toggleTheme,
+        changeTheme: changeTheme,
       },
     };
-  }, [theme, setTheme]);
+  }, [resolvedTheme, setTheme]);
 
   return (
     <ThemeContext.Provider value={themes}>{children}</ThemeContext.Provider>

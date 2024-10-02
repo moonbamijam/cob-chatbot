@@ -8,6 +8,10 @@
     {
       "name": "dark",
       "value": "dark"
+    },
+    {
+      "name": "system",
+      "value": "system"
     }
   ]
 }

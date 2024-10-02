@@ -13,11 +13,7 @@ import { LuSun, LuMoon } from "react-icons/lu";
 
 const Header = () => {
   const { themes } = useContext(ThemeContext);
-  const [theme, setTheme] = themes.default;
-
-  const toggleTheme = () => {
-    setTheme(theme === "dark" ? "light" : "dark");
-  };
+  const [resolvedTheme] = themes.default;
 
   return (
     <header className="fixed top-0 left-[50%] -translate-x-[50%] container w-full h-[70px] px-[4vw] md:px-[2vw] lg:px-[4vw] flex items-center justify-between z-30">
@@ -28,12 +24,12 @@ const Header = () => {
         {chatbotConfig.name}
       </Link>
       <Button
-        onClick={toggleTheme}
+        onClick={themes.toggleTheme}
         variant="icon"
         size="icon"
         className="bg-surface/30 dark:bg-dm-surface/50 backdrop-blur-sm sm:bg-transparent sm:dark:bg-transparent sm:backdrop-blur-none hover:bg-surface dark:hover:bg-dm-surface [&>svg>path]:dark:text-white [&>svg>circle]:dark:text-white"
       >
-        {theme === "light" ? <LuMoon /> : <LuSun />}
+        {resolvedTheme === "light" ? <LuMoon /> : <LuSun />}
       </Button>
     </header>
   );

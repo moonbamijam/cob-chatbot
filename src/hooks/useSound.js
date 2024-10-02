@@ -11,7 +11,7 @@ import { SoundContext } from "../contexts/SoundContext";
 
 const useSound = () => {
   const { sound } = useContext(SoundContext);
-  const [chatSentSound] = sound.messageSent;
+  const [chatSentSound] = sound.chatSent;
 
   const playMessageNotification = () => {
     let audio;
