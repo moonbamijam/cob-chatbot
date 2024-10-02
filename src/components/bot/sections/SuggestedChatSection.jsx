@@ -5,7 +5,7 @@ import SuggestedChatButton from "../buttons/SuggestedChatButton";
 const SuggestedChatSection = ({ sendMessageToBot }) => {
   return (
     <section
-      id="suggested-messages"
+      id="suggested-chats"
       className="w-full text-xs xs:text-sm sm:text-base flex justify-around sm:justify-center xl:justify-around gap-x-2 sm:gap-x-8 xl:gap-x-2 px-4 pt-2 mt-auto outline-none"
     >
       {Messages.list.map((message, id) => (
