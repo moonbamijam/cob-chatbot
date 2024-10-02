@@ -20,7 +20,7 @@ import { SoundContext } from "../../../../../contexts/SoundContext";
 const ChatSentSoundSwitch = () => {
   const { playChatSentSound } = useSound();
   const { sound } = useContext(SoundContext);
-  const [chatSentSound, setChatSentSound] = sound.messageSent;
+  const [chatSentSound, setChatSentSound] = sound.chatSent;
 
   const handleChatSentSound = (event) => {
     setChatSentSound(event.target.value);
