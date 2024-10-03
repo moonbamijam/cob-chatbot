@@ -22,11 +22,11 @@ const ThemeProvider = ({ children }) => {
   const [resolvedTheme, setTheme] = useState(getTheme);
 
   const toggleTheme = () => {
-    // resolvedTheme can have three(3) values and we cannot toggle through it
-    // setTheme(resolvedTheme === "dark" ? "light" : "dark");
-
-    // so instead, just check the localStorage directly as of now
-    setTheme(localStorage.getItem("theme") === "dark" ? "light" : "dark");
+    if (resolvedTheme === "system") {
+      setTheme(
+        matchMedia("(prefers-color-scheme: light)").matches ? "dark" : "light",
+      );
+    } else setTheme(resolvedTheme === "light" ? "dark" : "light");
   };
 
   const changeTheme = (value) => {
@@ -57,11 +57,11 @@ const ThemeProvider = ({ children }) => {
         break;
       case ThemeMode.System.name:
         if (matchMedia("(prefers-color-scheme: light)").matches) {
-          localStorage.setItem("theme", ThemeMode.Light.name);
+          localStorage.setItem("theme", ThemeMode.System.name);
           document.documentElement.classList.add(ThemeMode.Light.name);
           document.documentElement.classList.remove(ThemeMode.Dark.name);
         } else {
-          localStorage.setItem("theme", ThemeMode.Dark.name);
+          localStorage.setItem("theme", ThemeMode.System.name);
           document.documentElement.classList.add(ThemeMode.Dark.name);
           document.documentElement.classList.remove(ThemeMode.Light.name);
         }
