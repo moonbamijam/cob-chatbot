@@ -25,8 +25,6 @@ Our capstone project that uses Natural Language Processing (NLP) to deliver smoo
 
 # Contributing
 
-We currently do not accept direct contributions such as creating pull request [excluding the code owners](https://github.com/Jireh-sama/cob-chatbot/graphs/contributors)
-
-But contributions by creating [issues](https://github.com/Jireh-sama/cob-chatbot/issues) are more than welcome! 
+Please see [CONTRIBUTING.md](https://github.com/moonbamijam/cob-chatbot/blob/main/CONTRIBUTING.md) for more information.
 
 
