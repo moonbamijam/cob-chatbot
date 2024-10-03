@@ -15,15 +15,12 @@ const Header = () => {
   const { themes } = useContext(ThemeContext);
   const [resolvedTheme] = themes.default;
 
+  console.log(resolvedTheme);
+
   const renderThemeIcon = () => {
-    switch (resolvedTheme) {
-      case "dark":
-        return <LuSun />;
-      case "light":
-        return <LuMoon />;
-      case "system":
-        return <LuMonitor />;
-    }
+    if (resolvedTheme === "system") {
+      return <LuMonitor />;
+    } else return resolvedTheme === "light" ? <LuMoon /> : <LuSun />;
   };
 
   return (
