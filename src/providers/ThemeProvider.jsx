@@ -22,7 +22,11 @@ const ThemeProvider = ({ children }) => {
   const [resolvedTheme, setTheme] = useState(getTheme);
 
   const toggleTheme = () => {
-    setTheme(resolvedTheme === "dark" ? "light" : "dark");
+    if (resolvedTheme === "system") {
+      setTheme(
+        matchMedia("(prefers-color-scheme: light)").matches ? "dark" : "light",
+      );
+    } else setTheme(resolvedTheme === "light" ? "dark" : "light");
   };
 
   const changeTheme = (value) => {
