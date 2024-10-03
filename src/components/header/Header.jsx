@@ -15,8 +15,6 @@ const Header = () => {
   const { themes } = useContext(ThemeContext);
   const [resolvedTheme] = themes.default;
 
-  console.log(resolvedTheme);
-
   const renderThemeIcon = () => {
     if (resolvedTheme === "system") {
       return <LuMonitor />;
