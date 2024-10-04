@@ -8,17 +8,3 @@
     opacity: 100;
   }
 }
-
-/* need fix */
-@keyframes close-modal {
-  from {
-    visibility: visible;
-    opacity: 100;
-  }
-
-  to {
-    visibility: hidden;
-    opacity: 0;
-    transform: translate(-50%, 100%);
-  }
-}
