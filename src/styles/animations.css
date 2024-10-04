@@ -1,12 +1,10 @@
 @keyframes open-modal {
   from {
-    visibility: hidden;
     opacity: 0;
-    transform: translate(-50%, 100%);
+    transform: translate(0%, 100%);
   }
 
   to {
-    visibility: visible;
     opacity: 100;
   }
 }

@@ -55,7 +55,7 @@ const Settings = ({ settings, toggleSettings }) => {
   return (
     <>
       <section
-        className={`fixed xl:top-[5%] xl:inset-x-0 mx-auto xl:max-w-[75%] w-full xl:max-h-[90%] h-full xl:rounded-lg overflow-hidden bg-background dark:bg-dm-surface-light flex z-[150]`}
+        className={`fixed xl:top-[50%] xl:translate-y-[-50%] xl:inset-x-0 mx-auto xl:max-w-[75%] w-full xl:max-h-[90%] h-full xl:rounded-lg border-none overflow-hidden bg-background dark:bg-dm-surface-light flex z-[150] ${settings ? "animate-open-modal opacity-100 visible" : "opacity-0 invisible"}`}
       >
         <SettingsNavBar
           state={checked}

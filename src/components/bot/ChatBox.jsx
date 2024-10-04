@@ -63,9 +63,7 @@ const ChatBox = ({ closeUsing }) => {
           setIsFaqsMenuActive={setIsFaqsMenuActive}
         />
       </div>
-      {settings && (
-        <Settings settings={settings} toggleSettings={toggleSettings} />
-      )}
+      <Settings settings={settings} toggleSettings={toggleSettings} />
     </>
   );
 };
