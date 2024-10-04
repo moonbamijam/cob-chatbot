@@ -32,8 +32,17 @@ const MessageInput = ({
       return (
         <section
           id="suggested-questions"
-          className={`w-full absolute bottom-0 px-4 py-3 mb-[58px] bg-white dark:bg-dm-background z-50 ${isFaqsMenuActive ? "block opacity-100 visible" : "opacity-0 invisible"}`}
+          className={`w-full max-w-[95%] absolute bottom-0 px-4 py-3 mb-[160px] rounded-3xl bg-white dark:bg-dm-surface border border-surface dark:border-dm-surface-dark z-50 ${isFaqsMenuActive ? "block opacity-100 visible" : "opacity-0 invisible"}`}
         >
+          <div className="mb-4 font-semibold">
+            <h1 className="capitalize text-black/80 dark:text-white/80">
+              hello there!
+            </h1>
+            <p className="text-black/50 dark:text-white/50">
+              You can ask me about,
+            </p>
+          </div>
+
           <div className="inline-grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-2 gap-2 ">
             {faqs.map((faq, id) => (
               <Button
@@ -52,7 +61,7 @@ const MessageInput = ({
   };
 
   return (
-    <div ref={faqsRef} className={`w-full flex justify-between items-center`}>
+    <div ref={faqsRef} className={`w-full flex justify-center items-center`}>
       {renderFaqs()}
       <form
         onSubmit={(e) => sendMessageToBot(e, userMessage)}

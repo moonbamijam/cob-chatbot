@@ -25,7 +25,7 @@ const ChatPreview = () => {
 
   return (
     <div
-      className="max-w-[500px] w-full h-[700px] hidden md:flex flex-col bg-background dark:bg-dm-background border border-surface-dark dark:border-dm-surface rounded-xl"
+      className="max-w-[500px] w-full h-[700px] hidden md:flex flex-col items-center bg-background dark:bg-dm-background border border-surface-dark dark:border-dm-surface rounded-xl"
       style={{ fontFamily: fontFamily }}
     >
       <header className="w-full flex items-center justify-between px-4 py-4 mr-auto shadow-md dark:shadow-dm-surface-dark">
@@ -61,7 +61,7 @@ const ChatPreview = () => {
           linkedMessage="Click here"
         />
       </div>
-      <section className={`w-full flex justify-center gap-2 px-4 pt-2`}>
+      <section className="w-full max-w-[95%] rounded-3xl border border-surface dark:border-dm-surface-dark dark:bg-dm-surface text-xs xs:text-sm sm:text-base flex justify-around sm:justify-center xl:justify-around gap-x-2 sm:gap-x-8 xl:gap-x-2 px-4 py-2 mt-auto outline-none">
         {Messages.list.map((message, id) => (
           <SuggestedChatButton key={id}>
             {message.displayedText}
