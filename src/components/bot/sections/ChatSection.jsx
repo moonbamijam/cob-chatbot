@@ -131,10 +131,7 @@ const ChatSection = ({ botIsTyping, latestChat }) => {
         className={`relative w-full h-full px-4 py-6 overflow-y-scroll scrollbar-thin scrollbar-track-transparent scrollbar-thumb-surface-dark dark:scrollbar-thumb-dm-surface`}
         onScroll={handleScroll}
       >
-        {/* <div
-          className="scrollhere absolute top-[-50px] h-[50px]"
-        ></div> */}
-        <MiniProfile className="mt-10 mb-8" miniProfileRef={miniProfileRef} />
+        <MiniProfile className="mb-8" miniProfileRef={miniProfileRef} />
         {loadingMoreChats && <Loading />}
         {conversation ? (
           <div id="messages" ref={chatAreaRef}>
