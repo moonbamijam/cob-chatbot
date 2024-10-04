@@ -28,8 +28,7 @@ export default {
         "3xl": "1920px",
       },
       animation: {
-        "open-modal": "open-modal 500ms ease-in-out",
-        "close-modal": "close-modal 500ms ease-in-out",
+        "open-modal": "open-modal 300ms ease-in-out",
       },
       backgroundImage: {
         "city-hall": "url(/src/assets/images/bg.jpg)",

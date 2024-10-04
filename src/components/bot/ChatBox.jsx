@@ -38,9 +38,7 @@ const ChatBox = ({ closeUsing }) => {
       <div
         id="message-box"
         className={`w-full h-full xl:max-w-[500px] fixed flex flex-col items-center xl:right-[10%] xl:bottom-[8%] bg-background dark:bg-dm-background xl:rounded-xl overflow-hidden z-[100] ${
-          isChatActive
-            ? "opacity-100 visible"
-            : "opacity-0 -translate-y-[100%] invisible"
+          isChatActive ? "opacity-100 visible" : "opacity-0 invisible"
         } [@media_((min-height:0px)_and_(min-width:1280px))]:max-h-[85%]`}
         style={{
           fontFamily: fontFamily,
@@ -63,9 +61,7 @@ const ChatBox = ({ closeUsing }) => {
           setIsFaqsMenuActive={setIsFaqsMenuActive}
         />
       </div>
-      {settings && (
-        <Settings settings={settings} toggleSettings={toggleSettings} />
-      )}
+      <Settings settings={settings} toggleSettings={toggleSettings} />
     </>
   );
 };

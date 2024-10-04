@@ -50,7 +50,7 @@ const Header = ({ toggleSettings, closeUsing }) => {
           className="rounded-full hover:bg-error group [&>svg>path]:hover:text-white [&>svg>path]:dark:text-white"
           onClick={closeUsing}
         >
-          <IoClose className="" />
+          <IoClose />
         </Button>
       </menu>
     </header>

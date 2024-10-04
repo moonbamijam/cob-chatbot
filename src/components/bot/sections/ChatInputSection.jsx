@@ -32,7 +32,7 @@ const MessageInput = ({
       return (
         <section
           id="suggested-questions"
-          className={`w-full absolute bottom-0 px-4 py-3 mb-[58px] bg-white dark:bg-dm-background z-50 ${isFaqsMenuActive ? "block" : "translate-x-full opacity-0 invisible hidden"}`}
+          className={`w-full absolute bottom-0 px-4 py-3 mb-[58px] bg-white dark:bg-dm-background z-50 ${isFaqsMenuActive ? "block opacity-100 visible" : "opacity-0 invisible"}`}
         >
           <div className="inline-grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-2 gap-2 ">
             {faqs.map((faq, id) => (
