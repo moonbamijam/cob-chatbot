@@ -21,6 +21,7 @@ const AppearanceSettings = () => {
           </SettingsWrapper>
           <ChatPreview />
         </div>
+        <hr className="w-full border-surface-dark dark:border-dm-surface-light" />
       </section>
     </>
   );

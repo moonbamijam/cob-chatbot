@@ -9,6 +9,7 @@ const SoundSettings = () => {
       <SettingsWrapper>
         <ChatSentSoundSwitch />
       </SettingsWrapper>
+      <hr className="w-full border-surface-dark dark:border-dm-surface-light" />
     </section>
   );
 };
