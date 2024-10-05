@@ -1,5 +1,33 @@
 # What's New
 
+# [2.5.0](https://github.com/moonbamijam/cob-chatbot/compare/v2.4.3...v2.5.0) (2024-10-05)
+
+
+### Bug Fixes
+
+* inconsistent faq buttons size ([ac3a41d](https://github.com/moonbamijam/cob-chatbot/commit/ac3a41d1f7e26ab8e8484cd81d5f4f33f4ce595f))
+* system theme toggler ([#134](https://github.com/moonbamijam/cob-chatbot/issues/134)) ([a820ffa](https://github.com/moonbamijam/cob-chatbot/commit/a820ffadacc5efa024b54601584e199704337460))
+* unresponsive chatbox height to small screens ([e7e9f61](https://github.com/moonbamijam/cob-chatbot/commit/e7e9f61d580b46f43567844027daddb2b09f763d))
+
+
+### Features
+
+* add app animation ([#135](https://github.com/moonbamijam/cob-chatbot/issues/135)) ([4865561](https://github.com/moonbamijam/cob-chatbot/commit/4865561ab49e06cbe1dec4546bc0609e8e199e71)), closes [#44](https://github.com/moonbamijam/cob-chatbot/issues/44)
+* add ending border to settings tabs ([0179f13](https://github.com/moonbamijam/cob-chatbot/commit/0179f13cf5ac3a3ebb68a7e30026bdb85841ca09))
+* add system theme ([1b64b4b](https://github.com/moonbamijam/cob-chatbot/commit/1b64b4b99621bdeb904f83498b1219a8ddec859d))
+* customizable chat head size ([#132](https://github.com/moonbamijam/cob-chatbot/issues/132)) ([4d09acc](https://github.com/moonbamijam/cob-chatbot/commit/4d09acc260ac037bc2f56ca7085ea89c0e6ff08a))
+* dynamic date format to chat timestamp ([3b42365](https://github.com/moonbamijam/cob-chatbot/commit/3b423656823558a01040a3a8792b6bdc52eeeb74))
+* new about ui ([#137](https://github.com/moonbamijam/cob-chatbot/issues/137)) ([b4612c7](https://github.com/moonbamijam/cob-chatbot/commit/b4612c7e14e03ae45e6b3eeae0c3773b194b07b9))
+* new faqs and suggested chat ui ([af73586](https://github.com/moonbamijam/cob-chatbot/commit/af73586715caab49fde90916ee8f37983cf5d398))
+* small size increase to suggested chat btn ([2d01939](https://github.com/moonbamijam/cob-chatbot/commit/2d019397dc58d50984d044d206da2b6231e54d91))
+
+
+### Performance Improvements
+
+* add listener to sound provider ([2b98d68](https://github.com/moonbamijam/cob-chatbot/commit/2b98d681b651ebf69cb785fcc29f4f18bd4b557d))
+* move font changer to providers ([e086d8c](https://github.com/moonbamijam/cob-chatbot/commit/e086d8c629930f2cc1de36161ed61056374a47c4))
+* new cta button to landing page ([#136](https://github.com/moonbamijam/cob-chatbot/issues/136)) ([aa803e4](https://github.com/moonbamijam/cob-chatbot/commit/aa803e4fb0db42a0b3c7ab2a3db82902bb9dfbb2))
+
 ## [2.4.3](https://github.com/moonbamijam/cob-chatbot/compare/v2.4.2...v2.4.3) (2024-09-25)
 
 
