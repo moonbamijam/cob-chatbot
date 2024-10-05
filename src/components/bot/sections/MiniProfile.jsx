@@ -1,10 +1,14 @@
 import { Link } from "react-router-dom";
 import { useContext } from "react";
-import { ChatbotContext } from "../../../contexts/ChatbotContext";
 import { chatbotConfig } from "../../../lib/bot/chatbotConfig";
+
+// context
+import { ChatbotContext } from "../../../contexts/ChatbotContext";
+
+// components
 import { Image } from "../../ui/Image";
-import DevIcon from "../icons/DevIcon";
 import { Button } from "../../ui/Button";
+import DevIcon from "../icons/DevIcon";
 
 const MiniProfile = ({ state, className, miniProfileRef }) => {
   const { chatbot } = useContext(ChatbotContext);
