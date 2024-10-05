@@ -10,7 +10,7 @@ const buttonVariants = cva("w-full h-full select-none", {
         "border dark:border-dm-surface-light bg-surface dark:bg-dm-surface",
       icon: "text-2xl rounded-full p-3 flex justify-center items-center",
       outline: "px-4 py-3 border border-primary rounded-full capitalize",
-      cta: "px-8 py-4 capitalize rounded-full truncate",
+      cta: "px-8 py-4 capitalize rounded-full",
       destructive:
         "px-8 py-4 bg-error hover:bg-error/80 rounded-full capitalize",
       destructiveOutline:
