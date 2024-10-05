@@ -47,13 +47,13 @@ const MiniProfile = ({ state, className, miniProfileRef }) => {
               <div className="inline-grid grid-cols-2 gap-4">
                 <DevIcon
                   to="https://moonbamiofficial.vercel.app/"
-                  src="https://github.com/moonbamijam.png"
+                  src="https://avatars.githubusercontent.com/u/141120384?v=4"
                   alt="Jam Moonbami"
                   text="moonbami"
                 />
                 <DevIcon
                   to="https://www.facebook.com/JirehTumbagahan"
-                  src="https://github.com/Jireh-sama.png"
+                  src="https://avatars.githubusercontent.com/u/106262567?v=4"
                   alt="Jireh"
                   text="ecchiko"
                 />
