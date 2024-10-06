@@ -15,6 +15,9 @@ import { ChatContext } from "../contexts/ChatContext";
 // providers
 import FontProvider from "../providers/FontProvider";
 import SoundProvider from "../providers/SoundProvider";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
+const queryClient = new QueryClient();
 
 const Home = () => {
   const { auth } = useContext(AuthContext);
@@ -31,14 +34,16 @@ const Home = () => {
     <>
       <main className="">
         <div ref={chatHead}>
-          <FontProvider>
-            <SoundProvider>
-              <ChatbotProvider>
-                <ChatHead onClick={() => toggleChat()} />
-                {isSignedIn && <ChatBox closeUsing={toggleChat} />}
-              </ChatbotProvider>
-            </SoundProvider>
-          </FontProvider>
+          <QueryClientProvider client={queryClient}>
+            <FontProvider>
+              <SoundProvider>
+                <ChatbotProvider>
+                  <ChatHead onClick={() => toggleChat()} />
+                  {isSignedIn && <ChatBox closeUsing={toggleChat} />}
+                </ChatbotProvider>
+              </SoundProvider>
+            </FontProvider>
+          </QueryClientProvider>
         </div>
         <CityHallUI />
         <ScreenDim
