@@ -3,6 +3,9 @@ import { useState, useContext, useRef } from "react";
 // context
 import { ChatbotContext } from "../../../contexts/ChatbotContext";
 
+// hooks
+import useScrollIntoView from "../../../hooks/useScrollIntoView";
+
 // utils
 import {
   containsPlaceholder,
@@ -20,7 +23,7 @@ import Typing from "../ui/Typing";
 import ChatSkeleton from "../skeletons/ChatSkeleton";
 import Loading from "../ui/Loading";
 import Button from "../ui/Button";
-import useScrollIntoView from "../../../hooks/useScrollIntoView";
+import ItemsRenderer from "../../common/ItemsRenderer";
 
 // icons
 import { FaArrowDown } from "react-icons/fa6";
@@ -71,7 +74,7 @@ const ChatSection = ({ botIsTyping, latestChat }) => {
           conversationToDisplay.length != conversation.length &&
           chatBoxScrollTop == 0 // absolute zero to avoid loading of previous chats on refresh
         ) {
-          console.log(`Loading ${step} more chats`);
+          console.log("Loading more chats");
           setLoadingMoreChats(true);
           await sleep(1); // mock loading
           setLoadingMoreChats(false);
@@ -86,36 +89,41 @@ const ChatSection = ({ botIsTyping, latestChat }) => {
 
   const renderChatsContent = () => {
     if (conversation) {
-      return conversationToDisplay.map((convo) => {
-        if (containsPlaceholder(convo.message)) {
-          const interpolatedLink = splitLinkToResponse(
-            convo.message,
-            convo.intent,
-          );
-          return (
-            <Chat
-              key={convo.messageId}
-              role={convo.role}
-              depts={convo.depts}
-              link={interpolatedLink}
-              timeSent={timestamp.format(
-                new Date(convo.timeSent.seconds * 1000),
-              )}
-            />
-          );
-        } else
-          return (
-            <Chat
-              key={convo.messageId}
-              role={convo.role}
-              message={convo.message}
-              depts={convo.depts}
-              timeSent={timestamp.format(
-                new Date(convo.timeSent.seconds * 1000),
-              )}
-            />
-          );
-      });
+      return (
+        <ItemsRenderer
+          items={conversationToDisplay}
+          renderItems={(convo) => {
+            if (containsPlaceholder(convo.message)) {
+              const interpolatedLink = splitLinkToResponse(
+                convo.message,
+                convo.intent,
+              );
+              return (
+                <Chat
+                  key={convo.messageId}
+                  role={convo.role}
+                  depts={convo.depts}
+                  link={interpolatedLink}
+                  timeSent={timestamp.format(
+                    new Date(convo.timeSent.seconds * 1000),
+                  )}
+                />
+              );
+            } else
+              return (
+                <Chat
+                  key={convo.messageId}
+                  role={convo.role}
+                  message={convo.message}
+                  depts={convo.depts}
+                  timeSent={timestamp.format(
+                    new Date(convo.timeSent.seconds * 1000),
+                  )}
+                />
+              );
+          }}
+        />
+      );
     }
   };
 

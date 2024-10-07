@@ -10,6 +10,7 @@ import DepartmentBtn from "./buttons/DepartmentBtn";
 // icons
 import { BsArrowDownCircleFill } from "react-icons/bs";
 import { ChatbotContext } from "../../contexts/ChatbotContext";
+import ItemsRenderer from "../common/ItemsRenderer";
 
 const step = 4;
 
@@ -31,15 +32,20 @@ const Chat = ({ role, message, depts, timeSent, link }) => {
 
   const renderDeptsContent = () => {
     if (depts)
-      return currentDeptsToShow.map((dept, id) => (
-        <DepartmentBtn
-          key={id}
-          deptName={dept.deptName}
-          service={dept.service}
-          steps={dept.steps}
-          requirements={dept.requirements}
+      return (
+        <ItemsRenderer
+          items={currentDeptsToShow}
+          renderItems={(dept, id) => (
+            <DepartmentBtn
+              key={id}
+              deptName={dept.deptName}
+              service={dept.service}
+              steps={dept.steps}
+              requirements={dept.requirements}
+            />
+          )}
         />
-      ));
+      );
   };
 
   const renderChat = () => {

@@ -6,6 +6,7 @@ import { ChatbotContext } from "../../../contexts/ChatbotContext";
 
 // components
 import { Button } from "../../ui/Button";
+import ItemsRenderer from "../../common/ItemsRenderer";
 
 // icons
 import { IoSend } from "react-icons/io5";
@@ -44,17 +45,20 @@ const MessageInput = ({
           </div>
 
           <div className="inline-grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-2 gap-2 ">
-            {faqs.map((faq, id) => (
-              <Button
-                key={id}
-                variant="outline"
-                className="rounded-3xl w-full h-full border border-primary text-xs xs:text-sm text-primary dark:text-white hover:bg-primary hover:text-white active:translate-y-1"
-                onClick={() => sendFaqToBot(faq.questions[0])}
-                message={faq.questions[0]}
-              >
-                {faq.questions[0]}
-              </Button>
-            ))}
+            <ItemsRenderer
+              items={faqs}
+              renderItems={(faq, id) => (
+                <Button
+                  key={id}
+                  variant="outline"
+                  className="rounded-3xl w-full h-full border border-primary text-xs xs:text-sm text-primary dark:text-white hover:bg-primary hover:text-white active:translate-y-1"
+                  onClick={() => sendFaqToBot(faq.questions[0])}
+                  message={faq.questions[0]}
+                >
+                  {faq.questions[0]}
+                </Button>
+              )}
+            />
           </div>
         </section>
       );
