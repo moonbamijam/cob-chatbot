@@ -25,6 +25,6 @@ Our capstone project that uses Natural Language Processing (NLP) to deliver smoo
 
 # Contributing
 
-Please see [CONTRIBUTING.md](https://github.com/moonbamijam/cob-chatbot/blob/main/CONTRIBUTING.md) for more information.
+Please see [CONTRIBUTING.md](https://github.com/moonbamijam/cob-chatbot/blob/main/docs/CONTRIBUTING.md) for more information.
 
 
