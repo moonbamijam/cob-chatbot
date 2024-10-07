@@ -1,13 +1,15 @@
-// Components
 import { useContext } from "react";
-import { FontContext } from "../../../../../contexts/FontContext";
 import { fontSizeList } from "../../../../../lib/settings/fontSizeList";
+
+// context
+import { FontContext } from "../../../../../contexts/FontContext";
 
 // components
 import RadioButton from "../../../buttons/RadioButton";
 import SettingsMiniTitle from "../../SettingsMiniTitle";
 import Grid from "../../../common/Grid";
 import SettingSwitch from "../../../sections/SettingSwitch";
+import ItemsRenderer from "../../../../common/ItemsRenderer";
 
 const FontSizeSwitch = () => {
   const { font } = useContext(FontContext);
@@ -21,18 +23,21 @@ const FontSizeSwitch = () => {
     <SettingSwitch>
       <SettingsMiniTitle text="font size" />
       <Grid>
-        {fontSizeList.map((f) => (
-          <RadioButton
-            key={f.value}
-            name="font-sizes"
-            id={f.value}
-            value={f.value}
-            checkedIf={fontSize == f.value}
-            onChange={handleChange}
-            onClick={() => font.changeFontSize(f.value)}
-            displayedText={f.name}
-          />
-        ))}
+        <ItemsRenderer
+          items={fontSizeList}
+          renderItems={(f) => (
+            <RadioButton
+              key={f.value}
+              name="font-sizes"
+              id={f.value}
+              value={f.value}
+              checkedIf={fontSize == f.value}
+              onChange={handleChange}
+              onClick={() => font.changeFontSize(f.value)}
+              displayedText={f.name}
+            />
+          )}
+        />
       </Grid>
     </SettingSwitch>
   );

@@ -1,5 +1,8 @@
 import { useContext } from "react";
 
+// contexts
+import { SoundContext } from "../../../../../contexts/SoundContext";
+
 // lib
 import {
   minimalPop,
@@ -13,9 +16,7 @@ import RadioButton from "../../../buttons/RadioButton";
 import SettingsMiniTitle from "../../SettingsMiniTitle";
 import useSound from "../../../../../hooks/useSound";
 import Grid from "../../../common/Grid";
-
-// contexts
-import { SoundContext } from "../../../../../contexts/SoundContext";
+import ItemsRenderer from "../../../../common/ItemsRenderer";
 
 const ChatSentSoundSwitch = () => {
   const { playChatSentSound } = useSound();
@@ -54,18 +55,21 @@ const ChatSentSoundSwitch = () => {
     <div>
       <SettingsMiniTitle text="chat sent" />
       <Grid>
-        {soundNotificationList.map((sound) => (
-          <RadioButton
-            key={sound.value}
-            name="message-sent-sounds"
-            id={sound.value}
-            value={sound.value}
-            checkedIf={chatSentSound == sound.value}
-            onChange={handleChatSentSound}
-            onClick={() => changeMessageSentSound(sound.value)}
-            displayedText={sound.name}
-          />
-        ))}
+        <ItemsRenderer
+          items={soundNotificationList}
+          renderItems={(sound) => (
+            <RadioButton
+              key={sound.value}
+              name="message-sent-sounds"
+              id={sound.value}
+              value={sound.value}
+              checkedIf={chatSentSound == sound.value}
+              onChange={handleChatSentSound}
+              onClick={() => changeMessageSentSound(sound.value)}
+              displayedText={sound.name}
+            />
+          )}
+        />
       </Grid>
     </div>
   );
