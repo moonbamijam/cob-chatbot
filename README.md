@@ -17,8 +17,8 @@ Our capstone project that uses Natural Language Processing (NLP) to deliver smoo
 - frequently asked questions
 - fast bot response
 - light and dark mode themes
-- font configurations
-- sounds
+- chat configurations
+- customizable bot information through admin
 - and many more will be added in the future!
 
 ###
