@@ -30,6 +30,9 @@ dist-ssr
 extras
 .turbo
 
+# auto generated files and directories
+*.*.tsbuildinfo
+
 # vercel
 .vercel
 
