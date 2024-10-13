@@ -16,7 +16,7 @@ import { LuMenu } from "react-icons/lu";
 import { FaRobot } from "react-icons/fa6";
 
 type SettingsNavBarProps = {
-  state: string;
+  state?: string;
   handleSettingsChange: (event: ChangeEvent<HTMLInputElement>) => void;
   changeSetting: (setting: string) => void;
 };

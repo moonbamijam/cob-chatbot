@@ -1,14 +1,14 @@
 import { ChangeEventHandler, MouseEventHandler } from "react";
 import { buttonVariants } from "../../../lib/variants/buttonVariants";
 
-type SettingsBtnType = {
+type SettingsBtnType = Partial<{
   name: string;
   checkedIf: boolean;
   onClick: MouseEventHandler<HTMLLabelElement>;
   onChange: ChangeEventHandler<HTMLInputElement>;
   state: boolean;
   icon: React.ReactNode;
-};
+}>;
 
 const SettingsBtn = ({
   name,
