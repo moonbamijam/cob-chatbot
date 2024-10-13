@@ -1,10 +1,10 @@
 type ItemsRendererProps<T> = {
   items: T[];
-  renderItems: (item: T, ...args: T[]) => React.ReactNode;
+  renderItems: (item: T, id?: number) => React.ReactNode;
 };
 
 const ItemsRenderer = <U,>({ items, renderItems }: ItemsRendererProps<U>) => {
-  return <>{items?.map((item) => renderItems(item))}</>;
+  return <>{items?.map((item, id) => renderItems(item, id))}</>;
 };
 
 export default ItemsRenderer;
