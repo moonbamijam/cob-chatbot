@@ -1,9 +1,9 @@
+import { FormEvent } from "react";
 import messages from "../../../../static/messages/suggested.json";
 
 // components
-import SuggestedChatButton from "../buttons/SuggestedChatButton.tsx";
-import ItemsRenderer from "../../common/ItemsRenderer.tsx";
-import { FormEvent } from "react";
+import SuggestedChatButton from "../buttons/SuggestedChatButton";
+import ItemsRenderer from "../../common/ItemsRenderer";
 
 type SuggestedChatSectionProps = {
   sendMessageToBot: (

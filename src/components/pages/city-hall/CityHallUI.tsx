@@ -5,13 +5,13 @@ import TimeHeader from "./ui/TimeHeader";
 import Logo from "./ui/Logo";
 import ArticleLeft from "./articles/ArticleLeft";
 import ArticleRight from "./articles/ArticleRight";
+import Footer from "./footer/Footer";
 
 // Assets
 import LandingImg from "../../../assets/images/landing.png";
 
 // Icons
 import { RiArrowLeftSLine, RiArrowRightSLine } from "react-icons/ri";
-import Footer from "./footer/Footer";
 
 const CityHall = () => {
   return (

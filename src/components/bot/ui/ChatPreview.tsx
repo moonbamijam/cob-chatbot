@@ -3,6 +3,7 @@ import Messages from "../../../../static/messages/suggested.json";
 
 // contexts
 import { FontContext } from "../../../contexts/FontContext";
+import { ChatbotContext } from "../../../contexts/ChatbotContext";
 
 // icons
 import { IoSend } from "react-icons/io5";
@@ -14,7 +15,6 @@ import ReactTextareaAutosize from "react-textarea-autosize";
 import SampleBotChat from "./SampleBotChat";
 import SampleUserChat from "./SampleUserChat";
 import SuggestedChatButton from "../buttons/SuggestedChatButton";
-import { ChatbotContext } from "../../../contexts/ChatbotContext";
 
 const ChatPreview = () => {
   const chatbot = useContext(ChatbotContext);

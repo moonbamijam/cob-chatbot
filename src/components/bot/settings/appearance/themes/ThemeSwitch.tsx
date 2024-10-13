@@ -2,14 +2,14 @@ import { ChangeEvent, useContext } from "react";
 import themes_list from "../../../../../../static/settings/themes.json";
 
 // context
-import { ThemeContext } from "../../../../../contexts/ThemeContext.tsx";
+import { ThemeContext } from "../../../../../contexts/ThemeContext";
 
 // components
-import SettingsMiniTitle from "../../SettingsMiniTitle.js";
-import RadioButton from "../../../buttons/RadioButton.tsx";
-import Grid from "../../../common/Grid.tsx";
-import SettingSwitch from "../../../sections/SettingSwitch.tsx";
-import ItemsRenderer from "../../../../common/ItemsRenderer.tsx";
+import SettingsMiniTitle from "../../SettingsMiniTitle";
+import RadioButton from "../../../buttons/RadioButton";
+import Grid from "../../../common/Grid";
+import SettingSwitch from "../../../sections/SettingSwitch";
+import ItemsRenderer from "../../../../common/ItemsRenderer";
 
 type ThemeType = {
   id: string;

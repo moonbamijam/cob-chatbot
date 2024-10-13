@@ -1,4 +1,5 @@
 import { ChangeEventHandler, MouseEventHandler } from "react";
+
 import { buttonVariants } from "../../../lib/variants/buttonVariants";
 
 type SettingsBtnType = Partial<{

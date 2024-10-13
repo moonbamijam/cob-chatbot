@@ -2,14 +2,14 @@ import { ChangeEvent, useContext } from "react";
 import fontFamilies from "../../../../../../static/settings/font_families.json";
 
 // context
-import { FontContext } from "../../../../../contexts/FontContext.tsx";
+import { FontContext } from "../../../../../contexts/FontContext";
 
 // components
-import RadioButton from "../../../buttons/RadioButton.tsx";
-import SettingsMiniTitle from "../../SettingsMiniTitle.js";
-import Grid from "../../../common/Grid.tsx";
-import SettingSwitch from "../../../sections/SettingSwitch.tsx";
-import ItemsRenderer from "../../../../common/ItemsRenderer.tsx";
+import RadioButton from "../../../buttons/RadioButton";
+import SettingsMiniTitle from "../../SettingsMiniTitle";
+import Grid from "../../../common/Grid";
+import SettingSwitch from "../../../sections/SettingSwitch";
+import ItemsRenderer from "../../../../common/ItemsRenderer";
 
 const FontFamilySwitch = () => {
   const font = useContext(FontContext);

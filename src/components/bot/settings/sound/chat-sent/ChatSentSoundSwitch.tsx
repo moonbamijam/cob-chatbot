@@ -1,7 +1,10 @@
 import { ChangeEvent, useContext } from "react";
 
 // contexts
-import { SoundContext } from "../../../../../contexts/SoundContext.tsx";
+import { SoundContext } from "../../../../../contexts/SoundContext";
+
+// hooks
+import useSound from "../../../../../hooks/useSound";
 
 // lib
 import {
@@ -9,14 +12,13 @@ import {
   happyPop,
   multiPop,
   soundNotificationList,
-} from "../../../../../lib/settings/soundNotificationList.js";
+} from "../../../../../lib/settings/soundNotificationList";
 
 // components
-import RadioButton from "../../../buttons/RadioButton.tsx";
-import SettingsMiniTitle from "../../SettingsMiniTitle.tsx";
-import useSound from "../../../../../hooks/useSound.ts";
-import Grid from "../../../common/Grid.tsx";
-import ItemsRenderer from "../../../../common/ItemsRenderer.tsx";
+import RadioButton from "../../../buttons/RadioButton";
+import SettingsMiniTitle from "../../SettingsMiniTitle";
+import Grid from "../../../common/Grid";
+import ItemsRenderer from "../../../../common/ItemsRenderer";
 
 type SoundType = {
   name: string;

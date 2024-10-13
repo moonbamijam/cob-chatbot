@@ -4,10 +4,10 @@ import { MouseEventHandler, useContext } from "react";
 import { FontContext } from "../../contexts/FontContext";
 import { ChatContext } from "../../contexts/ChatContext";
 
-// Hooks
-import useChatbot from "../../hooks/useChatbot.ts";
+// hooks
+import useChatbot from "../../hooks/useChatbot";
 
-// Components
+// components
 import Header from "../bot/header/Header";
 import Settings from "./settings/Settings";
 import SuggestedChatSection from "./sections/SuggestedChatSection";

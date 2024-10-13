@@ -1,16 +1,16 @@
 import { useContext, useState } from "react";
 
 // contexts
-import { FontContext } from "../../contexts/FontContext.tsx";
+import { FontContext } from "../../contexts/FontContext";
+import { ChatbotContext } from "../../contexts/ChatbotContext";
 
 // components
-import ChatUI from "./ui/ChatUI.tsx";
-import DepartmentBtn from "./buttons/DepartmentBtn.tsx";
+import ChatUI from "./ui/ChatUI";
+import DepartmentBtn from "./buttons/DepartmentBtn";
+import ItemsRenderer from "../common/ItemsRenderer";
 
 // icons
 import { BsArrowDownCircleFill } from "react-icons/bs";
-import { ChatbotContext } from "../../contexts/ChatbotContext.tsx";
-import ItemsRenderer from "../common/ItemsRenderer.tsx";
 
 const step = 4;
 const currentPage = 1;

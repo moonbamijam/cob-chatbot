@@ -1,46 +1,48 @@
 import { useState, useContext, useRef, SyntheticEvent, RefObject } from "react";
 
 // context
-import { ChatbotContext } from "../../../contexts/ChatbotContext.tsx";
+import { ChatbotContext } from "../../../contexts/ChatbotContext";
 
 // hooks
-import useScrollIntoView from "../../../hooks/useScrollIntoView.ts";
+import useScrollIntoView from "../../../hooks/useScrollIntoView";
 
 // utils
 import {
   containsPlaceholder,
   splitLinkToResponse,
-} from "../../../utils/splitLink.ts";
-import { sleep } from "../../../utils/sleep.ts";
-import { scrollInto } from "../../../utils/scrollInto.ts";
-import { timestamp } from "../../../utils/timestamp.ts";
+} from "../../../utils/splitLink";
+import { sleep } from "../../../utils/sleep";
+import { scrollInto } from "../../../utils/scrollInto";
+import { timestamp } from "../../../utils/timestamp";
 
 // components
-import Error from "../ui/Error.tsx";
-import MiniProfile from "./MiniProfile.tsx";
-import Chat from "../Chat.tsx";
-import Typing from "../ui/Typing.tsx";
-import ChatSkeleton from "../skeletons/ChatSkeleton.tsx";
-import Loading from "../ui/Loading.tsx";
-import Button from "../ui/Button.tsx";
-import ItemsRenderer from "../../common/ItemsRenderer.tsx";
+import Error from "../ui/Error";
+import MiniProfile from "./MiniProfile";
+import Chat from "../Chat";
+import Typing from "../ui/Typing";
+import ChatSkeleton from "../skeletons/ChatSkeleton";
+import Loading from "../ui/Loading";
+import Button from "../ui/Button";
+import ItemsRenderer from "../../common/ItemsRenderer";
+
+// types
+import { ConversationType } from "../../../shared/type";
 
 // icons
 import { FaArrowDown } from "react-icons/fa6";
 
 // styles
 import "../../../styles/utils.css";
-import { ConversationType } from "../../../shared/type.ts";
 
 const chatPerPage = 15;
 const step = 10;
 
-type ChatSectionType = {
+type ChatSectionProps = {
   botIsTyping: boolean;
   latestChat: RefObject<HTMLDivElement>;
 };
 
-const ChatSection = ({ botIsTyping, latestChat }: ChatSectionType) => {
+const ChatSection = ({ botIsTyping, latestChat }: ChatSectionProps) => {
   const chatbot = useContext(ChatbotContext);
   const { conversation } = chatbot.conversation;
   const { error } = chatbot.error;

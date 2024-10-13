@@ -1,15 +1,15 @@
 import { ChangeEvent, useContext } from "react";
-import { fontSizeList } from "../../../../../lib/settings/fontSizeList.js";
+import { fontSizeList } from "../../../../../lib/settings/fontSizeList";
 
 // context
-import { FontContext } from "../../../../../contexts/FontContext.tsx";
+import { FontContext } from "../../../../../contexts/FontContext";
 
 // components
-import RadioButton from "../../../buttons/RadioButton.tsx";
-import SettingsMiniTitle from "../../SettingsMiniTitle.js";
-import Grid from "../../../common/Grid.tsx";
-import SettingSwitch from "../../../sections/SettingSwitch.tsx";
-import ItemsRenderer from "../../../../common/ItemsRenderer.tsx";
+import RadioButton from "../../../buttons/RadioButton";
+import SettingsMiniTitle from "../../SettingsMiniTitle";
+import Grid from "../../../common/Grid";
+import SettingSwitch from "../../../sections/SettingSwitch";
+import ItemsRenderer from "../../../../common/ItemsRenderer";
 
 const FontSizeSwitch = () => {
   const font = useContext(FontContext);

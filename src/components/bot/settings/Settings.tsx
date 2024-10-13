@@ -1,4 +1,7 @@
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useState, useContext } from "react";
+
+// context
+import { ChatbotContext } from "../../../contexts/ChatbotContext";
 
 // components
 import { Button } from "../../ui/Button";
@@ -10,8 +13,6 @@ import About from "./about/About";
 
 // icons
 import { CgClose } from "react-icons/cg";
-import { useContext } from "react";
-import { ChatbotContext } from "../../../contexts/ChatbotContext";
 
 type SettingsProps = {
   settings: boolean;
