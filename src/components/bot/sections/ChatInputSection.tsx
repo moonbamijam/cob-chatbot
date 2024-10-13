@@ -10,13 +10,13 @@ import { Button } from "../../ui/Button";
 // icons
 import { IoSend } from "react-icons/io5";
 import { LuMenu } from "react-icons/lu";
-import { FaqsListType } from "../../../shared/type";
+import { FaqType } from "../../../shared/type";
 import ItemsRenderer from "../../common/ItemsRenderer";
 
 type ChatInputSectionProps = Readonly<{
   faqsRef: LegacyRef<HTMLDivElement> | null;
   sendMessageToBot: (
-    event: FormEvent<HTMLFormElement>,
+    event: KeyboardEvent | FormEvent<HTMLInputElement | HTMLFormElement>,
     message: string,
   ) => void;
   sendFaqToBot: (message: string) => void;
@@ -61,13 +61,14 @@ const ChatInputSection = ({
           <div className="inline-grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-2 gap-2 ">
             <ItemsRenderer
               items={faqs}
-              renderItems={(faqs: FaqsListType) => (
+              renderItems={(faqs: FaqType, id) => (
                 <Button
+                  key={id}
                   variant="outline"
                   className="rounded-3xl w-full h-full border border-primary text-xs xs:text-sm text-primary dark:text-white hover:bg-primary hover:text-white active:translate-y-1"
-                  onClick={() => sendFaqToBot(faqs.faq.questions[0])}
+                  onClick={() => sendFaqToBot(faqs.questions[0])}
                 >
-                  {faqs.faq.questions[0]}
+                  {faqs.questions[0]}
                 </Button>
               )}
             />
@@ -80,7 +81,9 @@ const ChatInputSection = ({
     <div ref={faqsRef} className={`w-full flex justify-center items-center`}>
       {renderFaqs()}
       <form
-        onSubmit={(e) => sendMessageToBot(e, userMessage)}
+        onSubmit={(
+          e: KeyboardEvent | FormEvent<HTMLInputElement | HTMLFormElement>,
+        ) => sendMessageToBot(e, userMessage)}
         className="w-full flex justify-between items-center gap-1 px-2 py-2"
       >
         <Button

@@ -7,7 +7,7 @@ import { FormEvent } from "react";
 
 type SuggestedChatSectionProps = {
   sendMessageToBot: (
-    event: FormEvent<HTMLFormElement>,
+    event: KeyboardEvent | FormEvent<HTMLInputElement>,
     message: string,
   ) => void;
 };
@@ -31,7 +31,7 @@ const SuggestedChatSection = ({
         renderItems={(message: SuggestedMessagesType) => (
           <SuggestedChatButton
             key={message.id}
-            onClick={(e: FormEvent<HTMLFormElement>) =>
+            onClick={(e: KeyboardEvent | FormEvent<HTMLInputElement>) =>
               sendMessageToBot(e, message.message)
             }
           >
