@@ -1,13 +1,13 @@
 {
   "$schema": "https://turbo.build/schema.json",
-  "globalEnv": ["VITE_CHATBOT_API_KEY"],
+  "globalEnv": ["VITE_CHATBOT_API_URL", "VITE_CHATBOT_API_KEY"],
   "tasks": {
     "build": {
       "dependsOn": ["^build"],
       "outputs": ["dist/**"]
     },
     "dev": {
-      "dependsOn": ["build"],
+      "dependsOn": ["lint", "build"],
       "env": [
         "VITE_API_KEY",
         "AUTH_DOMAIN",
@@ -21,10 +21,10 @@
       "cache": false
     },
     "lint": {
-      "dependsOn": ["lint"]
+      "dependsOn": ["^lint"]
     },
     "preview": {
-      "dependsOn": ["build"],
+      "dependsOn": ["lint", "build"],
       "env": [
         "VITE_API_KEY",
         "AUTH_DOMAIN",
