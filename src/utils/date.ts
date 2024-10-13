@@ -25,7 +25,7 @@ const months = [
   "December",
 ];
 
-let weekday = weekdays[date.getDay()];
-let month = months[date.getMonth()];
+const weekday = weekdays[date.getDay()];
+const month = months[date.getMonth()];
 
 export const formatedDate = `${weekday}, ${month} ${date.getDate()}, ${date.getFullYear()}`;

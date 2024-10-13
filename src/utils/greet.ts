@@ -4,7 +4,7 @@ import { v4 as uuid } from "uuid";
 
 const usersCollectionRef = collection(db, "users");
 
-export const greet = async (uid, message) => {
+export const greet = async (uid: string, message: string) => {
   try {
     const botMessageInfo = {
       intent: "greetings",
