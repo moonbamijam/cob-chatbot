@@ -4,7 +4,7 @@ import { FontContext } from "../contexts/FontContext";
 import fontFamilies from "../../static/settings/font_families.json";
 
 const getFontSize = () => {
-  const fontSize = parseInt(localStorage.getItem("fontSize"));
+  const fontSize = parseInt(localStorage.getItem("fontSize") || "");
   return fontSize ? fontSize : 16;
 };
 
@@ -13,17 +13,17 @@ const getFontFamily = () => {
   return fontFamily ? fontFamily : fontFamilies.default;
 };
 
-const FontProvider = ({ children }) => {
+const FontProvider = ({ children }: { children: React.ReactNode }) => {
   const [fontSize, setFontSize] = useState(getFontSize);
   const [fontFamily, setFontFamily] = useState(getFontFamily);
 
   // listener
   useEffect(() => {
-    localStorage.setItem("fontSize", fontSize);
+    localStorage.setItem("fontSize", fontSize.toString());
     localStorage.setItem("fontFamily", fontFamily);
   }, [fontSize, fontFamily]);
 
-  const changeFontSize = (value) => {
+  const changeFontSize = (value: number) => {
     switch (value) {
       case 8:
         setFontSize(value);
@@ -46,7 +46,7 @@ const FontProvider = ({ children }) => {
     }
   };
 
-  const changeFontFamily = (value) => {
+  const changeFontFamily = (value: string) => {
     switch (value) {
       case fontFamilies.default:
         setFontFamily(value);
@@ -83,12 +83,10 @@ const FontProvider = ({ children }) => {
 
   const font = useMemo(() => {
     return {
-      font: {
-        size: [fontSize, setFontSize],
-        changeFontSize: changeFontSize,
-        family: [fontFamily, setFontFamily],
-        changeFontFamily: changeFontFamily,
-      },
+      size: { fontSize, setFontSize },
+      changeFontSize: changeFontSize,
+      family: { fontFamily, setFontFamily },
+      changeFontFamily: changeFontFamily,
     };
   }, [fontSize, setFontSize, fontFamily, setFontFamily]);
 

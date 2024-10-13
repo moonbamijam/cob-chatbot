@@ -18,7 +18,7 @@ const getTheme = () => {
   return theme ? theme : "light";
 };
 
-const ThemeProvider = ({ children }) => {
+const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
   const [resolvedTheme, setTheme] = useState(getTheme);
 
   const toggleTheme = () => {
@@ -29,7 +29,7 @@ const ThemeProvider = ({ children }) => {
     } else setTheme(resolvedTheme === "light" ? "dark" : "light");
   };
 
-  const changeTheme = (value) => {
+  const changeTheme = (value: string) => {
     switch (value) {
       case ThemeMode.Light.name:
         setTheme(value);
@@ -71,11 +71,9 @@ const ThemeProvider = ({ children }) => {
 
   const themes = useMemo(() => {
     return {
-      themes: {
-        default: [resolvedTheme, setTheme],
-        toggleTheme: toggleTheme,
-        changeTheme: changeTheme,
-      },
+      default: { resolvedTheme, setTheme },
+      toggleTheme: toggleTheme,
+      changeTheme: changeTheme,
     };
   }, [resolvedTheme, setTheme]);
 

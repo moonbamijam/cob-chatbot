@@ -2,7 +2,7 @@ import { useState, useEffect, useMemo } from "react";
 import { getAuth, signInAnonymously } from "firebase/auth";
 import { AuthContext } from "../contexts/AuthContext";
 
-const AuthProvider = ({ children }) => {
+const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [isSignedIn, setIsSignedIn] = useState(false);
 
   // On render sign in user anonymously
@@ -19,9 +19,7 @@ const AuthProvider = ({ children }) => {
 
   const authValue = useMemo(() => {
     return {
-      auth: {
-        user: [isSignedIn, setIsSignedIn],
-      },
+      user: { isSignedIn, setIsSignedIn },
     };
   }, [isSignedIn, setIsSignedIn]);
 

@@ -6,7 +6,7 @@ const getChatSentSound = () => {
   return chatSentSound ? chatSentSound : "minimalpop";
 };
 
-const SoundProvider = ({ children }) => {
+const SoundProvider = ({ children }: { children: React.ReactNode }) => {
   const [chatSentSound, setChatSentSound] = useState(getChatSentSound);
 
   // listener
@@ -16,9 +16,7 @@ const SoundProvider = ({ children }) => {
 
   const sound = useMemo(() => {
     return {
-      sound: {
-        chatSent: [chatSentSound, setChatSentSound],
-      },
+      chatSent: { chatSentSound, setChatSentSound },
     };
   }, [chatSentSound, setChatSentSound]);
 

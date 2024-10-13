@@ -2,16 +2,16 @@ import { useState, useEffect, useMemo, useRef } from "react";
 import { ChatContext } from "../contexts/ChatContext";
 
 const getInitialStates = () => {
-  const chatHeadSize = parseInt(localStorage.getItem("chatHeadSize"));
+  const chatHeadSize = parseInt(localStorage.getItem("chatHeadSize") || "");
   return chatHeadSize ? chatHeadSize : 200;
 };
 
-const ChatProvider = ({ children }) => {
+const ChatProvider = ({ children }: { children: React.ReactNode }) => {
   const [isChatActive, setIsChatActive] = useState(false);
   const [chatHeadSize, setChatHeadSize] = useState(getInitialStates);
-  const chatHead = useRef();
+  const chatHead = useRef<HTMLImageElement | null>(null);
 
-  const changeChatHeadSize = (value) => {
+  const changeChatHeadSize = (value: number) => {
     switch (value) {
       case 100:
         setChatHeadSize(value);
@@ -27,13 +27,13 @@ const ChatProvider = ({ children }) => {
 
   // listener
   useEffect(() => {
-    localStorage.setItem("chatHeadSize", chatHeadSize);
+    localStorage.setItem("chatHeadSize", chatHeadSize.toString());
   }, [chatHeadSize]);
 
   // handles the mouse down for chat
   useEffect(() => {
-    const handleChatHead = (event) => {
-      if (!chatHead.current?.contains(event.target)) setIsChatActive(false);
+    const handleChatHead = ({ target }: MouseEvent) => {
+      if (!chatHead.current?.contains(target as Node)) setIsChatActive(false);
     };
     document.addEventListener("mousedown", handleChatHead);
     return () => {
@@ -43,12 +43,10 @@ const ChatProvider = ({ children }) => {
 
   const chatValue = useMemo(() => {
     return {
-      chat: {
-        active: [isChatActive, setIsChatActive],
-        chatHeadSize: [chatHeadSize, setChatHeadSize],
-        changeChatHeadSize: changeChatHeadSize,
-        icon: chatHead,
-      },
+      active: { isChatActive, setIsChatActive },
+      chatHeadSize: { chatHeadSize, setChatHeadSize },
+      changeChatHeadSize: changeChatHeadSize,
+      icon: chatHead,
     };
   }, [isChatActive, setIsChatActive, chatHeadSize, setChatHeadSize]);
 
