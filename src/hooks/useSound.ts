@@ -10,8 +10,8 @@ import multiPop5 from "../../static/sounds/multi-pop-5.mp3";
 import { SoundContext } from "../contexts/SoundContext";
 
 const useSound = () => {
-  const { sound } = useContext(SoundContext);
-  const [chatSentSound] = sound.chatSent;
+  const sound = useContext(SoundContext);
+  const { chatSentSound } = sound.chatSent;
 
   const playMessageNotification = () => {
     let audio;
@@ -34,13 +34,13 @@ const useSound = () => {
   };
 
   const playTypingSound = () => {
-    let audio = new Audio(multiPop5);
+    const audio = new Audio(multiPop5);
     audio.volume = 0.1;
     audio.play();
   };
 
-  const playChatSentSound = (audioParams) => {
-    let audio = new Audio(audioParams);
+  const playChatSentSound = (audioParams: string) => {
+    const audio = new Audio(audioParams);
     audio.volume = 0.2;
     audio.play();
   };

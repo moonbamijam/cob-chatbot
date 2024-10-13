@@ -1,4 +1,11 @@
-import { useState, useEffect, useRef, useContext, useCallback } from "react";
+import {
+  useState,
+  useEffect,
+  useRef,
+  useContext,
+  useCallback,
+  FormEvent,
+} from "react";
 import { v4 as uuid } from "uuid";
 import { verifiedUID } from "../utils/uid";
 
@@ -26,7 +33,6 @@ import {
 import { db } from "../firebase/config";
 
 // hooks
-import { useDebounce } from "./useDebounce";
 import useSound from "./useSound";
 
 // utils
@@ -34,32 +40,37 @@ import { sleep } from "../utils/sleep";
 import { hasSymbol, splitMessage } from "../utils/splitMessage";
 import { smoothScrollInto } from "../utils/scrollInto";
 import { greet } from "../utils/greet";
+import { firestoreConverter } from "../utils/type-converter";
+
+// types
+import { FaqType } from "../shared/type";
 
 const uid = verifiedUID();
 
-// firebase queries and references
 const usersCollectionRef = collection(db, "users");
-const faqsCollectionRef = collection(db, "FAQs");
+const faqsCollectionRef = collection(db, "FAQs").withConverter(
+  firestoreConverter<FaqType>(),
+);
 const faqsQuery = query(faqsCollectionRef, orderBy("frequency", "desc"));
 
 const useChatbot = () => {
-  const { auth } = useContext(AuthContext);
-  const [isSignedIn] = auth.user;
-  const { chatbot } = useContext(ChatbotContext);
-  const [configuration] = chatbot.configuration;
-  const [conversation, setConversation] = chatbot.conversation;
-  const [faqs, setFaqs] = chatbot.faqs;
-  const [error, setError] = chatbot.error;
-  const [isOnline] = chatbot.online;
+  const auth = useContext(AuthContext);
+  const { isSignedIn } = auth.user;
+  const chatbot = useContext(ChatbotContext);
+  const { configuration } = chatbot.configuration;
+  const { conversation, setConversation } = chatbot.conversation;
+  const { faqs, setFaqs } = chatbot.faqs;
+  const { error, setError } = chatbot.error;
+  const { isOnline } = chatbot.isOnline;
   const { playMessageNotification } = useSound();
-  const latestChat = useRef();
-  const [isAtLatestChat, setIsAtLatestChat] = useState(false);
-  const faqsRef = useRef();
-  const [settings, setSettings] = useState(false);
-  const [loading, setLoading] = useState(true);
-  const [isFaqsMenuActive, setIsFaqsMenuActive] = useState(false);
-  const [userMessage, setUserMessage] = useState("");
-  const [botIsTyping, setBotIsTyping] = useState(false);
+  const latestChat = useRef<HTMLDivElement | null>(null);
+  const [isAtLatestChat, setIsAtLatestChat] = useState<boolean>(false);
+  const faqsRef = useRef<HTMLDivElement | null>(null);
+  const [settings, setSettings] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [isFaqsMenuActive, setIsFaqsMenuActive] = useState<boolean>(false);
+  const [userMessage, setUserMessage] = useState<string>("");
+  const [botIsTyping, setBotIsTyping] = useState<boolean>(false);
 
   const toggleSettings = () => {
     setSettings(!settings);
@@ -86,18 +97,18 @@ const useChatbot = () => {
 
   const getFaqs = useCallback(async () => {
     try {
-      const data = await getDocs(faqsQuery);
-      setFaqs(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+      const faqs = await getDocs(faqsQuery);
+      setFaqs(faqs.docs.map((faq) => ({ ...faq.data(), id: faq.id })));
     } catch (error) {
       console.log(error);
       if (!error) setError(false);
     }
   }, [setError, setFaqs]);
 
-  const getReplyFromBot = async (message) => {
+  const getReplyFromBot = async (message: string) => {
     try {
       setBotIsTyping(true);
-      let deptMessage = message.toLowerCase();
+      const deptMessage = message;
       // Temporary statements just to display departments
       if (
         deptMessage === "departments" ||
@@ -151,7 +162,7 @@ const useChatbot = () => {
         // STARTING HERE FROM "ELSE" HANDLES THE DYNAMIC RESPONSES FROM BOT
       } else {
         await sleep(1);
-        const response = await fetch(configuration.url, {
+        const response = await fetch(import.meta.env.VITE_CHATBOT_API_URL, {
           method: "POST",
           headers: {
             "content-type": "application/json",
@@ -169,8 +180,8 @@ const useChatbot = () => {
         const data = await response.json();
         // assign those to a variables
         // will improve this later
-        const intentRecognizedByBot = data.response.intent;
-        const botAnswer = data.response.answer;
+        const intentRecognizedByBot: string = data.response.intent;
+        const botAnswer: string = data.response.answer;
         let botMessageInfo = {};
         if (intentRecognizedByBot == "None") {
           botMessageInfo = {
@@ -190,7 +201,7 @@ const useChatbot = () => {
           };
         if (hasSymbol(botAnswer)) {
           const botHasMultipleMessage = splitMessage(botAnswer);
-          botHasMultipleMessage.forEach(async (response, i) => {
+          botHasMultipleMessage.forEach(async (response: string, i: number) => {
             if (i == 1) {
               await sleep(1);
               setBotIsTyping(true);
@@ -245,12 +256,11 @@ const useChatbot = () => {
     }
   };
 
-  // useDebounce(function to call, seconds to wait before you can call it again)
-  // basically a cooldown
-  const debouncedMessageToBot = useDebounce(getReplyFromBot, 1.5);
-
   const sendMessageToBot = useCallback(
-    async (event, message) => {
+    async (
+      event: KeyboardEvent | FormEvent<HTMLInputElement | HTMLFormElement>,
+      message: string,
+    ) => {
       const messageInfo = {
         message: message,
         messageId: uuid(),
@@ -273,7 +283,8 @@ const useChatbot = () => {
         await updateDoc(doc(usersCollectionRef, uid), {
           conversation: arrayUnion(messageInfo),
         });
-        debouncedMessageToBot(message);
+        await sleep(1.5);
+        getReplyFromBot(message);
       } catch (error) {
         console.log(error);
         setBotIsTyping(false);
@@ -281,10 +292,10 @@ const useChatbot = () => {
         if (!error) setError(false);
       }
     },
-    [debouncedMessageToBot, playMessageNotification, setError],
+    [playMessageNotification, setError],
   );
 
-  const sendFaqToBot = async (message) => {
+  const sendFaqToBot = async (message: string) => {
     const messageInfo = {
       message: message,
       messageId: uuid(),
@@ -306,7 +317,8 @@ const useChatbot = () => {
       await updateDoc(doc(usersCollectionRef, uid), {
         conversation: arrayUnion(messageInfo),
       });
-      debouncedMessageToBot(message);
+      await sleep(1.5);
+      getReplyFromBot(message);
     } catch (error) {
       console.log(error);
       setBotIsTyping(false);
@@ -323,12 +335,22 @@ const useChatbot = () => {
 
   // for sending messages when clicking enter
   useEffect(() => {
-    const handleSendMessageInEnter = (event) => {
+    const handleSendMessageInEnter = (
+      event: KeyboardEvent | FormEvent<HTMLInputElement>,
+    ) => {
       const trimmedMessage = userMessage.trim();
       // message should be sent if its enter key without shift and not empty
-      if (event.keyCode == 13 && !event.shiftKey && !trimmedMessage == "") {
-        sendMessageToBot(event, trimmedMessage);
-      } else if (event.keyCode == 13 && !event.shiftKey) {
+      if (
+        (event as KeyboardEvent).key == "Enter" &&
+        !(event as KeyboardEvent).shiftKey &&
+        trimmedMessage != ""
+      ) {
+        sendMessageToBot(event as KeyboardEvent, trimmedMessage);
+        setUserMessage("");
+      } else if (
+        (event as KeyboardEvent).key == "Enter" &&
+        !(event as KeyboardEvent).shiftKey
+      ) {
         // this will just clear the spaces if you try to send empty messages using shift + enter
         event.preventDefault();
         setUserMessage("");
@@ -342,8 +364,9 @@ const useChatbot = () => {
 
   // for handling faqs menu on mouse down
   useEffect(() => {
-    const handleFaqsMenu = (event) => {
-      if (!faqsRef.current?.contains(event.target)) setIsFaqsMenuActive(false);
+    const handleFaqsMenu = ({ target }: MouseEvent) => {
+      if (!faqsRef.current?.contains(target as Node))
+        setIsFaqsMenuActive(false);
     };
     document.addEventListener("mousedown", handleFaqsMenu);
     return () => {
@@ -355,9 +378,15 @@ const useChatbot = () => {
   // with the help of useCallback, we can decrease the call of this useEffect
   // even if the invoked functions inside is in the dependencies
   useEffect(() => {
-    console.log("Getting conversation and faqs...");
-    getConversationHistory();
-    getFaqs();
+    try {
+      console.time("Received conversation and faqs in");
+      getConversationHistory();
+      getFaqs();
+    } catch (error) {
+      console.log(error);
+    } finally {
+      console.timeEnd("Received conversation and faqs in");
+    }
   }, [getConversationHistory, getFaqs]);
 
   return {

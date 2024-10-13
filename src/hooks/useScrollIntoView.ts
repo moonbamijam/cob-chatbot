@@ -1,9 +1,9 @@
-import { useState } from "react";
+import { RefObject, useState } from "react";
 
 const useScrollIntoView = () => {
-  const [backToView, setBackToView] = useState("hide");
+  const [backToView, setBackToView] = useState<string>("hide");
 
-  const handleScrollIntoView = (ref) => {
+  const handleScrollIntoView = (ref: RefObject<HTMLDivElement>) => {
     ref.current?.scrollIntoView({ behavior: "smooth" });
   };
 
