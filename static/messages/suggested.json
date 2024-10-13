@@ -2,14 +2,17 @@
   "name": "suggested messages",
   "list": [
     {
+      "id": "1",
       "displayedText": "City Hall Location",
       "message": "Where can I find the City Hall of Bacoor?"
     },
     {
+      "id": "2",
       "displayedText": "Say Hi!",
       "message": "Hi"
     },
     {
+      "id": "3",
       "displayedText": "Who created you?",
       "message": "Who created you?"
     }
