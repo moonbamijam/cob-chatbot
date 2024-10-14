@@ -15,11 +15,11 @@ const ThemeMode = {
 
 const getTheme = () => {
   const theme = localStorage.getItem("theme");
-  return theme ? theme : "light";
+  return theme ? theme : "system";
 };
 
 const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
-  const [resolvedTheme, setTheme] = useState(getTheme);
+  const [resolvedTheme, setTheme] = useState<string>(getTheme);
 
   const toggleTheme = () => {
     if (resolvedTheme === "system") {
