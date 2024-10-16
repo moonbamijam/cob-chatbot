@@ -1,4 +1,3 @@
-/* eslint-disable no-undef */
 /** @type {import('tailwindcss').Config} */
 export default {
   darkMode: "class",
@@ -19,9 +18,6 @@ export default {
         "dm-surface": "#1E293B",
         "dm-surface-dark": "#0F172A",
         "dm-surface-light": "#334155",
-        // outside chatbox colors
-        opaqueBlack: "rgb(var(--opaque-black) / 0.3)",
-        footerOpaqueBlack: "rgb(var(--opaque-black) / 0.8)",
       },
       container: {
         center: true,
@@ -31,8 +27,7 @@ export default {
         "3xl": "1920px",
       },
       animation: {
-        "open-modal": "open-modal 500ms ease-in-out",
-        "close-modal": "close-modal 500ms ease-in-out",
+        "open-modal": "open-modal 300ms ease-in-out",
       },
       backgroundImage: {
         "city-hall": "url(/src/assets/images/bg.jpg)",

@@ -3,3 +3,4 @@ coverage
 pnpm*.yaml
 node_modules
 .github
+*.md

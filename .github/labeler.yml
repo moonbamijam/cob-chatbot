@@ -8,7 +8,10 @@ release:
 - head-branch: release
 
 chore:
-- head-branch: chore
+- head-branch: ['chore', 'refactor', 'style']
+
+enhancement:
+- head-branch: ['impr', 'perf']
 
 ui/ux:
 - changed-files:
@@ -18,8 +21,9 @@ ui/ux:
     - src/assets/**
     - public/**
     - static/**
+    - '**/*.html'
 
-server: 
+server:
 - changed-files:
   - any-glob-to-any-file: src/firebase/**
 
@@ -30,11 +34,13 @@ devops:
     - .github/**
     - .husky/**
     - .release-it.json
+    - docs/CHANGELOG.md
 
 documentation:
 - head-branch: docs
 - changed-files:
   - any-glob-to-any-file: '**/*.md'
+  - all-globs-to-all-files: '!.github/**/*.md'
 
 package:
 - head-branch: deps

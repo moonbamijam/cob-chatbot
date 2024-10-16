@@ -2,16 +2,19 @@
   "name": "themes",
   "modes": [
     {
-      "name": "system",
-      "value": "system"
-    },
-    {
+      "id": "1",
       "name": "light",
       "value": "light"
     },
     {
+      "id": "2",
       "name": "dark",
       "value": "dark"
+    },
+    {
+      "id": "3",
+      "name": "system",
+      "value": "system"
     }
   ]
 }

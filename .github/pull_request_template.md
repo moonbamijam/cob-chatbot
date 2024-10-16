@@ -19,7 +19,6 @@
 
 # Related Tickets
 
-<!-- _If this pr contains related or close an issue, please add them here. -->
+<!-- _If this pr will close an issue, please add them here. -->
 
-- Related Issue(s) #
 - Closes #
