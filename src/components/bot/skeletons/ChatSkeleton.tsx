@@ -1,4 +1,5 @@
-import SkeletonScreen from "../ui/SkeletonScreen";
+import ItemsRenderer from "../../common/ItemsRenderer";
+import SkeletonScreen from "../../ui/SkeletonScreen";
 
 const ChatSkeleton = () => {
   const skeletonizedChat = [
@@ -20,36 +21,38 @@ const ChatSkeleton = () => {
   ];
 
   return (
-    <div className="">
-      {skeletonizedChat.map((skeletonizedChat, i) => (
-        <div
-          key={i}
-          className={`${
-            skeletonizedChat.role == "bot"
-              ? "w-full relative flex items-center gap-2"
-              : "w-full flex justify-end"
-          } mt-3 mb-2`}
-        >
-          {skeletonizedChat.role == "bot" ? (
-            <div className="bg-surface dark:bg-dm-surface w-[35px] h-[35px] rounded-full select-none animate-pulse"></div>
-          ) : null}
+    <section id="messages">
+      <ItemsRenderer
+        items={skeletonizedChat}
+        renderItems={(skeletonizedChat, i) => (
           <SkeletonScreen
-            id="chat"
-            width={`${
-              skeletonizedChat.role === "bot" ? "w-full" : "w-[216px]"
-            }`}
-            height={`${
-              skeletonizedChat.role === "bot" ? "h-[96px]" : "h-[64px]"
-            }`}
-            customStyles={`${
+            key={i}
+            variant="chat"
+            className={`${
               skeletonizedChat.role == "bot"
-                ? "bg-surface dark:bg-dm-surface"
-                : "bg-primary"
-            } `}
-          />
-        </div>
-      ))}
-    </div>
+                ? "bot chat flex items-center gap-2"
+                : "user chat flex justify-end ml-auto"
+            } mt-3 mb-2`}
+          >
+            {skeletonizedChat.role == "bot" && (
+              <SkeletonScreen
+                variant="icon"
+                className="bg-surface dark:bg-dm-surface w-[35px] h-[35px] rounded-full select-none"
+              />
+            )}
+            <SkeletonScreen
+              id="chat"
+              variant="chat"
+              className={`${
+                skeletonizedChat.role == "bot"
+                  ? "bg-surface dark:bg-dm-surface w-full h-[96px]"
+                  : "bg-primary w-[216px] h-[64px]"
+              } `}
+            />
+          </SkeletonScreen>
+        )}
+      />
+    </section>
   );
 };
 
