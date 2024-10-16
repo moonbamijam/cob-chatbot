@@ -40,7 +40,6 @@ documentation:
 - head-branch: docs
 - changed-files:
   - any-glob-to-any-file: '**/*.md'
-  - all-globs-to-all-files: '!.github/**/*.md'
 
 package:
 - head-branch: deps
