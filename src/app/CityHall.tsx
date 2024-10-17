@@ -1,22 +1,22 @@
 import { useContext } from "react";
 
-import ChatHead from "../components/bot/ChatHead";
-import ChatBox from "../components/bot/ChatBox";
-import ScreenDim from "../components/bot/ui/ScreenDim";
+import ChatHead from "@components/bot/ChatHead";
+import ChatBox from "@components/bot/ChatBox";
+import ScreenDim from "@components/bot/ui/ScreenDim";
 
 // components
-import CityHallUI from "../components/pages/city-hall/CityHallUI";
+import CityHallUI from "@components/pages/city-hall/CityHallUI";
 
 // contexts
-import { AuthContext } from "../contexts/AuthContext";
-import ChatbotProvider from "../providers/ChatbotProvider";
-import { ChatContext } from "../contexts/ChatContext";
+import { AuthContext } from "@contexts/AuthContext";
+import ChatbotProvider from "@providers/ChatbotProvider";
+import { ChatContext } from "@contexts/ChatContext";
 
 // providers
-import FontProvider from "../providers/FontProvider";
-import SoundProvider from "../providers/SoundProvider";
+import FontProvider from "@providers/FontProvider";
+import SoundProvider from "@providers/SoundProvider";
 
-const Home = () => {
+const CityHall = () => {
   const auth = useContext(AuthContext);
   const { isSignedIn } = auth.user;
   const chat = useContext(ChatContext);
@@ -52,4 +52,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default CityHall;

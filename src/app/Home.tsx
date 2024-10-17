@@ -1,18 +1,18 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { chatbotConfig } from "../lib/bot/chatbotConfig";
+import { chatbotConfig } from "@lib/bot/chatbotConfig";
 
 // components
-import { Button } from "../components/ui/Button";
-import Header from "../components/header/Header";
-import SkeletonScreen from "../components/ui/SkeletonScreen";
+import Button from "@components/ui/Button";
+import Header from "@components/header/Header";
+import SkeletonScreen from "@components/ui/SkeletonScreen";
 
 // assets
-import LandingCoverLight from "../../static/assets/gif/landing-convo-light.gif";
-import LandingCoverDark from "../../static/assets/gif/landing-convo-dark.gif";
+import LandingCoverLight from "@static/assets/gif/landing-convo-light.gif";
+import LandingCoverDark from "@static/assets/gif/landing-convo-dark.gif";
 
 // icons
-import Version from "../components/bot/ui/Version";
+import Version from "@components/bot/ui/Version";
 
 const Home = () => {
   const [isImageLoaded, setIsImageLoaded] = useState<boolean>(false);

@@ -1,4 +1,4 @@
-import { formatedDate } from "../../../../utils/date";
+import { formatedDate } from "@utils/date";
 
 const TimeHeader = () => {
   return (

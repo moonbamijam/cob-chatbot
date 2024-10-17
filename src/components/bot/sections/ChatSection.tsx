@@ -1,38 +1,35 @@
 import { useState, useContext, useRef, SyntheticEvent, RefObject } from "react";
 
 // context
-import { ChatbotContext } from "../../../contexts/ChatbotContext";
+import { ChatbotContext } from "@contexts/ChatbotContext";
 
 // hooks
-import useScrollIntoView from "../../../hooks/useScrollIntoView";
+import useScrollIntoView from "@hooks/useScrollIntoView";
 
 // utils
-import {
-  containsPlaceholder,
-  splitLinkToResponse,
-} from "../../../utils/splitLink";
-import { sleep } from "../../../utils/sleep";
-import { scrollInto } from "../../../utils/scrollInto";
-import { timestamp } from "../../../utils/timestamp";
+import { containsPlaceholder, splitLinkToResponse } from "@utils/splitLink";
+import { sleep } from "@utils/sleep";
+import { scrollInto } from "@utils/scrollInto";
+import { timestamp } from "@utils/timestamp";
 
 // components
-import Error from "../ui/Error";
+import Error from "@components/bot/ui/Error";
 import MiniProfile from "./MiniProfile";
-import Chat from "../Chat";
-import Typing from "../ui/Typing";
-import ChatSkeleton from "../skeletons/ChatSkeleton";
-import Loading from "../ui/Loading";
-import Button from "../ui/Button";
-import ItemsRenderer from "../../common/ItemsRenderer";
+import Chat from "@components/bot/Chat";
+import Typing from "@components/bot/ui/Typing";
+import ChatSkeleton from "@components/bot/skeletons/ChatSkeleton";
+import Loading from "@components/bot/ui/Loading";
+import Button from "@components/bot/ui/Button";
+import ItemsRenderer from "@components/common/ItemsRenderer";
 
 // types
-import { ConversationType } from "../../../shared/type";
+import { ConversationType } from "@shared/type";
 
 // icons
 import { FaArrowDown } from "react-icons/fa6";
 
 // styles
-import "../../../styles/utils.css";
+import "@styles/utils.css";
 
 const chatPerPage = 15;
 const step = 10;

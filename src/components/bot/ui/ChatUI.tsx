@@ -1,8 +1,8 @@
 import { useState, useEffect, useRef } from "react";
 
 // components
-import { Button } from "../../ui/Button";
-import ScreenDim from "./ScreenDim";
+import Button from "@components/ui/Button";
+import ScreenDim from "@components/bot/ui/ScreenDim";
 
 // icons
 import { CgClose } from "react-icons/cg";

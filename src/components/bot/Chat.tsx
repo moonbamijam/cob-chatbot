@@ -1,13 +1,13 @@
 import { useContext, useState } from "react";
 
 // contexts
-import { FontContext } from "../../contexts/FontContext";
-import { ChatbotContext } from "../../contexts/ChatbotContext";
+import { FontContext } from "@contexts/FontContext";
+import { ChatbotContext } from "@contexts/ChatbotContext";
 
 // components
-import ChatUI from "./ui/ChatUI";
-import DepartmentBtn from "./buttons/DepartmentBtn";
-import ItemsRenderer from "../common/ItemsRenderer";
+import ChatUI from "@components/bot/ui/ChatUI";
+import DepartmentBtn from "@components/bot/buttons/DepartmentBtn";
+import ItemsRenderer from "@components/common/ItemsRenderer";
 
 // icons
 import { BsArrowDownCircleFill } from "react-icons/bs";

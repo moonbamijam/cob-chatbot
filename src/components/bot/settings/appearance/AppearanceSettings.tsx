@@ -1,11 +1,11 @@
 // components
-import SettingsTitle from "../SettingsTitle";
-import ChatPreview from "../../ui/ChatPreview";
-import ThemeSwitch from "./themes/ThemeSwitch";
-import FontFamilySwitch from "./fonts/FontFamilySwitch";
-import FontSizeSwitch from "./fonts/FontSizeSwitch";
-import SettingsWrapper from "../SettingsWrapper";
-import ChatHeadSwitch from "./chathead/ChatHeadSwitch";
+import SettingsTitle from "@components/bot/settings/SettingsTitle";
+import ChatPreview from "@components/bot/ui/ChatPreview";
+import ThemeSwitch from "@components/bot/settings/appearance/themes/ThemeSwitch";
+import FontFamilySwitch from "@components/bot/settings/appearance/fonts/FontFamilySwitch";
+import FontSizeSwitch from "@components/bot/settings/appearance/fonts/FontSizeSwitch";
+import SettingsWrapper from "@components/bot/settings/SettingsWrapper";
+import ChatHeadSwitch from "@components/bot/settings/appearance/chathead/ChatHeadSwitch";
 
 const AppearanceSettings = () => {
   return (

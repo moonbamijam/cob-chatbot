@@ -7,14 +7,14 @@ import {
   FormEvent,
 } from "react";
 import { v4 as uuid } from "uuid";
-import { verifiedUID } from "../utils/uid";
+import { verifiedUID } from "@utils/uid";
 
 // contexts
-import { ChatbotContext } from "../contexts/ChatbotContext";
-import { AuthContext } from "../contexts/AuthContext";
+import { ChatbotContext } from "@contexts/ChatbotContext";
+import { AuthContext } from "@contexts/AuthContext";
 
 // library
-import { depts, deptsAnswer } from "../lib/depts";
+import { depts, deptsAnswer } from "@lib/depts";
 
 // db
 import {
@@ -36,14 +36,14 @@ import { db } from "../firebase/config";
 import useSound from "./useSound";
 
 // utils
-import { sleep } from "../utils/sleep";
-import { hasSymbol, splitMessage } from "../utils/splitMessage";
-import { smoothScrollInto } from "../utils/scrollInto";
-import { greet } from "../utils/greet";
-import { firestoreConverter } from "../utils/type-converter";
+import { sleep } from "@utils/sleep";
+import { hasSymbol, splitMessage } from "@utils/splitMessage";
+import { smoothScrollInto } from "@utils/scrollInto";
+import { greet } from "@utils/greet";
+import { firestoreConverter } from "@utils/type-converter";
 
 // types
-import { FaqType } from "../shared/type";
+import { FaqType } from "@shared/type";
 
 const uid = verifiedUID();
 

@@ -1,16 +1,16 @@
 import { useState, useEffect, useMemo } from "react";
-import { ChatbotContext } from "../contexts/ChatbotContext";
+import { ChatbotContext } from "@contexts/ChatbotContext";
 
 // db
 import { collection, doc, onSnapshot } from "firebase/firestore";
 import { db } from "../firebase/config";
 
 // types
-import { ConfigurationType, ConversationType, FaqType } from "../shared/type";
+import { ConfigurationType, ConversationType, FaqType } from "@shared/type";
 
 // assets
-import VivienneIcon from "../../static/assets/images/logo.png";
-import { chatbotConfig } from "../lib/bot/chatbotConfig";
+import VivienneIcon from "@static/assets/images/logo.png";
+import { chatbotConfig } from "@lib/bot/chatbotConfig";
 
 const botProfileCollectionRef = collection(db, "profile");
 

@@ -1,5 +1,5 @@
 import React from "react";
-import { ConfigurationType, ConversationType, FaqType } from "../shared/type";
+import { ConfigurationType, ConversationType, FaqType } from "@shared/type";
 
 type ChatbotContextType = {
   configuration: {

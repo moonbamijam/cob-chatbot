@@ -1,12 +1,12 @@
 import { useContext } from "react";
 
 // context
-import { ChatbotContext } from "../../../../contexts/ChatbotContext";
+import { ChatbotContext } from "@contexts/ChatbotContext";
 
 // components
-import MiniProfile from "../../sections/MiniProfile";
-import SettingsMiniTitle from "../SettingsMiniTitle";
-import SettingsTitle from "../SettingsTitle";
+import MiniProfile from "@components/bot/sections/MiniProfile";
+import SettingsMiniTitle from "@components/bot/settings/SettingsMiniTitle";
+import SettingsTitle from "@components/bot/settings/SettingsTitle";
 
 type AboutProps = {
   settings: boolean;

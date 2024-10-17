@@ -1,14 +1,14 @@
 // Components
-import Section from "./common/Section";
-import Header from "./header/Header";
-import TimeHeader from "./ui/TimeHeader";
-import Logo from "./ui/Logo";
-import ArticleLeft from "./articles/ArticleLeft";
-import ArticleRight from "./articles/ArticleRight";
-import Footer from "./footer/Footer";
+import Section from "@components/pages/city-hall/common/Section";
+import Header from "@components/pages/city-hall/header/Header";
+import TimeHeader from "@components/pages/city-hall/ui/TimeHeader";
+import Logo from "@components/pages/city-hall/ui/Logo";
+import ArticleLeft from "@components/pages/city-hall/articles/ArticleLeft";
+import ArticleRight from "@components/pages/city-hall/articles/ArticleRight";
+import Footer from "@components/pages/city-hall/footer/Footer";
 
 // Assets
-import LandingImg from "../../../assets/images/landing.png";
+import LandingImg from "@assets/images/landing.png";
 
 // Icons
 import { RiArrowLeftSLine, RiArrowRightSLine } from "react-icons/ri";

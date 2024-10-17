@@ -1,5 +1,5 @@
 import { useState, useEffect, useMemo } from "react";
-import { SoundContext } from "../contexts/SoundContext";
+import { SoundContext } from "@contexts/SoundContext";
 
 const getChatSentSound = () => {
   const chatSentSound = localStorage.getItem("chatSentSound");

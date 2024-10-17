@@ -1,18 +1,18 @@
 import { MouseEventHandler, useContext } from "react";
 
 // contexts
-import { FontContext } from "../../contexts/FontContext";
-import { ChatContext } from "../../contexts/ChatContext";
+import { FontContext } from "@contexts/FontContext";
+import { ChatContext } from "@contexts/ChatContext";
 
 // hooks
-import useChatbot from "../../hooks/useChatbot";
+import useChatbot from "@hooks/useChatbot";
 
 // components
-import Header from "../bot/header/Header";
-import Settings from "./settings/Settings";
-import SuggestedChatSection from "./sections/SuggestedChatSection";
-import ChatInputSection from "./sections/ChatInputSection";
-import ChatSection from "./sections/ChatSection";
+import Header from "@components/bot/header/Header";
+import Settings from "@components/bot/settings/Settings";
+import SuggestedChatSection from "@components/bot/sections/SuggestedChatSection";
+import ChatInputSection from "@components/bot/sections/ChatInputSection";
+import ChatSection from "@components/bot/sections/ChatSection";
 
 type ChatBoxProps = {
   closeUsing: MouseEventHandler<HTMLButtonElement>;

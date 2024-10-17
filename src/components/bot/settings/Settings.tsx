@@ -1,15 +1,15 @@
 import { ChangeEvent, useState, useContext } from "react";
 
 // context
-import { ChatbotContext } from "../../../contexts/ChatbotContext";
+import { ChatbotContext } from "@contexts/ChatbotContext";
 
 // components
-import { Button } from "../../ui/Button";
-import ScreenDim from "../ui/ScreenDim";
-import SettingsNavBar from "./nav/SettingsNavBar";
-import AppearanceSettings from "./appearance/AppearanceSettings";
-import SoundSettings from "./sound/SoundSettings";
-import About from "./about/About";
+import Button from "@components/ui/Button";
+import ScreenDim from "@components/bot/ui/ScreenDim";
+import SettingsNavBar from "@components/bot/settings/nav/SettingsNavBar";
+import AppearanceSettings from "@components/bot/settings/appearance/AppearanceSettings";
+import SoundSettings from "@components/bot/settings/sound/SoundSettings";
+import About from "@components/bot/settings/about/About";
 
 // icons
 import { CgClose } from "react-icons/cg";

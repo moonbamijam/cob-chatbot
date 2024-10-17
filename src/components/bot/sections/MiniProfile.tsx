@@ -1,14 +1,14 @@
 import { Link } from "react-router-dom";
 import { LegacyRef, useContext } from "react";
-import { chatbotConfig } from "../../../lib/bot/chatbotConfig";
+import { chatbotConfig } from "@lib/bot/chatbotConfig";
 
 // context
-import { ChatbotContext } from "../../../contexts/ChatbotContext";
+import { ChatbotContext } from "@contexts/ChatbotContext";
 
 // components
-import { Image } from "../../ui/Image";
-import { Button } from "../../ui/Button";
-import DevIcon from "../icons/DevIcon";
+import Image from "@components/ui/Image";
+import Button from "@components/ui/Button";
+import DevIcon from "@components/bot/icons/DevIcon";
 
 type MiniProfileProps = Partial<
   Readonly<{

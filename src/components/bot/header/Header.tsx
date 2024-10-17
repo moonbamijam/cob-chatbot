@@ -1,10 +1,10 @@
 import { MouseEventHandler, useContext } from "react";
 
 // context
-import { ChatbotContext } from "../../../contexts/ChatbotContext";
+import { ChatbotContext } from "@contexts/ChatbotContext";
 
 // components
-import { Button } from "../../ui/Button";
+import Button from "@components/ui/Button";
 
 // icons
 import { IoSettingsSharp } from "react-icons/io5";

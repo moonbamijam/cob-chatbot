@@ -1,6 +1,8 @@
 import { useState, useEffect, useMemo } from "react";
 import { getAuth, signInAnonymously } from "firebase/auth";
-import { AuthContext } from "../contexts/AuthContext";
+
+// components
+import { AuthContext } from "@contexts/AuthContext";
 
 const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [isSignedIn, setIsSignedIn] = useState(false);

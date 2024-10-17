@@ -1,12 +1,12 @@
 import { useContext } from "react";
-import { chatbotConfig } from "../../lib/bot/chatbotConfig";
 import { Link } from "react-router-dom";
+import { chatbotConfig } from "@lib/bot/chatbotConfig";
 
 // context
-import { ThemeContext } from "../../contexts/ThemeContext";
+import { ThemeContext } from "@contexts/ThemeContext";
 
 // components
-import { Button } from "../ui/Button";
+import Button from "@components/ui/Button";
 
 // icons
 import { LuSun, LuMoon, LuMonitor } from "react-icons/lu";

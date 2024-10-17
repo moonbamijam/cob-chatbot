@@ -2,10 +2,10 @@ import { forwardRef, HTMLAttributes, ImgHTMLAttributes } from "react";
 import { VariantProps } from "class-variance-authority";
 
 // utils
-import { cn } from "../../utils/cn";
+import { cn } from "@utils/cn";
 
 // library
-import { skeletonScreenVariants } from "../../lib/variants/skeletonScreenVariants";
+import { skeletonScreenVariants } from "@lib/variants/skeletonScreenVariants";
 
 type SkeletonScreenProps = HTMLAttributes<HTMLDivElement> &
   ImgHTMLAttributes<HTMLImageElement> &

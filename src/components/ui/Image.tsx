@@ -2,15 +2,15 @@ import { forwardRef, ImgHTMLAttributes } from "react";
 import { VariantProps } from "class-variance-authority";
 
 // utils
-import { cn } from "../../utils/cn";
+import { cn } from "@utils/cn";
 
 // library
-import { imageVariants } from "../../lib/variants/imageVariants";
+import { imageVariants } from "@lib/variants/imageVariants";
 
 type ImageProps = ImgHTMLAttributes<HTMLImageElement> &
   VariantProps<typeof imageVariants> & {};
 
-export const Image = forwardRef<HTMLImageElement, ImageProps>(
+const Image = forwardRef<HTMLImageElement, ImageProps>(
   ({ src, alt, className, size, variant, ...props }, ref) => {
     return (
       <img
@@ -23,3 +23,5 @@ export const Image = forwardRef<HTMLImageElement, ImageProps>(
     );
   },
 );
+
+export default Image;

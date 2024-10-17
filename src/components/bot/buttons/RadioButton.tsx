@@ -1,5 +1,7 @@
 import { ChangeEventHandler, CSSProperties, MouseEventHandler } from "react";
-import { Button } from "../../ui/Button";
+
+// components
+import Button from "@components/ui/Button";
 
 type RadioButtonProps = Readonly<
   Partial<{
