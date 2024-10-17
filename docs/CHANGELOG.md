@@ -1,5 +1,32 @@
 # What's New
 
+# [2.6.0](https://github.com/moonbamijam/cob-chatbot/compare/v2.5.0...v2.6.0) (2024-10-17)
+
+
+### Bug Fixes
+
+* key prop error to items renderer ([d27c74c](https://github.com/moonbamijam/cob-chatbot/commit/d27c74cc13825a5068232a88f207406e71e35710))
+* meta og image not displaying ([#141](https://github.com/moonbamijam/cob-chatbot/issues/141)) ([730866a](https://github.com/moonbamijam/cob-chatbot/commit/730866a9b16d405b341e9ba341d6a656594649d6))
+
+
+### Features
+
+* add base tag to head for rewrites ([29a2521](https://github.com/moonbamijam/cob-chatbot/commit/29a25218f7f37e159fbe0b8a0119e95ea77a2b70))
+* add id property to static data ([b53758e](https://github.com/moonbamijam/cob-chatbot/commit/b53758e856fc55f41a44fbb70ca355401621adc6))
+* add og image meta tag ([d89aee2](https://github.com/moonbamijam/cob-chatbot/commit/d89aee2c02deb508e6e4132d49edbefd759fff3b))
+* add seperate file for ui component variants ([27f8adb](https://github.com/moonbamijam/cob-chatbot/commit/27f8adb6a9fde2dd3190cc8b2435ba18c2d05e95))
+* add shared types ([a79eae2](https://github.com/moonbamijam/cob-chatbot/commit/a79eae26739e40224934dc6dbf1957acc4152ace))
+* add skeleton screen ui ([#145](https://github.com/moonbamijam/cob-chatbot/issues/145)) ([f1a1cf0](https://github.com/moonbamijam/cob-chatbot/commit/f1a1cf054548aecc52326344fc8453393078a5a8))
+* add type converter ([79e34f9](https://github.com/moonbamijam/cob-chatbot/commit/79e34f93edb18a8bf8039761f72531e70adc0059))
+* additional type to event in send message ([78ccd74](https://github.com/moonbamijam/cob-chatbot/commit/78ccd74a0d138a835e60a42b6ea268d6386c5880))
+* default value to settings components ([31b636a](https://github.com/moonbamijam/cob-chatbot/commit/31b636a9c1ed1bab3a1fdca38e8c98a770f8506d))
+* make the system theme the default theme ([77c85de](https://github.com/moonbamijam/cob-chatbot/commit/77c85ded1cd314407bd9792087f4b1c2535030c8))
+
+
+### Performance Improvements
+
+* add renderer/mapping component ([#142](https://github.com/moonbamijam/cob-chatbot/issues/142)) ([800ac19](https://github.com/moonbamijam/cob-chatbot/commit/800ac19b3227d0d02f9f572b3ef4f3450d3d9b50))
+
 # [2.5.0](https://github.com/moonbamijam/cob-chatbot/compare/v2.4.3...v2.5.0) (2024-10-05)
 
 
