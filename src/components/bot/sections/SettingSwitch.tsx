@@ -1,5 +1,12 @@
-const SettingSwitch = ({ children }: { children: React.ReactNode }) => {
-  return <div className="w-max">{children}</div>;
+type SettingSwitchProps = Partial<
+  Readonly<{
+    children: React.ReactNode;
+    className: string;
+  }>
+>;
+
+const SettingSwitch = ({ children, className }: SettingSwitchProps) => {
+  return <div className={`w-max ${className}`}>{children}</div>;
 };
 
 export default SettingSwitch;
