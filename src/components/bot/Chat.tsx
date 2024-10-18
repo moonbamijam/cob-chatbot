@@ -18,6 +18,8 @@ const currentPage = 1;
 type ChatType = Readonly<{
   role: string;
   message?: string;
+  image?: string;
+  video?: string;
   depts: {
     id: string;
     deptName: string;
@@ -37,7 +39,15 @@ type DepartmentType = {
   requirements: string;
 };
 
-const Chat = ({ role, message, depts, timeSent, link }: ChatType) => {
+const Chat = ({
+  role,
+  message,
+  image,
+  video,
+  depts,
+  timeSent,
+  link,
+}: ChatType) => {
   const chatbot = useContext(ChatbotContext);
   const { configuration } = chatbot.configuration;
   const font = useContext(FontContext);
@@ -81,6 +91,8 @@ const Chat = ({ role, message, depts, timeSent, link }: ChatType) => {
           img={configuration.icon}
           timeSent={timeSent}
           fontSize={fontSize}
+          image={image}
+          video={video}
         >
           {message}
           {renderDeptsContent()}
