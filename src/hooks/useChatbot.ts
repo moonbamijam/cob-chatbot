@@ -37,13 +37,15 @@ import useSound from "./useSound";
 
 // utils
 import { sleep } from "@utils/sleep";
-import { hasSymbol, splitMessage } from "@utils/splitMessage";
+import { hasImageSymbol, hasSymbol, splitMessage } from "@utils/splitMessage";
 import { smoothScrollInto } from "@utils/scrollInto";
 import { greet } from "@utils/greet";
 import { firestoreConverter } from "@utils/type-converter";
 
 // types
 import { FaqType } from "@shared/type";
+import { extractLink } from "@src/utils/splitLink";
+import { extractFileNameFromUrl } from "@src/utils/extract-file-name-from-url";
 
 const uid = verifiedUID();
 
@@ -78,6 +80,8 @@ const useChatbot = () => {
   };
 
   const getConversationHistory = useCallback(async () => {
+    // const tests = extractLink("here is a picture of zero two [https://firebasestorage.googleapis.com/v0/b/cob-chatbot.appspot.com/o/knowledge-files%2Fzero-two.jpg?alt=media&token=2419499b-7d1b-4453-8c99-34a08fa6506b]")
+    // console.log(tests)
     try {
       const data = await getDocs(usersCollectionRef);
       onSnapshot(doc(usersCollectionRef, uid), (doc) => {
@@ -231,6 +235,34 @@ const useChatbot = () => {
             playMessageNotification();
           });
           return;
+        } else if (hasImageSymbol(botAnswer)) {
+          const { link, text } = extractLink(botAnswer);
+
+          const fileName = link ? extractFileNameFromUrl(link) : "";
+          const fileExtension = fileName?.split(".")[1];
+          const images = ["png", "jpg", "gif"];
+          const videos = ["mp4"];
+          // const docs = ['pdf']
+          if (fileExtension && images.includes(fileExtension)) {
+            botMessageInfo = {
+              intent: intentRecognizedByBot,
+              message: text,
+              image: link,
+              messageId: uuid(),
+              role: "bot",
+              timeSent: Timestamp.now(),
+            };
+          } else if (fileExtension && videos.includes(fileExtension)) {
+            console.log("videoss path");
+            botMessageInfo = {
+              intent: intentRecognizedByBot,
+              message: text,
+              video: link,
+              messageId: uuid(),
+              role: "bot",
+              timeSent: Timestamp.now(),
+            };
+          }
         }
         setBotIsTyping(false);
         const docUserId = doc(usersCollectionRef, uid);
