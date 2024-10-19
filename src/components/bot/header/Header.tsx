@@ -52,7 +52,7 @@ const Header = ({ toggleSettings, closeUsing }: HeaderProps) => {
         <Button
           variant="icon"
           size="icon"
-          className="rounded-full hover:bg-error group [&>svg>path]:hover:text-white [&>svg>path]:dark:text-white"
+          className="hidden xl:block rounded-full hover:bg-error group [&>svg>path]:hover:text-white [&>svg>path]:dark:text-white"
           onClick={closeUsing}
         >
           <IoClose />
