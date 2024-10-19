@@ -14,6 +14,8 @@ export type ConfigurationType = {
 export type ConversationType = {
   intent: string;
   message: string;
+  image: string;
+  video: string;
   messageId: string;
   role: string;
   timeSent: admin.firestore.Timestamp;
