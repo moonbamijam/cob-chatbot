@@ -8,16 +8,15 @@ import { db } from "../firebase/config";
 // types
 import { ConfigurationType, ConversationType, FaqType } from "@shared/type";
 
-// assets
-import VivienneIcon from "@static/assets/images/logo.png";
+// lib
 import { chatbotConfig } from "@lib/bot/chatbotConfig";
 
 const botProfileCollectionRef = collection(db, "profile");
 
 const ChatbotProvider = ({ children }: { children: React.ReactNode }) => {
   const [configuration, setConfiguration] = useState<ConfigurationType>({
-    icon: VivienneIcon,
-    widgetIcon: VivienneIcon,
+    icon: "",
+    widgetIcon: "",
     name: chatbotConfig.name,
     slogan: chatbotConfig.slogan,
   });
