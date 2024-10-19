@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from "react";
 
 // components
 import Button from "@components/ui/Button";
-import ScreenDim from "@components/bot/ui/ScreenDim";
+import ImageDimmer from "@components/bot/layouts/ImageDimmer";
 
 // icons
 import { CgClose } from "react-icons/cg";
@@ -143,11 +143,11 @@ const ChatUI = ({
             <img
               src={image}
               alt=""
-              className="max-w-[90%] max-h-[90%]"
+              className="w-max max-w-[90%] h-max max-h-full"
               ref={imagePreviewRef}
             />
           </div>
-          <ScreenDim className="bg-black z-50 backdrop-blur opacity-70" />
+          <ImageDimmer />
         </>
       )}
       {renderChatUI()}
