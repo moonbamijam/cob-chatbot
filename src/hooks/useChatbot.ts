@@ -80,8 +80,6 @@ const useChatbot = () => {
   };
 
   const getConversationHistory = useCallback(async () => {
-    // const tests = extractLink("here is a picture of zero two [https://firebasestorage.googleapis.com/v0/b/cob-chatbot.appspot.com/o/knowledge-files%2Fzero-two.jpg?alt=media&token=2419499b-7d1b-4453-8c99-34a08fa6506b]")
-    // console.log(tests)
     try {
       const data = await getDocs(usersCollectionRef);
       onSnapshot(doc(usersCollectionRef, uid), (doc) => {
