@@ -59,40 +59,42 @@ const ChatUI = ({
                 height={35}
                 className="rounded-full aspect-square object-cover select-none"
               />
-              {image && (
-                <img
-                  src={image}
-                  alt=""
-                  className="w-max max-w-[50%] h-max rounded-xl outline-primary object-contain cursor-pointer hover:opacity-70"
-                  onClick={toggleImagePreview}
-                />
-              )}
-              {video && (
-                <video
-                  width="200"
-                  height="240"
-                  controls
-                  poster=""
-                  muted
-                  className="w-max max-w-[50%] h-max rounded-xl outline-primary object-contain cursor-pointer"
-                >
-                  <source src={video} type="video/mp4" />
-                </video>
-              )}
-              <div className="max-w-[80%] rounded-3xl shadow bg-surface dark:bg-dm-surface px-4 py-3 space-y-2 break-words">
-                <div
-                  id="message"
-                  style={{ fontSize: fontSize }}
-                  className="relative dark:text-white whitespace-pre-line"
-                >
-                  {children}
+              <div className="flex flex-col gap-4 max-w-[80%]">
+                <div className="rounded-3xl shadow bg-surface dark:bg-dm-surface px-4 py-3 space-y-2 break-words">
+                  <div
+                    id="message"
+                    style={{ fontSize: fontSize }}
+                    className="relative dark:text-white whitespace-pre-line"
+                  >
+                    {children}
+                  </div>
+                  <div
+                    id="timeSent"
+                    className="text-gray-500 dark:text-gray-300 text-xs text-right opacity-80 z-[9]"
+                  >
+                    {timeSent}
+                  </div>
                 </div>
-                <div
-                  id="timeSent"
-                  className="text-gray-500 dark:text-gray-300 text-xs text-right opacity-80 z-[9]"
-                >
-                  {timeSent}
-                </div>
+                {image && (
+                  <img
+                    src={image}
+                    alt=""
+                    className="w-max max-w-[50%] h-max rounded-xl outline-primary object-contain cursor-pointer hover:opacity-70"
+                    onClick={toggleImagePreview}
+                  />
+                )}
+                {video && (
+                  <video
+                    width="200"
+                    height="240"
+                    controls
+                    poster=""
+                    muted
+                    className="w-max max-w-[50%] h-max rounded-xl outline-primary object-contain cursor-pointer"
+                  >
+                    <source src={video} type="video/mp4" />
+                  </video>
+                )}
               </div>
             </div>
           </div>
