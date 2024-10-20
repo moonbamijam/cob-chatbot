@@ -5,7 +5,7 @@ import { VariantProps } from "class-variance-authority";
 import { cn } from "@utils/cn";
 
 // library
-import { buttonVariants } from "@lib/variants/buttonVariants";
+import { buttonVariants } from "@src/lib/variants/button-variants";
 
 type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> &
   VariantProps<typeof buttonVariants> & {};

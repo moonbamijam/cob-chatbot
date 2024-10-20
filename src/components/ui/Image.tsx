@@ -5,7 +5,7 @@ import { VariantProps } from "class-variance-authority";
 import { cn } from "@utils/cn";
 
 // library
-import { imageVariants } from "@lib/variants/imageVariants";
+import { imageVariants } from "@src/lib/variants/image-variants";
 
 type ImageProps = ImgHTMLAttributes<HTMLImageElement> &
   VariantProps<typeof imageVariants> & {};

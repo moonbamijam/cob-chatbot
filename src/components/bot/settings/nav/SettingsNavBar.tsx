@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef, useContext, ChangeEvent } from "react";
-import { settingsList } from "@lib/settings/settingsList";
+import { settingsList } from "@src/lib/settings/settings-list";
 
 // context
 import { ChatbotContext } from "@contexts/ChatbotContext";

@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { chatbotConfig } from "@lib/bot/chatbotConfig";
+import { chatbotConfig } from "@src/lib/bot/chatbot-config";
 
 // components
 import Button from "@components/ui/Button";
-import Header from "@components/header/Header";
+import Header from "@src/components/layouts/header/Header";
 import SkeletonScreen from "@components/ui/SkeletonScreen";
 
 // assets

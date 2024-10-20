@@ -37,11 +37,15 @@ import useSound from "./useSound";
 
 // utils
 import { sleep } from "@utils/sleep";
-import { hasImageSymbol, hasSymbol, splitMessage } from "@utils/splitMessage";
-import { smoothScrollInto } from "@utils/scrollInto";
+import {
+  hasImageSymbol,
+  hasSymbol,
+  splitMessage,
+} from "@src/utils/split-message";
+import { smoothScrollInto } from "@src/utils/scroll-into";
 import { greet } from "@utils/greet";
 import { firestoreConverter } from "@utils/type-converter";
-import { extractLink } from "@src/utils/splitLink";
+import { extractLink } from "@src/utils/split-link";
 import { extractFileNameFromUrl } from "@src/utils/extract-file-name-from-url";
 
 // shared

@@ -7,9 +7,12 @@ import { ChatbotContext } from "@contexts/ChatbotContext";
 import useScrollIntoView from "@hooks/useScrollIntoView";
 
 // utils
-import { containsPlaceholder, splitLinkToResponse } from "@utils/splitLink";
+import {
+  containsPlaceholder,
+  splitLinkToResponse,
+} from "@src/utils/split-link";
 import { sleep } from "@utils/sleep";
-import { scrollInto } from "@utils/scrollInto";
+import { scrollInto } from "@src/utils/scroll-into";
 import { timestamp } from "@utils/timestamp";
 
 // components

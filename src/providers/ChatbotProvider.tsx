@@ -9,7 +9,7 @@ import { db } from "../firebase/config";
 import { ConfigurationType, ConversationType, FaqType } from "@shared/type";
 
 // lib
-import { chatbotConfig } from "@lib/bot/chatbotConfig";
+import { chatbotConfig } from "@src/lib/bot/chatbot-config";
 
 const botProfileCollectionRef = collection(db, "profile");
 

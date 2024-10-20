@@ -5,7 +5,7 @@ import { VariantProps } from "class-variance-authority";
 import { cn } from "@utils/cn";
 
 // library
-import { skeletonScreenVariants } from "@lib/variants/skeletonScreenVariants";
+import { skeletonScreenVariants } from "@src/lib/variants/skeleton-screen-variants";
 
 type SkeletonScreenProps = HTMLAttributes<HTMLDivElement> &
   ImgHTMLAttributes<HTMLImageElement> &
