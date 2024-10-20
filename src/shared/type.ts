@@ -16,6 +16,8 @@ export type ConversationType = {
   message: string;
   image: string;
   video: string;
+  docs: string;
+  docsLink: string;
   messageId: string;
   role: string;
   timeSent: admin.firestore.Timestamp;
