@@ -41,11 +41,12 @@ import { hasImageSymbol, hasSymbol, splitMessage } from "@utils/splitMessage";
 import { smoothScrollInto } from "@utils/scrollInto";
 import { greet } from "@utils/greet";
 import { firestoreConverter } from "@utils/type-converter";
-
-// types
-import { FaqType } from "@shared/type";
 import { extractLink } from "@src/utils/splitLink";
 import { extractFileNameFromUrl } from "@src/utils/extract-file-name-from-url";
+
+// shared
+import { FaqType } from "@shared/type";
+import { docs, images, videos } from "@src/shared/file-extensions";
 
 const uid = verifiedUID();
 
@@ -139,8 +140,8 @@ const useChatbot = () => {
           await setDoc(doc(usersCollectionRef, uid), {
             conversation: [
               {
-                messageId: uuid(),
                 message: deptsAnswer,
+                messageId: uuid(),
                 role: "bot",
                 depts: depts,
                 timeSent: Timestamp.now(),
@@ -184,23 +185,9 @@ const useChatbot = () => {
         // will improve this later
         const intentRecognizedByBot: string = data.response.intent;
         const botAnswer: string = data.response.answer;
+
         let botMessageInfo = {};
-        if (intentRecognizedByBot == "None") {
-          botMessageInfo = {
-            intent: intentRecognizedByBot,
-            message: configuration.errorMessage,
-            messageId: uuid(),
-            role: "bot",
-            timeSent: Timestamp.now(),
-          };
-        } else
-          botMessageInfo = {
-            intent: intentRecognizedByBot,
-            message: botAnswer,
-            messageId: uuid(),
-            role: "bot",
-            timeSent: Timestamp.now(),
-          };
+
         if (hasSymbol(botAnswer)) {
           const botHasMultipleMessage = splitMessage(botAnswer);
           botHasMultipleMessage.forEach(async (response: string, i: number) => {
@@ -234,49 +221,122 @@ const useChatbot = () => {
           });
           return;
         } else if (hasImageSymbol(botAnswer)) {
-          const { link, text } = extractLink(botAnswer);
-
+          const { text, link } = extractLink(botAnswer);
           const fileName = link ? extractFileNameFromUrl(link) : "";
           const fileExtension = fileName?.split(".")[1];
-          const images = ["png", "jpg", "gif"];
-          const videos = ["mp4"];
-          // const docs = ['pdf']
-          if (fileExtension && images.includes(fileExtension)) {
-            botMessageInfo = {
-              intent: intentRecognizedByBot,
-              message: text,
-              image: link,
-              messageId: uuid(),
-              role: "bot",
-              timeSent: Timestamp.now(),
-            };
-          } else if (fileExtension && videos.includes(fileExtension)) {
-            console.log("videoss path");
-            botMessageInfo = {
-              intent: intentRecognizedByBot,
-              message: text,
-              video: link,
-              messageId: uuid(),
-              role: "bot",
-              timeSent: Timestamp.now(),
-            };
-          }
-        }
-        setBotIsTyping(false);
-        const docUserId = doc(usersCollectionRef, uid);
-        const verifiedDocUserId = await getDoc(docUserId);
-        if (!verifiedDocUserId.exists()) {
-          // creates a user with verified uid in users collection
-          // then add this bot message to conversation array
-          await setDoc(doc(usersCollectionRef, uid), {
-            conversation: [botMessageInfo],
+
+          const withFileResponse: string[] = link ? [text, link] : [];
+
+          withFileResponse.forEach(async (response: string, i: number) => {
+            if (i == 1) {
+              await sleep(1);
+              setBotIsTyping(true);
+              await sleep(1);
+            }
+            if (fileExtension && images.includes(fileExtension)) {
+              if (response === text) {
+                botMessageInfo = {
+                  intent: intentRecognizedByBot,
+                  message: response,
+                  messageId: uuid(),
+                  role: "bot",
+                  timeSent: Timestamp.now(),
+                };
+              } else {
+                botMessageInfo = {
+                  intent: intentRecognizedByBot,
+                  image: response,
+                  messageId: uuid(),
+                  role: "bot",
+                  timeSent: Timestamp.now(),
+                };
+              }
+            } else if (fileExtension && videos.includes(fileExtension)) {
+              if (response === text) {
+                botMessageInfo = {
+                  intent: intentRecognizedByBot,
+                  message: response,
+                  messageId: uuid(),
+                  role: "bot",
+                  timeSent: Timestamp.now(),
+                };
+              } else {
+                botMessageInfo = {
+                  intent: intentRecognizedByBot,
+                  video: response,
+                  messageId: uuid(),
+                  role: "bot",
+                  timeSent: Timestamp.now(),
+                };
+              }
+            } else if (fileExtension && docs.includes(fileExtension)) {
+              if (response === text) {
+                botMessageInfo = {
+                  intent: intentRecognizedByBot,
+                  message: response,
+                  messageId: uuid(),
+                  role: "bot",
+                  timeSent: Timestamp.now(),
+                };
+              } else {
+                botMessageInfo = {
+                  intent: intentRecognizedByBot,
+                  docs: fileName,
+                  docsLink: response,
+                  messageId: uuid(),
+                  role: "bot",
+                  timeSent: Timestamp.now(),
+                };
+              }
+            }
+            setBotIsTyping(false);
+            const docUserId = doc(usersCollectionRef, uid);
+            const verifiedDocUserId = await getDoc(docUserId);
+            if (!verifiedDocUserId.exists()) {
+              // creates a user with verified uid in users collection
+              // then add this bot message to conversation array
+              await setDoc(doc(usersCollectionRef, uid), {
+                conversation: [botMessageInfo],
+              });
+            }
+            await updateDoc(doc(usersCollectionRef, uid), {
+              conversation: arrayUnion(botMessageInfo),
+            });
+            setIsFaqsMenuActive(false);
+            playMessageNotification();
           });
+        } else if (intentRecognizedByBot == "None") {
+          botMessageInfo = {
+            intent: intentRecognizedByBot,
+            message: configuration.errorMessage,
+            messageId: uuid(),
+            role: "bot",
+            timeSent: Timestamp.now(),
+          };
+        } else {
+          botMessageInfo = {
+            intent: intentRecognizedByBot,
+            message: botAnswer,
+            messageId: uuid(),
+            role: "bot",
+            timeSent: Timestamp.now(),
+          };
+          setBotIsTyping(false);
+          const docUserId = doc(usersCollectionRef, uid);
+          const verifiedDocUserId = await getDoc(docUserId);
+          if (!verifiedDocUserId.exists()) {
+            // creates a user with verified uid in users collection
+            // then add this bot message to conversation array
+            await setDoc(doc(usersCollectionRef, uid), {
+              conversation: [botMessageInfo],
+            });
+          }
+          await updateDoc(doc(usersCollectionRef, uid), {
+            conversation: arrayUnion(botMessageInfo),
+          });
+          setIsFaqsMenuActive(false);
+          playMessageNotification();
         }
-        await updateDoc(doc(usersCollectionRef, uid), {
-          conversation: arrayUnion(botMessageInfo),
-        });
-        setIsFaqsMenuActive(false);
-        playMessageNotification();
       }
     } catch (error) {
       console.log(error);

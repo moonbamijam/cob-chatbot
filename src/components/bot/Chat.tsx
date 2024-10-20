@@ -1,7 +1,6 @@
 import { useContext, useState } from "react";
 
 // contexts
-import { FontContext } from "@contexts/FontContext";
 import { ChatbotContext } from "@contexts/ChatbotContext";
 
 // components
@@ -9,17 +8,16 @@ import ChatUI from "@components/bot/ui/ChatUI";
 import DepartmentBtn from "@components/bot/buttons/DepartmentBtn";
 import ItemsRenderer from "@components/common/ItemsRenderer";
 
-// icons
-import { BsArrowDownCircleFill } from "react-icons/bs";
-
 const step = 4;
 const currentPage = 1;
 
 type ChatType = Readonly<{
   role: string;
-  message?: string;
+  chat?: string;
   image?: string;
   video?: string;
+  docs?: string;
+  docsLink?: string;
   depts: {
     id: string;
     deptName: string;
@@ -41,17 +39,17 @@ type DepartmentType = {
 
 const Chat = ({
   role,
-  message,
+  chat,
   image,
   video,
+  docs,
+  docsLink,
   depts,
   timeSent,
   link,
 }: ChatType) => {
   const chatbot = useContext(ChatbotContext);
   const { configuration } = chatbot.configuration;
-  const font = useContext(FontContext);
-  const { fontSize } = font.size;
   const [numberOfDeptsToShow, setNumberOfDeptsToShow] = useState(4);
 
   const indexOfLastDept: number = currentPage * numberOfDeptsToShow;
@@ -89,37 +87,21 @@ const Chat = ({
         <ChatUI
           messageBy={role}
           img={configuration.icon}
-          timeSent={timeSent}
-          fontSize={fontSize}
+          chat={chat}
           image={image}
           video={video}
-        >
-          {message}
-          {renderDeptsContent()}
-          {depts && (
-            <button
-              onClick={() => loadMore()}
-              className={`w-full absolute -bottom-1 bg-gradient-to-t from-surface dark:from-dm-surface from-15% h-[100px] z-30 backdrop-blur-xs  ${
-                depts?.length <= numberOfDeptsToShow ? "hidden" : "block"
-              } hover:backdrop-blur-0 [&>p]:hover:opacity-15`}
-            >
-              <p className="flex flex-col items-center justify-center gap-1 font-semibold text-primary dark:text-secondary drop-shadow-lg animate-bounce text-base">
-                Click here to show more
-                <BsArrowDownCircleFill />
-              </p>
-            </button>
-          )}
-          {link ? (
-            <div className="" dangerouslySetInnerHTML={{ __html: link }} />
-          ) : null}
-        </ChatUI>
+          depts={depts}
+          docs={docs}
+          docsLink={docsLink}
+          renderDeptsContent={renderDeptsContent}
+          link={link}
+          timeSent={timeSent}
+          loadMore={loadMore}
+          numberOfDeptsToShow={numberOfDeptsToShow}
+        />
       );
     } else if (role === "user") {
-      return (
-        <ChatUI messageBy={role} timeSent={timeSent} fontSize={fontSize}>
-          {message}
-        </ChatUI>
-      );
+      return <ChatUI messageBy={role} chat={chat} timeSent={timeSent} />;
     }
   };
 

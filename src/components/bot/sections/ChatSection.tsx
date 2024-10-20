@@ -116,9 +116,11 @@ const ChatSection = ({ botIsTyping, latestChat }: ChatSectionProps) => {
                 <Chat
                   key={convo.messageId}
                   role={convo.role}
-                  message={convo.message}
+                  chat={convo.message}
                   image={convo.image}
                   video={convo.video}
+                  docs={convo.docs}
+                  docsLink={convo.docsLink}
                   depts={convo.depts}
                   timeSent={timestamp.format(
                     new Date(convo.timeSent.seconds * 1000),
