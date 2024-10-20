@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 // components
 import Button from "@components/ui/Button";
 import ImageDimmer from "@components/bot/layouts/ImageDimmer";
-import ChatBubble from "../layouts/ChatBubble";
+import ChatBubble from "@components/bot/layouts/ChatBubble";
 
 // icons
 import { CgClose } from "react-icons/cg";
