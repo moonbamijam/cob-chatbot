@@ -1,33 +1,57 @@
 import { useState, useEffect, useRef } from "react";
+import { Link } from "react-router-dom";
 
 // components
 import Button from "@components/ui/Button";
-import ScreenDim from "@components/bot/ui/ScreenDim";
+import ImageDimmer from "@components/bot/layouts/ImageDimmer";
+import ChatBubble from "../layouts/ChatBubble";
 
 // icons
 import { CgClose } from "react-icons/cg";
+import { BsArrowDownCircleFill } from "react-icons/bs";
+import { IoDocumentTextOutline } from "react-icons/io5";
 
-type ChatUIType = Partial<
+type ChatUIProps = Partial<
   Readonly<{
     messageBy: string;
     img: string;
+    chat: string;
+    video: string;
+    image: string;
+    docs: string;
+    docsLink: string;
+    depts: {
+      id: string;
+      deptName: string;
+      service: string;
+      steps: string;
+      requirements: string;
+    }[];
+    renderDeptsContent: () => JSX.Element | undefined;
+    link: string;
     children: React.ReactNode;
     timeSent: string;
     fontSize: number;
-    video: string;
-    image: string;
+    loadMore: () => void;
+    numberOfDeptsToShow: number;
   }>
 >;
 
 const ChatUI = ({
   messageBy,
   img,
-  children,
-  timeSent,
-  fontSize,
+  chat,
   video,
   image,
-}: ChatUIType) => {
+  docs,
+  docsLink,
+  depts,
+  renderDeptsContent,
+  link,
+  timeSent,
+  loadMore,
+  numberOfDeptsToShow,
+}: ChatUIProps) => {
   const [imagePreview, setImagePreview] = useState(false);
   const imagePreviewRef = useRef<HTMLImageElement>(null);
 
@@ -59,40 +83,63 @@ const ChatUI = ({
                 height={35}
                 className="rounded-full aspect-square object-cover select-none"
               />
-              {image && (
-                <img
-                  src={image}
-                  alt=""
-                  className="w-max max-w-[50%] h-max rounded-xl outline-primary object-contain cursor-pointer hover:opacity-70"
-                  onClick={toggleImagePreview}
-                />
-              )}
-              {video && (
-                <video
-                  width="200"
-                  height="240"
-                  controls
-                  poster=""
-                  muted
-                  className="w-max max-w-[50%] h-max rounded-xl outline-primary object-contain cursor-pointer"
-                >
-                  <source src={video} type="video/mp4" />
-                </video>
-              )}
-              <div className="max-w-[80%] rounded-3xl shadow bg-surface dark:bg-dm-surface px-4 py-3 space-y-2 break-words">
-                <div
-                  id="message"
-                  style={{ fontSize: fontSize }}
-                  className="relative dark:text-white whitespace-pre-line"
-                >
-                  {children}
-                </div>
-                <div
-                  id="timeSent"
-                  className="text-gray-500 dark:text-gray-300 text-xs text-right opacity-80 z-[9]"
-                >
-                  {timeSent}
-                </div>
+              <div className="flex flex-col gap-4 max-w-[80%]">
+                {chat && <ChatBubble timeSent={timeSent}>{chat}</ChatBubble>}
+                {depts && renderDeptsContent && numberOfDeptsToShow && (
+                  <ChatBubble timeSent={timeSent}>
+                    {renderDeptsContent()}
+                    <button
+                      onClick={loadMore}
+                      className={`w-full absolute -bottom-1 bg-gradient-to-t from-surface dark:from-dm-surface from-15% h-[100px] z-30 backdrop-blur-xs  ${
+                        depts?.length <= numberOfDeptsToShow
+                          ? "hidden"
+                          : "block"
+                      } hover:backdrop-blur-0 [&>p]:hover:opacity-15`}
+                    >
+                      <p className="flex flex-col items-center justify-center gap-1 font-semibold text-primary dark:text-secondary drop-shadow-lg animate-bounce text-base">
+                        Click here to show more
+                        <BsArrowDownCircleFill />
+                      </p>
+                    </button>
+                  </ChatBubble>
+                )}
+                {link ? (
+                  <ChatBubble timeSent={timeSent}>
+                    <div dangerouslySetInnerHTML={{ __html: link }} />
+                  </ChatBubble>
+                ) : null}
+                {image && (
+                  <img
+                    src={image}
+                    alt=""
+                    className="w-full h-max rounded-xl outline-primary object-contain cursor-pointer hover:opacity-70"
+                    onClick={toggleImagePreview}
+                  />
+                )}
+                {video && (
+                  <video
+                    width={200}
+                    height={240}
+                    controls
+                    muted
+                    className="w-full h-max rounded-xl outline-primary object-contain cursor-pointer"
+                  >
+                    <source src={video} type="video/mp4" />
+                  </video>
+                )}
+                {docs && docsLink && (
+                  <Link to={docsLink} target="_blank" className="group">
+                    <ChatBubble
+                      timeSent={timeSent}
+                      className="group-hover:bg-surface-dark/50 dark:group-hover:bg-dm-surface-light/70"
+                    >
+                      <div className="flex items-center gap-2">
+                        <IoDocumentTextOutline className="text-xl" />
+                        {docs}
+                      </div>
+                    </ChatBubble>
+                  </Link>
+                )}
               </div>
             </div>
           </div>
@@ -100,25 +147,14 @@ const ChatUI = ({
       case "user":
         return (
           <div className={`${messageBy} message`}>
-            <div
-              className="w-full flex justify-end
-            mt-3 mb-2"
-            >
-              <div className="max-w-[80%] rounded-3xl shadow bg-primary text-white px-4 py-3 space-y-2 break-words">
-                <div
-                  id="message"
-                  style={{ fontSize: fontSize }}
-                  className="relative dark:text-white whitespace-pre-line"
-                >
-                  {children}
-                </div>
-                <div
-                  id="timeSent"
-                  className="w-full text-gray-300 text-xs text-right opacity-80 z-[9]"
-                >
-                  {timeSent}
-                </div>
-              </div>
+            <div className="w-full flex justify-end mt-3 mb-2">
+              <ChatBubble
+                timeSent={timeSent}
+                role="user"
+                className="max-w-[80%] bg-primary text-white"
+              >
+                {chat}
+              </ChatBubble>
             </div>
           </div>
         );
@@ -141,11 +177,11 @@ const ChatUI = ({
             <img
               src={image}
               alt=""
-              className="max-w-[90%] max-h-[90%]"
+              className="w-max max-w-[90%] h-max max-h-full"
               ref={imagePreviewRef}
             />
           </div>
-          <ScreenDim className="bg-black z-50 backdrop-blur opacity-70" />
+          <ImageDimmer image={image} />
         </>
       )}
       {renderChatUI()}
