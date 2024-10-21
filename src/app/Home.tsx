@@ -4,7 +4,7 @@ import { chatbotConfig } from "@src/lib/bot/chatbot-config";
 
 // components
 import Button from "@components/ui/Button";
-import Header from "@src/components/layouts/header/Header";
+import Header from "@src/components/layouts/headers/Header";
 import SkeletonScreen from "@components/ui/SkeletonScreen";
 
 // assets
@@ -12,7 +12,7 @@ import LandingCoverLight from "@static/assets/gif/landing-convo-light.gif";
 import LandingCoverDark from "@static/assets/gif/landing-convo-dark.gif";
 
 // icons
-import Version from "@components/bot/ui/Version";
+import Version from "@src/components/layouts/Version";
 
 const Home = () => {
   const [isImageLoaded, setIsImageLoaded] = useState<boolean>(false);

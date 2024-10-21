@@ -1,8 +1,8 @@
 import { useContext } from "react";
 
-import ChatHead from "@components/bot/ChatHead";
-import ChatBox from "@components/bot/ChatBox";
-import ScreenDim from "@components/bot/ui/ScreenDim";
+import ChatHead from "@components/layouts/chat/ChatHead";
+import ChatBox from "@components/layouts/chat/ChatBox";
+import ScreenDim from "@src/components/layouts/ScreenDim";
 
 // contexts
 import { ChatContext } from "@contexts/ChatContext";
