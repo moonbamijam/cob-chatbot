@@ -30,7 +30,7 @@ export default {
         "open-modal": "open-modal 300ms ease-in-out",
       },
       backgroundImage: {
-        "city-hall": "url(/src/assets/images/bg.jpg)",
+        "city-hall": "url(/static/assets/images/bg.jpg)",
       },
       fontFamily: {
         helvetica: "Helvetica",

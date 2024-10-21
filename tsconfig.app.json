@@ -24,7 +24,6 @@
       "@public/*": ["./public/*"],
       "@src/*": ["./src/*"],
       "@app/*": ["./src/app/*"],
-      "@assets/*": ["./src/assets/*"],
       "@components/*": ["./src/components/*"],
       "@contexts/*": ["./src/contexts/*"],
       "@hooks/*": ["./src/hooks/*"],
