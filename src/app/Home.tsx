@@ -1,11 +1,9 @@
-import { useState } from "react";
 import { Link } from "react-router-dom";
 import { chatbotConfig } from "@src/lib/bot/chatbot-config";
 
 // components
 import Button from "@components/ui/Button";
 import Header from "@src/components/layouts/headers/Header";
-import SkeletonScreen from "@components/ui/SkeletonScreen";
 
 // assets
 import LandingCoverLight from "@static/assets/gif/landing-convo-light.gif";
@@ -15,8 +13,6 @@ import LandingCoverDark from "@static/assets/gif/landing-convo-dark.gif";
 import Version from "@src/components/layouts/Version";
 
 const Home = () => {
-  const [isImageLoaded, setIsImageLoaded] = useState<boolean>(false);
-
   return (
     <>
       <Header />
@@ -43,30 +39,17 @@ const Home = () => {
             </Button>
           </Link>
         </section>
-        <div className="relative lg:border border-surface dark:border-dm-surface rounded-2xl overflow-hidden select-none">
+        <div className="relative rounded-2xl overflow-hidden select-none">
           <img
             src={LandingCoverLight}
             alt="Chatbot"
-            width={400}
-            height={600}
-            className="block dark:hidden w-[400px] h-[600px] lg:w-[500px] lg:h-[700px] rounded-2xl object-contain"
-            onLoad={() => setIsImageLoaded(true)}
+            className="block dark:hidden w-max h-max max-h-max rounded-2xl object-contain"
           />
           <img
             src={LandingCoverDark}
             alt="Chatbot"
-            width={400}
-            height={600}
-            className="hidden dark:block w-[400px] h-[600px] lg:w-[500px] lg:h-[700px] rounded-2xl object-contain"
-            onLoad={() => setIsImageLoaded(true)}
+            className="hidden dark:block w-max h-max max-h-max rounded-2xl object-contain"
           />
-          {!isImageLoaded && (
-            <SkeletonScreen
-              width={400}
-              height={600}
-              className="absolute inset-0 w-[400px] h-[600px] lg:w-[500px] lg:h-[700px] rounded-2xl"
-            />
-          )}
         </div>
         <Version
           text="v"
