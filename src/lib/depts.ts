@@ -1,5 +1,25 @@
 export const deptsAnswer = "Here are the list of departments:";
 
+export const deptsMessages = [
+  "departments",
+  "department",
+  "can you give me the list of departments?",
+  "can you give me the list of departments",
+  "can you give me the departments?",
+  "can you give me the departments",
+  "can you give me list of departments?",
+  "can you give me list of departments",
+  "departments list?",
+  "departments list",
+  "department list?",
+  "department list",
+  "list of departments",
+  "list of department",
+  "give me the list of deparments",
+  "depts",
+  "do you have the departments list?",
+];
+
 export const depts = [
   {
     id: "1",

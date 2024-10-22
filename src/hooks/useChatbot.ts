@@ -14,7 +14,7 @@ import { ChatbotContext } from "@contexts/ChatbotContext";
 import { AuthContext } from "@contexts/AuthContext";
 
 // library
-import { depts, deptsAnswer } from "@lib/depts";
+import { depts, deptsAnswer, deptsMessages } from "@lib/depts";
 
 // db
 import {
@@ -115,25 +115,8 @@ const useChatbot = () => {
   const getReplyFromBot = async (message: string) => {
     try {
       setBotIsTyping(true);
-      const deptMessage = message;
       // Temporary statements just to display departments
-      if (
-        deptMessage === "departments" ||
-        deptMessage === "department" ||
-        deptMessage === "can you give me the list of departments?" ||
-        deptMessage === "can you give me the list of departments" ||
-        deptMessage === "can you give me the departments?" ||
-        deptMessage === "can you give me the departments" ||
-        deptMessage === "can you give me list of departments?" ||
-        deptMessage === "can you give me list of departments" ||
-        deptMessage === "departments list?" ||
-        deptMessage === "departments list" ||
-        deptMessage === "department list?" ||
-        deptMessage === "department list" ||
-        deptMessage === "list of departments" ||
-        deptMessage === "list of department" ||
-        deptMessage === "give me the list of deparments"
-      ) {
+      if (deptsMessages.includes(message)) {
         await sleep(1);
         setBotIsTyping(false);
         const docUserId = doc(usersCollectionRef, uid);
