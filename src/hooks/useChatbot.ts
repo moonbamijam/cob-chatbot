@@ -79,6 +79,13 @@ const useChatbot = () => {
   const [userMessage, setUserMessage] = useState<string>("");
   const [botIsTyping, setBotIsTyping] = useState<boolean>(false);
 
+  let chat: chatType = {
+    chat: "",
+    chatId: "",
+    role: "",
+    timestamp: Timestamp.now(),
+  };
+
   const toggleSettings = () => {
     setSettings(!settings);
     smoothScrollInto(latestChat);
@@ -159,7 +166,6 @@ const useChatbot = () => {
         if (response.ok) setError(false);
         else setError(true);
 
-        // data holds the answer and intent recognized
         const data: {
           success: boolean;
           response: {
@@ -168,28 +174,17 @@ const useChatbot = () => {
           };
         } = await response.json();
         const { intent, answer } = data.response;
-        // assign those to a variables
-        // will improve this later
-        const intentRecognizedByBot = intent;
-        const botAnswer = answer;
 
-        let botChat: chatType = {
-          chat: "",
-          chatId: "",
-          role: "",
-          timestamp: Timestamp.now(),
-        };
-
-        if (hasSymbol(botAnswer)) {
-          const botHasMultipleMessage = splitMessage(botAnswer);
+        if (hasSymbol(answer)) {
+          const botHasMultipleMessage = splitMessage(answer);
           botHasMultipleMessage.forEach(async (response: string, i: number) => {
             if (i == 1) {
               await sleep(1);
               setBotIsTyping(true);
               await sleep(1);
             }
-            botChat = {
-              intent: intentRecognizedByBot,
+            chat = {
+              intent: intent,
               chat: response,
               chatId: uuid(),
               role: "bot",
@@ -202,18 +197,18 @@ const useChatbot = () => {
               // creates a user with verified uid in users collection
               // then add this bot message to conversation array
               await setDoc(doc(usersCollectionRef, uid), {
-                conversation: [botChat],
+                conversation: [chat],
               });
             }
             await updateDoc(doc(usersCollectionRef, uid), {
-              conversation: arrayUnion(botChat),
+              conversation: arrayUnion(chat),
             });
             setIsFaqsMenuActive(false);
             playMessageNotification();
           });
           return;
-        } else if (hasImageSymbol(botAnswer)) {
-          const { text, link } = extractLink(botAnswer);
+        } else if (hasImageSymbol(answer)) {
+          const { text, link } = extractLink(answer);
           const fileName = link ? extractFileNameFromUrl(link) : "";
           const fileExtension = fileName?.split(".")[1];
 
@@ -227,16 +222,16 @@ const useChatbot = () => {
             }
             if (fileExtension && images.includes(fileExtension)) {
               if (response === text) {
-                botChat = {
-                  intent: intentRecognizedByBot,
+                chat = {
+                  intent: intent,
                   chat: response,
                   chatId: uuid(),
                   role: "bot",
                   timestamp: Timestamp.now(),
                 };
               } else {
-                botChat = {
-                  intent: intentRecognizedByBot,
+                chat = {
+                  intent: intent,
                   image: response,
                   chat: null,
                   chatId: uuid(),
@@ -246,16 +241,16 @@ const useChatbot = () => {
               }
             } else if (fileExtension && videos.includes(fileExtension)) {
               if (response === text) {
-                botChat = {
-                  intent: intentRecognizedByBot,
+                chat = {
+                  intent: intent,
                   chat: response,
                   chatId: uuid(),
                   role: "bot",
                   timestamp: Timestamp.now(),
                 };
               } else {
-                botChat = {
-                  intent: intentRecognizedByBot,
+                chat = {
+                  intent: intent,
                   video: response,
                   chat: null,
                   chatId: uuid(),
@@ -265,16 +260,16 @@ const useChatbot = () => {
               }
             } else if (fileExtension && docs.includes(fileExtension)) {
               if (response === text) {
-                botChat = {
-                  intent: intentRecognizedByBot,
+                chat = {
+                  intent: intent,
                   chat: response,
                   chatId: uuid(),
                   role: "bot",
                   timestamp: Timestamp.now(),
                 };
               } else {
-                botChat = {
-                  intent: intentRecognizedByBot,
+                chat = {
+                  intent: intent,
                   docs: fileName,
                   docsLink: response,
                   chat: null,
@@ -291,27 +286,27 @@ const useChatbot = () => {
               // creates a user with verified uid in users collection
               // then add this bot message to conversation array
               await setDoc(doc(usersCollectionRef, uid), {
-                conversation: [botChat],
+                conversation: [chat],
               });
             }
             await updateDoc(doc(usersCollectionRef, uid), {
-              conversation: arrayUnion(botChat),
+              conversation: arrayUnion(chat),
             });
             setIsFaqsMenuActive(false);
             playMessageNotification();
           });
-        } else if (intentRecognizedByBot == "None") {
-          botChat = {
-            intent: intentRecognizedByBot,
+        } else if (intent == "None") {
+          chat = {
+            intent: intent,
             chat: configuration.errorMessage,
             chatId: uuid(),
             role: "bot",
             timestamp: Timestamp.now(),
           };
         } else {
-          botChat = {
-            intent: intentRecognizedByBot,
-            chat: botAnswer,
+          chat = {
+            intent: intent,
+            chat: answer,
             chatId: uuid(),
             role: "bot",
             timestamp: Timestamp.now(),
@@ -323,11 +318,11 @@ const useChatbot = () => {
             // creates a user with verified uid in users collection
             // then add this bot message to conversation array
             await setDoc(doc(usersCollectionRef, uid), {
-              conversation: [botChat],
+              conversation: [chat],
             });
           }
           await updateDoc(doc(usersCollectionRef, uid), {
-            conversation: arrayUnion(botChat),
+            conversation: arrayUnion(chat),
           });
           setIsFaqsMenuActive(false);
           playMessageNotification();
@@ -346,11 +341,11 @@ const useChatbot = () => {
       event: KeyboardEvent | FormEvent<HTMLInputElement | HTMLFormElement>,
       message: string,
     ) => {
-      const messageInfo = {
-        message: message,
-        messageId: uuid(),
+      chat = {
+        chat: message,
+        chatId: uuid(),
         role: "user",
-        timeSent: Timestamp.now(),
+        timestamp: Timestamp.now(),
       };
       try {
         event.preventDefault();
@@ -362,11 +357,11 @@ const useChatbot = () => {
           // creates a user with verified uid in users collection
           // then adds a conversation field that will hold all of the user & bot messages
           await setDoc(doc(usersCollectionRef, uid), {
-            conversation: [messageInfo],
+            conversation: [chat],
           });
         }
         await updateDoc(doc(usersCollectionRef, uid), {
-          conversation: arrayUnion(messageInfo),
+          conversation: arrayUnion(chat),
         });
         await sleep(1.5);
         getReplyFromBot(message);
@@ -381,11 +376,11 @@ const useChatbot = () => {
   );
 
   const sendFaqToBot = async (message: string) => {
-    const messageInfo = {
-      message: message,
-      messageId: uuid(),
+    chat = {
+      chat: message,
+      chatId: uuid(),
       role: "user",
-      timeSent: Timestamp.now(),
+      timestamp: Timestamp.now(),
     };
     try {
       setIsFaqsMenuActive(false);
@@ -396,11 +391,11 @@ const useChatbot = () => {
         // creates a user with verified uid in users collection
         // then adds a conversation field that will hold all of the user & bot messages
         await setDoc(doc(usersCollectionRef, uid), {
-          conversation: [messageInfo],
+          conversation: [chat],
         });
       }
       await updateDoc(doc(usersCollectionRef, uid), {
-        conversation: arrayUnion(messageInfo),
+        conversation: arrayUnion(chat),
       });
       await sleep(1.5);
       getReplyFromBot(message);
