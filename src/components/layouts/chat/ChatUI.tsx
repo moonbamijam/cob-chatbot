@@ -10,27 +10,22 @@ import ChatBubble from "@src/components/layouts/chat/ChatBubble";
 import { CgClose } from "react-icons/cg";
 import { BsArrowDownCircleFill } from "react-icons/bs";
 import { IoDocumentTextOutline } from "react-icons/io5";
+import { deptsType } from "@src/shared/ts/type";
 
 type ChatUIProps = Partial<
   Readonly<{
-    messageBy: string;
-    img: string;
+    chatBy: string;
     chat: string;
+    img: string;
     video: string;
     image: string;
     docs: string;
     docsLink: string;
-    depts: {
-      id: string;
-      deptName: string;
-      service: string;
-      steps: string;
-      requirements: string;
-    }[];
+    depts: deptsType;
     renderDeptsContent: () => JSX.Element | undefined;
     link: string;
     children: React.ReactNode;
-    timeSent: string;
+    timestamp: string;
     fontSize: number;
     loadMore: () => void;
     numberOfDeptsToShow: number;
@@ -38,9 +33,9 @@ type ChatUIProps = Partial<
 >;
 
 const ChatUI = ({
-  messageBy,
-  img,
+  chatBy,
   chat,
+  img,
   video,
   image,
   docs,
@@ -48,7 +43,7 @@ const ChatUI = ({
   depts,
   renderDeptsContent,
   link,
-  timeSent,
+  timestamp,
   loadMore,
   numberOfDeptsToShow,
 }: ChatUIProps) => {
@@ -71,10 +66,10 @@ const ChatUI = ({
   }, [imagePreview]);
 
   const renderChatUI = () => {
-    switch (messageBy) {
+    switch (chatBy) {
       case "bot":
         return (
-          <div className={`${messageBy} message`}>
+          <div className={`${chatBy} message`}>
             <div className="w-full h-max relative flex items-center gap-2 mt-3 mb-2">
               <img
                 src={img}
@@ -84,9 +79,9 @@ const ChatUI = ({
                 className="rounded-full aspect-square object-cover select-none"
               />
               <div className="flex flex-col gap-4 max-w-[80%]">
-                {chat && <ChatBubble timeSent={timeSent}>{chat}</ChatBubble>}
+                {chat && <ChatBubble timestamp={timestamp}>{chat}</ChatBubble>}
                 {depts && renderDeptsContent && numberOfDeptsToShow && (
-                  <ChatBubble timeSent={timeSent}>
+                  <ChatBubble timestamp={timestamp}>
                     {renderDeptsContent()}
                     <button
                       onClick={loadMore}
@@ -104,7 +99,7 @@ const ChatUI = ({
                   </ChatBubble>
                 )}
                 {link ? (
-                  <ChatBubble timeSent={timeSent}>
+                  <ChatBubble timestamp={timestamp}>
                     <div dangerouslySetInnerHTML={{ __html: link }} />
                   </ChatBubble>
                 ) : null}
@@ -130,7 +125,7 @@ const ChatUI = ({
                 {docs && docsLink && (
                   <Link to={docsLink} target="_blank" className="group">
                     <ChatBubble
-                      timeSent={timeSent}
+                      timestamp={timestamp}
                       className="group-hover:bg-surface-dark/50 dark:group-hover:bg-dm-surface-light/70"
                     >
                       <div className="flex items-center gap-2">
@@ -146,10 +141,10 @@ const ChatUI = ({
         );
       case "user":
         return (
-          <div className={`${messageBy} message`}>
+          <div className={`${chatBy} message`}>
             <div className="w-full flex justify-end mt-3 mb-2">
               <ChatBubble
-                timeSent={timeSent}
+                timestamp={timestamp}
                 role="user"
                 className="max-w-[80%] bg-primary text-white"
               >

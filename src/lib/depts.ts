@@ -1,3 +1,5 @@
+import { deptsType } from "@src/shared/ts/type";
+
 export const deptsAnswer = "Here are the list of departments:";
 
 export const deptsMessages = [
@@ -20,7 +22,7 @@ export const deptsMessages = [
   "do you have the departments list?",
 ];
 
-export const depts = [
+export const depts: deptsType = [
   {
     id: "1",
     deptName: "OFFICE OF THE CITY MAYOR (MO)",

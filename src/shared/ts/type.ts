@@ -13,21 +13,15 @@ export type ConfigurationType = {
 
 export type ConversationType = {
   intent: string;
-  message: string;
   image: string;
   video: string;
   docs: string;
   docsLink: string;
-  messageId: string;
+  chat: string;
+  chatId: string;
   role: string;
-  timeSent: admin.firestore.Timestamp;
-  depts: {
-    id: string;
-    deptName: string;
-    service: string;
-    steps: string;
-    requirements: string;
-  }[];
+  timestamp: admin.firestore.Timestamp;
+  depts: deptsType;
 };
 
 export type FaqType = {
@@ -40,4 +34,25 @@ export type SettingsListType = {
   name: string;
   settingType: string;
   icon: IconType;
+};
+
+export type deptsType = {
+  id: string;
+  deptName: string;
+  service: string;
+  steps: string;
+  requirements: string;
+}[];
+
+export type chatType = {
+  intent?: string;
+  chat: string | null | undefined;
+  chatId: string;
+  image?: string;
+  video?: string;
+  docs?: string;
+  docsLink?: string;
+  depts?: deptsType;
+  role: string;
+  timestamp: admin.firestore.Timestamp;
 };

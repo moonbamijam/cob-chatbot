@@ -26,7 +26,7 @@ import Button from "@src/components/layouts/Button";
 import ItemsRenderer from "@components/common/ItemsRenderer";
 
 // types
-import { ConversationType } from "@shared/type";
+import { ConversationType } from "@src/shared/ts/type";
 
 // icons
 import { FaArrowDown } from "react-icons/fa6";
@@ -101,32 +101,32 @@ const ChatSection = ({ botIsTyping, latestChat }: ChatSectionProps) => {
         <ItemsRenderer
           items={conversationToDisplay}
           renderItems={(convo: ConversationType) => {
-            if (containsPlaceholder(convo.message)) {
-              const interpolatedLink = splitLinkToResponse(convo.message);
+            if (containsPlaceholder(convo.chat)) {
+              const interpolatedLink = splitLinkToResponse(convo.chat);
               return (
                 <Chat
-                  key={convo.messageId}
+                  key={convo.chatId}
                   role={convo.role}
                   depts={convo.depts}
                   link={interpolatedLink}
-                  timeSent={timestamp.format(
-                    new Date(convo.timeSent.seconds * 1000),
+                  timestamp={timestamp.format(
+                    new Date(convo.timestamp.seconds * 1000),
                   )}
                 />
               );
             } else
               return (
                 <Chat
-                  key={convo.messageId}
+                  key={convo.chatId}
                   role={convo.role}
-                  chat={convo.message}
+                  chat={convo.chat}
                   image={convo.image}
                   video={convo.video}
                   docs={convo.docs}
                   docsLink={convo.docsLink}
                   depts={convo.depts}
-                  timeSent={timestamp.format(
-                    new Date(convo.timeSent.seconds * 1000),
+                  timestamp={timestamp.format(
+                    new Date(convo.timestamp.seconds * 1000),
                   )}
                 />
               );
@@ -151,7 +151,7 @@ const ChatSection = ({ botIsTyping, latestChat }: ChatSectionProps) => {
         <MiniProfile className="mb-8" miniProfileRef={miniProfileRef} />
         {loadingMoreChats && <Loading />}
         {conversation ? (
-          <div id="messages" ref={chatAreaRef}>
+          <div id="chats" ref={chatAreaRef}>
             {renderChatsContent()}
             {botIsTyping && <Typing />}
           </div>

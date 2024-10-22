@@ -7,6 +7,7 @@ import { ChatbotContext } from "@contexts/ChatbotContext";
 import ChatUI from "@src/components/layouts/chat/ChatUI";
 import DepartmentBtn from "@components/buttons/DepartmentBtn";
 import ItemsRenderer from "@components/common/ItemsRenderer";
+import { deptsType } from "@src/shared/ts/type";
 
 const step = 4;
 const currentPage = 1;
@@ -18,14 +19,8 @@ type ChatType = Readonly<{
   video?: string;
   docs?: string;
   docsLink?: string;
-  depts: {
-    id: string;
-    deptName: string;
-    service: string;
-    steps: string;
-    requirements: string;
-  }[];
-  timeSent: string;
+  depts: deptsType;
+  timestamp: string;
   link?: string;
 }>;
 
@@ -45,7 +40,7 @@ const Chat = ({
   docs,
   docsLink,
   depts,
-  timeSent,
+  timestamp,
   link,
 }: ChatType) => {
   const chatbot = useContext(ChatbotContext);
@@ -85,9 +80,9 @@ const Chat = ({
     if (role === "bot") {
       return (
         <ChatUI
-          messageBy={role}
-          img={configuration.icon}
+          chatBy={role}
           chat={chat}
+          img={configuration.icon}
           image={image}
           video={video}
           depts={depts}
@@ -95,13 +90,13 @@ const Chat = ({
           docsLink={docsLink}
           renderDeptsContent={renderDeptsContent}
           link={link}
-          timeSent={timeSent}
+          timestamp={timestamp}
           loadMore={loadMore}
           numberOfDeptsToShow={numberOfDeptsToShow}
         />
       );
     } else if (role === "user") {
-      return <ChatUI messageBy={role} chat={chat} timeSent={timeSent} />;
+      return <ChatUI chatBy={role} chat={chat} timestamp={timestamp} />;
     }
   };
 
