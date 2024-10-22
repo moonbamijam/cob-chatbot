@@ -12,7 +12,7 @@ import {
   happyPop,
   multiPop,
   soundNotificationList,
-} from "@src/lib/settings/sound-notification-list";
+} from "@constants/settings/sound-notification-list";
 
 // components
 import RadioButton from "@components/buttons/RadioButton";

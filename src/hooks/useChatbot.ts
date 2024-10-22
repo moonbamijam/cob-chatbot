@@ -7,14 +7,14 @@ import {
   FormEvent,
 } from "react";
 import { v4 as uuid } from "uuid";
-import { verifiedUID } from "@utils/uid";
+import { verifiedUID } from "@src/utils/uid";
 
 // contexts
 import { ChatbotContext } from "@contexts/ChatbotContext";
 import { AuthContext } from "@contexts/AuthContext";
 
 // library
-import { depts, deptsAnswer, deptsMessages } from "@lib/depts";
+import { depts, deptsAnswer, deptsMessages } from "@constants/depts";
 
 // db
 import {
@@ -43,7 +43,7 @@ import {
   splitMessage,
 } from "@src/utils/split-message";
 import { smoothScrollInto } from "@src/utils/scroll-into";
-import { greet } from "@utils/greet";
+import { greet } from "@src/lib/greet";
 import { firestoreConverter } from "@utils/type-converter";
 import { extractLink } from "@src/utils/split-link";
 import { extractFileNameFromUrl } from "@src/utils/extract-file-name-from-url";

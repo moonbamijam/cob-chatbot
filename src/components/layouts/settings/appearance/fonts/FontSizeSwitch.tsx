@@ -1,5 +1,5 @@
 import { ChangeEvent, useContext } from "react";
-import { fontSizeList } from "@src/lib/settings/font-size-list";
+import { fontSizeList } from "@constants/settings/font-size-list";
 
 // context
 import { FontContext } from "@contexts/FontContext";

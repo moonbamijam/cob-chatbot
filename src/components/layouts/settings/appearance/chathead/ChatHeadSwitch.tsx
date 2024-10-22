@@ -1,5 +1,5 @@
 import { ChangeEvent, useContext } from "react";
-import { chatHeadSizeList } from "@src/lib/settings/chat-head-size-list";
+import { chatHeadSizeList } from "@constants/settings/chat-head-size-list";
 
 // context
 import { ChatContext } from "@contexts/ChatContext";

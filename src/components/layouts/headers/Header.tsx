@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { Link } from "react-router-dom";
-import { chatbotConfig } from "@src/lib/bot/chatbot-config";
+import { chatbotConfig } from "@constants/bot/chatbot-config";
 
 // context
 import { ThemeContext } from "@contexts/ThemeContext";
