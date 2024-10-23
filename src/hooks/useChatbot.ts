@@ -38,7 +38,7 @@ import useSound from "./useSound";
 // utils
 import { sleep } from "@utils/sleep";
 import {
-  hasImageSymbol,
+  hasFileSymbol,
   hasSymbol,
   splitMessage,
 } from "@src/utils/split-message";
@@ -207,7 +207,7 @@ const useChatbot = () => {
             playMessageNotification();
           });
           return;
-        } else if (hasImageSymbol(answer)) {
+        } else if (hasFileSymbol(answer)) {
           const { text, link } = extractLink(answer);
           const fileName = link ? extractFileNameFromUrl(link) : "";
           const fileExtension = fileName?.split(".")[1];
