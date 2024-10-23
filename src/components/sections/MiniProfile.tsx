@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { LegacyRef, useContext } from "react";
-import { chatbotConfig } from "@src/lib/bot/chatbot-config";
+import { chatbotConfig } from "@constants/bot/chatbot-config";
 
 // context
 import { ChatbotContext } from "@contexts/ChatbotContext";

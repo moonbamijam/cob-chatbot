@@ -6,7 +6,7 @@ type ChatBubbleProps = Partial<
     children: React.ReactNode;
     className: string;
     role: string;
-    timeSent: string;
+    timestamp: string;
   }>
 >;
 
@@ -14,7 +14,7 @@ const ChatBubble = ({
   children,
   className,
   role,
-  timeSent,
+  timestamp,
 }: ChatBubbleProps) => {
   const font = useContext(FontContext);
   const { fontSize } = font.size;
@@ -34,10 +34,10 @@ const ChatBubble = ({
               {children}
             </div>
             <div
-              id="timeSent"
+              id="timestamp"
               className="w-full text-gray-200 dark:text-gray-300 text-xs text-right opacity-80 z-[9]"
             >
-              {timeSent}
+              {timestamp}
             </div>
           </div>
         );
@@ -54,10 +54,10 @@ const ChatBubble = ({
               {children}
             </div>
             <div
-              id="timeSent"
+              id="timestamp"
               className="text-gray-500 dark:text-gray-300 text-xs text-right opacity-80 z-[9]"
             >
-              {timeSent}
+              {timestamp}
             </div>
           </div>
         );

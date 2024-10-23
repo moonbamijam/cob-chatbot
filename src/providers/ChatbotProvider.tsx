@@ -6,10 +6,14 @@ import { collection, doc, onSnapshot } from "firebase/firestore";
 import { db } from "../firebase/config";
 
 // types
-import { ConfigurationType, ConversationType, FaqType } from "@shared/type";
+import {
+  ConfigurationType,
+  ConversationType,
+  FaqType,
+} from "@src/shared/ts/type";
 
 // lib
-import { chatbotConfig } from "@src/lib/bot/chatbot-config";
+import { chatbotConfig } from "@constants/bot/chatbot-config";
 
 const botProfileCollectionRef = collection(db, "profile");
 

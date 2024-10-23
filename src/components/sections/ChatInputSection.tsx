@@ -10,7 +10,7 @@ import Button from "@components/ui/Button";
 // icons
 import { IoSend } from "react-icons/io5";
 import { LuMenu } from "react-icons/lu";
-import { FaqType } from "@shared/type";
+import { FaqType } from "@src/shared/ts/type";
 import ItemsRenderer from "@components/common/ItemsRenderer";
 
 type ChatInputSectionProps = Readonly<{

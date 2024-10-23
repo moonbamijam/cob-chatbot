@@ -1,6 +1,6 @@
 const characters =
   "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890";
-const uidLength = 15;
+const uidLength = 30;
 let uid: string = "";
 
 const generateUID = () => {
@@ -13,7 +13,14 @@ const generateUID = () => {
 };
 
 export const verifiedUID = () => {
-  if (localStorage.getItem("uid")) uid = localStorage.getItem("uid") || uid;
-  else if (localStorage.getItem("uid") == null) uid = generateUID();
+  if (
+    localStorage.getItem("uid") == null ||
+    localStorage.getItem("uid")?.length === 15
+  ) {
+    localStorage.removeItem("uid");
+    uid = generateUID();
+  } else if (localStorage.getItem("uid"))
+    uid = localStorage.getItem("uid") || uid;
+
   return uid;
 };
