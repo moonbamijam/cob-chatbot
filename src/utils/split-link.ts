@@ -7,16 +7,16 @@ export const containsPlaceholder = (text: string) => {
 // add a custom style to that link
 export const splitLinkToResponse = (text: string) => {
   const matchLinkPattern = /{=([^{}]+)=}/;
+  const customLinkMessagePattern = /<([^<>]+)>/;
+  const linkMessage = text.match(customLinkMessagePattern);
   const link = text.match(matchLinkPattern);
 
-  if (link) {
-    const interpolatedString = text.replace(
-      matchLinkPattern,
-      `<a href="${link[1]}" class="text-primary dark:text-secondary font-semibold uppercase hover:underline" target="_blank">click here</a>`,
-    );
+  const interpolatedString = text.replace(
+    matchLinkPattern,
+    `<a href="${link ? link[1] : ""}" class="text-primary dark:text-secondary font-semibold hover:underline" target="_blank">${linkMessage ? linkMessage[1] : "click here"}</a>`,
+  );
 
-    return interpolatedString;
-  } else return text;
+  return interpolatedString;
 };
 
 export const extractLink = (
