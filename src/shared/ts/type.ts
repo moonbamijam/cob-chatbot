@@ -13,12 +13,14 @@ export type ConfigurationType = {
 
 export type ConversationType = {
   intent: string;
+  chat: string;
+  chatId: string;
   image: string;
   video: string;
   docs: string;
   docsLink: string;
-  chat: string;
-  chatId: string;
+  link: string;
+  linkMessage: string;
   role: string;
   timestamp: admin.firestore.Timestamp;
   depts: deptsType;
@@ -52,6 +54,8 @@ export type chatType = {
   video?: string;
   docs?: string;
   docsLink?: string;
+  link?: string;
+  linkMessage?: string;
   depts?: deptsType;
   role: string;
   timestamp: admin.firestore.Timestamp;

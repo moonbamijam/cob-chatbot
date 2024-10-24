@@ -44,10 +44,15 @@ import { greet } from "@lib/greet";
 
 // utils
 import { sleep } from "@utils/sleep";
-import { hasFileSymbol, hasSymbol, splitMessage } from "@utils/split-message";
+import { splitMessage } from "@utils/split-message";
+import {
+  hasSplitSymbol,
+  hasFileSymbol,
+  hasLinkSymbol,
+} from "@utils/symbol-checker";
 import { smoothScrollInto } from "@utils/scroll-into";
 import { firestoreConverter } from "@utils/type-converter";
-import { extractLink } from "@utils/split-link";
+import { extractLink } from "@utils/extract-link";
 import { extractFileNameFromUrl } from "@utils/extract-file-name-from-url";
 
 // shared
@@ -123,6 +128,7 @@ const useChatbot = () => {
 
   const getReplyFromBot = async (message: string) => {
     try {
+      console.time("Replied in");
       setBotIsTyping(true);
       // Temporary statements just to display departments
       if (deptsMessages.includes(message)) {
@@ -177,7 +183,7 @@ const useChatbot = () => {
         } = await response.json();
         const { intent, answer } = data.response;
 
-        if (hasSymbol(answer)) {
+        if (hasSplitSymbol(answer)) {
           const botHasMultipleMessage = splitMessage(answer);
           botHasMultipleMessage.forEach(async (response: string, i: number) => {
             if (i == 1) {
@@ -209,6 +215,51 @@ const useChatbot = () => {
             playMessageNotification();
           });
           return;
+        } else if (hasLinkSymbol(answer)) {
+          const { link, linkMessage, text } = extractLink(answer);
+          const withLinkResponse: string[] = link ? [text, link] : [];
+
+          withLinkResponse.forEach(async (response: string, i: number) => {
+            if (i == 1) {
+              await sleep(1);
+              setBotIsTyping(true);
+              await sleep(1);
+            }
+            if (response === text) {
+              chat = {
+                intent: intent,
+                chat: response,
+                chatId: uuid(),
+                role: "bot",
+                timestamp: Timestamp.now(),
+              };
+            } else {
+              chat = {
+                intent: intent,
+                chat: null,
+                chatId: uuid(),
+                link: response,
+                linkMessage: linkMessage ? linkMessage : "Click here",
+                role: "bot",
+                timestamp: Timestamp.now(),
+              };
+            }
+            setBotIsTyping(false);
+            const docUserId = doc(usersCollectionRef, uid);
+            const verifiedDocUserId = await getDoc(docUserId);
+            if (!verifiedDocUserId.exists()) {
+              // creates a user with verified uid in users collection
+              // then add this bot message to conversation array
+              await setDoc(doc(usersCollectionRef, uid), {
+                conversation: [chat],
+              });
+            }
+            await updateDoc(doc(usersCollectionRef, uid), {
+              conversation: arrayUnion(chat),
+            });
+            setIsFaqsMenuActive(false);
+            playMessageNotification();
+          });
         } else if (hasFileSymbol(answer)) {
           const { text, link } = extractLink(answer);
           const fileName = link ? extractFileNameFromUrl(link) : "";
@@ -335,6 +386,8 @@ const useChatbot = () => {
       setBotIsTyping(false);
       setError(true);
       if (!error) setError(false);
+    } finally {
+      console.timeEnd("Replied in");
     }
   };
 

@@ -7,7 +7,6 @@ import { ChatbotContext } from "@contexts/ChatbotContext";
 import useScrollIntoView from "@hooks/useScrollIntoView";
 
 // utils
-import { containsPlaceholder, splitLinkToResponse } from "@utils/split-link";
 import { sleep } from "@utils/sleep";
 import { scrollInto } from "@utils/scroll-into";
 import { timestamp } from "@utils/timestamp";
@@ -100,35 +99,23 @@ const ChatSection = ({ botIsTyping, latestChat }: ChatSectionProps) => {
         <ItemsRenderer
           items={conversationToDisplay}
           renderItems={(convo: ConversationType) => {
-            if (containsPlaceholder(convo.chat)) {
-              const interpolatedLink = splitLinkToResponse(convo.chat);
-              return (
-                <Chat
-                  key={convo.chatId}
-                  role={convo.role}
-                  depts={convo.depts}
-                  link={interpolatedLink}
-                  timestamp={timestamp.format(
-                    new Date(convo.timestamp.seconds * 1000),
-                  )}
-                />
-              );
-            } else
-              return (
-                <Chat
-                  key={convo.chatId}
-                  role={convo.role}
-                  chat={convo.chat}
-                  image={convo.image}
-                  video={convo.video}
-                  docs={convo.docs}
-                  docsLink={convo.docsLink}
-                  depts={convo.depts}
-                  timestamp={timestamp.format(
-                    new Date(convo.timestamp.seconds * 1000),
-                  )}
-                />
-              );
+            return (
+              <Chat
+                key={convo.chatId}
+                role={convo.role}
+                chat={convo.chat}
+                image={convo.image}
+                video={convo.video}
+                docs={convo.docs}
+                docsLink={convo.docsLink}
+                link={convo.link}
+                linkMessage={convo.linkMessage}
+                depts={convo.depts}
+                timestamp={timestamp.format(
+                  new Date(convo.timestamp.seconds * 1000),
+                )}
+              />
+            );
           }}
         />
       );

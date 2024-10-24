@@ -23,9 +23,10 @@ type ChatType = Readonly<{
   video?: string;
   docs?: string;
   docsLink?: string;
+  link?: string;
+  linkMessage?: string;
   depts: deptsType;
   timestamp: string;
-  link?: string;
 }>;
 
 type DepartmentType = {
@@ -43,9 +44,10 @@ const Chat = ({
   video,
   docs,
   docsLink,
+  link,
+  linkMessage,
   depts,
   timestamp,
-  link,
 }: ChatType) => {
   const chatbot = useContext(ChatbotContext);
   const { configuration } = chatbot.configuration;
@@ -90,10 +92,11 @@ const Chat = ({
           image={image}
           video={video}
           depts={depts}
+          link={link}
+          linkMessage={linkMessage}
           docs={docs}
           docsLink={docsLink}
           renderDeptsContent={renderDeptsContent}
-          link={link}
           timestamp={timestamp}
           loadMore={loadMore}
           numberOfDeptsToShow={numberOfDeptsToShow}
