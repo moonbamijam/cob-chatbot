@@ -128,7 +128,7 @@ const useChatbot = () => {
 
   const getReplyFromBot = async (message: string) => {
     try {
-      console.time("Replied in");
+      console.time(`${configuration.name} Replied in`);
       setBotIsTyping(true);
       // Temporary statements just to display departments
       if (deptsMessages.includes(message)) {
@@ -387,7 +387,7 @@ const useChatbot = () => {
       setError(true);
       if (!error) setError(false);
     } finally {
-      console.timeEnd("Replied in");
+      console.timeEnd(`${configuration.name} Replied in`);
     }
   };
 
