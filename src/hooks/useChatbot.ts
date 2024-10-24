@@ -7,14 +7,18 @@ import {
   FormEvent,
 } from "react";
 import { v4 as uuid } from "uuid";
-import { verifiedUID } from "@src/utils/uid";
+import { verifiedUID } from "@utils/uid";
 
 // contexts
 import { ChatbotContext } from "@contexts/ChatbotContext";
 import { AuthContext } from "@contexts/AuthContext";
 
-// library
-import { depts, deptsAnswer, deptsMessages } from "@constants/depts";
+// constants
+import {
+  depts,
+  deptsAnswer,
+  deptsMessages,
+} from "@features/department/constants/depts";
 
 // db
 import {
@@ -30,27 +34,25 @@ import {
   updateDoc,
   onSnapshot,
 } from "firebase/firestore";
-import { db } from "../firebase/config";
+import { db } from "@constants/firebase/config";
 
 // hooks
-import useSound from "./useSound";
+import useSound from "@hooks/useSound";
+
+// lib
+import { greet } from "@lib/greet";
 
 // utils
 import { sleep } from "@utils/sleep";
-import {
-  hasFileSymbol,
-  hasSymbol,
-  splitMessage,
-} from "@src/utils/split-message";
-import { smoothScrollInto } from "@src/utils/scroll-into";
-import { greet } from "@src/lib/greet";
+import { hasFileSymbol, hasSymbol, splitMessage } from "@utils/split-message";
+import { smoothScrollInto } from "@utils/scroll-into";
 import { firestoreConverter } from "@utils/type-converter";
-import { extractLink } from "@src/utils/split-link";
-import { extractFileNameFromUrl } from "@src/utils/extract-file-name-from-url";
+import { extractLink } from "@utils/split-link";
+import { extractFileNameFromUrl } from "@utils/extract-file-name-from-url";
 
 // shared
-import { chatType, FaqType } from "@src/shared/ts/type";
-import { docs, images, videos } from "@src/shared/file-extensions";
+import { chatType, FaqType } from "@shared/ts/type";
+import { docs, images, videos } from "@shared/file-extensions";
 
 const uid = verifiedUID();
 

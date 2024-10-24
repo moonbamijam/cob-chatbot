@@ -8,7 +8,7 @@ import { ChatbotContext } from "@contexts/ChatbotContext";
 // components
 import Image from "@components/ui/Image";
 import Button from "@components/ui/Button";
-import DevIcon from "@src/components/icons/DevIcon";
+import DevIcon from "@components/icons/DevIcon";
 
 type MiniProfileProps = Partial<
   Readonly<{

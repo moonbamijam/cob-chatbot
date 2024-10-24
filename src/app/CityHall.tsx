@@ -1,9 +1,5 @@
 import { useContext } from "react";
 
-import ChatHead from "@components/layouts/chat/ChatHead";
-import ChatBox from "@components/layouts/chat/ChatBox";
-import ScreenDim from "@src/components/layouts/ScreenDim";
-
 // contexts
 import { ChatContext } from "@contexts/ChatContext";
 
@@ -12,8 +8,15 @@ import FontProvider from "@providers/FontProvider";
 import SoundProvider from "@providers/SoundProvider";
 import ChatbotProvider from "@providers/ChatbotProvider";
 
+// features
+import ChatHead from "@features/chat/layouts/ChatHead";
+import ChatBox from "@features/chat/layouts/ChatBox";
+
+// layouts
+import CityHallUI from "@layouts/CityHallUI";
+
 // components
-import CityHallUI from "@components/pages/city-hall/CityHallUI";
+import ScreenDim from "@components/ScreenDim";
 
 const CityHall = () => {
   const chat = useContext(ChatContext);
