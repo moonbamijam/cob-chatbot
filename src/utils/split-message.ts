@@ -1,10 +1,8 @@
-export const hasSymbol = (text: string) => /@=@/.test(text);
-let multipleMessage: string[] = [];
-
-export const hasFileSymbol = (text: string) => /\[([^\]]+)\]/.test(text);
+import { hasSplitSymbol } from "./symbol-checker";
 
 export const splitMessage = (text: string) => {
-  if (hasSymbol(text)) {
+  let multipleMessage: string[] = [];
+  if (hasSplitSymbol(text)) {
     multipleMessage = text.split("@=@");
   }
   return multipleMessage;
