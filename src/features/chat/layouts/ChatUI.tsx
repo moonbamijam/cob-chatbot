@@ -23,9 +23,10 @@ type ChatUIProps = Partial<
     image: string;
     docs: string;
     docsLink: string;
+    link: string;
+    linkMessage: string;
     depts: deptsType;
     renderDeptsContent: () => JSX.Element | undefined;
-    link: string;
     children: React.ReactNode;
     timestamp: string;
     fontSize: number;
@@ -42,9 +43,10 @@ const ChatUI = ({
   image,
   docs,
   docsLink,
+  link,
+  linkMessage,
   depts,
   renderDeptsContent,
-  link,
   timestamp,
   loadMore,
   numberOfDeptsToShow,
@@ -100,11 +102,18 @@ const ChatUI = ({
                     </button>
                   </ChatBubble>
                 )}
-                {link ? (
-                  <ChatBubble timestamp={timestamp}>
-                    <div dangerouslySetInnerHTML={{ __html: link }} />
-                  </ChatBubble>
-                ) : null}
+                {link && (
+                  <Link to={link} target="_blank" className="group">
+                    <ChatBubble
+                      timestamp={timestamp}
+                      className="group-hover:bg-surface-dark/50 dark:group-hover:bg-dm-surface-light/70"
+                    >
+                      <span className="font-semibold group-hover:underline text-primary dark:text-secondary">
+                        {linkMessage}
+                      </span>
+                    </ChatBubble>
+                  </Link>
+                )}
                 {image && (
                   <img
                     src={image}

@@ -57,8 +57,11 @@ const ChatPreview = () => {
         />
         <SampleBotChat
           style={{ fontSize: fontSize }}
-          chat={`And when ${configuration.name} send a link, it will look like this, `}
-          linkedChat="Click here"
+          chat={`And when ${configuration.name} send a link`}
+        />
+        <SampleBotChat
+          style={{ fontSize: fontSize }}
+          linkedChat="It will look like this"
         />
       </div>
       <section className="w-full max-w-[95%] rounded-3xl border border-surface dark:border-dm-surface-dark dark:bg-dm-surface text-xs xs:text-sm sm:text-base flex justify-around sm:justify-center xl:justify-around gap-x-2 sm:gap-x-8 xl:gap-x-2 px-4 py-2 mt-auto outline-none">
