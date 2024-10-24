@@ -1,7 +1,5 @@
 import { useState, useEffect, useMemo } from "react";
 import { getAuth, signInAnonymously } from "firebase/auth";
-
-// components
 import { AuthContext } from "@contexts/AuthContext";
 
 const AuthProvider = ({ children }: { children: React.ReactNode }) => {

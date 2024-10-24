@@ -8,6 +8,7 @@ import path from "node:path";
 export default defineConfig({
   resolve: {
     alias: {
+      "@": path.resolve(__dirname, "./"),
       "@docs": path.resolve(__dirname, "./docs"),
       "@public": path.resolve(__dirname, "./public"),
       "@src": path.resolve(__dirname, "./src"),
@@ -15,7 +16,9 @@ export default defineConfig({
       "@components": path.resolve(__dirname, "./src/components"),
       "@constants": path.resolve(__dirname, "./src/constants"),
       "@contexts": path.resolve(__dirname, "./src/contexts"),
+      "@features": path.resolve(__dirname, "./src/features"),
       "@hooks": path.resolve(__dirname, "./src/hooks"),
+      "@layouts": path.resolve(__dirname, "./src/layouts"),
       "@lib": path.resolve(__dirname, "./src/lib"),
       "@providers": path.resolve(__dirname, "./src/providers"),
       "@shared": path.resolve(__dirname, "./src/shared"),
