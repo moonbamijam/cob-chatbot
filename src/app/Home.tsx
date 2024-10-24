@@ -1,16 +1,16 @@
 import { Link } from "react-router-dom";
 import { chatbotConfig } from "@constants/bot/chatbot-config";
 
+// layouts
+import Header from "@layouts/header/Header";
+
 // components
 import Button from "@components/ui/Button";
-import Header from "@src/components/layouts/headers/Header";
+import Version from "@components/Version";
 
 // assets
 import LandingCoverLight from "@static/assets/gif/landing-convo-light.gif";
 import LandingCoverDark from "@static/assets/gif/landing-convo-dark.gif";
-
-// icons
-import Version from "@src/components/layouts/Version";
 
 const Home = () => {
   return (

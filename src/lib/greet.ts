@@ -1,5 +1,5 @@
 import { Timestamp, collection, doc, setDoc } from "firebase/firestore";
-import { db } from "../firebase/config";
+import { db } from "../constants/firebase/config";
 import { v4 as uuid } from "uuid";
 import { chatType } from "@src/shared/ts/type";
 
