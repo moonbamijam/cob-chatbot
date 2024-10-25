@@ -8,7 +8,7 @@ import DepartmentBtn from "@features/department/components/buttons/DepartmentBtn
 
 // layouts
 import ItemsRenderer from "@layouts/ItemsRenderer";
-import ChatUI from "@features/chat/layouts/ChatUI";
+import ChatLayout from "@/src/features/chat/layouts/ChatLayout";
 
 // types
 import { deptsType } from "@shared/ts/type";
@@ -85,7 +85,7 @@ const Chat = ({
   const renderChat = () => {
     if (role === "bot") {
       return (
-        <ChatUI
+        <ChatLayout
           chatBy={role}
           chat={chat}
           img={configuration.icon}
@@ -103,7 +103,7 @@ const Chat = ({
         />
       );
     } else if (role === "user") {
-      return <ChatUI chatBy={role} chat={chat} timestamp={timestamp} />;
+      return <ChatLayout chatBy={role} chat={chat} timestamp={timestamp} />;
     }
   };
 

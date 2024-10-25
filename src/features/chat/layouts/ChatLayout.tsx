@@ -15,7 +15,7 @@ import { BsArrowDownCircleFill } from "react-icons/bs";
 import { IoDocumentTextOutline } from "react-icons/io5";
 import { FiExternalLink } from "react-icons/fi";
 
-type ChatUIProps = Partial<
+type ChatLayoutProps = Partial<
   Readonly<{
     chatBy: string;
     chat: string;
@@ -36,7 +36,7 @@ type ChatUIProps = Partial<
   }>
 >;
 
-const ChatUI = ({
+const ChatLayout = ({
   chatBy,
   chat,
   img,
@@ -51,7 +51,7 @@ const ChatUI = ({
   timestamp,
   loadMore,
   numberOfDeptsToShow,
-}: ChatUIProps) => {
+}: ChatLayoutProps) => {
   const [imagePreview, setImagePreview] = useState(false);
   const imagePreviewRef = useRef<HTMLImageElement>(null);
 
@@ -70,7 +70,7 @@ const ChatUI = ({
     };
   }, [imagePreview]);
 
-  const renderChatUI = () => {
+  const renderChatLayout = () => {
     switch (chatBy) {
       case "bot":
         return (
@@ -192,9 +192,9 @@ const ChatUI = ({
           <ImageDimmer image={image} />
         </>
       )}
-      {renderChatUI()}
+      {renderChatLayout()}
     </>
   );
 };
 
-export default ChatUI;
+export default ChatLayout;
