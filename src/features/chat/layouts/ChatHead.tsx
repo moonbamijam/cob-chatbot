@@ -1,15 +1,15 @@
 import { useContext } from "react";
 
 // contexts
-import { AuthContext } from "@/contexts/AuthContext";
-import { ChatContext } from "@/contexts/ChatContext";
-import { ChatbotContext } from "@/contexts/ChatbotContext";
+import { AuthContext } from "@contexts/AuthContext";
+import { ChatContext } from "@contexts/ChatContext";
+import { ChatbotContext } from "@contexts/ChatbotContext";
 
 // hooks
-import useChatbot from "@/hooks/useChatbot";
+import useChatbot from "@hooks/useChatbot";
 
 // components
-import Loading from "@/components/Loading";
+import Loading from "@components/Loading";
 
 const ChatHead = ({ onClick }: { onClick: () => void }) => {
   const auth = useContext(AuthContext);

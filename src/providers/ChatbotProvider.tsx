@@ -2,14 +2,14 @@ import { useState, useEffect, useMemo } from "react";
 import { collection, doc, onSnapshot } from "firebase/firestore";
 
 // contexts
-import { ChatbotContext } from "@/contexts/ChatbotContext";
+import { ChatbotContext } from "@contexts/ChatbotContext";
 
 // types
-import { ConfigurationType, ConversationType, FaqType } from "@/shared/ts/type";
+import { ConfigurationType, ConversationType, FaqType } from "@shared/ts/type";
 
 // constants
-import { db } from "@/constants/firebase/config";
-import { chatbotConfig } from "@/constants/bot/chatbot-config";
+import { db } from "@constants/firebase/config";
+import { chatbotConfig } from "@constants/bot/chatbot-config";
 
 const botProfileCollectionRef = collection(db, "profile");
 

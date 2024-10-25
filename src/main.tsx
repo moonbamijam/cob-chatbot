@@ -3,18 +3,18 @@ import { createRoot } from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 // providers
-import ThemeProvider from "@/providers/ThemeProvider.js";
-import AuthProvider from "@/providers/AuthProvider.js";
-import ChatProvider from "@/providers/ChatProvider.js";
+import ThemeProvider from "@providers/ThemeProvider";
+import AuthProvider from "@providers/AuthProvider";
+import ChatProvider from "@providers/ChatProvider";
 
 // pages
-import Home from "@/app/Home.js";
-import CityHall from "@/app/CityHall.js";
-import Error from "@/app/Error.js";
+import Home from "@app/Home";
+import CityHall from "@app/CityHall";
+import Error from "@app/Error";
 
 // css
-import "@/styles/globals.css";
-import "@/styles/custom-media-query.css";
+import "@styles/globals.css";
+import "@styles/custom-media-query.css";
 
 const router = createBrowserRouter([
   {

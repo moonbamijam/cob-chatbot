@@ -7,18 +7,18 @@ import {
   FormEvent,
 } from "react";
 import { v4 as uuid } from "uuid";
-import { verifiedUID } from "@/utils/uid";
+import { verifiedUID } from "@utils/uid";
 
 // contexts
-import { ChatbotContext } from "@/contexts/ChatbotContext";
-import { AuthContext } from "@/contexts/AuthContext";
+import { ChatbotContext } from "@contexts/ChatbotContext";
+import { AuthContext } from "@contexts/AuthContext";
 
 // constants
 import {
   depts,
   deptsAnswer,
   deptsMessages,
-} from "@/features/department/constants/depts";
+} from "@features/department/constants/depts";
 
 // db
 import {
@@ -34,30 +34,30 @@ import {
   updateDoc,
   onSnapshot,
 } from "firebase/firestore";
-import { db } from "@/constants/firebase/config";
+import { db } from "@constants/firebase/config";
 
 // hooks
-import useSound from "@/hooks/useSound";
+import useSound from "@hooks/useSound";
 
 // lib
-import { greet } from "@/lib/greet";
+import { greet } from "@lib/greet";
 
 // utils
-import { sleep } from "@/utils/sleep";
-import { splitMessage } from "@/utils/split-message";
+import { sleep } from "@utils/sleep";
+import { splitMessage } from "@utils/split-message";
 import {
   hasSplitSymbol,
   hasFileSymbol,
   hasLinkSymbol,
-} from "@/utils/symbol-checker";
-import { smoothScrollInto } from "@/utils/scroll-into";
-import { firestoreConverter } from "@/utils/type-converter";
-import { extractLink } from "@/utils/extract-link";
-import { extractFileNameFromUrl } from "@/utils/extract-file-name-from-url";
+} from "@utils/symbol-checker";
+import { smoothScrollInto } from "@utils/scroll-into";
+import { firestoreConverter } from "@utils/type-converter";
+import { extractLink } from "@utils/extract-link";
+import { extractFileNameFromUrl } from "@utils/extract-file-name-from-url";
 
 // shared
-import { chatType, FaqType } from "@/shared/ts/type";
-import { docs, images, videos } from "@/shared/file-extensions";
+import { chatType, FaqType } from "@shared/ts/type";
+import { docs, images, videos } from "@shared/file-extensions";
 
 const uid = verifiedUID();
 

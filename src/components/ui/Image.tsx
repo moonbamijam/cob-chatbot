@@ -2,10 +2,10 @@ import { forwardRef, ImgHTMLAttributes } from "react";
 import { VariantProps } from "class-variance-authority";
 
 // utils
-import { cn } from "@/utils/cn";
+import { cn } from "@utils/cn";
 
 // library
-import { imageVariants } from "@/src/lib/variants/image-variants";
+import { imageVariants } from "@lib/variants/image-variants";
 
 type ImageProps = ImgHTMLAttributes<HTMLImageElement> &
   VariantProps<typeof imageVariants> & {};

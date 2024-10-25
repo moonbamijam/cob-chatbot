@@ -1,7 +1,7 @@
-import HighlightTitle from "@/components/pages/city-hall/ui/HighlightTitle";
+import HighlightTitle from "@components/pages/city-hall/ui/HighlightTitle";
 
-import StrikeScan from "@/static/assets/images/strike-scan.jpg";
-import FbPage from "@/static/assets/images/fb-page.png";
+import StrikeScan from "@static/assets/images/strike-scan.jpg";
+import FbPage from "@static/assets/images/fb-page.png";
 
 const Footer = () => {
   return (

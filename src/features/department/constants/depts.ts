@@ -1,4 +1,4 @@
-import { deptsType } from "@/src/shared/ts/type";
+import { deptsType } from "@shared/ts/type";
 
 export const deptsAnswer = "Here are the list of departments:";
 

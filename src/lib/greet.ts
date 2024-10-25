@@ -1,7 +1,7 @@
 import { Timestamp, collection, doc, setDoc } from "firebase/firestore";
-import { db } from "../constants/firebase/config";
+import { db } from "@constants/firebase/config";
 import { v4 as uuid } from "uuid";
-import { chatType } from "@/shared/ts/type";
+import { chatType } from "@shared/ts/type";
 
 const usersCollectionRef = collection(db, "users");
 

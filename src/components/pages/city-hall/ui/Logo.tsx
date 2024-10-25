@@ -1,4 +1,4 @@
-import cityHallLogo from "@/static/assets/images/city-hall-logo.png";
+import cityHallLogo from "@static/assets/images/city-hall-logo.png";
 
 const Logo = () => {
   return (

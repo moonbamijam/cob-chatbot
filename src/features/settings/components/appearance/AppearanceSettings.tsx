@@ -1,11 +1,11 @@
 // components
-import SettingsTitle from "@/features/settings/components/SettingsTitle";
-import ChatPreview from "@/features/chat/components/previews/ChatPreview";
-import ThemeSwitch from "@/features/settings/components/appearance/themes/ThemeSwitch";
-import FontFamilySwitch from "@/features/settings/components/appearance/fonts/FontFamilySwitch";
-import FontSizeSwitch from "@/features/settings/components/appearance/fonts/FontSizeSwitch";
-import SettingsWrapper from "@/features/settings/components/SettingsWrapper";
-import ChatHeadSwitch from "@/features/settings/components/appearance/chathead/ChatHeadSwitch";
+import SettingsTitle from "@features/settings/components/SettingsTitle";
+import ChatPreview from "@features/chat/components/previews/ChatPreview";
+import ThemeSwitch from "@features/settings/components/appearance/themes/ThemeSwitch";
+import FontFamilySwitch from "@features/settings/components/appearance/fonts/FontFamilySwitch";
+import FontSizeSwitch from "@features/settings/components/appearance/fonts/FontSizeSwitch";
+import SettingsWrapper from "@features/settings/components/SettingsWrapper";
+import ChatHeadSwitch from "@features/settings/components/appearance/chathead/ChatHeadSwitch";
 
 const AppearanceSettings = () => {
   return (

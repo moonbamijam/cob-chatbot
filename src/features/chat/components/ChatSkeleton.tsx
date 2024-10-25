@@ -1,5 +1,5 @@
-import SkeletonScreen from "@/components/ui/SkeletonScreen";
-import ItemsRenderer from "@/layouts/ItemsRenderer";
+import SkeletonScreen from "@components/ui/SkeletonScreen";
+import ItemsRenderer from "@layouts/ItemsRenderer";
 
 const ChatSkeleton = () => {
   const skeletonizedChat = [

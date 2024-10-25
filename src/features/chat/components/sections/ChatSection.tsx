@@ -1,36 +1,36 @@
 import { useState, useContext, useRef, SyntheticEvent, RefObject } from "react";
 
 // context
-import { ChatbotContext } from "@/contexts/ChatbotContext";
+import { ChatbotContext } from "@contexts/ChatbotContext";
 
 // hooks
-import useScrollIntoView from "@/hooks/useScrollIntoView";
+import useScrollIntoView from "@hooks/useScrollIntoView";
 
 // utils
-import { sleep } from "@/utils/sleep";
-import { scrollInto } from "@/utils/scroll-into";
-import { timestamp } from "@/utils/timestamp";
+import { sleep } from "@utils/sleep";
+import { scrollInto } from "@utils/scroll-into";
+import { timestamp } from "@utils/timestamp";
 
 // components
-import Error from "@/components/Error";
-import Button from "@/components/Button";
-import Loading from "@/components/Loading";
-import Typing from "@/features/chat/components/Typing";
-import ChatSkeleton from "@/features/chat/components/ChatSkeleton";
+import Error from "@components/Error";
+import Button from "@components/Button";
+import Loading from "@components/Loading";
+import Typing from "@features/chat/components/Typing";
+import ChatSkeleton from "@features/chat/components/ChatSkeleton";
 
 // layouts
-import ItemsRenderer from "@/layouts/ItemsRenderer";
-import MiniProfile from "@/layouts/MiniProfile";
-import Chat from "@/features/chat/layouts/Chat";
+import ItemsRenderer from "@layouts/ItemsRenderer";
+import MiniProfile from "@layouts/MiniProfile";
+import Chat from "@features/chat/layouts/Chat";
 
 // types
-import { ConversationType } from "@/shared/ts/type";
+import { ConversationType } from "@shared/ts/type";
 
 // icons
 import { FaArrowDown } from "react-icons/fa6";
 
 // styles
-import "@/styles/utils.css";
+import "@styles/utils.css";
 
 const chatPerPage = 15;
 const step = 10;

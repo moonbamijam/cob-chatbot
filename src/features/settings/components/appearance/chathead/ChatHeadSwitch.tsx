@@ -1,18 +1,18 @@
 import { ChangeEvent, useContext } from "react";
-import { chatHeadSizeList } from "@/features/settings/constants/chat-head-size-list";
+import { chatHeadSizeList } from "@features/settings/constants/chat-head-size-list";
 
 // context
-import { ChatContext } from "@/contexts/ChatContext";
+import { ChatContext } from "@contexts/ChatContext";
 
 // components
-import RadioButton from "@/components/buttons/RadioButton";
-import SettingsMiniTitle from "@/features/settings/components/SettingsMiniTitle";
-import ChatHeadPreview from "@/features/chat/components/previews/ChatHeadPreview";
+import RadioButton from "@components/buttons/RadioButton";
+import SettingsMiniTitle from "@features/settings/components/SettingsMiniTitle";
+import ChatHeadPreview from "@features/chat/components/previews/ChatHeadPreview";
 
 // layouts
-import Grid from "@/layouts/Grid";
-import ItemsRenderer from "@/layouts/ItemsRenderer";
-import SettingSwitch from "@/features/settings/layouts/SettingSwitch";
+import Grid from "@layouts/Grid";
+import ItemsRenderer from "@layouts/ItemsRenderer";
+import SettingSwitch from "@features/settings/layouts/SettingSwitch";
 
 const ChatHeadSwitch = () => {
   const chat = useContext(ChatContext);

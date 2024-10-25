@@ -1,17 +1,17 @@
 import { useContext, useState } from "react";
 
 // contexts
-import { ChatbotContext } from "@/contexts/ChatbotContext";
+import { ChatbotContext } from "@contexts/ChatbotContext";
 
 // components
-import DepartmentBtn from "@/features/department/components/buttons/DepartmentBtn";
+import DepartmentBtn from "@features/department/components/buttons/DepartmentBtn";
 
 // layouts
-import ItemsRenderer from "@/layouts/ItemsRenderer";
-import ChatUI from "@/features/chat/layouts/ChatUI";
+import ItemsRenderer from "@layouts/ItemsRenderer";
+import ChatUI from "@features/chat/layouts/ChatUI";
 
 // types
-import { deptsType } from "@/shared/ts/type";
+import { deptsType } from "@shared/ts/type";
 
 const step = 4;
 const currentPage = 1;

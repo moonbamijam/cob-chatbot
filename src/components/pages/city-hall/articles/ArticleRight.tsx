@@ -1,10 +1,10 @@
 import { HiInformationCircle } from "react-icons/hi";
 
 // components
-import HighlightTitle from "@/components/pages/city-hall/ui/HighlightTitle";
+import HighlightTitle from "@components/pages/city-hall/ui/HighlightTitle";
 
 // assets
-import BacoorCityHall from "@/static/assets/images/bacoor-city-hall.png";
+import BacoorCityHall from "@static/assets/images/bacoor-city-hall.png";
 
 const ArticleRight = () => {
   return (
