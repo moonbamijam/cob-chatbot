@@ -1,20 +1,20 @@
 import { useContext } from "react";
 import ReactTextareaAutosize from "react-textarea-autosize";
-import Messages from "@static/messages/suggested.json";
+import Messages from "@/static/messages/suggested.json";
 
 // contexts
-import { FontContext } from "@contexts/FontContext";
-import { ChatbotContext } from "@contexts/ChatbotContext";
+import { FontContext } from "@/contexts/FontContext";
+import { ChatbotContext } from "@/contexts/ChatbotContext";
 
 // icons
 import { IoSend } from "react-icons/io5";
 import { LuMenu } from "react-icons/lu";
 
 // components
-import Button from "@components/ui/Button";
-import SampleBotChat from "@src/features/chat/components/SampleBotChat";
-import SampleUserChat from "@src/features/chat/components/SampleUserChat";
-import SuggestedChatButton from "@src/features/chat/components/buttons/SuggestedChatButton";
+import Button from "@/components/ui/Button";
+import SampleBotChat from "@/src/features/chat/components/SampleBotChat";
+import SampleUserChat from "@/src/features/chat/components/SampleUserChat";
+import SuggestedChatButton from "@/src/features/chat/components/buttons/SuggestedChatButton";
 
 const ChatPreview = () => {
   const chatbot = useContext(ChatbotContext);

@@ -2,18 +2,20 @@ import { FormEvent, LegacyRef, useContext } from "react";
 import ReactTextareaAutosize from "react-textarea-autosize";
 
 // contexts
-import { ChatbotContext } from "@contexts/ChatbotContext";
+import { ChatbotContext } from "@/contexts/ChatbotContext";
 
 // components
-import Button from "@components/ui/Button";
+import Button from "@/components/ui/Button";
 
 // layouts
-import ItemsRenderer from "@layouts/ItemsRenderer";
+import ItemsRenderer from "@/layouts/ItemsRenderer";
 
 // icons
 import { IoSend } from "react-icons/io5";
 import { LuMenu } from "react-icons/lu";
-import { FaqType } from "@src/shared/ts/type";
+
+// types
+import { FaqType } from "@/src/shared/ts/type";
 
 type ChatInputSectionProps = Readonly<{
   faqsRef: LegacyRef<HTMLDivElement> | null;

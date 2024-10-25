@@ -7,7 +7,7 @@ import multiPop from "@static/sounds/multi-pop.mp3";
 import multiPop5 from "@static/sounds/multi-pop-5.mp3";
 
 // contexts
-import { SoundContext } from "@contexts/SoundContext";
+import { SoundContext } from "@/contexts/SoundContext";
 
 const useSound = () => {
   const sound = useContext(SoundContext);

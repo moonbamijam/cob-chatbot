@@ -2,12 +2,12 @@ import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 
 // components
-import Button from "@components/ui/Button";
-import ImageDimmer from "@components/ImageDimmer";
-import ChatBubble from "@features/chat/components/ChatBubble";
+import Button from "@/components/ui/Button";
+import ImageDimmer from "@/components/ImageDimmer";
+import ChatBubble from "@/features/chat/components/ChatBubble";
 
 // types
-import { deptsType } from "@shared/ts/type";
+import { deptsType } from "@/shared/ts/type";
 
 // icons
 import { CgClose } from "react-icons/cg";

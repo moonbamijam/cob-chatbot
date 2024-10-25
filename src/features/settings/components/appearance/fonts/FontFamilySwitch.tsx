@@ -1,17 +1,17 @@
 import { ChangeEvent, useContext } from "react";
-import fontFamilies from "@static/settings/font_families.json";
+import fontFamilies from "@/static/settings/font_families.json";
 
 // context
-import { FontContext } from "@contexts/FontContext";
+import { FontContext } from "@/contexts/FontContext";
 
 // components
-import RadioButton from "@components/buttons/RadioButton";
-import SettingsMiniTitle from "@features/settings/components/SettingsMiniTitle";
+import RadioButton from "@/components/buttons/RadioButton";
+import SettingsMiniTitle from "@/features/settings/components/SettingsMiniTitle";
 
 // layouts
-import Grid from "@layouts/Grid";
-import SettingSwitch from "@features/settings/layouts/SettingSwitch";
-import ItemsRenderer from "@layouts/ItemsRenderer";
+import Grid from "@/layouts/Grid";
+import SettingSwitch from "@/features/settings/layouts/SettingSwitch";
+import ItemsRenderer from "@/layouts/ItemsRenderer";
 
 const FontFamilySwitch = () => {
   const font = useContext(FontContext);

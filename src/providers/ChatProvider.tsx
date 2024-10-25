@@ -1,5 +1,5 @@
 import { useState, useEffect, useMemo, useRef } from "react";
-import { ChatContext } from "@contexts/ChatContext";
+import { ChatContext } from "@/contexts/ChatContext";
 
 const getInitialStates = () => {
   const chatHeadSize = parseInt(localStorage.getItem("chatHeadSize") || "");

@@ -1,7 +1,7 @@
 import { CSSProperties, useContext } from "react";
 
 // context
-import { ChatbotContext } from "@contexts/ChatbotContext";
+import { ChatbotContext } from "@/contexts/ChatbotContext";
 
 type SampleBotChatProps = Partial<
   Readonly<{

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { FaMagnifyingGlass } from "react-icons/fa6";
-import Anchor from "@components/pages/city-hall/layouts/header/Anchor";
-import Dropdown from "@components/pages/city-hall/layouts/header/Dropdown";
+import Anchor from "@/components/pages/city-hall/layouts/header/Anchor";
+import Dropdown from "@/components/pages/city-hall/layouts/header/Dropdown";
 
 const Header = () => {
   const [isDropdownOneActive, setIsDropdownOneActive] = useState(false);

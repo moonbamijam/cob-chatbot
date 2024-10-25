@@ -1,22 +1,22 @@
 import { useContext } from "react";
 
 // contexts
-import { ChatContext } from "@contexts/ChatContext";
+import { ChatContext } from "@/contexts/ChatContext";
 
 // providers
-import FontProvider from "@providers/FontProvider";
-import SoundProvider from "@providers/SoundProvider";
-import ChatbotProvider from "@providers/ChatbotProvider";
+import FontProvider from "@/providers/FontProvider";
+import SoundProvider from "@/providers/SoundProvider";
+import ChatbotProvider from "@/providers/ChatbotProvider";
 
 // features
-import ChatHead from "@features/chat/layouts/ChatHead";
-import ChatBox from "@features/chat/layouts/ChatBox";
+import ChatHead from "@/features/chat/layouts/ChatHead";
+import ChatBox from "@/features/chat/layouts/ChatBox";
 
 // layouts
-import CityHallUI from "@layouts/CityHallUI";
+import CityHallUI from "@/layouts/CityHallUI";
 
 // components
-import ScreenDim from "@components/ScreenDim";
+import ScreenDim from "@/components/ScreenDim";
 
 const CityHall = () => {
   const chat = useContext(ChatContext);

@@ -3,7 +3,7 @@ import {
   ConfigurationType,
   ConversationType,
   FaqType,
-} from "@src/shared/ts/type";
+} from "@/src/shared/ts/type";
 
 type ChatbotContextType = {
   configuration: {

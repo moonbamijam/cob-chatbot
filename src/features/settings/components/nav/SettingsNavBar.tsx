@@ -1,15 +1,15 @@
 import { useState, useEffect, useRef, useContext, ChangeEvent } from "react";
-import { settingsList } from "@features/settings/constants/settings-list";
+import { settingsList } from "@/features/settings/constants/settings-list";
 
 // context
-import { ChatbotContext } from "@contexts/ChatbotContext";
+import { ChatbotContext } from "@/contexts/ChatbotContext";
 
 // components
-import Button from "@components/ui/Button";
-import Version from "@components/Version";
-import SettingsBtn from "@features/settings/components/SettingsBtn";
-import SettingsNavSection from "@features/settings/components/nav/SettingsNavSection";
-import SettingsNavTitle from "@features/settings/components/nav/SettingsNavTitle";
+import Button from "@/components/ui/Button";
+import Version from "@/components/Version";
+import SettingsBtn from "@/features/settings/components/SettingsBtn";
+import SettingsNavSection from "@/features/settings/components/nav/SettingsNavSection";
+import SettingsNavTitle from "@/features/settings/components/nav/SettingsNavTitle";
 
 // icons
 import { LuMenu } from "react-icons/lu";

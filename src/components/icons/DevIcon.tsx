@@ -2,8 +2,8 @@ import { ImgHTMLAttributes } from "react";
 import { Link } from "react-router-dom";
 
 // components
-import Image from "@components/ui/Image";
-import SkeletonScreen from "@components/ui/SkeletonScreen";
+import Image from "@/components/ui/Image";
+import SkeletonScreen from "@/components/ui/SkeletonScreen";
 
 type DevIconProps = ImgHTMLAttributes<HTMLImageElement> &
   Readonly<{

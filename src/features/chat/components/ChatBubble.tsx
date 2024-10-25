@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { FontContext } from "@contexts/FontContext";
+import { FontContext } from "@/contexts/FontContext";
 
 type ChatBubbleProps = Partial<
   Readonly<{

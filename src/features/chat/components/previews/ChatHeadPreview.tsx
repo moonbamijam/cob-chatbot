@@ -1,6 +1,6 @@
 import { useContext } from "react";
-import { ChatbotContext } from "@contexts/ChatbotContext";
-import { ChatContext } from "@contexts/ChatContext";
+import { ChatbotContext } from "@/contexts/ChatbotContext";
+import { ChatContext } from "@/contexts/ChatContext";
 
 const ChatHeadPreview = () => {
   const chatbot = useContext(ChatbotContext);

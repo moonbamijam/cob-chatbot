@@ -1,6 +1,6 @@
-import SettingsTitle from "@features/settings/components/SettingsTitle";
-import SettingsWrapper from "@features/settings/components/SettingsWrapper";
-import ChatSentSoundSwitch from "@features/settings/components/sound/chat-sent/ChatSentSoundSwitch";
+import SettingsTitle from "@/features/settings/components/SettingsTitle";
+import SettingsWrapper from "@/features/settings/components/SettingsWrapper";
+import ChatSentSoundSwitch from "@/features/settings/components/sound/chat-sent/ChatSentSoundSwitch";
 
 const SoundSettings = () => {
   return (
