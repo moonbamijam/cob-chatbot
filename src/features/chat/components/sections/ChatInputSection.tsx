@@ -15,7 +15,7 @@ import { IoSend } from "react-icons/io5";
 import { LuMenu } from "react-icons/lu";
 
 // types
-import { FaqType } from "@src/shared/ts/type";
+import { FaqType } from "@shared/ts/type";
 
 type ChatInputSectionProps = Readonly<{
   faqsRef: LegacyRef<HTMLDivElement> | null;
