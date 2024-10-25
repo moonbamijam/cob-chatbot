@@ -13,6 +13,7 @@ import { deptsType } from "@shared/ts/type";
 import { CgClose } from "react-icons/cg";
 import { BsArrowDownCircleFill } from "react-icons/bs";
 import { IoDocumentTextOutline } from "react-icons/io5";
+import { FiExternalLink } from "react-icons/fi";
 
 type ChatUIProps = Partial<
   Readonly<{
@@ -108,9 +109,10 @@ const ChatUI = ({
                       timestamp={timestamp}
                       className="group-hover:bg-surface-dark/50 dark:group-hover:bg-dm-surface-light/70"
                     >
-                      <span className="font-semibold group-hover:underline text-primary dark:text-secondary">
+                      <div className="flex items-center gap-2 font-semibold text-primary dark:text-secondary">
+                        <FiExternalLink className="text-xl" />
                         {linkMessage}
-                      </span>
+                      </div>
                     </ChatBubble>
                   </Link>
                 )}
@@ -139,7 +141,7 @@ const ChatUI = ({
                       timestamp={timestamp}
                       className="group-hover:bg-surface-dark/50 dark:group-hover:bg-dm-surface-light/70"
                     >
-                      <div className="flex items-center gap-2">
+                      <div className="flex items-center gap-2 font-semibold text-primary dark:text-secondary">
                         <IoDocumentTextOutline className="text-xl" />
                         {docs}
                       </div>
