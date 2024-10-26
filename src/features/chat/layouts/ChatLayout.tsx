@@ -12,8 +12,18 @@ import { deptsType } from "@shared/ts/type";
 // icons
 import { CgClose } from "react-icons/cg";
 import { BsArrowDownCircleFill } from "react-icons/bs";
-import { IoDocumentTextOutline } from "react-icons/io5";
 import { FiExternalLink } from "react-icons/fi";
+import { SiGoogledocs } from "react-icons/si";
+import { BsFiletypeDoc } from "react-icons/bs";
+import { BsFiletypeDocx } from "react-icons/bs";
+import { BsFiletypePdf } from "react-icons/bs";
+import { BsFiletypeHtml } from "react-icons/bs";
+import { BsFiletypeXls } from "react-icons/bs";
+import { BsFiletypeXlsx } from "react-icons/bs";
+import { BsFiletypePpt } from "react-icons/bs";
+import { BsFiletypePptx } from "react-icons/bs";
+import { BsFiletypeTxt } from "react-icons/bs";
+import { BsFileEarmarkZip } from "react-icons/bs";
 
 type ChatLayoutProps = Partial<
   Readonly<{
@@ -22,8 +32,9 @@ type ChatLayoutProps = Partial<
     img: string;
     video: string;
     image: string;
-    docs: string;
-    docsLink: string;
+    file: string;
+    fileLink: string;
+    fileType: string;
     link: string;
     linkMessage: string;
     depts: deptsType;
@@ -42,8 +53,9 @@ const ChatLayout = ({
   img,
   video,
   image,
-  docs,
-  docsLink,
+  file,
+  fileLink,
+  fileType,
   link,
   linkMessage,
   depts,
@@ -54,9 +66,37 @@ const ChatLayout = ({
 }: ChatLayoutProps) => {
   const [imagePreview, setImagePreview] = useState(false);
   const imagePreviewRef = useRef<HTMLImageElement>(null);
+  const [isFileLoaded, setIsFileLoaded] = useState<boolean>(false);
 
   const toggleImagePreview = () => {
     setImagePreview(!imagePreview);
+  };
+
+  const renderFileType = () => {
+    switch (fileType) {
+      case "doc":
+        return <BsFiletypeDoc />;
+      case "docx":
+        return <BsFiletypeDocx />;
+      case "pdf":
+        return <BsFiletypePdf />;
+      case "html":
+        return <BsFiletypeHtml />;
+      case "xls":
+        return <BsFiletypeXls />;
+      case "xlsx":
+        return <BsFiletypeXlsx />;
+      case "ppt":
+        return <BsFiletypePpt />;
+      case "pptx":
+        return <BsFiletypePptx />;
+      case "txt":
+        return <BsFiletypeTxt />;
+      case "zip":
+        return <BsFileEarmarkZip />;
+      default:
+        return <SiGoogledocs />;
+    }
   };
 
   useEffect(() => {
@@ -120,30 +160,30 @@ const ChatLayout = ({
                   <img
                     src={image}
                     alt=""
-                    className="w-full h-max rounded-xl outline-primary object-contain cursor-pointer hover:opacity-70"
+                    className={`${isFileLoaded ? "w-max h-max" : "w-full h-[400px]"} rounded-xl outline-primary cursor-pointer hover:opacity-70`}
+                    onLoad={() => setIsFileLoaded(true)}
                     onClick={toggleImagePreview}
                   />
                 )}
                 {video && (
                   <video
-                    width={200}
-                    height={240}
                     controls
                     muted
-                    className="w-full h-max rounded-xl outline-primary object-contain cursor-pointer"
+                    className={`${isFileLoaded ? "w-max h-max" : "w-full h-[200px]"} rounded-xl outline-primary object-contain cursor-pointer`}
+                    onLoad={() => setIsFileLoaded(true)}
                   >
                     <source src={video} type="video/mp4" />
                   </video>
                 )}
-                {docs && docsLink && (
-                  <Link to={docsLink} target="_blank" className="group">
+                {file && fileLink && (
+                  <Link to={fileLink} target="_blank" className="group">
                     <ChatBubble
                       timestamp={timestamp}
                       className="group-hover:bg-surface-dark/50 dark:group-hover:bg-dm-surface-light/70"
                     >
                       <div className="flex items-center gap-2 font-semibold text-primary dark:text-secondary">
-                        <IoDocumentTextOutline className="text-xl" />
-                        {docs}
+                        <span className="text-xl">{renderFileType()}</span>
+                        {file}
                       </div>
                     </ChatBubble>
                   </Link>
