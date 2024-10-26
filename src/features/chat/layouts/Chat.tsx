@@ -21,8 +21,9 @@ type ChatType = Readonly<{
   chat?: string;
   image?: string;
   video?: string;
-  docs?: string;
-  docsLink?: string;
+  file?: string;
+  fileLink?: string;
+  fileType?: string;
   link?: string;
   linkMessage?: string;
   depts: deptsType;
@@ -42,8 +43,9 @@ const Chat = ({
   chat,
   image,
   video,
-  docs,
-  docsLink,
+  file,
+  fileLink,
+  fileType,
   link,
   linkMessage,
   depts,
@@ -91,11 +93,12 @@ const Chat = ({
           img={configuration.icon}
           image={image}
           video={video}
-          depts={depts}
+          file={file}
+          fileLink={fileLink}
+          fileType={fileType}
           link={link}
           linkMessage={linkMessage}
-          docs={docs}
-          docsLink={docsLink}
+          depts={depts}
           renderDeptsContent={renderDeptsContent}
           timestamp={timestamp}
           loadMore={loadMore}
