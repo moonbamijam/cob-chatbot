@@ -57,7 +57,7 @@ import { extractFileNameFromUrl } from "@utils/extract-file-name-from-url";
 
 // shared
 import { chatType, FaqType } from "@shared/ts/type";
-import { docs, images, videos } from "@shared/file-extensions";
+import { images, videos, files } from "@shared/file-extensions";
 
 const uid = verifiedUID();
 
@@ -311,7 +311,7 @@ const useChatbot = () => {
                   timestamp: Timestamp.now(),
                 };
               }
-            } else if (fileExtension && docs.includes(fileExtension)) {
+            } else if (fileExtension && files.includes(fileExtension)) {
               if (response === text) {
                 chat = {
                   intent: intent,
@@ -323,8 +323,9 @@ const useChatbot = () => {
               } else {
                 chat = {
                   intent: intent,
-                  docs: fileName,
-                  docsLink: response,
+                  file: fileName,
+                  fileLink: response,
+                  fileType: fileExtension,
                   chat: null,
                   chatId: uuid(),
                   role: "bot",

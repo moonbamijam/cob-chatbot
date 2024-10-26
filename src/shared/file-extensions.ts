@@ -1,3 +1,15 @@
-export const images = ["png", "jpg", "gif"];
-export const videos = ["mp4"];
-export const docs = ["pdf"];
+export const images = ["png", "jpg", "jpeg", "gif", "tiff", "webp"];
+export const videos = ["mp4", "mov", "avi", "wmv", "avchd", "webm", "flv"];
+export const files = [
+  "doc",
+  "docx",
+  "pdf",
+  "htm",
+  "html",
+  "xls",
+  "xlsx",
+  "ppt",
+  "pptx",
+  "txt",
+  "zip",
+];

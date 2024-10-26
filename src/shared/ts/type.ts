@@ -17,8 +17,9 @@ export type ConversationType = {
   chatId: string;
   image: string;
   video: string;
-  docs: string;
-  docsLink: string;
+  file: string;
+  fileLink: string;
+  fileType: string;
   link: string;
   linkMessage: string;
   role: string;
@@ -52,8 +53,9 @@ export type chatType = {
   chatId: string;
   image?: string;
   video?: string;
-  docs?: string;
-  docsLink?: string;
+  file?: string;
+  fileLink?: string;
+  fileType?: string;
   link?: string;
   linkMessage?: string;
   depts?: deptsType;

@@ -106,8 +106,9 @@ const ChatSection = ({ botIsTyping, latestChat }: ChatSectionProps) => {
                 chat={convo.chat}
                 image={convo.image}
                 video={convo.video}
-                docs={convo.docs}
-                docsLink={convo.docsLink}
+                file={convo.file}
+                fileLink={convo.fileLink}
+                fileType={convo.fileType}
                 link={convo.link}
                 linkMessage={convo.linkMessage}
                 depts={convo.depts}

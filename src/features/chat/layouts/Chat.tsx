@@ -8,7 +8,7 @@ import DepartmentBtn from "@features/department/components/buttons/DepartmentBtn
 
 // layouts
 import ItemsRenderer from "@layouts/ItemsRenderer";
-import ChatUI from "@features/chat/layouts/ChatUI";
+import ChatLayout from "@/src/features/chat/layouts/ChatLayout";
 
 // types
 import { deptsType } from "@shared/ts/type";
@@ -21,8 +21,9 @@ type ChatType = Readonly<{
   chat?: string;
   image?: string;
   video?: string;
-  docs?: string;
-  docsLink?: string;
+  file?: string;
+  fileLink?: string;
+  fileType?: string;
   link?: string;
   linkMessage?: string;
   depts: deptsType;
@@ -42,8 +43,9 @@ const Chat = ({
   chat,
   image,
   video,
-  docs,
-  docsLink,
+  file,
+  fileLink,
+  fileType,
   link,
   linkMessage,
   depts,
@@ -85,17 +87,18 @@ const Chat = ({
   const renderChat = () => {
     if (role === "bot") {
       return (
-        <ChatUI
+        <ChatLayout
           chatBy={role}
           chat={chat}
           img={configuration.icon}
           image={image}
           video={video}
-          depts={depts}
+          file={file}
+          fileLink={fileLink}
+          fileType={fileType}
           link={link}
           linkMessage={linkMessage}
-          docs={docs}
-          docsLink={docsLink}
+          depts={depts}
           renderDeptsContent={renderDeptsContent}
           timestamp={timestamp}
           loadMore={loadMore}
@@ -103,7 +106,7 @@ const Chat = ({
         />
       );
     } else if (role === "user") {
-      return <ChatUI chatBy={role} chat={chat} timestamp={timestamp} />;
+      return <ChatLayout chatBy={role} chat={chat} timestamp={timestamp} />;
     }
   };
 
