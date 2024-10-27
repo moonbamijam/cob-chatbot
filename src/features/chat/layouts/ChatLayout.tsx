@@ -72,6 +72,10 @@ const ChatLayout = ({
     setImagePreview(!imagePreview);
   };
 
+  const handleImageLoad = () => {
+    setIsFileLoaded(true);
+  };
+
   const renderFileType = () => {
     switch (fileType) {
       case "doc":
@@ -123,72 +127,79 @@ const ChatLayout = ({
                 height={35}
                 className="rounded-full aspect-square object-cover select-none"
               />
-              <div className="flex flex-col gap-4 max-w-[80%]">
-                {chat && <ChatBubble timestamp={timestamp}>{chat}</ChatBubble>}
-                {depts && renderDeptsContent && numberOfDeptsToShow && (
-                  <ChatBubble timestamp={timestamp}>
-                    {renderDeptsContent()}
-                    <button
-                      onClick={loadMore}
-                      className={`w-full absolute -bottom-1 bg-gradient-to-t from-surface dark:from-dm-surface from-15% h-[100px] z-30 backdrop-blur-xs  ${
-                        depts?.length <= numberOfDeptsToShow
-                          ? "hidden"
-                          : "block"
-                      } hover:backdrop-blur-0 [&>p]:hover:opacity-15`}
-                    >
-                      <p className="flex flex-col items-center justify-center gap-1 font-semibold text-primary dark:text-secondary drop-shadow-lg animate-bounce text-base">
-                        Click here to show more
-                        <BsArrowDownCircleFill />
-                      </p>
-                    </button>
-                  </ChatBubble>
-                )}
-                {link && (
-                  <Link to={link} target="_blank" className="group">
-                    <ChatBubble
-                      timestamp={timestamp}
-                      className="group-hover:bg-surface-dark/50 dark:group-hover:bg-dm-surface-light/70"
-                    >
-                      <div className="flex items-center gap-2 font-semibold text-primary dark:text-secondary">
-                        <FiExternalLink className="text-xl" />
-                        {linkMessage}
-                      </div>
+              {(chat || link || file || fileLink || depts) && (
+                <div className="flex flex-col gap-4 max-w-[80%]">
+                  {chat && (
+                    <ChatBubble timestamp={timestamp}>{chat}</ChatBubble>
+                  )}
+                  {link && (
+                    <Link to={link} target="_blank" className="group">
+                      <ChatBubble
+                        timestamp={timestamp}
+                        className="group-hover:bg-surface-dark/50 dark:group-hover:bg-dm-surface-light/70"
+                      >
+                        <div className="flex items-center gap-2 font-semibold text-primary dark:text-secondary">
+                          <FiExternalLink className="text-xl" />
+                          {linkMessage}
+                        </div>
+                      </ChatBubble>
+                    </Link>
+                  )}
+                  {file && fileLink && (
+                    <Link to={fileLink} target="_blank" className="group">
+                      <ChatBubble
+                        timestamp={timestamp}
+                        className="group-hover:bg-surface-dark/50 dark:group-hover:bg-dm-surface-light/70"
+                      >
+                        <div className="flex items-center gap-2 font-semibold text-primary dark:text-secondary">
+                          <span className="text-xl">{renderFileType()}</span>
+                          {file}
+                        </div>
+                      </ChatBubble>
+                    </Link>
+                  )}
+                  {depts && renderDeptsContent && numberOfDeptsToShow && (
+                    <ChatBubble timestamp={timestamp}>
+                      {renderDeptsContent()}
+                      <button
+                        onClick={loadMore}
+                        className={`w-full absolute -bottom-1 bg-gradient-to-t from-surface dark:from-dm-surface from-15% h-[100px] z-30 backdrop-blur-xs  ${
+                          depts?.length <= numberOfDeptsToShow
+                            ? "hidden"
+                            : "block"
+                        } hover:backdrop-blur-0 [&>p]:hover:opacity-15`}
+                      >
+                        <p className="flex flex-col items-center justify-center gap-1 font-semibold text-primary dark:text-secondary drop-shadow-lg animate-bounce text-base">
+                          Click here to show more
+                          <BsArrowDownCircleFill />
+                        </p>
+                      </button>
                     </ChatBubble>
-                  </Link>
-                )}
-                {image && (
+                  )}
+                </div>
+              )}
+              {image && (
+                <div
+                  className={`${isFileLoaded ? "w-full h-max" : "w-full h-[400px] bg-surface-dark/50 dark:bg-dm-surface-light animate-pulse aspect-square"} max-w-[80%] sm:max-w-[70%] md:max-w-[60%] lg:max-w-[50%] xl:max-w-[80%] cursor-pointer hover:opacity-70 rounded-xl overflow-hidden`}
+                  onClick={toggleImagePreview}
+                >
                   <img
                     src={image}
                     alt=""
-                    className={`${isFileLoaded ? "w-max h-max" : "w-full h-[400px]"} rounded-xl outline-primary cursor-pointer hover:opacity-70`}
-                    onLoad={() => setIsFileLoaded(true)}
-                    onClick={toggleImagePreview}
+                    className="rounded-xl"
+                    onLoad={handleImageLoad}
                   />
-                )}
-                {video && (
-                  <video
-                    controls
-                    muted
-                    className={`${isFileLoaded ? "w-max h-max" : "w-full h-[200px]"} rounded-xl outline-primary object-contain cursor-pointer`}
-                    onLoad={() => setIsFileLoaded(true)}
-                  >
-                    <source src={video} type="video/mp4" />
-                  </video>
-                )}
-                {file && fileLink && (
-                  <Link to={fileLink} target="_blank" className="group">
-                    <ChatBubble
-                      timestamp={timestamp}
-                      className="group-hover:bg-surface-dark/50 dark:group-hover:bg-dm-surface-light/70"
-                    >
-                      <div className="flex items-center gap-2 font-semibold text-primary dark:text-secondary">
-                        <span className="text-xl">{renderFileType()}</span>
-                        {file}
-                      </div>
-                    </ChatBubble>
-                  </Link>
-                )}
-              </div>
+                </div>
+              )}
+              {video && (
+                <video
+                  controls
+                  muted
+                  className="w-max max-w-[80%] max-h-max rounded-xl outline-primary object-contain cursor-pointer"
+                >
+                  <source src={video} type="video/mp4" />
+                </video>
+              )}
             </div>
           </div>
         );
