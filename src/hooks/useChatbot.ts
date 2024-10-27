@@ -95,7 +95,6 @@ const useChatbot = () => {
 
   const toggleSettings = () => {
     setSettings(!settings);
-    smoothScrollInto(latestChat);
   };
 
   const getConversationHistory = useCallback(async () => {
@@ -349,7 +348,7 @@ const useChatbot = () => {
             setIsFaqsMenuActive(false);
             playMessageNotification();
           });
-        } else if (intent == "None") {
+        } else if (intent === "None") {
           chat = {
             intent: intent,
             chat: configuration.errorMessage,
@@ -357,6 +356,21 @@ const useChatbot = () => {
             role: "bot",
             timestamp: Timestamp.now(),
           };
+          setBotIsTyping(false);
+          const docUserId = doc(usersCollectionRef, uid);
+          const verifiedDocUserId = await getDoc(docUserId);
+          if (!verifiedDocUserId.exists()) {
+            // creates a user with verified uid in users collection
+            // then add this bot message to conversation array
+            await setDoc(doc(usersCollectionRef, uid), {
+              conversation: [chat],
+            });
+          }
+          await updateDoc(doc(usersCollectionRef, uid), {
+            conversation: arrayUnion(chat),
+          });
+          setIsFaqsMenuActive(false);
+          playMessageNotification();
         } else {
           chat = {
             intent: intent,
