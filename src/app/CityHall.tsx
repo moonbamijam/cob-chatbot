@@ -6,7 +6,6 @@ import { ChatContext } from "@contexts/ChatContext";
 // providers
 import FontProvider from "@providers/FontProvider";
 import SoundProvider from "@providers/SoundProvider";
-import ChatbotProvider from "@providers/ChatbotProvider";
 
 // features
 import ChatHead from "@features/chat/layouts/ChatHead";
@@ -33,10 +32,8 @@ const CityHall = () => {
         <div ref={chatHead}>
           <FontProvider>
             <SoundProvider>
-              <ChatbotProvider>
-                <ChatHead onClick={toggleChat} />
-                <ChatBox closeUsing={toggleChat} />
-              </ChatbotProvider>
+              <ChatHead onClick={toggleChat} />
+              <ChatBox closeUsing={toggleChat} />
             </SoundProvider>
           </FontProvider>
         </div>
