@@ -3,8 +3,10 @@ import { createRoot } from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 // providers
-import ThemeProvider from "@providers/ThemeProvider";
+import ChatbotProvider from "@providers/ChatbotProvider";
+import UserProvider from "@providers/UserProvider";
 import AuthProvider from "@providers/AuthProvider";
+import ThemeProvider from "@providers/ThemeProvider";
 import ChatProvider from "@providers/ChatProvider";
 
 // pages
@@ -30,12 +32,16 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <AuthProvider>
-      <ThemeProvider>
-        <ChatProvider>
-          <RouterProvider router={router} />
-        </ChatProvider>
-      </ThemeProvider>
-    </AuthProvider>
+    <ChatbotProvider>
+      <UserProvider>
+        <AuthProvider>
+          <ThemeProvider>
+            <ChatProvider>
+              <RouterProvider router={router} />
+            </ChatProvider>
+          </ThemeProvider>
+        </AuthProvider>
+      </UserProvider>
+    </ChatbotProvider>
   </StrictMode>,
 );
