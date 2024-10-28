@@ -1,13 +1,11 @@
-import { Timestamp, collection, doc, setDoc } from "firebase/firestore";
-import { db } from "@constants/firebase/config";
+import { doc, setDoc, Timestamp } from "firebase/firestore";
 import { v4 as uuid } from "uuid";
 import { chatType } from "@shared/ts/type";
-
-const usersCollectionRef = collection(db, "users");
+import { usersCollectionRef } from "@shared/collection-refs";
 
 export const greet = async (uid: string, message: string) => {
   try {
-    const botChat: chatType = {
+    const chatData: chatType = {
       intent: "greetings",
       chat: message,
       chatId: uuid(),
@@ -16,7 +14,8 @@ export const greet = async (uid: string, message: string) => {
     };
 
     await setDoc(doc(usersCollectionRef, uid), {
-      conversation: [botChat],
+      uid: uid,
+      conversation: [chatData],
     });
   } catch (error) {
     console.log(error);
