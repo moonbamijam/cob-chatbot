@@ -180,7 +180,7 @@ const ChatLayout = ({
               )}
               {image && (
                 <div
-                  className={`${isFileLoaded ? "w-full h-max" : "w-full h-[400px] bg-surface-dark/50 dark:bg-dm-surface-light animate-pulse aspect-square"} max-w-[80%] sm:max-w-[70%] md:max-w-[60%] lg:max-w-[50%] xl:max-w-[80%] cursor-pointer hover:opacity-70 rounded-xl overflow-hidden`}
+                  className={`${isFileLoaded ? "w-max h-max" : "w-full h-[400px] bg-surface-dark/50 dark:bg-dm-surface-light animate-pulse aspect-square"} max-w-[80%] sm:max-w-[70%] md:max-w-[60%] lg:max-w-[50%] xl:max-w-[80%] cursor-pointer hover:opacity-70 rounded-xl overflow-hidden`}
                   onClick={toggleImagePreview}
                 >
                   <img
