@@ -11,6 +11,7 @@ import { v4 as uuid } from "uuid";
 // contexts
 import { ChatbotContext } from "@contexts/ChatbotContext";
 import { AuthContext } from "@contexts/AuthContext";
+import { UserContext } from "@contexts/UserContext";
 
 // constants
 import {
@@ -38,6 +39,11 @@ import useSound from "@hooks/useSound";
 
 // lib
 import { greet } from "@lib/greet";
+import { userPost } from "@lib/user";
+import {
+  processFileResponse,
+  processLinkResponse,
+} from "@lib/process-response";
 
 // utils
 import { sleep } from "@utils/sleep";
@@ -53,10 +59,7 @@ import { extractFileNameFromUrl } from "@utils/extract-file-name-from-url";
 
 // shared
 import { chatType } from "@shared/ts/type";
-import { images, videos, files } from "@shared/file-extensions";
 import { faqsCollectionRef, usersCollectionRef } from "@shared/collection-refs";
-import { UserContext } from "../contexts/UserContext";
-import { userPost } from "../lib/user";
 
 const faqsQuery = query(faqsCollectionRef, orderBy("frequency", "desc"));
 
@@ -211,25 +214,9 @@ const useChatbot = () => {
               setBotIsTyping(true);
               await sleep(1);
             }
-            if (response === text) {
-              chatData = {
-                intent: intent,
-                chat: response,
-                chatId: uuid(),
-                role: "bot",
-                timestamp: Timestamp.now(),
-              };
-            } else {
-              chatData = {
-                intent: intent,
-                chat: null,
-                chatId: uuid(),
-                link: response,
-                linkMessage: linkMessage ? linkMessage : "Click here",
-                role: "bot",
-                timestamp: Timestamp.now(),
-              };
-            }
+            chatData = linkMessage
+              ? processLinkResponse(linkMessage, response, intent, text)
+              : chatData;
             setBotIsTyping(false);
             userPost(user.uid, chatData);
             setIsFaqsMenuActive(false);
@@ -248,66 +235,15 @@ const useChatbot = () => {
               setBotIsTyping(true);
               await sleep(1);
             }
-            if (fileExtension && images.includes(fileExtension)) {
-              if (response === text) {
-                chatData = {
-                  intent: intent,
-                  chat: response,
-                  chatId: uuid(),
-                  role: "bot",
-                  timestamp: Timestamp.now(),
-                };
-              } else {
-                chatData = {
-                  intent: intent,
-                  image: response,
-                  chat: null,
-                  chatId: uuid(),
-                  role: "bot",
-                  timestamp: Timestamp.now(),
-                };
-              }
-            } else if (fileExtension && videos.includes(fileExtension)) {
-              if (response === text) {
-                chatData = {
-                  intent: intent,
-                  chat: response,
-                  chatId: uuid(),
-                  role: "bot",
-                  timestamp: Timestamp.now(),
-                };
-              } else {
-                chatData = {
-                  intent: intent,
-                  video: response,
-                  chat: null,
-                  chatId: uuid(),
-                  role: "bot",
-                  timestamp: Timestamp.now(),
-                };
-              }
-            } else if (fileExtension && files.includes(fileExtension)) {
-              if (response === text) {
-                chatData = {
-                  intent: intent,
-                  chat: response,
-                  chatId: uuid(),
-                  role: "bot",
-                  timestamp: Timestamp.now(),
-                };
-              } else {
-                chatData = {
-                  intent: intent,
-                  file: fileName,
-                  fileLink: response,
-                  fileType: fileExtension,
-                  chat: null,
-                  chatId: uuid(),
-                  role: "bot",
-                  timestamp: Timestamp.now(),
-                };
-              }
-            }
+            chatData = fileExtension
+              ? processFileResponse(
+                  fileExtension,
+                  fileName,
+                  response,
+                  intent,
+                  text,
+                )
+              : chatData;
             setBotIsTyping(false);
             userPost(user.uid, chatData);
             setIsFaqsMenuActive(false);
