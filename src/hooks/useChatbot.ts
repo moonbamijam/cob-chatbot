@@ -215,8 +215,8 @@ const useChatbot = () => {
               await sleep(1);
             }
             chatData = linkMessage
-              ? processLinkResponse(linkMessage, response, intent, text)
-              : chatData;
+              ? processLinkResponse(response, intent, text, linkMessage)
+              : processLinkResponse(response, intent, text);
             setBotIsTyping(false);
             userPost(user.uid, chatData);
             setIsFaqsMenuActive(false);

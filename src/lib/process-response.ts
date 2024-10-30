@@ -81,10 +81,10 @@ export const processFileResponse = (
 };
 
 export const processLinkResponse = (
-  linkMessage: string,
   response: string,
   intent: string,
   text: string,
+  linkMessage?: string,
 ): chatType => {
   if (response === text) {
     chatData = {
