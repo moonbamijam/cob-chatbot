@@ -73,6 +73,7 @@ const ChatLayout = ({
   };
 
   const handleImageLoad = () => {
+    console.log("video loaded");
     setIsFileLoaded(true);
   };
 
@@ -128,7 +129,7 @@ const ChatLayout = ({
                 className="rounded-full aspect-square object-cover select-none"
               />
               {(chat || link || file || fileLink || depts) && (
-                <div className="flex flex-col gap-4 max-w-[80%]">
+                <div className="flex flex-col gap-4 max-w-[70%]">
                   {chat && (
                     <ChatBubble timestamp={timestamp}>{chat}</ChatBubble>
                   )}
@@ -180,7 +181,7 @@ const ChatLayout = ({
               )}
               {image && (
                 <div
-                  className={`${isFileLoaded ? "w-max h-max" : "w-full h-[400px] bg-surface-dark/50 dark:bg-dm-surface-light animate-pulse aspect-square"} max-w-[80%] sm:max-w-[70%] md:max-w-[60%] lg:max-w-[50%] xl:max-w-[80%] cursor-pointer hover:opacity-70 rounded-xl overflow-hidden`}
+                  className={`${isFileLoaded ? "w-max h-max" : "w-full h-[400px] bg-surface-dark/50 dark:bg-dm-surface-light animate-pulse aspect-square"} max-w-[70%] sm:max-w-[70%] md:max-w-[60%] lg:max-w-[50%] xl:max-w-[70%] cursor-pointer hover:opacity-70 rounded-xl overflow-hidden`}
                   onClick={toggleImagePreview}
                 >
                   <img
@@ -195,7 +196,7 @@ const ChatLayout = ({
                 <video
                   controls
                   muted
-                  className="w-max max-w-[80%] max-h-max rounded-xl outline-primary object-contain cursor-pointer"
+                  className="w-max max-w-[50%] sm:max-w-[40%] md:max-w-[35%] lg:max-w-[30%] xl:max-w-[50%] max-h-max rounded-xl outline-primary object-contain cursor-pointer"
                 >
                   <source src={video} type="video/mp4" />
                 </video>

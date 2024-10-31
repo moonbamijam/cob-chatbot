@@ -11,7 +11,7 @@ const ImageDimmer = ({ className, image }: ImageDimmerProps) => {
       id="image-dimmer"
       src={image}
       alt=""
-      className={`w-full h-full fixed inset-0 object-cover z-50 blur-xl backdrop-blur-xl brightness-50 ${className}`}
+      className={`w-full h-full fixed inset-0 object-cover z-50 blur-xl backdrop-blur-xl brightness-[0.3] ${className}`}
     />
   );
 };
