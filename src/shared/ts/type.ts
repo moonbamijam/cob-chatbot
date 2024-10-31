@@ -11,6 +11,11 @@ export type ConfigurationType = {
   errorMessage?: string;
 };
 
+export type UserType = {
+  uid: string;
+  conversation: chatType[] | ConversationType[];
+};
+
 export type ConversationType = {
   intent: string;
   chat: string;

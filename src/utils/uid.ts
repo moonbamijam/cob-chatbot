@@ -13,14 +13,12 @@ const generateUID = () => {
 };
 
 export const verifiedUID = () => {
-  if (
-    localStorage.getItem("uid") == null ||
-    localStorage.getItem("uid")?.length === 15
-  ) {
+  console.log("called");
+  const localUid = localStorage.getItem("uid");
+  if (localUid == null || localUid?.length <= 15) {
     localStorage.removeItem("uid");
     uid = generateUID();
-  } else if (localStorage.getItem("uid"))
-    uid = localStorage.getItem("uid") || uid;
+  } else if (localUid) uid = localUid || uid;
 
   return uid;
 };
