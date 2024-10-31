@@ -1,5 +1,63 @@
 # What's New
 
+# [3.0.0](https://github.com/moonbamijam/cob-chatbot/compare/v2.6.0...v3.0.0) (2024-10-31)
+
+
+### BREAKING CHANGES
+
+* new user uid system and chat details
+
+* refactor: move static departments queries to lib
+
+* refactor: change and add types to chat and conversation
+
+* refactor: make chat a global variable
+
+* feat: new user uid generator
+
+* refactor: move variables to constants dir
+
+* refactor: move greet.ts to lib
+
+* style: fix import to mini profile section component
+
+* fix: past user uid do not update
+
+
+### Bug Fixes
+
+* error message is not displaying ([3848870](https://github.com/moonbamijam/cob-chatbot/commit/3848870332c04b8a745e78d9cbc13ec0e102f6fe))
+* image response taking unnecessary space ([71a708c](https://github.com/moonbamijam/cob-chatbot/commit/71a708cf93ccfedcae2788c2e7219e1a1ea4b8e5))
+* inaccurate suggested message ([d9b53a0](https://github.com/moonbamijam/cob-chatbot/commit/d9b53a07991d4ebd6a9ad011f3f99af5782e934b))
+* link response not displaying ([#153](https://github.com/moonbamijam/cob-chatbot/issues/153)) ([9966bb4](https://github.com/moonbamijam/cob-chatbot/commit/9966bb411fa6b8f8d1eb06c11cbbba67c6796c46))
+* wrong logo in city hall page ([a260349](https://github.com/moonbamijam/cob-chatbot/commit/a2603499bae6dd2f8e6cd141bb279c2799fd56b1))
+
+
+### Features
+
+* add handler for custom message to links ([#150](https://github.com/moonbamijam/cob-chatbot/issues/150)) ([7ca75c7](https://github.com/moonbamijam/cob-chatbot/commit/7ca75c7e35095b75899ae34477f0de31ed6cb24d))
+* add jfif file extension to images ([3a1dd68](https://github.com/moonbamijam/cob-chatbot/commit/3a1dd686a9d913007dd6cf0ea2ce3c80880654fd))
+* add skeleton ui to images ([de559a8](https://github.com/moonbamijam/cob-chatbot/commit/de559a8c63d42de49632306f673114dfaceb26c5))
+* add user provider ([0d09b45](https://github.com/moonbamijam/cob-chatbot/commit/0d09b45b0542b001d417e8d0f45fd7d50cf93ddd))
+* add userPost fn and user context ([0225cb0](https://github.com/moonbamijam/cob-chatbot/commit/0225cb01e47761d7d7f0cca1649cdbb303c27a4a))
+* adjust the screen dimmer layer to city hall page ([6ab0942](https://github.com/moonbamijam/cob-chatbot/commit/6ab09420d5464e3d23bd267670706b6fa136237d))
+* adjust ui responsive to img/vid chat ([130dcbd](https://github.com/moonbamijam/cob-chatbot/commit/130dcbd6c0ce378f82cf320f89ea3ad022882523))
+* direct chat to mobile ([#147](https://github.com/moonbamijam/cob-chatbot/issues/147)) ([51350ff](https://github.com/moonbamijam/cob-chatbot/commit/51350ff971b3cb2e9838248801a9fb21c8c0ce15))
+* handle dynamic files preview ([@moonbamijam](https://github.com/moonbamijam), @Jireh-sama) ([#148](https://github.com/moonbamijam/cob-chatbot/issues/148)) ([7be8ae1](https://github.com/moonbamijam/cob-chatbot/commit/7be8ae16fd8a989c7c5cff33bd084a65307470f5))
+* improved chat for files and links ([#152](https://github.com/moonbamijam/cob-chatbot/issues/152)) ([c0cdb3a](https://github.com/moonbamijam/cob-chatbot/commit/c0cdb3a6dc2b6162bf07587b8893349dc0e7f0f0))
+* new gif to landing page with ui adjustments ([40f4f11](https://github.com/moonbamijam/cob-chatbot/commit/40f4f110efa9707b1ff0a77bbb2549dd8f7f2683))
+* new static gif ([e91b856](https://github.com/moonbamijam/cob-chatbot/commit/e91b85626e07a4da283aa3dd4d7e857f6b65a5aa))
+
+
+### Performance Improvements
+
+* transfer bot response process to lib ([e8e8115](https://github.com/moonbamijam/cob-chatbot/commit/e8e81154c2a597a3eb19bba35a773a9c74d54a4a))
+
+
+### Code Refactoring
+
+* types and code split ([#149](https://github.com/moonbamijam/cob-chatbot/issues/149)) ([707a9d3](https://github.com/moonbamijam/cob-chatbot/commit/707a9d3512510441bcd517a6428fa1b19a2124cc))
+
 # [2.6.0](https://github.com/moonbamijam/cob-chatbot/compare/v2.5.0...v2.6.0) (2024-10-17)
 
 
