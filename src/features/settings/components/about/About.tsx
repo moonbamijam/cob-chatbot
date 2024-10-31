@@ -8,13 +8,9 @@ import SettingsMiniTitle from "@features/settings/components/SettingsMiniTitle";
 import SettingsTitle from "@features/settings/components/SettingsTitle";
 
 // layouts
-import MiniProfile from "@layouts/MiniProfile";
+import BotProfile from "@layouts/BotProfile";
 
-type AboutProps = {
-  settings: boolean;
-};
-
-const About = ({ settings }: AboutProps) => {
+const About = () => {
   const chatbot = useContext(ChatbotContext);
   const { configuration } = chatbot.configuration;
 
@@ -24,7 +20,7 @@ const About = ({ settings }: AboutProps) => {
       <div className="flex flex-col gap-y-10 gap-x-6">
         <div>
           <SettingsMiniTitle text={configuration.name} />
-          <MiniProfile state={settings} />
+          <BotProfile />
         </div>
       </div>
     </section>

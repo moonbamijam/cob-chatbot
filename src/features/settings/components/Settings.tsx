@@ -52,7 +52,7 @@ const Settings = ({ settings, toggleSettings }: SettingsProps) => {
       case "sound":
         return <SoundSettings />;
       case configuration.name:
-        return <About settings={settings} />;
+        return <About />;
       default:
         return <AppearanceSettings />;
     }
