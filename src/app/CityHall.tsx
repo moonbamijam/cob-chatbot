@@ -40,7 +40,7 @@ const CityHall = () => {
         <CityHallUI />
         <ScreenDim
           message="Click anywhere to close."
-          className={`bg-black z-50 backdrop-blur ${
+          className={`bg-black z-40 backdrop-blur ${
             isChatActive ? "opacity-80" : "opacity-0 invisible"
           }`}
         />
