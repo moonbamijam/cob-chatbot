@@ -1,5 +1,12 @@
 # What's New
 
+## [3.0.1](https://github.com/moonbamijam/cob-chatbot/compare/v3.0.0...v3.0.1) (2024-10-31)
+
+
+### Bug Fixes
+
+* old user uid is not getting replaced ([523a581](https://github.com/moonbamijam/cob-chatbot/commit/523a5818dc63a6b51206380f083caf11df41d8b0))
+
 # [3.0.0](https://github.com/moonbamijam/cob-chatbot/compare/v2.6.0...v3.0.0) (2024-10-31)
 
 
