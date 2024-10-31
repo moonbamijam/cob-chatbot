@@ -20,7 +20,7 @@ import ChatSkeleton from "@features/chat/components/ChatSkeleton";
 
 // layouts
 import ItemsRenderer from "@layouts/ItemsRenderer";
-import MiniProfile from "@layouts/MiniProfile";
+import BotMiniProfile from "@layouts/BotMiniProfile";
 import Chat from "@features/chat/layouts/Chat";
 
 // types
@@ -135,7 +135,7 @@ const ChatSection = ({ botIsTyping, latestChat }: ChatSectionProps) => {
         className={`relative w-full h-full px-4 py-6 overflow-y-scroll scrollbar-thin scrollbar-track-transparent scrollbar-thumb-surface-dark dark:scrollbar-thumb-dm-surface`}
         onScroll={handleScroll}
       >
-        <MiniProfile className="mb-8" miniProfileRef={miniProfileRef} />
+        <BotMiniProfile className="mb-8" miniProfileRef={miniProfileRef} />
         {loadingMoreChats && <Loading />}
         {conversation ? (
           <div id="chats" ref={chatAreaRef}>
