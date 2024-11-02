@@ -22,7 +22,7 @@ const ChatBoxHeader = ({ toggleSettings, closeUsing }: HeaderProps) => {
   return (
     <header
       id="chat-ui-header"
-      className="w-full flex items-center justify-between px-4 py-2 sm:py-3 lg:py-4 mr-auto shadow-md"
+      className="w-full flex items-center justify-between px-4 py-2 sm:py-3 lg:py-4 mr-auto border-b-2 dark:border-b-dm-surface-dark"
     >
       <button
         onClick={toggleSettings}
