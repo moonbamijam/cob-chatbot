@@ -18,25 +18,31 @@ const CityHall = () => {
     <div className="city-hall-page-body">
       <span
         id="time-header-bg"
-        className="hidden xl:block w-full h-6 bg-black/40 absolute"
+        className="w-full h-6 bg-black/40 absolute hidden md:block"
       ></span>
-      <Section className="hidden xl:flex">
+      <Section className="hidden md:flex">
         <TimeHeader />
         <Logo />
       </Section>
-      <Section className="container hidden xl:flex bg-white">
+      <Section className=" flex bg-white">
         <Header />
-        <div id="latest-news" className="flex px-6 py-3">
-          <div className="bg-black px-3 uppercase text-[#ff0202] font-bold text-sm rounded mr-5">
+        <div
+          id="latest-news"
+          className="flex flex-col items-center md:flex-row px-6 py-3 gap-3"
+        >
+          <div className="w-max bg-black px-3 uppercase text-[#ff0202] font-bold text-sm rounded mr-5">
             latest news
           </div>
-          <div className="w-[730px] text-[#ff0202] font-bold text-sm truncate">
+          <div className="max-w-[730px] w-full text-[#ff0202] font-bold text-sm truncate">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita,
             omnis voluptatum. Deserunt modi cumque accusamus at incidunt vel.
             Praesentium beatae non deleniti tempora eos dolorem labore dolore
             quibusdam amet vero.
           </div>
-          <div id="latest-news-navigation" className="flex gap-2 ml-auto">
+          <div
+            id="latest-news-navigation"
+            className="gap-2 ml-auto hidden md:flex"
+          >
             <button className="text-[#ff0202] rounded-sm border border-red-300">
               <RiArrowLeftSLine />
             </button>
@@ -48,7 +54,7 @@ const CityHall = () => {
         <a
           href="https://bacoor.gov.ph/featured/congratulations-city-government-of-bacoor/"
           id="landing-image"
-          className="mx-auto mb-4"
+          className="mx-auto mb-4 p-2"
         >
           <img src={LandingImg} alt="" />
         </a>
@@ -57,7 +63,7 @@ const CityHall = () => {
           <ArticleRight />
         </div>
       </Section>
-      <Section className="hidden xl:flex bg-black/70">
+      <Section className="flex bg-black/70">
         <Footer />
       </Section>
     </div>

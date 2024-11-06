@@ -7,7 +7,7 @@ const ArticleLeft = () => {
   return (
     <article
       id="left"
-      className="min-w-[680px] h-full flex flex-col items-center"
+      className="max-w-[680px] w-full h-full flex flex-col items-center"
     >
       <img
         src={ArticleImageOne}
@@ -21,7 +21,7 @@ const ArticleLeft = () => {
           href="https://bacoor.gov.ph/latest-news/parent-leaders-ng-zapote-3-nagbigay-ng-liham-para-kay-mayor-strike-b-revilla/"
           className="mb-2"
         >
-          <img src={ArticleImageTwo} alt="" width={680} height={415} />
+          <img src={ArticleImageTwo} alt="" className="max-w" />
         </a>
         <p>
           Nabasa ni Mayor Strike B. Revilla ang pinadalang message sa kanya ng
@@ -35,7 +35,7 @@ const ArticleLeft = () => {
           href="https://bacoor.gov.ph/latest-news/tignan-unang-araw-ng-senakulo-ginanap-sa-san-nicolas-3/"
           className="mb-2"
         >
-          <img src={ArticleImageThree} alt="" width={680} height={415} />
+          <img src={ArticleImageThree} alt="" className="max-w" />
         </a>
         <p>
           Noong March 25, 2024, isinagawa ang unang araw ng Senakulo na ginanap
@@ -49,7 +49,7 @@ const ArticleLeft = () => {
           href="https://bacoor.gov.ph/latest-news/parent-leaders-ng-zapote-3-nagbigay-ng-liham-para-kay-mayor-strike-b-revilla/"
           className="mb-2"
         >
-          <img src={ArticleImageFour} alt="" width={680} height={415} />
+          <img src={ArticleImageFour} alt="" className="max-w" />
         </a>
         <p>
           In a remarkable display of unity and collaboration, the City of Bacoor

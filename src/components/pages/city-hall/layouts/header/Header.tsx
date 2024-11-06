@@ -2,6 +2,9 @@ import { useState } from "react";
 import { FaMagnifyingGlass } from "react-icons/fa6";
 import Anchor from "@components/pages/city-hall/layouts/header/Anchor";
 import Dropdown from "@components/pages/city-hall/layouts/header/Dropdown";
+import { CgMenuGridR } from "react-icons/cg";
+import { FaSearch } from "react-icons/fa";
+import CityHallLogo from "@static/assets/images/city-hall-logo.png";
 
 const Header = () => {
   const [isDropdownOneActive, setIsDropdownOneActive] = useState(false);
@@ -26,8 +29,8 @@ const Header = () => {
     setIsDropdownFiveActive(!isDropdownFiveActive);
   };
   return (
-    <header className="w-full bg-[#1a94d5] text-white text-sm">
-      <nav className="w-full flex items-center gap-[30px] pl-8">
+    <header className=" bg-[#1a94d5] text-white text-sm z-10">
+      <nav className="hidden md:flex w-full items-center gap-[30px] pl-8">
         <Anchor href={"https://bacoor.gov.ph/"} text={"home"} />
         <Dropdown
           text={"about bacoor"}
@@ -66,6 +69,11 @@ const Header = () => {
         >
           <FaMagnifyingGlass />
         </button>
+      </nav>
+      <nav className="flex items-center justify-between md:hidden">
+        <CgMenuGridR className="text-4xl text-[#ff0202] m-2" />
+        <img src={CityHallLogo} alt="" className="max-w-[40px]" />
+        <FaSearch className="text-2xl text-[#ff0202] m-2" />
       </nav>
     </header>
   );
