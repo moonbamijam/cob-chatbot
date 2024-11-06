@@ -23,7 +23,7 @@ const ChatHeadSwitch = () => {
   };
 
   return (
-    <SettingSwitch className="hidden xl:block">
+    <SettingSwitch className="block">
       <SettingsMiniTitle text="chat head size" />
       <Grid>
         <ItemsRenderer
