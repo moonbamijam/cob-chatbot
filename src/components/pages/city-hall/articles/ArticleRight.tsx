@@ -10,7 +10,7 @@ const ArticleRight = () => {
   return (
     <article
       id="right"
-      className="max-w-[340px] w-full border-l border-gray-300 "
+      className="md:max-w-[340px] w-full border-l border-gray-300 "
     >
       <div
         id="about-bacoor"

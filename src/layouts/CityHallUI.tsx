@@ -58,7 +58,7 @@ const CityHall = () => {
         >
           <img src={LandingImg} alt="" />
         </a>
-        <div id="article-list" className="flex mx-auto">
+        <div id="article-list" className="flex flex-col md:flex-row mx-auto">
           <ArticleLeft />
           <ArticleRight />
         </div>

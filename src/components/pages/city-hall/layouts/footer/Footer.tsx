@@ -6,7 +6,7 @@ import FbPage from "@static/assets/images/fb-page.png";
 const Footer = () => {
   return (
     <footer className="flex flex-col">
-      <div className="flex gap-12 px-10 mt-16">
+      <div className="flex flex-col md:flex-row gap-12 px-10 mt-16">
         <div id="fb-page" className="max-w-[340px] flex flex-col mb-5">
           <HighlightTitle text={"LIKE US ON FACEBOOK:"} />
           <a
