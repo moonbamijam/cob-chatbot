@@ -2,8 +2,24 @@ import { useState } from "react";
 import { FaMagnifyingGlass } from "react-icons/fa6";
 import Anchor from "@components/pages/city-hall/layouts/header/Anchor";
 import Dropdown from "@components/pages/city-hall/layouts/header/Dropdown";
+import { CgMenuGridR } from "react-icons/cg";
+import { FaSearch } from "react-icons/fa";
+import CityHallLogo from "@static/assets/images/city-hall-logo.png";
+import Button from "@/src/components/ui/Button";
 
-const Header = () => {
+type HeaderProps = {
+  isMenuActive: boolean;
+  setIsMenuActive: React.Dispatch<React.SetStateAction<boolean>>;
+  isSearchActive: boolean;
+  setIsSearchActive: React.Dispatch<React.SetStateAction<boolean>>;
+};
+
+const Header = ({
+  isMenuActive,
+  setIsMenuActive,
+  isSearchActive,
+  setIsSearchActive,
+}: HeaderProps) => {
   const [isDropdownOneActive, setIsDropdownOneActive] = useState(false);
   const [isDropdownTwoActive, setIsDropdownTwoActive] = useState(false);
   const [isDropdownThreeActive, setIsDropdownThreeActive] = useState(false);
@@ -26,8 +42,8 @@ const Header = () => {
     setIsDropdownFiveActive(!isDropdownFiveActive);
   };
   return (
-    <header className="w-full bg-[#1a94d5] text-white text-sm">
-      <nav className="w-full flex items-center gap-[30px] pl-8">
+    <header className=" bg-[#1a94d5] text-white text-sm z-10">
+      <nav className="hidden md:flex w-full items-center gap-[30px] pl-8">
         <Anchor href={"https://bacoor.gov.ph/"} text={"home"} />
         <Dropdown
           text={"about bacoor"}
@@ -40,7 +56,7 @@ const Header = () => {
           toggle={toggleDropdownTwo}
         />
         <Dropdown
-          // href={"https://bacoor.gov.ph/mayor-strike-b-revilla-feed/"}
+          href={"https://bacoor.gov.ph/mayor-strike-b-revilla-feed/"}
           text={"mayor's corner"}
           dropdownThree={isDropdownThreeActive}
           toggle={toggleDropdownThree}
@@ -66,6 +82,23 @@ const Header = () => {
         >
           <FaMagnifyingGlass />
         </button>
+      </nav>
+      <nav className="flex items-center justify-between md:hidden">
+        <Button
+          onClick={() => setIsMenuActive(!isMenuActive)}
+          className="bg-transparent dark:bg-transparent border-none m-2"
+        >
+          <CgMenuGridR className="text-4xl text-[#ff0202]" />
+        </Button>
+        <a href="/bacoor-gov">
+          <img src={CityHallLogo} alt="" className="max-w-[40px]" />
+        </a>
+        <Button
+          onClick={() => setIsSearchActive(!isSearchActive)}
+          className="bg-transparent dark:bg-transparent border-none m-2"
+        >
+          <FaSearch className="text-2xl text-[#ff0202]" />
+        </Button>
       </nav>
     </header>
   );

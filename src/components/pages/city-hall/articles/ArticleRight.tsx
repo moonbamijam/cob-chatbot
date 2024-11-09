@@ -8,7 +8,10 @@ import BacoorCityHall from "@static/assets/images/bacoor-city-hall.png";
 
 const ArticleRight = () => {
   return (
-    <article id="right" className="min-w-[340px] border-l border-gray-300 ">
+    <article
+      id="right"
+      className="md:max-w-[340px] w-full border-l border-gray-300 "
+    >
       <div
         id="about-bacoor"
         className="flex flex-col gap-5 items-center px-5 pt-5 pb-10"

@@ -10,6 +10,7 @@ type DropdownType = Partial<
     dropdownFour: boolean;
     dropdownFive: boolean;
     toggle: MouseEventHandler<HTMLDivElement>;
+    href: string;
   }>
 >;
 
@@ -21,6 +22,7 @@ const Dropdown = ({
   dropdownFour,
   dropdownFive,
   toggle,
+  href,
 }: DropdownType) => {
   return (
     <div
@@ -28,7 +30,13 @@ const Dropdown = ({
       onMouseLeave={toggle}
       className="relative flex items-center gap-1 py-5 cursor-pointer"
     >
-      <p className="capitalize font-bold">{text}</p>
+      {href ? (
+        <a href={href} className="capitalize font-bold w-full h-full">
+          {text}
+        </a>
+      ) : (
+        <p className="capitalize font-bold">{text}</p>
+      )}
       <span className="[&>svg>path]:font-semibold">
         <RiArrowDownSLine />
       </span>
