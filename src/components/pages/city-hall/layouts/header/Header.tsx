@@ -10,9 +10,16 @@ import Button from "@/src/components/ui/Button";
 type HeaderProps = {
   isMenuActive: boolean;
   setIsMenuActive: React.Dispatch<React.SetStateAction<boolean>>;
+  isSearchActive: boolean;
+  setIsSearchActive: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-const Header = ({ isMenuActive, setIsMenuActive }: HeaderProps) => {
+const Header = ({
+  isMenuActive,
+  setIsMenuActive,
+  isSearchActive,
+  setIsSearchActive,
+}: HeaderProps) => {
   const [isDropdownOneActive, setIsDropdownOneActive] = useState(false);
   const [isDropdownTwoActive, setIsDropdownTwoActive] = useState(false);
   const [isDropdownThreeActive, setIsDropdownThreeActive] = useState(false);
@@ -84,7 +91,10 @@ const Header = ({ isMenuActive, setIsMenuActive }: HeaderProps) => {
           <CgMenuGridR className="text-4xl text-[#ff0202]" />
         </Button>
         <img src={CityHallLogo} alt="" className="max-w-[40px]" />
-        <Button className="bg-transparent dark:bg-transparent border-none m-2">
+        <Button
+          onClick={() => setIsSearchActive(!isSearchActive)}
+          className="bg-transparent dark:bg-transparent border-none m-2"
+        >
           <FaSearch className="text-2xl text-[#ff0202]" />
         </Button>
       </nav>

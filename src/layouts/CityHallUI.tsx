@@ -26,6 +26,7 @@ import { IoIosArrowForward } from "react-icons/io";
 
 const CityHall = () => {
   const [isMenuActive, setIsMenuActive] = useState(false);
+  const [isSearchActive, setIsSearchActive] = useState(false);
   const [isDropdownOneActive, setIsDropdownOneActive] = useState(false);
   const [isDropdownTwoActive, setIsDropdownTwoActive] = useState(false);
   const [isDropdownThreeActive, setIsDropdownThreeActive] = useState(false);
@@ -63,6 +64,8 @@ const CityHall = () => {
           <Header
             isMenuActive={isMenuActive}
             setIsMenuActive={setIsMenuActive}
+            isSearchActive={isSearchActive}
+            setIsSearchActive={setIsSearchActive}
           />
           <div
             id="latest-news"
@@ -105,7 +108,7 @@ const CityHall = () => {
           <Footer />
         </Section>
       </div>
-      <div
+      <menu
         className={`fixed md:hidden top-0 ${isMenuActive ? "" : "-translate-x-full invisible"} w-screen h-screen bg-[#353535] text-white z-20`}
       >
         <header className="flex items-center justify-between pl-5 pr-10 pt-4">
@@ -143,7 +146,7 @@ const CityHall = () => {
           </div>
           <Button
             onClick={() => setIsMenuActive(!isMenuActive)}
-            className="bg-transparent dark:bg-transparent border-none text-5xl hover:text-[#ff0202]"
+            className="bg-transparent dark:bg-transparent border-none text-4xl hover:text-[#ff0202]"
           >
             <IoMdClose />
           </Button>
@@ -303,6 +306,31 @@ const CityHall = () => {
             />
           </NavLink>
         </nav>
+      </menu>
+      <div
+        className={`fixed md:hidden top-0 ${isSearchActive ? "" : "translate-x-full invisible"} w-screen h-screen bg-[#353535] text-white z-20`}
+        style={{ fontFamily: "Raleway" }}
+      >
+        <header className="flex items-center justify-between pl-5 pr-10 pt-4">
+          <Button
+            onClick={() => setIsSearchActive(!isSearchActive)}
+            className="bg-transparent dark:bg-transparent border-none text-4xl hover:text-[#ff0202] ml-auto"
+          >
+            <IoMdClose />
+          </Button>
+        </header>
+        <label
+          htmlFor="search"
+          className="flex flex-col gap-4 max-w-[90%] px-5 mx-auto focus-within:border-none"
+        >
+          <p className="capitalize text-center text-xs text-gray-300">search</p>
+          <input
+            type="search"
+            name="search"
+            id="search"
+            className="bg-transparent border-b-[1px] text-center text-3xl font-bold py-2 focus:outline-none"
+          />
+        </label>
       </div>
     </>
   );
