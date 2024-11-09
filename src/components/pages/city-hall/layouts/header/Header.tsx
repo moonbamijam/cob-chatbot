@@ -90,7 +90,9 @@ const Header = ({
         >
           <CgMenuGridR className="text-4xl text-[#ff0202]" />
         </Button>
-        <img src={CityHallLogo} alt="" className="max-w-[40px]" />
+        <a href="/bacoor-gov">
+          <img src={CityHallLogo} alt="" className="max-w-[40px]" />
+        </a>
         <Button
           onClick={() => setIsSearchActive(!isSearchActive)}
           className="bg-transparent dark:bg-transparent border-none m-2"

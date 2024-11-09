@@ -20,7 +20,6 @@ import { ImInstagram } from "react-icons/im";
 import { FaTwitter } from "react-icons/fa6";
 import { FaVimeoV } from "react-icons/fa";
 import { FaYoutube } from "react-icons/fa";
-import { Link } from "react-router-dom";
 import { IoMdClose } from "react-icons/io";
 import { IoIosArrowForward } from "react-icons/io";
 
@@ -113,36 +112,36 @@ const CityHall = () => {
       >
         <header className="flex items-center justify-between pl-5 pr-10 pt-4">
           <div className="flex items-center gap-1 h-[60px]">
-            <Link
-              to=""
+            <a
+              href=""
               className="bg-transparent dark:bg-transparent border-none text-sm w-[40px] h-[40px] flex items-center justify-center hover:text-[#ff0202]"
             >
               <FaFacebookF />
-            </Link>
-            <Link
-              to=""
+            </a>
+            <a
+              href=""
               className="bg-transparent dark:bg-transparent border-none text-sm w-[40px] h-[40px] flex items-center justify-center hover:text-[#ff0202]"
             >
               <ImInstagram />
-            </Link>
-            <Link
-              to=""
+            </a>
+            <a
+              href=""
               className="bg-transparent dark:bg-transparent border-none text-sm w-[40px] h-[40px] flex items-center justify-center hover:text-[#ff0202]"
             >
               <FaTwitter />
-            </Link>
-            <Link
-              to=""
+            </a>
+            <a
+              href=""
               className="bg-transparent dark:bg-transparent border-none text-sm w-[40px] h-[40px] flex items-center justify-center hover:text-[#ff0202]"
             >
               <FaVimeoV />
-            </Link>
-            <Link
-              to=""
+            </a>
+            <a
+              href=""
               className="bg-transparent dark:bg-transparent border-none text-sm w-[40px] h-[40px] flex items-center justify-center hover:text-[#ff0202]"
             >
               <FaYoutube />
-            </Link>
+            </a>
           </div>
           <Button
             onClick={() => setIsMenuActive(!isMenuActive)}
@@ -155,12 +154,12 @@ const CityHall = () => {
           className="flex flex-col py-5 pl-8 pr-10"
           style={{ fontFamily: "Raleway" }}
         >
-          <Link
-            to=""
+          <a
+            href="/bacoor-gov"
             className="capitalize text-[#ff0202] text-xl font-bold py-2"
           >
             home
-          </Link>
+          </a>
           <NavLink
             text="about bacoor"
             state={isDropdownOneActive}
@@ -193,10 +192,9 @@ const CityHall = () => {
             toggle={toggleDropdownTwo}
           >
             <DropdownNavLink
-              url="https://bacoor.gov.ph/category/tourism/"
-              text="tourism"
+              url="https://bacoor.gov.ph/announcement/citizen-charter-2024/"
+              text="citizen charter"
             />
-            <DropdownNavLink url="#" text="citizen charter" />
             <DropdownNavLink
               url="https://bacoor.gov.ph/city-officials/"
               text="city officials"
@@ -213,7 +211,10 @@ const CityHall = () => {
               url="http://bacoorcitysp.com/legislative-tracker/"
               text="city ordinances"
             />
-            <DropdownNavLink url="#" text="DILG Full Disclosure Policy" />
+            <DropdownNavLink
+              url="https://bacoor.gov.ph/dilg/dilg-full-disclosure-policy-2024/"
+              text="DILG Full Disclosure Policy"
+            />
             <DropdownNavLink
               url="https://bacoor.gov.ph/clup-2015-2024/"
               text="CLUP (2015-2024)"
@@ -231,13 +232,13 @@ const CityHall = () => {
               text="ISO (Quality Management System)"
             />
           </NavLink>
-          <Link
-            to="https://bacoor.gov.ph/mayor-strike-b-revilla-feed/"
+          <a
+            href="https://bacoor.gov.ph/mayor-strike-b-revilla-feed/"
             className="w-full flex items-center justify-between capitalize text-xl font-bold py-2"
           >
             mayor's corner
             <IoIosArrowForward />
-          </Link>
+          </a>
           <NavLink
             text="gallery"
             state={isDropdownThreeActive}
@@ -281,7 +282,6 @@ const CityHall = () => {
             state={isDropdownFiveActive}
             toggle={toggleDropdownFive}
           >
-            <DropdownNavLink url="" text="test" />
             <DropdownNavLink
               url="https://bacoor.gov.ph/bacoor-hospital-directory/"
               text="hospital directory"
@@ -369,9 +369,9 @@ type DropdownNavLinkProps = {
 
 const DropdownNavLink = ({ text, url }: DropdownNavLinkProps) => {
   return (
-    <Link to={url} className="py-2">
+    <a href={url} className="py-2">
       {text}
-    </Link>
+    </a>
   );
 };
 
