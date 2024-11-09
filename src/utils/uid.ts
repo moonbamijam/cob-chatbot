@@ -13,7 +13,6 @@ const generateUID = () => {
 };
 
 export const verifiedUID = () => {
-  console.log("called");
   const localUid = localStorage.getItem("uid");
   if (localUid == null || localUid?.length <= 15) {
     localStorage.removeItem("uid");
