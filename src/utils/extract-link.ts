@@ -1,8 +1,8 @@
 export const extractLink = (
   input: string,
 ): { link: string | null; linkMessage?: string | null; text: string } => {
-  const regex = /\[([^\]]+)\]/;
-  const match = input.match(regex);
+  const fileLinkRegex = /\[=(.*?)=]/;
+  const fileLinkMatch = input.match(fileLinkRegex);
 
   const regularLinkRegex = /{=([^{}]+)=}/;
   const regularLinkMatch = input.match(regularLinkRegex);
@@ -10,9 +10,9 @@ export const extractLink = (
   const regularLinkMessageRegex = /<([^<>]+)>/;
   const regularLinkMessageMatch = input.match(regularLinkMessageRegex);
 
-  if (match) {
-    const link = match[1];
-    const text = input.replace(regex, "").trim();
+  if (fileLinkMatch) {
+    const link = fileLinkMatch[1];
+    const text = input.replace(fileLinkRegex, "").trim();
     return { link, text };
   } else if (regularLinkMatch) {
     const link = regularLinkMatch[1];

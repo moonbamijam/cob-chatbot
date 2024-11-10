@@ -1,6 +1,6 @@
 type ItemsRendererProps<T> = {
   items: T[];
-  renderItems: (item: T, id?: number) => React.ReactNode;
+  renderItems: (item: T, id: number) => React.ReactNode;
 };
 
 const ItemsRenderer = <U,>({ items, renderItems }: ItemsRendererProps<U>) => {

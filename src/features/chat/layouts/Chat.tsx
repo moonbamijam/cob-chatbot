@@ -31,7 +31,6 @@ type ChatType = Readonly<{
 }>;
 
 type DepartmentType = {
-  id: string;
   deptName: string;
   service: string;
   steps: string;
@@ -71,9 +70,9 @@ const Chat = ({
       return (
         <ItemsRenderer
           items={currentDeptsToShow}
-          renderItems={(dept: DepartmentType) => (
+          renderItems={(dept: DepartmentType, id: number) => (
             <DepartmentBtn
-              key={dept.id}
+              key={id}
               deptName={dept.deptName}
               service={dept.service}
               steps={dept.steps}
