@@ -45,7 +45,6 @@ export type SettingsListType = {
 };
 
 export type deptsType = {
-  id: string;
   deptName: string;
   service: string;
   steps: string;

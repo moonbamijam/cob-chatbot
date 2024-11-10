@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import { IoIosArrowDown } from "react-icons/io";
 
 type DepartmentBtnProps = Readonly<{
@@ -8,39 +8,20 @@ type DepartmentBtnProps = Readonly<{
   requirements: string;
 }>;
 
-const DepartmentBtn = ({
-  deptName,
-  service,
-  steps,
-  requirements,
-}: DepartmentBtnProps) => {
+const DepartmentBtn = ({ deptName, service }: DepartmentBtnProps) => {
   const [isActive, setIsActive] = useState(false);
-
-  const deptButton = useRef<HTMLDivElement | null>(null);
 
   const toggleButton = () => {
     setIsActive(!isActive);
   };
 
-  useEffect(() => {
-    const handleDeptButton = ({ target }: MouseEvent) => {
-      if (!deptButton.current?.contains(target as Node)) {
-        setIsActive(false);
-      }
-    };
-    document.addEventListener("mousedown", handleDeptButton);
-    return () => {
-      document.removeEventListener("mousedown", handleDeptButton);
-    };
-  }, [deptButton]);
-
   return (
-    <div ref={deptButton} className="relative flex flex-col m-2">
+    <div className="relative flex flex-col m-2">
       <button
         onClick={() => toggleButton()}
         className={`px-4 py-3 text-left text-white cursor-pointer flex justify-between items-center gap-2 ${
           isActive
-            ? "rounded-b-none rounded-t-3xl bg-primary hover:bg-primary-dark dark:hover:bg-primary-dark"
+            ? "rounded-b-none rounded-t-3xl bg-primary"
             : "rounded-3xl bg-surface-dark dark:bg-dm-surface-light"
         } [&>p]:hover:text-white [&>svg>path]:hover:text-white hover:bg-primary dark:hover:bg-primary z-20`}
       >
@@ -61,9 +42,9 @@ const DepartmentBtn = ({
             <div className="text-white text-lg font-semibold mb-1">
               Here are the services we offer:
             </div>
-            <div className="font-semibold text-white">{service}</div>
+            <div className="text-white">{service}</div>
           </div>
-          <div className="mb-2">
+          {/* <div className="mb-2">
             <div className="text-white capitalize text-lg font-semibold mb-1">
               steps:
             </div>
@@ -74,7 +55,7 @@ const DepartmentBtn = ({
               requirements:
             </div>
             <p className="text-white">{requirements}</p>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>
