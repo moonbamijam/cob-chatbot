@@ -18,7 +18,13 @@
       "header": "# What's New",
       "preset": {
         "name": "angular"
-      }
+      },
+      "types": [
+        {
+          "type": "impr",
+          "section": "Improvements"
+        }
+      ]
     }
   }
 }

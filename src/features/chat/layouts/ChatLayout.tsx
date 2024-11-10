@@ -129,7 +129,7 @@ const ChatLayout = ({
                 className="rounded-full aspect-square object-cover select-none"
               />
               {(chat || link || file || fileLink || depts) && (
-                <div className="flex flex-col gap-4 max-w-[70%]">
+                <div className="max-w-[70%]">
                   {chat && (
                     <ChatBubble timestamp={timestamp}>{chat}</ChatBubble>
                   )}
