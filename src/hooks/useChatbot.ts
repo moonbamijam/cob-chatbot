@@ -27,10 +27,6 @@ import {
   query,
   orderBy,
   doc,
-  setDoc,
-  arrayUnion,
-  getDoc,
-  updateDoc,
   onSnapshot,
 } from "firebase/firestore";
 
@@ -41,6 +37,7 @@ import useSound from "@hooks/useSound";
 import { greet } from "@lib/greet";
 import { userPost } from "@lib/user";
 import {
+  processDepartmentServicesResponse,
   processFileResponse,
   processLinkResponse,
 } from "@lib/process-response";
@@ -58,7 +55,7 @@ import { extractLink } from "@utils/extract-link";
 import { extractFileNameFromUrl } from "@utils/extract-file-name-from-url";
 
 // shared
-import { chatType } from "@shared/ts/type";
+import { chatType, deptsType } from "@shared/ts/type";
 import { faqsCollectionRef, usersCollectionRef } from "@shared/collection-refs";
 
 const faqsQuery = query(faqsCollectionRef, orderBy("frequency", "desc"));
@@ -128,32 +125,27 @@ const useChatbot = () => {
       console.time(`${configuration.name} Replied in`);
       setBotIsTyping(true);
       // Temporary statements just to display departments
+      await sleep(1);
       if (deptsMessages.includes(message)) {
-        await sleep(1);
-        setBotIsTyping(false);
-        const docUserId = doc(usersCollectionRef, user.uid);
-        const verifiedDocUserId = await getDoc(docUserId);
-        const botDepartmentChat: chatType = {
-          chat: deptsAnswer,
-          chatId: uuid(),
-          role: "bot",
-          depts: depts,
-          timestamp: Timestamp.now(),
-        };
-        if (!verifiedDocUserId.exists()) {
-          // creates a user with verified uid in users collection
-          // then add this bot message to conversation array
-          await setDoc(doc(usersCollectionRef, user.uid), {
-            userData: {
-              uid: user.uid,
-              conversation: [{ botDepartmentChat }],
-            },
-          });
-        }
-        await updateDoc(doc(usersCollectionRef, user.uid), {
-          conversation: arrayUnion(botDepartmentChat),
-        });
-        playMessageNotification();
+        const deptServicesResponse = [deptsAnswer, depts];
+
+        deptServicesResponse.forEach(
+          async (response: string | deptsType, i: number) => {
+            if (i == 1) {
+              await sleep(1);
+              setBotIsTyping(true);
+              await sleep(1);
+            }
+            chatData = processDepartmentServicesResponse(
+              response,
+              deptsAnswer,
+              depts,
+            );
+            setBotIsTyping(false);
+            userPost(user.uid, chatData);
+            playMessageNotification();
+          },
+        );
         // THE ABOVE CODE BLOCKS ARE FOR HANDLING STATIC DEPARTMENT RESPONSES ONLY
         //
         //
