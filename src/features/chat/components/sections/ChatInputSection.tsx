@@ -1,8 +1,6 @@
-import { FormEvent, LegacyRef, useContext } from "react";
+import { FormEvent, LegacyRef } from "react";
 import ReactTextareaAutosize from "react-textarea-autosize";
-
-// contexts
-import { ChatbotContext } from "@contexts/ChatbotContext";
+import ServicesAndProcess from "@static/messages/services-and-process.json";
 
 // components
 import Button from "@components/ui/Button";
@@ -14,11 +12,11 @@ import ItemsRenderer from "@layouts/ItemsRenderer";
 import { IoSend } from "react-icons/io5";
 import { LuMenu } from "react-icons/lu";
 
-// types
-import { FaqType } from "@shared/ts/type";
+// shared
+import { ServicesAndProcessType } from "@/src/shared/ts/type";
 
 type ChatInputSectionProps = Readonly<{
-  faqsRef: LegacyRef<HTMLDivElement> | null;
+  questionsListRef: LegacyRef<HTMLDivElement> | null;
   sendMessageToBot: (
     event: KeyboardEvent | FormEvent<HTMLInputElement | HTMLFormElement>,
     message: string,
@@ -31,7 +29,7 @@ type ChatInputSectionProps = Readonly<{
 }>;
 
 const ChatInputSection = ({
-  faqsRef,
+  questionsListRef,
   sendMessageToBot,
   sendFaqToBot,
   userMessage,
@@ -39,50 +37,49 @@ const ChatInputSection = ({
   isFaqsMenuActive,
   setIsFaqsMenuActive,
 }: ChatInputSectionProps) => {
-  const chatbot = useContext(ChatbotContext);
-  const { faqs } = chatbot.faqs;
-
   const toggleFaqsMenu = () => {
     setIsFaqsMenuActive(!isFaqsMenuActive);
   };
 
   const renderFaqs = () => {
-    if (faqs.length)
-      return (
-        <section
-          id="suggested-questions"
-          className={`w-full max-w-[95%] absolute bottom-0 px-4 py-3 mb-[160px] rounded-3xl bg-white dark:bg-dm-surface border border-surface dark:border-dm-surface-dark z-50 ${isFaqsMenuActive ? "block opacity-100 visible" : "opacity-0 invisible"}`}
-        >
-          <div className="mb-4 font-semibold">
-            <h1 className="capitalize text-black/80 dark:text-white/80">
-              hello there!
-            </h1>
-            <p className="text-black/50 dark:text-white/50">
-              You can ask me about,
-            </p>
-          </div>
+    return (
+      <section
+        id="questions-list"
+        className={`w-full max-w-[95%] max-h-[500px] md:max-h-[400px] xl:max-h-[300px] absolute bottom-0 px-4 py-5 mb-[160px] rounded-3xl bg-white dark:bg-dm-surface border border-surface dark:border-dm-surface-dark overflow-y-scroll scrollbar-thin scrollbar-track-transparent scrollbar-thumb-surface-dark dark:scrollbar-thumb-dm-surface-dark z-50 ${isFaqsMenuActive ? "block opacity-100 visible" : "opacity-0 invisible"}`}
+      >
+        <div className="mb-4 font-semibold">
+          <h1 className="capitalize text-black/80 dark:text-white/80">
+            hello there!
+          </h1>
+          <p className="text-black/50 dark:text-white/50">
+            You can ask me about,
+          </p>
+        </div>
 
-          <div className="inline-grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-2 gap-2 ">
-            <ItemsRenderer
-              items={faqs}
-              renderItems={(faqs: FaqType, id) => (
-                <Button
-                  key={id}
-                  variant="outline"
-                  className="rounded-3xl w-full h-full border border-primary text-xs xs:text-sm text-primary dark:text-white hover:bg-primary hover:text-white active:translate-y-1"
-                  onClick={() => sendFaqToBot(faqs.questions[0])}
-                >
-                  {faqs.questions[0]}
-                </Button>
-              )}
-            />
-          </div>
-        </section>
-      );
+        <div className="inline-grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-2 gap-2 ">
+          <ItemsRenderer
+            items={ServicesAndProcess.questions}
+            renderItems={({ query }: ServicesAndProcessType, id) => (
+              <Button
+                key={id}
+                variant="outline"
+                className="rounded-3xl w-full h-full border border-primary text-xs xs:text-sm text-primary dark:text-white hover:bg-primary hover:text-white active:translate-y-1"
+                onClick={() => sendFaqToBot(query)}
+              >
+                {query}
+              </Button>
+            )}
+          />
+        </div>
+      </section>
+    );
   };
 
   return (
-    <div ref={faqsRef} className={`w-full flex justify-center items-center`}>
+    <div
+      ref={questionsListRef}
+      className={`w-full flex justify-center items-center`}
+    >
       {renderFaqs()}
       <form
         onSubmit={(
