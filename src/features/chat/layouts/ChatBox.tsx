@@ -25,7 +25,7 @@ type ChatBoxProps = {
 const ChatBox = ({ closeUsing }: ChatBoxProps) => {
   const {
     latestChat,
-    faqsRef,
+    questionsListRef,
     settings,
     isFaqsMenuActive,
     setIsFaqsMenuActive,
@@ -65,7 +65,7 @@ const ChatBox = ({ closeUsing }: ChatBoxProps) => {
           <ChatSection botIsTyping={botIsTyping} latestChat={latestChat} />
           <SuggestedChatSection sendMessageToBot={sendMessageToBot} />
           <ChatInputSection
-            faqsRef={faqsRef}
+            questionsListRef={questionsListRef}
             sendMessageToBot={sendMessageToBot}
             sendFaqToBot={sendFaqToBot}
             userMessage={userMessage}

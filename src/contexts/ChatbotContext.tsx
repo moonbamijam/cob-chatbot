@@ -1,23 +1,14 @@
 import React from "react";
-import {
-  ConfigurationType,
-  ConversationType,
-  FaqType,
-} from "@/src/shared/ts/type";
+import { ConfigurationType, ConversationType } from "@/src/shared/ts/type";
 
 type ChatbotContextType = {
   configuration: {
     configuration: ConfigurationType;
     setConfiguration: React.Dispatch<React.SetStateAction<ConfigurationType>>;
   };
-
   conversation: {
     conversation: ConversationType[];
     setConversation: React.Dispatch<React.SetStateAction<ConversationType[]>>;
-  };
-  faqs: {
-    faqs: FaqType[];
-    setFaqs: React.Dispatch<React.SetStateAction<FaqType[]>>;
   };
   error: {
     error: boolean;
