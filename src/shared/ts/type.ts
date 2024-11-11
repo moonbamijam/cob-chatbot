@@ -1,5 +1,4 @@
 import * as admin from "firebase-admin";
-import { DocumentData } from "firebase/firestore";
 import { IconType } from "react-icons";
 
 export type ConfigurationType = {
@@ -32,11 +31,9 @@ export type ConversationType = {
   depts: deptsType;
 };
 
-export type FaqType = {
-  answer: string;
-  frequency: number;
-  questions: string[];
-} & DocumentData;
+export type ServicesAndProcessType = {
+  query: string;
+};
 
 export type SettingsListType = {
   name: string;

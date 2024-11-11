@@ -21,14 +21,7 @@ import {
 } from "@features/department/constants/depts";
 
 // db
-import {
-  getDocs,
-  Timestamp,
-  query,
-  orderBy,
-  doc,
-  onSnapshot,
-} from "firebase/firestore";
+import { getDocs, Timestamp, doc, onSnapshot } from "firebase/firestore";
 
 // hooks
 import useSound from "@hooks/useSound";
@@ -56,9 +49,7 @@ import { extractFileNameFromUrl } from "@utils/extract-file-name-from-url";
 
 // shared
 import { chatType, deptsType } from "@shared/ts/type";
-import { faqsCollectionRef, usersCollectionRef } from "@shared/collection-refs";
-
-const faqsQuery = query(faqsCollectionRef, orderBy("frequency", "desc"));
+import { usersCollectionRef } from "@shared/collection-refs";
 
 const useChatbot = () => {
   const auth = useContext(AuthContext);
@@ -67,13 +58,12 @@ const useChatbot = () => {
   const chatbot = useContext(ChatbotContext);
   const { configuration } = chatbot.configuration;
   const { conversation, setConversation } = chatbot.conversation;
-  const { faqs, setFaqs } = chatbot.faqs;
   const { error, setError } = chatbot.error;
   const { isOnline } = chatbot.isOnline;
   const { playMessageNotification } = useSound();
   const latestChat = useRef<HTMLDivElement | null>(null);
   const [isAtLatestChat, setIsAtLatestChat] = useState<boolean>(false);
-  const faqsRef = useRef<HTMLDivElement | null>(null);
+  const questionsListRef = useRef<HTMLDivElement | null>(null);
   const [settings, setSettings] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(true);
   const [isFaqsMenuActive, setIsFaqsMenuActive] = useState<boolean>(false);
@@ -109,16 +99,6 @@ const useChatbot = () => {
       if (!error) setError(false);
     }
   }, [configuration.initialGreet, setConversation, setError]);
-
-  const getFaqs = useCallback(async () => {
-    try {
-      const faqs = await getDocs(faqsQuery);
-      setFaqs(faqs.docs.map((faq) => ({ ...faq.data(), id: faq.id })));
-    } catch (error) {
-      console.log(error);
-      if (!error) setError(false);
-    }
-  }, [setError, setFaqs]);
 
   const getReplyFromBot = async (message: string) => {
     try {
@@ -364,34 +344,33 @@ const useChatbot = () => {
   // for handling faqs menu on mouse down
   useEffect(() => {
     const handleFaqsMenu = ({ target }: MouseEvent) => {
-      if (!faqsRef.current?.contains(target as Node))
+      if (!questionsListRef.current?.contains(target as Node))
         setIsFaqsMenuActive(false);
     };
     document.addEventListener("mousedown", handleFaqsMenu);
     return () => {
       document.removeEventListener("mousedown", handleFaqsMenu);
     };
-  }, [faqsRef, isFaqsMenuActive]);
+  }, [questionsListRef, isFaqsMenuActive]);
 
   // for rendering messages and faqs
   // with the help of useCallback, we can decrease the call of this useEffect
   // even if the invoked functions inside is in the dependencies
   useEffect(() => {
     try {
-      console.time("Received conversation and faqs in");
+      console.time("Received conversation in");
       getConversationHistory();
-      getFaqs();
     } catch (error) {
       console.log(error);
     } finally {
-      console.timeEnd("Received conversation and faqs in");
+      console.timeEnd("Received conversation in");
     }
-  }, [getConversationHistory, getFaqs]);
+  }, [getConversationHistory]);
 
   return {
     isAtLatestChat,
     latestChat,
-    faqsRef,
+    questionsListRef,
     settings,
     setSettings,
     loading,
@@ -404,8 +383,6 @@ const useChatbot = () => {
     setBotIsTyping,
     toggleSettings,
     conversation,
-    faqs,
-    getFaqs,
     sendMessageToBot,
     sendFaqToBot,
   };
