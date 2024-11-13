@@ -28,6 +28,7 @@ type ChatType = Readonly<{
   linkMessage?: string;
   depts: deptsType;
   timestamp: string;
+  fullTimestamp: string;
 }>;
 
 type DepartmentType = {
@@ -49,6 +50,7 @@ const Chat = ({
   linkMessage,
   depts,
   timestamp,
+  fullTimestamp,
 }: ChatType) => {
   const chatbot = useContext(ChatbotContext);
   const { configuration } = chatbot.configuration;
@@ -100,12 +102,20 @@ const Chat = ({
           depts={depts}
           renderDeptsContent={renderDeptsContent}
           timestamp={timestamp}
+          fullTimestamp={fullTimestamp}
           loadMore={loadMore}
           numberOfDeptsToShow={numberOfDeptsToShow}
         />
       );
     } else if (role === "user") {
-      return <ChatLayout chatBy={role} chat={chat} timestamp={timestamp} />;
+      return (
+        <ChatLayout
+          chatBy={role}
+          chat={chat}
+          timestamp={timestamp}
+          fullTimestamp={fullTimestamp}
+        />
+      );
     }
   };
 

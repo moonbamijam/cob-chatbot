@@ -41,6 +41,7 @@ type ChatLayoutProps = Partial<
     renderDeptsContent: () => JSX.Element | undefined;
     children: React.ReactNode;
     timestamp: string;
+    fullTimestamp: string;
     fontSize: number;
     loadMore: () => void;
     numberOfDeptsToShow: number;
@@ -61,12 +62,15 @@ const ChatLayout = ({
   depts,
   renderDeptsContent,
   timestamp,
+  fullTimestamp,
   loadMore,
   numberOfDeptsToShow,
 }: ChatLayoutProps) => {
   const [imagePreview, setImagePreview] = useState(false);
   const imagePreviewRef = useRef<HTMLImageElement>(null);
   const [isFileLoaded, setIsFileLoaded] = useState<boolean>(false);
+  const [isFullTimestampShowing, setIsFullTimestampShowing] =
+    useState<boolean>(false);
 
   const toggleImagePreview = () => {
     setImagePreview(!imagePreview);
@@ -119,7 +123,7 @@ const ChatLayout = ({
     switch (chatBy) {
       case "bot":
         return (
-          <div className={`${chatBy} message`}>
+          <div className={`${chatBy} chat flex flex-col`}>
             <div className="w-full h-max relative flex items-center gap-2 mt-3 mb-2">
               <img
                 src={img}
@@ -131,13 +135,24 @@ const ChatLayout = ({
               {(chat || link || file || fileLink || depts) && (
                 <div className="max-w-[70%]">
                   {chat && (
-                    <ChatBubble timestamp={timestamp}>{chat}</ChatBubble>
+                    <ChatBubble
+                      timestamp={timestamp}
+                      toggleFullTimestamp={() =>
+                        setIsFullTimestampShowing(!isFullTimestampShowing)
+                      }
+                      className={`${isFullTimestampShowing ? "bg-surface-dark/50 dark:bg-dm-surface-light" : "bg-surface dark:bg-dm-surface hover:bg-surface-dark/50 hover:dark:bg-dm-surface-light"} cursor-pointer`}
+                    >
+                      <span className="cursor-text">{chat}</span>
+                    </ChatBubble>
                   )}
                   {link && (
                     <Link to={link} target="_blank" className="group">
                       <ChatBubble
                         timestamp={timestamp}
                         className="group-hover:bg-surface-dark/50 dark:group-hover:bg-dm-surface-light/70"
+                        toggleFullTimestamp={() =>
+                          setIsFullTimestampShowing(!isFullTimestampShowing)
+                        }
                       >
                         <div className="flex items-center gap-2 font-semibold text-primary dark:text-secondary">
                           <FiExternalLink className="text-xl" />
@@ -151,6 +166,9 @@ const ChatLayout = ({
                       <ChatBubble
                         timestamp={timestamp}
                         className="group-hover:bg-surface-dark/50 dark:group-hover:bg-dm-surface-light/70"
+                        toggleFullTimestamp={() =>
+                          setIsFullTimestampShowing(!isFullTimestampShowing)
+                        }
                       >
                         <div className="flex items-center gap-2 font-semibold text-primary dark:text-secondary">
                           <span className="text-xl">{renderFileType()}</span>
@@ -160,7 +178,12 @@ const ChatLayout = ({
                     </Link>
                   )}
                   {depts && renderDeptsContent && numberOfDeptsToShow && (
-                    <ChatBubble timestamp={timestamp}>
+                    <ChatBubble
+                      timestamp={timestamp}
+                      toggleFullTimestamp={() =>
+                        setIsFullTimestampShowing(!isFullTimestampShowing)
+                      }
+                    >
                       {renderDeptsContent()}
                       <button
                         onClick={loadMore}
@@ -202,20 +225,33 @@ const ChatLayout = ({
                 </video>
               )}
             </div>
+            <span
+              className={`${isFullTimestampShowing ? "h-max mt-1" : "h-0 opacity-0"} text-xs ml-12 text-black/50 dark:text-white/50`}
+            >
+              {fullTimestamp}
+            </span>
           </div>
         );
       case "user":
         return (
-          <div className={`${chatBy} message`}>
+          <div className={`${chatBy} chat flex flex-col items-end`}>
             <div className="w-full flex justify-end mt-3 mb-2">
               <ChatBubble
                 timestamp={timestamp}
                 role="user"
-                className="max-w-[80%] bg-primary text-white"
+                className={`max-w-[70%] ${isFullTimestampShowing ? "bg-primary-dark dark:bg-primary-light" : "bg-primary hover:bg-primary-dark dark:hover:bg-primary-light"} cursor-pointer text-white`}
+                toggleFullTimestamp={() =>
+                  setIsFullTimestampShowing(!isFullTimestampShowing)
+                }
               >
-                {chat}
+                <span className="cursor-text">{chat}</span>
               </ChatBubble>
             </div>
+            <span
+              className={`${isFullTimestampShowing ? "h-max mt-1" : "h-0 opacity-0"} text-xs mr-1 text-black/50 dark:text-white/50`}
+            >
+              {fullTimestamp}
+            </span>
           </div>
         );
     }
