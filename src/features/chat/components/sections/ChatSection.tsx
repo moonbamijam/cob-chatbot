@@ -9,7 +9,7 @@ import useScrollIntoView from "@hooks/useScrollIntoView";
 // utils
 import { sleep } from "@utils/sleep";
 import { scrollInto } from "@utils/scroll-into";
-import { timestamp } from "@utils/timestamp";
+import { fullTimestamp, timestamp } from "@utils/timestamp";
 
 // components
 import Error from "@components/Error";
@@ -113,6 +113,9 @@ const ChatSection = ({ botIsTyping, latestChat }: ChatSectionProps) => {
                 linkMessage={convo.linkMessage}
                 depts={convo.depts}
                 timestamp={timestamp.format(
+                  new Date(convo.timestamp.seconds * 1000),
+                )}
+                fullTimestamp={fullTimestamp.format(
                   new Date(convo.timestamp.seconds * 1000),
                 )}
               />

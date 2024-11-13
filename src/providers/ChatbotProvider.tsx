@@ -5,7 +5,7 @@ import { collection, doc, onSnapshot } from "firebase/firestore";
 import { ChatbotContext } from "@contexts/ChatbotContext";
 
 // types
-import { ConfigurationType, ConversationType, FaqType } from "@shared/ts/type";
+import { ConfigurationType, ConversationType } from "@shared/ts/type";
 
 // constants
 import { db } from "@constants/firebase/config";
@@ -21,7 +21,6 @@ const ChatbotProvider = ({ children }: { children: React.ReactNode }) => {
     slogan: chatbotConfig.slogan,
   });
   const [conversation, setConversation] = useState<ConversationType[]>([]);
-  const [faqs, setFaqs] = useState<FaqType[]>([]);
   const [isOnline, setOnline] = useState<boolean>(true);
   const [error, setError] = useState<boolean>(false);
 
@@ -63,11 +62,10 @@ const ChatbotProvider = ({ children }: { children: React.ReactNode }) => {
     return {
       configuration: { configuration, setConfiguration },
       conversation: { conversation, setConversation },
-      faqs: { faqs, setFaqs },
       error: { error, setError },
       isOnline: { isOnline, setOnline },
     };
-  }, [configuration, conversation, faqs, error, isOnline]);
+  }, [configuration, conversation, error, isOnline]);
 
   return (
     <ChatbotContext.Provider value={chatbot}>
