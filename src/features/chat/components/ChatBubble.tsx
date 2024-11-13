@@ -7,6 +7,7 @@ type ChatBubbleProps = Partial<
     className: string;
     role: string;
     timestamp: string;
+    toggleFullTimestamp: () => void;
   }>
 >;
 
@@ -15,6 +16,7 @@ const ChatBubble = ({
   className,
   role,
   timestamp,
+  toggleFullTimestamp,
 }: ChatBubbleProps) => {
   const font = useContext(FontContext);
   const { fontSize } = font.size;
@@ -25,9 +27,10 @@ const ChatBubble = ({
         return (
           <div
             className={`rounded-3xl shadow px-4 py-3 space-y-2 break-words ${className}`}
+            onClick={toggleFullTimestamp}
           >
             <div
-              id="message"
+              id="chat"
               style={{ fontSize: fontSize }}
               className="relative dark:text-white whitespace-pre-line"
             >
@@ -44,10 +47,11 @@ const ChatBubble = ({
       default:
         return (
           <div
-            className={`rounded-3xl shadow bg-surface dark:bg-dm-surface px-4 py-3 space-y-2 break-words ${className}`}
+            className={`rounded-3xl shadow px-4 py-3 space-y-2 break-words ${className}`}
+            onClick={toggleFullTimestamp}
           >
             <div
-              id="message"
+              id="chat"
               style={{ fontSize: fontSize }}
               className="relative dark:text-white whitespace-pre-line"
             >
