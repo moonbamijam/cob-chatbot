@@ -149,10 +149,7 @@ const ChatLayout = ({
                     <Link to={link} target="_blank" className="group">
                       <ChatBubble
                         timestamp={timestamp}
-                        className="group-hover:bg-surface-dark/50 dark:group-hover:bg-dm-surface-light/70"
-                        toggleFullTimestamp={() =>
-                          setIsFullTimestampShowing(!isFullTimestampShowing)
-                        }
+                        className="bg-surface dark:bg-dm-surface hover:bg-surface-dark/50 hover:dark:bg-dm-surface-light cursor-pointer"
                       >
                         <div className="flex items-center gap-2 font-semibold text-primary dark:text-secondary">
                           <FiExternalLink className="text-xl" />
@@ -165,10 +162,7 @@ const ChatLayout = ({
                     <Link to={fileLink} target="_blank" className="group">
                       <ChatBubble
                         timestamp={timestamp}
-                        className="group-hover:bg-surface-dark/50 dark:group-hover:bg-dm-surface-light/70"
-                        toggleFullTimestamp={() =>
-                          setIsFullTimestampShowing(!isFullTimestampShowing)
-                        }
+                        className="bg-surface dark:bg-dm-surface hover:bg-surface-dark/50 hover:dark:bg-dm-surface-light cursor-pointer"
                       >
                         <div className="flex items-center gap-2 font-semibold text-primary dark:text-secondary">
                           <span className="text-xl">{renderFileType()}</span>
@@ -183,6 +177,7 @@ const ChatLayout = ({
                       toggleFullTimestamp={() =>
                         setIsFullTimestampShowing(!isFullTimestampShowing)
                       }
+                      className={`${isFullTimestampShowing ? "bg-surface-dark/50 dark:bg-dm-surface-light" : "bg-surface dark:bg-dm-surface hover:bg-surface-dark/50 hover:dark:bg-dm-surface-light"} cursor-pointer`}
                     >
                       {renderDeptsContent()}
                       <button
