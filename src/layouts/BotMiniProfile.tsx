@@ -3,6 +3,9 @@ import { LegacyRef, useContext } from "react";
 // context
 import { ChatbotContext } from "@contexts/ChatbotContext";
 
+// features
+import AverageRating from "@features/ratings/AverageRating";
+
 // components
 import Image from "@components/ui/Image";
 
@@ -42,6 +45,7 @@ const BotMiniProfile = ({ className, miniProfileRef }: BotMiniProfileProps) => {
             {configuration.slogan}
           </h3>
         </div>
+        <AverageRating size="four" numberSize="xl" />
       </div>
       <hr className="w-full border-surface-dark dark:border-dm-surface-light" />
     </section>
