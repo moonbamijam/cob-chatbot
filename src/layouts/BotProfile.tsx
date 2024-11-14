@@ -8,9 +8,11 @@ import { ChatbotContext } from "@contexts/ChatbotContext";
 import Button from "@components/ui/Button";
 import Image from "@components/ui/Image";
 import DevIcon from "@components/icons/DevIcon";
+import AverageRating from "@features/ratings/AverageRating";
 
 // constants
 import { chatbotConfig } from "@constants/bot/chatbot-config";
+import { UserContext } from "@contexts/UserContext";
 
 type BotProfileProps = Partial<
   Readonly<{
@@ -21,11 +23,17 @@ type BotProfileProps = Partial<
 const BotProfile = ({ className }: BotProfileProps) => {
   const chatbot = useContext(ChatbotContext);
   const { configuration } = chatbot.configuration;
+  const user = useContext(UserContext);
+  const { averageRating } = user.rating;
+
   return (
     <section
       id="bot-profile"
       className={`flex flex-col items-center pt-10 ${className}`}
     >
+      {averageRating != 0 && (
+        <AverageRating size="five" numberSize="xxl" className="mb-4" />
+      )}
       <Image
         src={configuration.icon}
         alt="Chatbot Icon"
