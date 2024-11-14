@@ -26,7 +26,6 @@ const UserProvider = ({ children }: { children: React.ReactNode }) => {
   const uid = verifiedUID();
   const chatbot = useContext(ChatbotContext);
   const { conversation } = chatbot.conversation;
-
   const [rating, setRating] = useState<number>(getLocalRating);
   const [averageRating, setAverageRating] = useState<number>(Number);
   const [hasRated, setHasRated] = useState<boolean>(true);
@@ -50,7 +49,7 @@ const UserProvider = ({ children }: { children: React.ReactNode }) => {
   };
 
   const postRating = async () => {
-    if (rating) {
+    if (rating != 0) {
       await updateDoc(doc(usersCollectionRef, uid), {
         rating: rating,
       });
