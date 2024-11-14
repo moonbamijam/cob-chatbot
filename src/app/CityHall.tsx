@@ -16,6 +16,7 @@ import CityHallUI from "@layouts/CityHallUI";
 
 // components
 import ScreenDim from "@components/ScreenDim";
+import RatingBox from "@features/ratings/RatingBox";
 
 const CityHall = () => {
   const chat = useContext(ChatContext);
@@ -44,6 +45,7 @@ const CityHall = () => {
             isChatActive ? "opacity-80" : "opacity-0 invisible"
           }`}
         />
+        {isChatActive && <RatingBox />}
       </main>
     </>
   );

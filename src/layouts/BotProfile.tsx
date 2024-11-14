@@ -8,9 +8,12 @@ import { ChatbotContext } from "@contexts/ChatbotContext";
 import Button from "@components/ui/Button";
 import Image from "@components/ui/Image";
 import DevIcon from "@components/icons/DevIcon";
+import AverageRating from "@features/ratings/AverageRating";
 
 // constants
 import { chatbotConfig } from "@constants/bot/chatbot-config";
+import { UserContext } from "@contexts/UserContext";
+import Rating from "../features/ratings/Rating";
 
 type BotProfileProps = Partial<
   Readonly<{
@@ -21,11 +24,17 @@ type BotProfileProps = Partial<
 const BotProfile = ({ className }: BotProfileProps) => {
   const chatbot = useContext(ChatbotContext);
   const { configuration } = chatbot.configuration;
+  const user = useContext(UserContext);
+  const { averageRating, rating } = user.rating;
+
   return (
     <section
       id="bot-profile"
       className={`flex flex-col items-center pt-10 ${className}`}
     >
+      {averageRating != 0 && (
+        <AverageRating size="five" numberSize="xxl" className="mb-4" />
+      )}
       <Image
         src={configuration.icon}
         alt="Chatbot Icon"
@@ -41,7 +50,7 @@ const BotProfile = ({ className }: BotProfileProps) => {
           <h1 className="max-w-full font-bold text-2xl sm:text-4xl  dark:text-white capitalize line-clamp-5">
             {configuration.name}
           </h1>
-          <h3 className="max-w-full dark:text-white sm:text-lg  line-clamp-5">
+          <h3 className="max-w-full dark:text-white sm:text-lg line-clamp-5">
             {configuration.slogan}
           </h3>
         </div>
@@ -49,6 +58,15 @@ const BotProfile = ({ className }: BotProfileProps) => {
           <p className="max-w-[600px] text-left text-black/80 dark:text-white/80 text-sm whitespace-pre-line">
             {chatbotConfig.about}
           </p>
+          <div className="flex flex-col items-center gap-2">
+            <h2 className="max-w-[200px] md:max-w-[300px] lg:max-w-[400px]">
+              {rating != 0
+                ? `Your rating to ${configuration.name}`
+                : `Enjoying talking to ${configuration.name} so far? Please give us a
+            rating!`}
+            </h2>
+            <Rating />
+          </div>
           <section className="flex flex-col items-center gap-8 text-black/90 dark:text-white/90">
             <h2 className="font-semibold text-xl">Meet my creators!</h2>
             <div className="inline-grid grid-cols-2 gap-4">

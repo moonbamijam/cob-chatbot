@@ -17,6 +17,7 @@ export const verifiedUID = () => {
   if (localUid == null || localUid?.length <= 15) {
     localStorage.removeItem("uid");
     uid = generateUID();
+    localStorage.removeItem("rating");
   } else if (localUid) uid = localUid || uid;
 
   return uid;

@@ -10,6 +10,7 @@ const ChatProvider = ({ children }: { children: React.ReactNode }) => {
   const [isChatActive, setIsChatActive] = useState(false);
   const [chatHeadSize, setChatHeadSize] = useState(getInitialStates);
   const chatHead = useRef<HTMLImageElement | null>(null);
+  const ratingBoxRef = useRef<HTMLDivElement | null>(null);
 
   const changeChatHeadSize = (value: number) => {
     switch (value) {
@@ -32,12 +33,16 @@ const ChatProvider = ({ children }: { children: React.ReactNode }) => {
 
   // handles the mouse down for chat
   useEffect(() => {
-    const handleChatHead = ({ target }: MouseEvent) => {
-      if (!chatHead.current?.contains(target as Node)) setIsChatActive(false);
+    const handleMouseDown = ({ target }: MouseEvent) => {
+      if (
+        !chatHead.current?.contains(target as Node) &&
+        !ratingBoxRef.current?.contains(target as Node)
+      )
+        setIsChatActive(false);
     };
-    document.addEventListener("mousedown", handleChatHead);
+    document.addEventListener("mousedown", handleMouseDown);
     return () => {
-      document.removeEventListener("mousedown", handleChatHead);
+      document.removeEventListener("mousedown", handleMouseDown);
     };
   }, [chatHead]);
 
@@ -47,6 +52,7 @@ const ChatProvider = ({ children }: { children: React.ReactNode }) => {
       chatHeadSize: { chatHeadSize, setChatHeadSize },
       changeChatHeadSize: changeChatHeadSize,
       icon: chatHead,
+      ratingBoxRef: ratingBoxRef,
     };
   }, [isChatActive, setIsChatActive, chatHeadSize, setChatHeadSize]);
 

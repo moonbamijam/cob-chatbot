@@ -11,6 +11,7 @@ type ChatContextType = {
   };
   changeChatHeadSize: (value: number) => void;
   icon: MutableRefObject<HTMLImageElement | null>;
+  ratingBoxRef: MutableRefObject<HTMLDivElement | null>;
 };
 
 export const ChatContext = React.createContext({} as ChatContextType);

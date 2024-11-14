@@ -3,8 +3,12 @@ import { LegacyRef, useContext } from "react";
 // context
 import { ChatbotContext } from "@contexts/ChatbotContext";
 
+// features
+import AverageRating from "@features/ratings/AverageRating";
+
 // components
 import Image from "@components/ui/Image";
+import { UserContext } from "../contexts/UserContext";
 
 type BotMiniProfileProps = Partial<
   Readonly<{
@@ -16,6 +20,8 @@ type BotMiniProfileProps = Partial<
 const BotMiniProfile = ({ className, miniProfileRef }: BotMiniProfileProps) => {
   const chatbot = useContext(ChatbotContext);
   const { configuration } = chatbot.configuration;
+  const user = useContext(UserContext);
+  const { averageRating } = user.rating;
 
   return (
     <section
@@ -42,6 +48,7 @@ const BotMiniProfile = ({ className, miniProfileRef }: BotMiniProfileProps) => {
             {configuration.slogan}
           </h3>
         </div>
+        {averageRating != 0 && <AverageRating size="four" numberSize="xl" />}
       </div>
       <hr className="w-full border-surface-dark dark:border-dm-surface-light" />
     </section>
