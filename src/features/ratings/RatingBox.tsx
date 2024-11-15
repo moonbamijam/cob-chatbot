@@ -39,7 +39,7 @@ const RatingBox = ({ className }: RatingBoxProps) => {
   };
 
   useEffect(() => {
-    if (conversation.length >= 5) handleRatingBox();
+    if (conversation.length >= 15) handleRatingBox();
   }, [conversation.length, rating]);
 
   return (
