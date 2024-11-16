@@ -1,5 +1,26 @@
 # What's New
 
+# [3.1.0](https://github.com/moonbamijam/cob-chatbot/compare/v3.0.1...v3.1.0) (2024-11-16)
+
+
+### Bug Fixes
+
+* delayed hide of chatbox header when closing ([8e9c38c](https://github.com/moonbamijam/cob-chatbot/commit/8e9c38c6f5fc341fe927aca9e40acbc2249dca5d))
+* departments response ui ([#169](https://github.com/moonbamijam/cob-chatbot/issues/169)) ([b1c0077](https://github.com/moonbamijam/cob-chatbot/commit/b1c007713ca71e8f13f7fc02386530a2e839d99d))
+* files are not displaying ([#159](https://github.com/moonbamijam/cob-chatbot/issues/159)) ([27dc7b8](https://github.com/moonbamijam/cob-chatbot/commit/27dc7b8be670c0f41fff60e9ca8cab3b70de579c))
+* incorrect use of for in label in user input field ([#168](https://github.com/moonbamijam/cob-chatbot/issues/168)) ([a4ca14b](https://github.com/moonbamijam/cob-chatbot/commit/a4ca14b97e2e03b667a64a6077b3d1b19f52c8ad))
+* manifest icons not found ([0983af0](https://github.com/moonbamijam/cob-chatbot/commit/0983af0c533b17feb4762c73baa33e6a7c94a293))
+
+
+### Features
+
+* add full timestamp to chats ([#162](https://github.com/moonbamijam/cob-chatbot/issues/162)) ([348a951](https://github.com/moonbamijam/cob-chatbot/commit/348a951ea463fc272950f1ab947cfb5b3e0458e1))
+* add user rating ([#154](https://github.com/moonbamijam/cob-chatbot/issues/154)) ([898f647](https://github.com/moonbamijam/cob-chatbot/commit/898f6472b1294e581a2e6aba23607eaa4534f5fd))
+* hide bot name to header on small screens ([68e3b33](https://github.com/moonbamijam/cob-chatbot/commit/68e3b33efb29bd6c2849f1922e530f81907aa495))
+* replace faqs to static services and process questions ([#161](https://github.com/moonbamijam/cob-chatbot/issues/161)) ([ed87c7e](https://github.com/moonbamijam/cob-chatbot/commit/ed87c7e84c450b36d3edf2df4b6db8a98f7f5464))
+* responsive city hall page on small screen ([#157](https://github.com/moonbamijam/cob-chatbot/issues/157)) ([c7a5532](https://github.com/moonbamijam/cob-chatbot/commit/c7a553205dfdce89d3456e269f892af35edfdc7d)), closes [#156](https://github.com/moonbamijam/cob-chatbot/issues/156)
+* slight ui adjustment to chat box header ([db5a52f](https://github.com/moonbamijam/cob-chatbot/commit/db5a52fc9c5b06ac19c59567f247e6fb0b56cba1))
+
 ## [3.0.1](https://github.com/moonbamijam/cob-chatbot/compare/v3.0.0...v3.0.1) (2024-10-31)
 
 
