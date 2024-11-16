@@ -19,16 +19,14 @@ const DepartmentBtn = ({ deptName, service }: DepartmentBtnProps) => {
     <div className="relative flex flex-col m-2">
       <button
         onClick={() => toggleButton()}
-        className={`px-4 py-3 text-left text-white cursor-pointer flex justify-between items-center gap-2 ${
+        className={`px-4 py-3 text-left cursor-pointer flex justify-between items-center gap-2 hover:bg-primary dark:hover:bg-primary z-20 ${
           isActive
-            ? "rounded-b-none rounded-t-3xl bg-primary"
-            : "rounded-3xl bg-surface-dark dark:bg-dm-surface-light"
-        } [&>p]:hover:text-white [&>svg>path]:hover:text-white hover:bg-primary dark:hover:bg-primary z-20`}
+            ? "rounded-b-none rounded-t-3xl bg-primary [&>p]:text-white [&>svg>path]:text-white"
+            : "rounded-3xl bg-surface-dark/60 dark:bg-dm-surface-light [&>p]:hover:text-white [&>svg>path]:hover:text-white"
+        }`}
       >
-        <p className={`max-w-[250px] text-white`}>{deptName}</p>
-        <IoIosArrowDown
-          className={`${isActive ? "rotate-180 text-white" : "text-gray-400"}`}
-        />
+        <p className="max-w-[200px]">{deptName}</p>
+        <IoIosArrowDown className={`${isActive ? "rotate-180 " : ""}`} />
       </button>
       <div
         className={`w-full rounded-b-3xl z-10 overflow-hidden ${

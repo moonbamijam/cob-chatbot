@@ -177,7 +177,7 @@ const ChatLayout = ({
                       toggleFullTimestamp={() =>
                         setIsFullTimestampShowing(!isFullTimestampShowing)
                       }
-                      className={`${isFullTimestampShowing ? "bg-surface-dark/50 dark:bg-dm-surface-light" : "bg-surface dark:bg-dm-surface hover:bg-surface-dark/50 hover:dark:bg-dm-surface-light"} cursor-pointer`}
+                      className="bg-surface-dark/50 dark:bg-dm-surface cursor-pointer"
                     >
                       {renderDeptsContent()}
                       <button
