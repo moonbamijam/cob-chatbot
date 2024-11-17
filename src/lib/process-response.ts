@@ -81,30 +81,19 @@ export const processFileResponse = (
 };
 
 export const processLinkResponse = (
-  response: string,
   intent: string,
-  text: string,
+  link: string,
   linkMessage?: string,
 ): chatType => {
-  if (response === text) {
-    chatData = {
-      intent: intent,
-      chat: response,
-      chatId: uuid(),
-      role: "bot",
-      timestamp: Timestamp.now(),
-    };
-  } else {
-    chatData = {
-      intent: intent,
-      chat: null,
-      chatId: uuid(),
-      link: response,
-      linkMessage: linkMessage ? linkMessage : "Click here",
-      role: "bot",
-      timestamp: Timestamp.now(),
-    };
-  }
+  chatData = {
+    intent: intent,
+    chat: null,
+    chatId: uuid(),
+    link: link,
+    linkMessage: linkMessage ? linkMessage : "Click here",
+    role: "bot",
+    timestamp: Timestamp.now(),
+  };
   return chatData;
 };
 

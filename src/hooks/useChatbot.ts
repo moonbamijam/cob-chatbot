@@ -177,29 +177,20 @@ const useChatbot = () => {
           });
           return;
         } else if (hasLinkSymbol(answer)) {
-          const { link, linkMessage, text } = extractLink(answer);
-          const withLinkResponse: string[] = link ? [text, link] : [];
-
-          withLinkResponse.forEach(async (response: string, i: number) => {
-            if (i == 1) {
-              await sleep(1);
-              setBotIsTyping(true);
-              await sleep(1);
-            }
-            chatData = linkMessage
-              ? processLinkResponse(response, intent, text, linkMessage)
-              : processLinkResponse(response, intent, text);
-            setBotIsTyping(false);
-            userPost(user.uid, chatData);
-            setIsFaqsMenuActive(false);
-            playMessageNotification();
-          });
+          const { link, linkMessage } = extractLink(answer);
+          chatData = linkMessage
+            ? processLinkResponse(intent, link, linkMessage)
+            : processLinkResponse(intent, link);
+          setBotIsTyping(false);
+          userPost(user.uid, chatData);
+          setIsFaqsMenuActive(false);
+          playMessageNotification();
         } else if (hasFileSymbol(answer)) {
           const { text, link } = extractLink(answer);
           const fileName = link ? extractFileNameFromUrl(link) : "";
           const fileExtension = fileName?.split(".")[1];
 
-          const withFileResponse: string[] = link ? [text, link] : [];
+          const withFileResponse: string[] = text && link ? [text, link] : [];
 
           withFileResponse.forEach(async (response: string, i: number) => {
             if (i == 1) {
@@ -207,15 +198,16 @@ const useChatbot = () => {
               setBotIsTyping(true);
               await sleep(1);
             }
-            chatData = fileExtension
-              ? processFileResponse(
-                  fileExtension,
-                  fileName,
-                  response,
-                  intent,
-                  text,
-                )
-              : chatData;
+            chatData =
+              fileExtension && text
+                ? processFileResponse(
+                    fileExtension,
+                    fileName,
+                    response,
+                    intent,
+                    text,
+                  )
+                : chatData;
             setBotIsTyping(false);
             userPost(user.uid, chatData);
             setIsFaqsMenuActive(false);

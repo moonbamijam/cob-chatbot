@@ -110,7 +110,6 @@ const ChatSection = ({ botIsTyping, latestChat }: ChatSectionProps) => {
                 fileLink={convo.fileLink}
                 fileType={convo.fileType}
                 link={convo.link}
-                linkMessage={convo.linkMessage}
                 depts={convo.depts}
                 timestamp={timestamp.format(
                   new Date(convo.timestamp.seconds * 1000),
