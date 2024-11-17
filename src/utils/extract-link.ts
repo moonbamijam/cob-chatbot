@@ -1,6 +1,6 @@
 export const extractLink = (
   input: string,
-): { link: string | null; linkMessage?: string | null; text: string } => {
+): { link: string; linkMessage?: string | null; text?: string | null } => {
   const fileLinkRegex = /\[=(.*?)=]/;
   const fileLinkMatch = input.match(fileLinkRegex);
 
@@ -14,20 +14,26 @@ export const extractLink = (
     const link = fileLinkMatch[1];
     const text = input.replace(fileLinkRegex, "").trim();
     return { link, text };
+  } else if (regularLinkMatch && regularLinkMessageMatch) {
+    const url = regularLinkMatch[1];
+    const linkMessage = regularLinkMessageMatch[1];
+    const link = input
+      .replace(
+        regularLinkRegex,
+        `<a href="${url}" class="font-semibold text-primary dark:text-secondary hover:underline" target="_blank">${linkMessage}</a>`,
+      )
+      .replace(regularLinkMessageRegex, "")
+      .trim();
+    return { link };
   } else if (regularLinkMatch) {
-    const link = regularLinkMatch[1];
-    if (regularLinkMessageMatch) {
-      const linkMessage = regularLinkMessageMatch[1];
-      const text = input
-        .replace(regularLinkRegex, "")
-        .replace(regularLinkMessageRegex, "")
-        .trim();
-      return { link, linkMessage, text };
-    } else {
-      const text = input.replace(regularLinkRegex, "").trim();
-      return { link, text };
-    }
+    const url = regularLinkMatch[1];
+    const link = input
+      .replace(
+        regularLinkRegex,
+        `<a href="${url}" class="font-semibold text-primary dark:text-secondary hover:underline" target="_blank">Click here</a>`,
+      )
+      .trim();
+    return { link };
   }
-  // input.replace(regularLinkMessageRegex, "").trim()
-  return { link: null, linkMessage: null, text: input.trim() };
+  return { link: "", linkMessage: null, text: input.trim() };
 };

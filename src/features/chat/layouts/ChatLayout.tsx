@@ -12,7 +12,6 @@ import { deptsType } from "@shared/ts/type";
 // icons
 import { CgClose } from "react-icons/cg";
 import { BsArrowDownCircleFill } from "react-icons/bs";
-import { FiExternalLink } from "react-icons/fi";
 import { SiGoogledocs } from "react-icons/si";
 import { BsFiletypeDoc } from "react-icons/bs";
 import { BsFiletypeDocx } from "react-icons/bs";
@@ -58,7 +57,6 @@ const ChatLayout = ({
   fileLink,
   fileType,
   link,
-  linkMessage,
   depts,
   renderDeptsContent,
   timestamp,
@@ -146,17 +144,18 @@ const ChatLayout = ({
                     </ChatBubble>
                   )}
                   {link && (
-                    <Link to={link} target="_blank" className="group">
-                      <ChatBubble
-                        timestamp={timestamp}
-                        className="bg-surface dark:bg-dm-surface hover:bg-surface-dark/50 hover:dark:bg-dm-surface-light cursor-pointer"
-                      >
-                        <div className="flex items-center gap-2 font-semibold text-primary dark:text-secondary">
-                          <FiExternalLink className="text-xl" />
-                          {linkMessage}
-                        </div>
-                      </ChatBubble>
-                    </Link>
+                    <ChatBubble
+                      timestamp={timestamp}
+                      toggleFullTimestamp={() =>
+                        setIsFullTimestampShowing(!isFullTimestampShowing)
+                      }
+                      className={`${isFullTimestampShowing ? "bg-surface-dark/50 dark:bg-dm-surface-light" : "bg-surface dark:bg-dm-surface hover:bg-surface-dark/50 hover:dark:bg-dm-surface-light"} cursor-pointer`}
+                    >
+                      <div
+                        className="cursor-text"
+                        dangerouslySetInnerHTML={{ __html: link }}
+                      />
+                    </ChatBubble>
                   )}
                   {file && fileLink && (
                     <Link to={fileLink} target="_blank" className="group">

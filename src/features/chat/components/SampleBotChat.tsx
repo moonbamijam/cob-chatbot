@@ -27,22 +27,14 @@ const SampleBotChat = ({ style, chat, linkedChat }: SampleBotChatProps) => {
         />
         {chat && (
           <div className="max-w-[80%] rounded-3xl shadow bg-surface dark:bg-dm-surface px-4 py-3 space-y-2 break-words">
-            <p id="chat" className="dark:text-white">
+            <div id="chat" className="dark:text-white">
               {chat}
-            </p>
-            <div
-              id="timeSent"
-              className="w-full text-gray-500 dark:text-gray-300 text-xs text-right opacity-80"
-            >
-              {new Date().toLocaleTimeString().replace(/(.*)\D\d+/, "$1")}
+              {linkedChat && (
+                <div className="text-primary dark:text-secondary font-semibold hover:underline">
+                  {linkedChat}
+                </div>
+              )}
             </div>
-          </div>
-        )}
-        {linkedChat && (
-          <div className="max-w-[80%] rounded-3xl shadow bg-surface dark:bg-dm-surface px-4 py-3 space-y-2 break-words cursor-pointer group">
-            <button className="text-left text-primary dark:text-secondary font-semibold group-hover:underline">
-              {linkedChat}
-            </button>
             <div
               id="timeSent"
               className="w-full text-gray-500 dark:text-gray-300 text-xs text-right opacity-80"

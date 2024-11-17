@@ -47,7 +47,6 @@ const Chat = ({
   fileLink,
   fileType,
   link,
-  linkMessage,
   depts,
   timestamp,
   fullTimestamp,
@@ -98,7 +97,6 @@ const Chat = ({
           fileLink={fileLink}
           fileType={fileType}
           link={link}
-          linkMessage={linkMessage}
           depts={depts}
           renderDeptsContent={renderDeptsContent}
           timestamp={timestamp}
