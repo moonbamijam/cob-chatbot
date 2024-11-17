@@ -58,9 +58,6 @@ const ChatPreview = () => {
         <SampleBotChat
           style={{ fontSize: fontSize }}
           chat={`And when ${configuration.name} send a link`}
-        />
-        <SampleBotChat
-          style={{ fontSize: fontSize }}
           linkedChat="It will look like this"
         />
       </div>
