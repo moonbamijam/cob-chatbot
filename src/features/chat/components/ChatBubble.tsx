@@ -32,7 +32,7 @@ const ChatBubble = ({
             <div
               id="chat"
               style={{ fontSize: fontSize }}
-              className="relative dark:text-white whitespace-pre-line"
+              className="relative dark:text-white"
             >
               {children}
             </div>
@@ -53,7 +53,7 @@ const ChatBubble = ({
             <div
               id="chat"
               style={{ fontSize: fontSize }}
-              className="relative dark:text-white whitespace-pre-line"
+              className="relative dark:text-white"
             >
               {children}
             </div>

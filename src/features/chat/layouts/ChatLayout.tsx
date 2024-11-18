@@ -140,7 +140,9 @@ const ChatLayout = ({
                       }
                       className={`${isFullTimestampShowing ? "bg-surface-dark/50 dark:bg-dm-surface-light" : "bg-surface dark:bg-dm-surface hover:bg-surface-dark/50 hover:dark:bg-dm-surface-light"} cursor-pointer`}
                     >
-                      <span className="cursor-text">{chat}</span>
+                      <div className="cursor-text whitespace-pre-wrap">
+                        {chat}
+                      </div>
                     </ChatBubble>
                   )}
                   {link && (
@@ -152,7 +154,7 @@ const ChatLayout = ({
                       className={`${isFullTimestampShowing ? "bg-surface-dark/50 dark:bg-dm-surface-light" : "bg-surface dark:bg-dm-surface hover:bg-surface-dark/50 hover:dark:bg-dm-surface-light"} cursor-pointer`}
                     >
                       <div
-                        className="cursor-text"
+                        className="cursor-text whitespace-pre-wrap"
                         dangerouslySetInnerHTML={{ __html: link }}
                       />
                     </ChatBubble>
@@ -238,7 +240,7 @@ const ChatLayout = ({
                   setIsFullTimestampShowing(!isFullTimestampShowing)
                 }
               >
-                <span className="cursor-text">{chat}</span>
+                <span className="cursor-text whitespace-pre-line">{chat}</span>
               </ChatBubble>
             </div>
             <span
