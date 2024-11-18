@@ -213,18 +213,6 @@ const useChatbot = () => {
             setIsFaqsMenuActive(false);
             playMessageNotification();
           });
-        } else if (intent === "None") {
-          chatData = {
-            intent: intent,
-            chat: configuration.errorMessage,
-            chatId: uuid(),
-            role: "bot",
-            timestamp: Timestamp.now(),
-          };
-          setBotIsTyping(false);
-          userPost(user.uid, chatData);
-          setIsFaqsMenuActive(false);
-          playMessageNotification();
         } else {
           chatData = {
             intent: intent,
