@@ -10,7 +10,7 @@ const Error = () => {
   return (
     <>
       <Header />
-      <div className="h-screen flex flex-col items-center justify-center gap-8">
+      <div className="h-screen flex flex-col items-center justify-center gap-8 px-[5vw]">
         <h1 className="font-helvetica-compressed text-7xl md:text-8xl lg:text-[10.25rem] bg-gradient-to-tr from-primary from-35% via-tertiary via-70% to-secondary bg-clip-text text-transparent cursor-default select-none">
           Oops!
         </h1>
