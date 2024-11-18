@@ -75,7 +75,6 @@ const ChatLayout = ({
   };
 
   const handleImageLoad = () => {
-    console.log("video loaded");
     setIsFileLoaded(true);
   };
 
