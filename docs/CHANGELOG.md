@@ -1,5 +1,34 @@
 # What's New
 
+# [3.2.0](https://github.com/moonbamijam/cob-chatbot/compare/v3.0.1...v3.2.0) (2024-11-20)
+
+
+### Bug Fixes
+
+* delayed hide of chatbox header when closing ([8e9c38c](https://github.com/moonbamijam/cob-chatbot/commit/8e9c38c6f5fc341fe927aca9e40acbc2249dca5d))
+* departments response ui ([#169](https://github.com/moonbamijam/cob-chatbot/issues/169)) ([b1c0077](https://github.com/moonbamijam/cob-chatbot/commit/b1c007713ca71e8f13f7fc02386530a2e839d99d))
+* files are not displaying ([#159](https://github.com/moonbamijam/cob-chatbot/issues/159)) ([27dc7b8](https://github.com/moonbamijam/cob-chatbot/commit/27dc7b8be670c0f41fff60e9ca8cab3b70de579c))
+* incorrect use of for in label in user input field ([#168](https://github.com/moonbamijam/cob-chatbot/issues/168)) ([a4ca14b](https://github.com/moonbamijam/cob-chatbot/commit/a4ca14b97e2e03b667a64a6077b3d1b19f52c8ad))
+* manifest icons not found ([0983af0](https://github.com/moonbamijam/cob-chatbot/commit/0983af0c533b17feb4762c73baa33e6a7c94a293))
+* rating box overflows on small screens ([#180](https://github.com/moonbamijam/cob-chatbot/issues/180)) ([6108cd8](https://github.com/moonbamijam/cob-chatbot/commit/6108cd815843132ed808841f8f7ecb99431322b6))
+* scroll button and one tap questions positioning ([#183](https://github.com/moonbamijam/cob-chatbot/issues/183)) ([d63c501](https://github.com/moonbamijam/cob-chatbot/commit/d63c501ae7befdd6f329e3a93c48de03e864b43f))
+
+
+### Features
+
+* add default icons to chatbot ([#177](https://github.com/moonbamijam/cob-chatbot/issues/177)) ([9260523](https://github.com/moonbamijam/cob-chatbot/commit/9260523e5735a1e6044ea9975d5fea39021fc4a1)), closes [#176](https://github.com/moonbamijam/cob-chatbot/issues/176)
+* add developers section to settings ([#178](https://github.com/moonbamijam/cob-chatbot/issues/178)) ([5940453](https://github.com/moonbamijam/cob-chatbot/commit/59404533c2b3c054f689f43f4ef64e1a9c5609f2))
+* add full timestamp to chats ([#162](https://github.com/moonbamijam/cob-chatbot/issues/162)) ([348a951](https://github.com/moonbamijam/cob-chatbot/commit/348a951ea463fc272950f1ab947cfb5b3e0458e1))
+* add user rating ([#154](https://github.com/moonbamijam/cob-chatbot/issues/154)) ([898f647](https://github.com/moonbamijam/cob-chatbot/commit/898f6472b1294e581a2e6aba23607eaa4534f5fd))
+* adjust chat whitespacing ([#173](https://github.com/moonbamijam/cob-chatbot/issues/173)) ([0059c48](https://github.com/moonbamijam/cob-chatbot/commit/0059c48f346047362e135f351eeab32865e6131c))
+* hide bot name to header on small screens ([68e3b33](https://github.com/moonbamijam/cob-chatbot/commit/68e3b33efb29bd6c2849f1922e530f81907aa495))
+* refactor ui for responses with links ([#171](https://github.com/moonbamijam/cob-chatbot/issues/171)) ([93aafec](https://github.com/moonbamijam/cob-chatbot/commit/93aafec86fb2d748d051166be19ad04f3c7a3130))
+* replace faqs to static services and process questions ([#161](https://github.com/moonbamijam/cob-chatbot/issues/161)) ([ed87c7e](https://github.com/moonbamijam/cob-chatbot/commit/ed87c7e84c450b36d3edf2df4b6db8a98f7f5464))
+* responsive city hall page on small screen ([#157](https://github.com/moonbamijam/cob-chatbot/issues/157)) ([c7a5532](https://github.com/moonbamijam/cob-chatbot/commit/c7a553205dfdce89d3456e269f892af35edfdc7d)), closes [#156](https://github.com/moonbamijam/cob-chatbot/issues/156)
+* slight ui adjustment to chat box header ([db5a52f](https://github.com/moonbamijam/cob-chatbot/commit/db5a52fc9c5b06ac19c59567f247e6fb0b56cba1))
+* update error page ui ([#172](https://github.com/moonbamijam/cob-chatbot/issues/172)) ([ad89d4d](https://github.com/moonbamijam/cob-chatbot/commit/ad89d4dc463de63de76894c68148a104d826e768))
+* update ui/ux of suggested chat section ([#181](https://github.com/moonbamijam/cob-chatbot/issues/181)) ([0f6d540](https://github.com/moonbamijam/cob-chatbot/commit/0f6d540875c0cb9eec76e9f06fb95e7fb09485c3))
+
 # [3.1.0](https://github.com/moonbamijam/cob-chatbot/compare/v3.0.1...v3.1.0) (2024-11-16)
 
 
