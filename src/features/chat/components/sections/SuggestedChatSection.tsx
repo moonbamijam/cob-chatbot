@@ -1,46 +1,128 @@
-import { FormEvent } from "react";
+import { useRef, useState } from "react";
 import messages from "@static/messages/suggested.json";
 
 // components
-import SuggestedChatButton from "@features/chat/components/buttons/SuggestedChatButton";
+import Button from "@components/ui/Button";
 
 // layouts
 import ItemsRenderer from "@layouts/ItemsRenderer";
 
+// icons
+import { FaArrowLeft, FaArrowRight } from "react-icons/fa6";
+
 type SuggestedChatSectionProps = {
-  sendMessageToBot: (
-    event: KeyboardEvent | FormEvent<HTMLInputElement>,
-    message: string,
-  ) => void;
+  sendFaqToBot: (message: string) => void;
 };
 
 type SuggestedMessagesType = {
-  id: string;
   displayedText: string;
   message: string;
 };
 
-const SuggestedChatSection = ({
-  sendMessageToBot,
-}: SuggestedChatSectionProps) => {
+const SuggestedChatSection = ({ sendFaqToBot }: SuggestedChatSectionProps) => {
+  const suggestedChatsRef = useRef<HTMLDivElement | null>(null);
+  const suggestedChats = suggestedChatsRef.current;
+  const [isMouseDown, setIsMouseDown] = useState<boolean>(false);
+  const [startX, setStartX] = useState<number>(0);
+  const [scrollLeft, setScrollLeft] = useState<number>(0);
+
+  const [scrollBehavior, setScrollBehavior] = useState<string>("auto");
+
+  const [scrollPosition, setScrollPosition] = useState<number>(0);
+  const itemWidth = 200;
+
+  const handleScrollByButton = (scrollAmount: number) => {
+    let newScrollPosition = scrollPosition + scrollAmount;
+    if (suggestedChats) {
+      // console.log("pos", newScrollPosition);
+      // console.log("w", suggestedChats.scrollWidth);
+      if (newScrollPosition >= suggestedChats.scrollWidth - 128)
+        newScrollPosition = 0;
+      else if (newScrollPosition <= 0)
+        newScrollPosition = suggestedChats.scrollWidth;
+      suggestedChats.scrollLeft = newScrollPosition;
+    }
+    setScrollBehavior("smooth");
+    setScrollPosition(newScrollPosition);
+  };
+
+  const handleMouseDown = (e: React.MouseEvent) => {
+    setScrollBehavior("auto");
+    setIsMouseDown(true);
+    if (suggestedChats) {
+      setStartX(e.pageX - -suggestedChats.offsetLeft);
+      setScrollLeft(suggestedChats.scrollLeft);
+    }
+  };
+
+  const handleMouseLeave = () => {
+    setIsMouseDown(false);
+  };
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    setScrollBehavior("auto");
+    if (!isMouseDown) return;
+    e.preventDefault();
+    if (suggestedChats) {
+      const x = e.pageX - suggestedChats.offsetLeft;
+      const scrollSpeed = (x - startX) * 2;
+      suggestedChats.scrollLeft = scrollLeft - scrollSpeed;
+    }
+  };
+
+  const handleMouseUp = () => {
+    setIsMouseDown(false);
+  };
+
   return (
     <section
       id="suggested-chats"
-      className="w-full max-w-[95%] rounded-3xl border border-surface dark:border-dm-surface-dark dark:bg-dm-surface text-xs xs:text-sm sm:text-base flex justify-around sm:justify-center xl:justify-around gap-x-2 sm:gap-x-8 xl:gap-x-2 px-4 py-2 mt-auto outline-none"
+      className="relative w-full max-w-[95%] flex items-center rounded-3xl border border-surface dark:border-dm-surface-dark dark:bg-dm-surface text-xs xs:text-sm sm:text-base mt-auto outline-none overflow-clip"
     >
-      <ItemsRenderer
-        items={messages.list}
-        renderItems={(message: SuggestedMessagesType) => (
-          <SuggestedChatButton
-            key={message.id}
-            onClick={(e: KeyboardEvent | FormEvent<HTMLInputElement>) =>
-              sendMessageToBot(e, message.message)
-            }
-          >
-            {message.displayedText}
-          </SuggestedChatButton>
-        )}
-      />
+      <div className="w-[80px] h-full absolute left-0 flex items-center bg-gradient-to-r from-white dark:from-dm-surface from-30%">
+        <Button
+          className="hidden xl:block h-full border-none bg-transparent text-primary pl-4"
+          onClick={() => handleScrollByButton(-itemWidth)}
+        >
+          <FaArrowLeft />
+        </Button>
+      </div>
+      <div
+        ref={suggestedChatsRef}
+        onMouseDown={handleMouseDown}
+        onMouseLeave={handleMouseLeave}
+        onMouseUp={handleMouseUp}
+        onMouseMove={handleMouseMove}
+        className={`py-2 px-4 xl:px-12 flex items-center gap-x-6 sm:gap-x-8 xl:gap-x-6 overflow-x-auto cursor-move scroll-${scrollBehavior} scrollbar-none`}
+      >
+        <ItemsRenderer
+          items={messages.list}
+          renderItems={(
+            { displayedText, message }: SuggestedMessagesType,
+            id: number,
+          ) => (
+            <Button
+              key={id}
+              variant="outline"
+              size="xl"
+              className={`rounded-3xl min-w-[${itemWidth}px] h-[80px] border border-primary text-xs xs:text-sm text-primary dark:text-white hover:bg-primary hover:text-white active:translate-y-1`}
+              onClick={() => {
+                if (message != "") sendFaqToBot(message);
+              }}
+            >
+              {displayedText}
+            </Button>
+          )}
+        />
+      </div>
+      <div className="w-[80px] h-full absolute right-0 flex items-center justify-end bg-gradient-to-l from-white dark:from-dm-surface from-30%">
+        <Button
+          className="hidden xl:block h-full border-none bg-transparent text-primary pr-4"
+          onClick={() => handleScrollByButton(itemWidth)}
+        >
+          <FaArrowRight />
+        </Button>
+      </div>
     </section>
   );
 };

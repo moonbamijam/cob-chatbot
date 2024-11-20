@@ -63,7 +63,7 @@ const ChatBox = ({ closeUsing }: ChatBoxProps) => {
             closeUsing={closeUsing}
           />
           <ChatSection botIsTyping={botIsTyping} latestChat={latestChat} />
-          <SuggestedChatSection sendMessageToBot={sendMessageToBot} />
+          <SuggestedChatSection sendFaqToBot={sendFaqToBot} />
           <ChatInputSection
             questionsListRef={questionsListRef}
             sendMessageToBot={sendMessageToBot}
