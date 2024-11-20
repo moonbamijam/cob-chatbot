@@ -74,10 +74,7 @@ const CityHall = () => {
               latest news
             </div>
             <div className="max-w-[730px] w-full text-[#ff0202] font-bold text-sm truncate">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita,
-              omnis voluptatum. Deserunt modi cumque accusamus at incidunt vel.
-              Praesentium beatae non deleniti tempora eos dolorem labore dolore
-              quibusdam amet vero.
+              Libreng Anti-Rabies Vaccination Schedule
             </div>
             <div
               id="latest-news-navigation"
