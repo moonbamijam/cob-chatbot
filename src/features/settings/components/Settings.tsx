@@ -10,6 +10,7 @@ import SettingsNavBar from "@features/settings/components/nav/SettingsNavBar";
 import AppearanceSettings from "@features/settings/components/appearance/AppearanceSettings";
 import SoundSettings from "@features/settings/components/sound/SoundSettings";
 import About from "@features/settings/components/about/About";
+import Developers from "@features/settings/components/about/Developers";
 
 // icons
 import { CgClose } from "react-icons/cg";
@@ -39,6 +40,9 @@ const Settings = ({ settings, toggleSettings }: SettingsProps) => {
       case configuration.name:
         setChecked(setting);
         break;
+      case "developers":
+        setChecked(setting);
+        break;
       default:
         setChecked("appearance");
         break;
@@ -53,6 +57,8 @@ const Settings = ({ settings, toggleSettings }: SettingsProps) => {
         return <SoundSettings />;
       case configuration.name:
         return <About />;
+      case "developers":
+        return <Developers />;
       default:
         return <AppearanceSettings />;
     }

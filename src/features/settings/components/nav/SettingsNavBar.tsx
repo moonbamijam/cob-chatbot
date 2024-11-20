@@ -89,6 +89,21 @@ const SettingsNavBar = ({
               icon={<FaRobot />}
               state={isSideNavActive}
             />
+            {settingsList
+              .filter((setting) => {
+                return setting.settingType === "about";
+              })
+              .map((setting) => (
+                <SettingsBtn
+                  key={setting.name}
+                  name={setting.name}
+                  checkedIf={state == setting.name}
+                  onClick={() => changeSetting(setting.name)}
+                  onChange={handleSettingsChange}
+                  icon={<setting.icon />}
+                  state={isSideNavActive}
+                />
+              ))}
           </SettingsNavSection>
         </div>
         <Version
