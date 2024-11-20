@@ -50,7 +50,7 @@ const RatingBox = ({ className }: RatingBoxProps) => {
           className={`fixed top-[10%] mx-auto inset-x-0 xl:mx-0 xl:top-auto xl:bottom-[2%] xl:left-[2%] w-max h-max dark:text-white/80 bg-surface dark:bg-dm-background border border-surface-dark dark:border-dm-surface-light p-8 rounded-xl z-[100] xl:z-50 ${className} ${closeRatingBox}`}
         >
           <div className="space-y-4">
-            <div className="flex gap-8 sm:text-lg xl:text-xl max-w-[300px] sm:max-w-[350px] xl:max-w-[400px]">
+            <div className="flex gap-8 sm:text-lg xl:text-xl max-w-[250px] sm:max-w-[350px] xl:max-w-[400px]">
               <h2>
                 {rating
                   ? "Thanks for the feedback!"
