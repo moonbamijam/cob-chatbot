@@ -11,12 +11,15 @@ import { ConfigurationType, ConversationType } from "@shared/ts/type";
 import { db } from "@constants/firebase/config";
 import { chatbotConfig } from "@constants/bot/chatbot-config";
 
+// assets
+import ChatbotLogo from "@static/assets/images/logo.png";
+
 const botProfileCollectionRef = collection(db, "profile");
 
 const ChatbotProvider = ({ children }: { children: React.ReactNode }) => {
   const [configuration, setConfiguration] = useState<ConfigurationType>({
-    icon: "",
-    widgetIcon: "",
+    icon: ChatbotLogo,
+    widgetIcon: ChatbotLogo,
     name: chatbotConfig.name,
     slogan: chatbotConfig.slogan,
   });
