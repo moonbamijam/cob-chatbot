@@ -90,7 +90,7 @@ const Header = ({
         >
           <CgMenuGridR className="text-4xl text-[#ff0202]" />
         </Button>
-        <a href="/bacoor-gov">
+        <a href="https://bacoor.gov.ph/">
           <img src={CityHallLogo} alt="" className="max-w-[40px]" />
         </a>
         <Button
