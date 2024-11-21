@@ -1,5 +1,12 @@
 # What's New
 
+## [3.2.1](https://github.com/moonbamijam/cob-chatbot/compare/v3.2.0...v3.2.1) (2024-11-21)
+
+
+### Bug Fixes
+
+* scroll behaviour state in suggested chats ([#185](https://github.com/moonbamijam/cob-chatbot/issues/185)) ([bc3425b](https://github.com/moonbamijam/cob-chatbot/commit/bc3425b86571a390d45d9a2ec5400b74e4742e69))
+
 # [3.2.0](https://github.com/moonbamijam/cob-chatbot/compare/v3.0.1...v3.2.0) (2024-11-20)
 
 
