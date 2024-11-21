@@ -60,7 +60,7 @@ const BotProfile = ({ className }: BotProfileProps) => {
             {chatbotConfig.about}
           </p>
           <div className="flex flex-col items-center gap-2">
-            <h2 className="max-w-[200px] md:max-w-[300px] lg:max-w-[400px]">
+            <h2 className="max-w-[200px] md:max-w-[300px] lg:max-w-[400px] text-black/80 dark:text-white/80">
               {rating != 0
                 ? `Your rating to ${configuration.name}`
                 : `Enjoying talking to ${configuration.name} so far? Please give us a
