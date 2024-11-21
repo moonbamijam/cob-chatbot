@@ -25,10 +25,10 @@ Our capstone/thesis project uses Natural Language Processing (NLP) to deliver a 
 
 # Contributing
 
-Please see [CONTRIBUTING.md](https://github.com/moonbamijam/cob-chatbot/blob/main/docs/CONTRIBUTING.md) for more information.
+Please see [CONTRIBUTING.md](https://github.com/moonbamijam/cob-chatbot/blob/main/docs/CONTRIBUTING.md) for more information on how you can contribute to this project.
 
 ###
 
-# Others
+# Security
 
-We used two (2) different hosting service for this app. If you would like to use the **latest** and _**user only**_ version, please visit [cob-chatbot.vercel](https://cob-chatbot.vercel.app/)
+Please see [SECURITY.md](https://github.com/moonbamijam/cob-chatbot/blob/main/docs/SECURITY.md) for more details on how we handle security for this project
