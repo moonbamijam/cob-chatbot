@@ -82,7 +82,7 @@ const SuggestedChatSection = ({ sendFaqToBot }: SuggestedChatSectionProps) => {
     >
       <div className="w-[80px] h-full absolute -left-1 hidden xl:flex items-center bg-gradient-to-r from-white dark:from-dm-surface from-30%">
         <Button
-          className=" h-full border-none bg-transparent text-primary pl-4"
+          className="outline-none h-full border-none bg-transparent text-primary pl-4"
           onClick={() => handleScrollByButton(-itemWidth)}
         >
           <FaArrowLeft />
@@ -118,7 +118,7 @@ const SuggestedChatSection = ({ sendFaqToBot }: SuggestedChatSectionProps) => {
       </div>
       <div className="w-[80px] h-full absolute -right-1 hidden xl:flex items-center justify-end bg-gradient-to-l from-white dark:from-dm-surface from-30%">
         <Button
-          className="h-full border-none bg-transparent text-primary pr-4"
+          className="outline-none h-full border-none bg-transparent text-primary pr-4"
           onClick={() => handleScrollByButton(itemWidth)}
         >
           <FaArrowRight />
