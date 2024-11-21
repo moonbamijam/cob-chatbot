@@ -26,7 +26,7 @@ const SuggestedChatSection = ({ sendFaqToBot }: SuggestedChatSectionProps) => {
   const [startX, setStartX] = useState<number>(0);
   const [scrollLeft, setScrollLeft] = useState<number>(0);
 
-  const [scrollBehavior, setScrollBehavior] = useState<string>("auto");
+  const [isSmoothScrolling, setIsSmoothScrolling] = useState<boolean>(true);
 
   const [scrollPosition, setScrollPosition] = useState<number>(0);
   const itemWidth = 200;
@@ -46,7 +46,7 @@ const SuggestedChatSection = ({ sendFaqToBot }: SuggestedChatSectionProps) => {
   };
 
   const handleMouseDown = (e: React.MouseEvent) => {
-    setScrollBehavior("auto");
+    setIsSmoothScrolling(false);
     setIsMouseDown(true);
     if (suggestedChats) {
       setStartX(e.pageX - -suggestedChats.offsetLeft);
@@ -56,11 +56,11 @@ const SuggestedChatSection = ({ sendFaqToBot }: SuggestedChatSectionProps) => {
 
   const handleMouseLeave = () => {
     setIsMouseDown(false);
-    setScrollBehavior("smooth");
+    setIsSmoothScrolling(true);
   };
 
   const handleMouseMove = (e: React.MouseEvent) => {
-    setScrollBehavior("auto");
+    setIsSmoothScrolling(false);
     if (!isMouseDown) return;
     e.preventDefault();
     if (suggestedChats) {
@@ -72,17 +72,17 @@ const SuggestedChatSection = ({ sendFaqToBot }: SuggestedChatSectionProps) => {
 
   const handleMouseUp = () => {
     setIsMouseDown(false);
-    setScrollBehavior("smooth");
+    setIsSmoothScrolling(true);
   };
 
   return (
     <section
       id="suggested-chats"
-      className="relative w-full max-w-[95%] flex items-center rounded-3xl border border-surface dark:border-dm-surface-dark dark:bg-dm-surface text-xs xs:text-sm sm:text-base mt-auto outline-none overflow-clip"
+      className="relative w-full max-w-[95%] flex items-center rounded-3xl border border-surface dark:border-dm-surface-dark dark:bg-dm-surface text-xs xs:text-sm sm:text-base mt-auto outline-none py-4 overflow-hidden"
     >
-      <div className="w-[80px] h-full absolute left-0 flex items-center bg-gradient-to-r from-white dark:from-dm-surface from-30%">
+      <div className="w-[80px] h-full absolute -left-1 hidden xl:flex items-center bg-gradient-to-r from-white dark:from-dm-surface from-30%">
         <Button
-          className="hidden xl:block h-full border-none bg-transparent text-primary pl-4"
+          className=" h-full border-none bg-transparent text-primary pl-4"
           onClick={() => handleScrollByButton(-itemWidth)}
         >
           <FaArrowLeft />
@@ -94,7 +94,7 @@ const SuggestedChatSection = ({ sendFaqToBot }: SuggestedChatSectionProps) => {
         onMouseLeave={handleMouseLeave}
         onMouseUp={handleMouseUp}
         onMouseMove={handleMouseMove}
-        className={`w-full h-[100px] py-2 px-4 xl:px-12 flex items-center gap-x-6 sm:gap-x-8 xl:gap-x-6 overflow-x-scroll cursor-move scroll-${scrollBehavior} scrollbar-none`}
+        className={`w-full h-[100px] px-10 xl:px-12 flex items-center gap-x-6 sm:gap-x-8 xl:gap-x-6 overflow-x-scroll cursor-move ${isSmoothScrolling ? "scroll-smooth" : "scroll-auto"} scrollbar-none`}
       >
         <ItemsRenderer
           items={messages.list}
@@ -116,9 +116,9 @@ const SuggestedChatSection = ({ sendFaqToBot }: SuggestedChatSectionProps) => {
           )}
         />
       </div>
-      <div className="w-[80px] h-full absolute right-0 flex items-center justify-end bg-gradient-to-l from-white dark:from-dm-surface from-30%">
+      <div className="w-[80px] h-full absolute -right-1 hidden xl:flex items-center justify-end bg-gradient-to-l from-white dark:from-dm-surface from-30%">
         <Button
-          className="hidden xl:block h-full border-none bg-transparent text-primary pr-4"
+          className="h-full border-none bg-transparent text-primary pr-4"
           onClick={() => handleScrollByButton(itemWidth)}
         >
           <FaArrowRight />
