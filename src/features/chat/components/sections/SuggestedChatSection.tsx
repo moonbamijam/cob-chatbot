@@ -42,7 +42,6 @@ const SuggestedChatSection = ({ sendFaqToBot }: SuggestedChatSectionProps) => {
         newScrollPosition = suggestedChats.scrollWidth;
       suggestedChats.scrollLeft = newScrollPosition;
     }
-    setScrollBehavior("smooth");
     setScrollPosition(newScrollPosition);
   };
 
@@ -57,6 +56,7 @@ const SuggestedChatSection = ({ sendFaqToBot }: SuggestedChatSectionProps) => {
 
   const handleMouseLeave = () => {
     setIsMouseDown(false);
+    setScrollBehavior("smooth");
   };
 
   const handleMouseMove = (e: React.MouseEvent) => {
@@ -72,6 +72,7 @@ const SuggestedChatSection = ({ sendFaqToBot }: SuggestedChatSectionProps) => {
 
   const handleMouseUp = () => {
     setIsMouseDown(false);
+    setScrollBehavior("smooth");
   };
 
   return (
@@ -93,7 +94,7 @@ const SuggestedChatSection = ({ sendFaqToBot }: SuggestedChatSectionProps) => {
         onMouseLeave={handleMouseLeave}
         onMouseUp={handleMouseUp}
         onMouseMove={handleMouseMove}
-        className={`py-2 px-4 xl:px-12 flex items-center gap-x-6 sm:gap-x-8 xl:gap-x-6 overflow-x-auto cursor-move scroll-${scrollBehavior} scrollbar-none`}
+        className={`w-full h-[100px] py-2 px-4 xl:px-12 flex items-center gap-x-6 sm:gap-x-8 xl:gap-x-6 overflow-x-scroll cursor-move scroll-${scrollBehavior} scrollbar-none`}
       >
         <ItemsRenderer
           items={messages.list}
@@ -105,7 +106,7 @@ const SuggestedChatSection = ({ sendFaqToBot }: SuggestedChatSectionProps) => {
               key={id}
               variant="outline"
               size="xl"
-              className={`rounded-3xl min-w-[${itemWidth}px] h-[80px] border border-primary text-xs xs:text-sm text-primary dark:text-white hover:bg-primary hover:text-white active:translate-y-1`}
+              className="rounded-3xl min-w-[200px] h-full border border-primary text-xs xs:text-sm text-primary dark:text-white hover:bg-primary hover:text-white active:translate-y-1"
               onClick={() => {
                 if (message != "") sendFaqToBot(message);
               }}
