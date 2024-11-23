@@ -73,6 +73,9 @@ const ChatBox = ({ closeUsing }: ChatBoxProps) => {
             isFaqsMenuActive={isFaqsMenuActive}
             setIsFaqsMenuActive={setIsFaqsMenuActive}
           />
+          <div className="text-xs text-center text-black/70 dark:text-white/50 py-3 px-5">
+            The Chatbot can make mistake. Please double check the answers.
+          </div>
         </div>
       );
     }

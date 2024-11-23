@@ -128,7 +128,7 @@ const ChatSection = ({ botIsTyping, latestChat }: ChatSectionProps) => {
   return (
     <>
       <Button
-        className={`${backToView} absolute bottom-[21%] animate-bounce bg-surface hover:bg-primary [&>svg>path]:hover:text-white dark:bg-dm-surface dark:border-transparent dark:hover:bg-dm-surface-dark [&>svg>path]:dark:hover:text-primary z-50`}
+        className={`${backToView} absolute bottom-[25%] animate-bounce bg-surface hover:bg-primary [&>svg>path]:hover:text-white dark:bg-dm-surface dark:border-transparent dark:hover:bg-dm-surface-dark [&>svg>path]:dark:hover:text-primary z-50`}
         onClick={() => handleScrollIntoView(latestChat)}
       >
         <FaArrowDown />
