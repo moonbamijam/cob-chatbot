@@ -38,7 +38,7 @@ const ChatBox = ({ closeUsing }: ChatBoxProps) => {
   const { fontFamily } = font.family;
   const chat = useContext(ChatContext);
   const { isChatActive } = chat.active;
-
+  
   return (
     <>
       <div

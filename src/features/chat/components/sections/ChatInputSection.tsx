@@ -45,7 +45,7 @@ const ChatInputSection = ({
     return (
       <section
         id="questions-list"
-        className={`w-full max-w-[95%] max-h-[500px] md:max-h-[400px] xl:max-h-[300px] absolute bottom-[2%] px-4 py-5 mb-[160px] rounded-3xl bg-white dark:bg-dm-surface border border-surface dark:border-dm-surface-dark overflow-y-scroll scrollbar-thin scrollbar-track-transparent scrollbar-thumb-surface-dark dark:scrollbar-thumb-dm-surface-dark z-50 ${isFaqsMenuActive ? "block opacity-100 visible" : "opacity-0 invisible"}`}
+        className={`w-full max-w-[95%] max-h-[500px] md:max-h-[400px] xl:max-h-[300px] absolute bottom-[7%] sm:bottom-[6%] lg:bottom-[5%] px-4 py-5 mb-[160px] rounded-3xl bg-white dark:bg-dm-surface border border-surface dark:border-dm-surface-dark overflow-y-scroll scrollbar-thin scrollbar-track-transparent scrollbar-thumb-surface-dark dark:scrollbar-thumb-dm-surface-dark z-50 ${isFaqsMenuActive ? "block opacity-100 visible" : "opacity-0 invisible"}`}
       >
         <div className="mb-4 font-semibold">
           <h1 className="capitalize text-black/80 dark:text-white/80">
@@ -85,7 +85,7 @@ const ChatInputSection = ({
         onSubmit={(
           e: KeyboardEvent | FormEvent<HTMLInputElement | HTMLFormElement>,
         ) => sendMessageToBot(e, userMessage)}
-        className="w-full flex justify-between items-center gap-1 px-2 py-2"
+        className="w-full flex justify-between items-center gap-1 px-2 pt-2"
       >
         <Button
           variant="icon"
