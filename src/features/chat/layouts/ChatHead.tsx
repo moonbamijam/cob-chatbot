@@ -16,6 +16,7 @@ const ChatHead = ({ onClick }: { onClick: () => void }) => {
   const { isSignedIn } = auth.user;
   const chatbot = useContext(ChatbotContext);
   const { configuration } = chatbot.configuration;
+  const { conversation } = chatbot.conversation;
   const chat = useContext(ChatContext);
   const { isChatActive } = chat.active;
   const { chatHeadSize } = chat.chatHeadSize;
@@ -23,7 +24,10 @@ const ChatHead = ({ onClick }: { onClick: () => void }) => {
 
   return (
     <>
-      {isSignedIn && isAtLatestChat && configuration.widgetIcon ? (
+      {isSignedIn &&
+      conversation.length != 0 &&
+      isAtLatestChat &&
+      configuration.widgetIcon ? (
         <button
           onClick={onClick}
           id=""
