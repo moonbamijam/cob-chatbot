@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import { chatbotConfig } from "@constants/bot/chatbot-config";
 
 // layouts
@@ -29,7 +28,7 @@ const Home = () => {
           <p className="text-xl text-black/50 dark:text-white/50 ml-2 mt-6 max-w-[350px]">
             {chatbotConfig.introduction}
           </p>
-          <Link to="/bacoor-gov">
+          <a href="/bacoor-gov">
             <Button
               variant="cta"
               size="xl"
@@ -37,7 +36,7 @@ const Home = () => {
             >
               ask {chatbotConfig.name}
             </Button>
-          </Link>
+          </a>
         </section>
         <div className="relative rounded-2xl overflow-hidden select-none">
           <img
