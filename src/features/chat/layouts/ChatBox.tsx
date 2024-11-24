@@ -38,7 +38,7 @@ const ChatBox = ({ closeUsing }: ChatBoxProps) => {
   const { fontFamily } = font.family;
   const chat = useContext(ChatContext);
   const { isChatActive } = chat.active;
-  
+
   return (
     <>
       <div
@@ -65,6 +65,9 @@ const ChatBox = ({ closeUsing }: ChatBoxProps) => {
           isFaqsMenuActive={isFaqsMenuActive}
           setIsFaqsMenuActive={setIsFaqsMenuActive}
         />
+        <div className="text-xs text-center text-black/70 dark:text-white/50 py-3 px-5">
+          The Chatbot can make mistake. Please double check the answers.
+        </div>
       </div>
       <Settings settings={settings} toggleSettings={toggleSettings} />
     </>
