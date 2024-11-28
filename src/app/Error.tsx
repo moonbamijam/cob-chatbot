@@ -29,7 +29,7 @@ const Error = () => {
             size="full"
             className="bg-primary hover:bg-primary-dark text-white uppercase"
           >
-            go to homepage
+            go back
           </Button>
         </Link>
       </div>

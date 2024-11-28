@@ -1,11 +1,9 @@
 import { useContext } from "react";
-import { Link } from "react-router-dom";
 
 // context
 import { ChatbotContext } from "@contexts/ChatbotContext";
 
 // components
-import Button from "@components/ui/Button";
 import Image from "@components/ui/Image";
 import AverageRating from "@features/ratings/AverageRating";
 
@@ -70,15 +68,6 @@ const BotProfile = ({ className }: BotProfileProps) => {
           </div>
         </div>
       </div>
-      <Link to="/" className="mb-8">
-        <Button
-          variant="cta"
-          size="xl"
-          className="text-sm border border-surface dark:border-dm-surface bg-surface dark:bg-dm-surface hover:bg-primary dark:hover:bg-primary dark:text-white hover:text-white"
-        >
-          back to homepage
-        </Button>
-      </Link>
       <hr className="w-full border-surface-dark dark:border-dm-surface-light" />
     </section>
   );

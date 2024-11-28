@@ -4,7 +4,6 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 // providers
 import ChatbotProvider from "@providers/ChatbotProvider";
-import UserProvider from "@providers/UserProvider";
 import AuthProvider from "@providers/AuthProvider";
 import ThemeProvider from "@providers/ThemeProvider";
 import ChatProvider from "@providers/ChatProvider";
@@ -21,27 +20,26 @@ import "@styles/custom-media-query.css";
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Home />,
+    element: localStorage.getItem("uid") ? <CityHall /> : <Home />,
     errorElement: <Error />,
   },
   {
     path: "/bacoor-gov",
     element: <CityHall />,
+    errorElement: <Error />,
   },
 ]);
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <ChatbotProvider>
-      <UserProvider>
-        <AuthProvider>
-          <ThemeProvider>
-            <ChatProvider>
-              <RouterProvider router={router} />
-            </ChatProvider>
-          </ThemeProvider>
-        </AuthProvider>
-      </UserProvider>
+      <AuthProvider>
+        <ThemeProvider>
+          <ChatProvider>
+            <RouterProvider router={router} />
+          </ChatProvider>
+        </ThemeProvider>
+      </AuthProvider>
     </ChatbotProvider>
   </StrictMode>,
 );
