@@ -33,9 +33,9 @@ const CityHall = () => {
 
   return (
     <>
-      <PageTitle title="Bacoor Government Center | Bacoor Chatbot" />
+      <PageTitle title="Bacoor Government Center | City of Bacoor Chatbot" />
       <UserProvider>
-        <main className="">
+        <main>
           <div ref={chatHead}>
             <FontProvider>
               <SoundProvider>
