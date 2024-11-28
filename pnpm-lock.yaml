@@ -17,6 +17,9 @@ importers:
       firebase:
         specifier: ^10.14.1
         version: 10.14.1
+      markdown-to-jsx:
+        specifier: ^7.7.0
+        version: 7.7.0(react@18.3.1)
       react:
         specifier: ^18.3.1
         version: 18.3.1
@@ -3530,6 +3533,12 @@ packages:
   make-dir@2.1.0:
     resolution: {integrity: sha512-LS9X+dc8KLxXCb8dni79fLIIUA5VyZoyjSMCwTluaXA0o27cCK0bhXkpgw+sTXVpPy/lSO57ilRixqk0vDmtRA==}
     engines: {node: '>=6'}
+
+  markdown-to-jsx@7.7.0:
+    resolution: {integrity: sha512-130nIMbJY+woOQJ11xTqEtYko60t6EpNkZuqjKMferL3udtob3nRfzXOdsiA26NPemiR7w/hR8M3/B9yiYPGZg==}
+    engines: {node: '>= 10'}
+    peerDependencies:
+      react: '>= 0.14.0'
 
   meow@12.1.1:
     resolution: {integrity: sha512-BhXM0Au22RwUneMPwSCnyhTOizdWoIEPU9sp0Aqa1PnDMR5Wv2FGXYDjuzJEIX+Eo2Rb8xuYe5jrnm5QowQFkw==}
@@ -9539,6 +9548,10 @@ snapshots:
     dependencies:
       pify: 4.0.1
       semver: 5.7.2
+
+  markdown-to-jsx@7.7.0(react@18.3.1):
+    dependencies:
+      react: 18.3.1
 
   meow@12.1.1: {}
 
