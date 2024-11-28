@@ -11,6 +11,7 @@ import AppearanceSettings from "@features/settings/components/appearance/Appeara
 import SoundSettings from "@features/settings/components/sound/SoundSettings";
 import About from "@features/settings/components/about/About";
 import Developers from "@features/settings/components/about/Developers";
+import SecuritySection from "@features/settings/components/security/SecuritySection";
 
 // icons
 import { CgClose } from "react-icons/cg";
@@ -43,6 +44,9 @@ const Settings = ({ settings, toggleSettings }: SettingsProps) => {
       case "developers":
         setChecked(setting);
         break;
+      case "security":
+        setChecked(setting);
+        break;
       default:
         setChecked("appearance");
         break;
@@ -59,6 +63,8 @@ const Settings = ({ settings, toggleSettings }: SettingsProps) => {
         return <About />;
       case "developers":
         return <Developers />;
+      case "security":
+        return <SecuritySection />;
       default:
         return <AppearanceSettings />;
     }
