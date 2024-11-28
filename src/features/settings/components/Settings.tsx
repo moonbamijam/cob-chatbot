@@ -10,7 +10,7 @@ import SettingsNavBar from "@features/settings/components/nav/SettingsNavBar";
 import AppearanceSettings from "@features/settings/components/appearance/AppearanceSettings";
 import SoundSettings from "@features/settings/components/sound/SoundSettings";
 import About from "@features/settings/components/about/About";
-import Developers from "@features/settings/components/about/Developers";
+import ChatbotTeam from "@/src/features/settings/components/about/chatbot-team/ChatbotTeamSection";
 import SecuritySection from "@features/settings/components/security/SecuritySection";
 
 // icons
@@ -41,7 +41,7 @@ const Settings = ({ settings, toggleSettings }: SettingsProps) => {
       case configuration.name:
         setChecked(setting);
         break;
-      case "developers":
+      case "chatbot team":
         setChecked(setting);
         break;
       case "security":
@@ -61,8 +61,8 @@ const Settings = ({ settings, toggleSettings }: SettingsProps) => {
         return <SoundSettings />;
       case configuration.name:
         return <About />;
-      case "developers":
-        return <Developers />;
+      case "chatbot team":
+        return <ChatbotTeam />;
       case "security":
         return <SecuritySection />;
       default:

@@ -1,5 +1,6 @@
 import { IoChatbubbleEllipsesOutline } from "react-icons/io5";
-import { FaVolumeHigh, FaCode, FaUserShield } from "react-icons/fa6";
+import { FaVolumeHigh, FaUserShield } from "react-icons/fa6";
+import { MdGroups } from "react-icons/md";
 
 export const settingsList = [
   {
@@ -13,9 +14,9 @@ export const settingsList = [
     icon: FaVolumeHigh,
   },
   {
-    name: "developers",
+    name: "chatbot team",
     settingType: "about",
-    icon: FaCode,
+    icon: MdGroups,
   },
   {
     name: "security",
