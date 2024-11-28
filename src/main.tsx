@@ -8,6 +8,9 @@ import AuthProvider from "@providers/AuthProvider";
 import ThemeProvider from "@providers/ThemeProvider";
 import ChatProvider from "@providers/ChatProvider";
 
+// contstants
+import { baseUrl } from "@constants/url/base-url";
+
 // pages
 import Home from "@app/Home";
 import CityHall from "@app/CityHall";
@@ -17,18 +20,28 @@ import Error from "@app/Error";
 import "@styles/globals.css";
 import "@styles/custom-media-query.css";
 
-const router = createBrowserRouter([
+const router = createBrowserRouter(
+  [
+    {
+      path: "/",
+      element: localStorage.getItem("uid") ? <CityHall /> : <Home />,
+      errorElement: <Error />,
+    },
+    {
+      path: "/bacoor-gov",
+      element: <CityHall />,
+      errorElement: <Error />,
+    },
+    {
+      path: "*",
+      element: <Error />,
+      errorElement: <Error />,
+    },
+  ],
   {
-    path: "/",
-    element: localStorage.getItem("uid") ? <CityHall /> : <Home />,
-    errorElement: <Error />,
+    basename: baseUrl,
   },
-  {
-    path: "/bacoor-gov",
-    element: <CityHall />,
-    errorElement: <Error />,
-  },
-]);
+);
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>

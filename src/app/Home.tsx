@@ -7,6 +7,9 @@ import Header from "@layouts/header/Header";
 import Button from "@components/ui/Button";
 import Version from "@components/Version";
 
+// constants
+import { baseUrl } from "@constants/url/base-url";
+
 // assets
 import LandingCoverLight from "@static/assets/gif/landing-convo-light.gif";
 import LandingCoverDark from "@static/assets/gif/landing-convo-dark.gif";
@@ -28,7 +31,7 @@ const Home = () => {
           <p className="text-xl text-black/50 dark:text-white/50 ml-2 mt-6 max-w-[350px]">
             {chatbotConfig.introduction}
           </p>
-          <a href="/bacoor-gov">
+          <a href={`${baseUrl}/bacoor-gov`}>
             <Button
               variant="cta"
               size="xl"
