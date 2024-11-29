@@ -26,6 +26,8 @@ const ChatbotProvider = ({ children }: { children: React.ReactNode }) => {
   const [conversation, setConversation] = useState<ConversationType[]>([]);
   const [isOnline, setOnline] = useState<boolean>(true);
   const [error, setError] = useState<boolean>(false);
+  const [isBotTyping, setIsBotTyping] = useState<boolean>(false);
+  const [isChatPaused, setIsChatPaused] = useState<boolean>(false);
 
   const getBotProfile = async () => {
     try {
@@ -67,8 +69,10 @@ const ChatbotProvider = ({ children }: { children: React.ReactNode }) => {
       conversation: { conversation, setConversation },
       error: { error, setError },
       isOnline: { isOnline, setOnline },
+      isTyping: { isBotTyping, setIsBotTyping },
+      isChatPaused: { isChatPaused, setIsChatPaused },
     };
-  }, [configuration, conversation, error, isOnline]);
+  }, [configuration, conversation, error, isOnline, isBotTyping, isChatPaused]);
 
   return (
     <ChatbotContext.Provider value={chatbot}>

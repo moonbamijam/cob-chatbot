@@ -18,6 +18,14 @@ type ChatbotContextType = {
     isOnline: boolean;
     setOnline: React.Dispatch<React.SetStateAction<boolean>>;
   };
+  isTyping: {
+    isBotTyping: boolean;
+    setIsBotTyping: React.Dispatch<React.SetStateAction<boolean>>;
+  };
+  isChatPaused: {
+    isChatPaused: boolean;
+    setIsChatPaused: React.Dispatch<React.SetStateAction<boolean>>;
+  };
 };
 
 export const ChatbotContext = React.createContext<ChatbotContextType>(
