@@ -1,5 +1,8 @@
-import { useRef, useState } from "react";
+import { useContext, useRef, useState } from "react";
 import messages from "@static/messages/suggested.json";
+
+// contexts
+import { ChatbotContext } from "@contexts/ChatbotContext";
 
 // components
 import Button from "@components/ui/Button";
@@ -10,16 +13,18 @@ import ItemsRenderer from "@layouts/ItemsRenderer";
 // icons
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa6";
 
-type SuggestedChatSectionProps = {
-  sendFaqToBot: (message: string) => void;
-};
-
 type SuggestedMessagesType = {
   displayedText: string;
   message: string;
 };
 
-const SuggestedChatSection = ({ sendFaqToBot }: SuggestedChatSectionProps) => {
+const SuggestedChatSection = ({
+  sendSuggestedQueryToBot,
+}: {
+  sendSuggestedQueryToBot: (message: string) => void;
+}) => {
+  const chatbot = useContext(ChatbotContext);
+  const { isChatPaused } = chatbot.isChatPaused;
   const suggestedChatsRef = useRef<HTMLDivElement | null>(null);
   const suggestedChats = suggestedChatsRef.current;
   const [isMouseDown, setIsMouseDown] = useState<boolean>(false);
@@ -106,10 +111,11 @@ const SuggestedChatSection = ({ sendFaqToBot }: SuggestedChatSectionProps) => {
               key={id}
               variant="outline"
               size="xl"
-              className="rounded-3xl min-w-[200px] h-full border border-primary text-xs xs:text-sm text-primary dark:text-white hover:bg-primary hover:text-white active:translate-y-1"
+              className={`rounded-3xl min-w-[200px] h-full border border-primary text-xs xs:text-sm text-primary dark:text-white hover:bg-primary hover:text-white ${isChatPaused ? "cursor-not-allowed" : "active:translate-y-1"}`}
               onClick={() => {
-                if (message != "") sendFaqToBot(message);
+                if (message != "") sendSuggestedQueryToBot(message);
               }}
+              disabled={isChatPaused}
             >
               {displayedText}
             </Button>
