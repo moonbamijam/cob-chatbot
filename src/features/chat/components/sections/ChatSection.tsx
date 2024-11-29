@@ -35,16 +35,16 @@ import "@styles/utils.css";
 const chatPerPage = 15;
 const step = 10;
 
-type ChatSectionProps = {
-  botIsTyping: boolean;
+const ChatSection = ({
+  latestChat,
+}: {
   latestChat: RefObject<HTMLDivElement>;
-};
-
-const ChatSection = ({ botIsTyping, latestChat }: ChatSectionProps) => {
+}) => {
   const chatbot = useContext(ChatbotContext);
   const { conversation } = chatbot.conversation;
   const { error } = chatbot.error;
   const { isOnline } = chatbot.isOnline;
+  const { isBotTyping } = chatbot.isTyping;
   const { backToView, setBackToView, handleScrollIntoView } =
     useScrollIntoView();
   const [displayedChats, setDisplayedChats] = useState(chatPerPage);
@@ -142,7 +142,7 @@ const ChatSection = ({ botIsTyping, latestChat }: ChatSectionProps) => {
         {conversation ? (
           <div id="chats" ref={chatAreaRef}>
             {renderChatsContent()}
-            {botIsTyping && <Typing />}
+            {isBotTyping && <Typing />}
           </div>
         ) : (
           <ChatSkeleton />

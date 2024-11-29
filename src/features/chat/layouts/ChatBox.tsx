@@ -29,10 +29,9 @@ const ChatBox = ({ closeUsing }: ChatBoxProps) => {
     setIsFaqsMenuActive,
     userMessage,
     setUserMessage,
-    botIsTyping,
     toggleSettings,
     sendMessageToBot,
-    sendFaqToBot,
+    sendSuggestedQueryToBot,
   } = useChatbot();
   const font = useContext(FontContext);
   const { fontFamily } = font.family;
@@ -54,12 +53,14 @@ const ChatBox = ({ closeUsing }: ChatBoxProps) => {
           toggleSettings={toggleSettings}
           closeUsing={closeUsing}
         />
-        <ChatSection botIsTyping={botIsTyping} latestChat={latestChat} />
-        <SuggestedChatSection sendFaqToBot={sendFaqToBot} />
+        <ChatSection latestChat={latestChat} />
+        <SuggestedChatSection
+          sendSuggestedQueryToBot={sendSuggestedQueryToBot}
+        />
         <ChatInputSection
           questionsListRef={questionsListRef}
           sendMessageToBot={sendMessageToBot}
-          sendFaqToBot={sendFaqToBot}
+          sendSuggestedQueryToBot={sendSuggestedQueryToBot}
           userMessage={userMessage}
           setUserMessage={setUserMessage}
           isFaqsMenuActive={isFaqsMenuActive}

@@ -60,6 +60,8 @@ const useChatbot = () => {
   const { conversation, setConversation } = chatbot.conversation;
   const { error, setError } = chatbot.error;
   const { isOnline } = chatbot.isOnline;
+  const { setIsChatPaused } = chatbot.isChatPaused;
+  const { isBotTyping, setIsBotTyping } = chatbot.isTyping;
   const { playMessageNotification } = useSound();
   const latestChat = useRef<HTMLDivElement | null>(null);
   const [isAtLatestChat, setIsAtLatestChat] = useState<boolean>(false);
@@ -68,7 +70,6 @@ const useChatbot = () => {
   const [loading, setLoading] = useState<boolean>(true);
   const [isFaqsMenuActive, setIsFaqsMenuActive] = useState<boolean>(false);
   const [userMessage, setUserMessage] = useState<string>("");
-  const [botIsTyping, setBotIsTyping] = useState<boolean>(false);
 
   let chatData: chatType = {
     chat: "",
@@ -103,7 +104,7 @@ const useChatbot = () => {
   const getReplyFromBot = async (message: string) => {
     try {
       console.time(`${configuration.name} Replied in`);
-      setBotIsTyping(true);
+      setIsBotTyping(true);
       // Temporary statements just to display departments
       await sleep(1);
       if (deptsMessages.includes(message)) {
@@ -113,7 +114,7 @@ const useChatbot = () => {
           async (response: string | deptsType, i: number) => {
             if (i == 1) {
               await sleep(1);
-              setBotIsTyping(true);
+              setIsBotTyping(true);
               await sleep(1);
             }
             chatData = processDepartmentServicesResponse(
@@ -121,11 +122,12 @@ const useChatbot = () => {
               deptsAnswer,
               depts,
             );
-            setBotIsTyping(false);
+            setIsBotTyping(false);
             userPost(user.uid, chatData);
             playMessageNotification();
           },
         );
+        setIsChatPaused(true);
         // THE ABOVE CODE BLOCKS ARE FOR HANDLING STATIC DEPARTMENT RESPONSES ONLY
         //
         //
@@ -160,7 +162,7 @@ const useChatbot = () => {
           botHasMultipleMessage.forEach(async (response: string, i: number) => {
             if (i == 1) {
               await sleep(1);
-              setBotIsTyping(true);
+              setIsBotTyping(true);
               await sleep(1);
             }
             chatData = {
@@ -170,7 +172,7 @@ const useChatbot = () => {
               role: "bot",
               timestamp: Timestamp.now(),
             };
-            setBotIsTyping(false);
+            setIsBotTyping(false);
             userPost(user.uid, chatData);
             setIsFaqsMenuActive(false);
             playMessageNotification();
@@ -181,7 +183,7 @@ const useChatbot = () => {
           chatData = linkMessage
             ? processLinkResponse(intent, link, linkMessage)
             : processLinkResponse(intent, link);
-          setBotIsTyping(false);
+          setIsBotTyping(false);
           userPost(user.uid, chatData);
           setIsFaqsMenuActive(false);
           playMessageNotification();
@@ -195,7 +197,7 @@ const useChatbot = () => {
           withFileResponse.forEach(async (response: string, i: number) => {
             if (i == 1) {
               await sleep(1);
-              setBotIsTyping(true);
+              setIsBotTyping(true);
               await sleep(1);
             }
             chatData =
@@ -208,7 +210,7 @@ const useChatbot = () => {
                     text,
                   )
                 : chatData;
-            setBotIsTyping(false);
+            setIsBotTyping(false);
             userPost(user.uid, chatData);
             setIsFaqsMenuActive(false);
             playMessageNotification();
@@ -221,15 +223,16 @@ const useChatbot = () => {
             role: "bot",
             timestamp: Timestamp.now(),
           };
-          setBotIsTyping(false);
+          setIsBotTyping(false);
           userPost(user.uid, chatData);
           setIsFaqsMenuActive(false);
           playMessageNotification();
         }
       }
+      setIsChatPaused(false);
     } catch (error) {
       console.log(error);
-      setBotIsTyping(false);
+      setIsBotTyping(false);
       setError(true);
       if (!error) setError(false);
     } finally {
@@ -239,12 +242,15 @@ const useChatbot = () => {
 
   const sendMessageToBot = useCallback(
     async (
-      event: KeyboardEvent | FormEvent<HTMLInputElement | HTMLFormElement>,
+      event:
+        | React.KeyboardEvent<HTMLTextAreaElement>
+        | FormEvent<HTMLInputElement | HTMLFormElement>,
       message: string,
     ) => {
       try {
         event.preventDefault();
         setUserMessage("");
+        setIsChatPaused(true);
         chatData = {
           chat: message,
           chatId: uuid(),
@@ -257,7 +263,7 @@ const useChatbot = () => {
         getReplyFromBot(message);
       } catch (error) {
         console.log(error);
-        setBotIsTyping(false);
+        setIsBotTyping(false);
         setError(true);
         if (!error) setError(false);
       }
@@ -265,9 +271,10 @@ const useChatbot = () => {
     [playMessageNotification, setError],
   );
 
-  const sendFaqToBot = async (message: string) => {
+  const sendSuggestedQueryToBot = async (message: string) => {
     try {
       setIsFaqsMenuActive(false);
+      setIsChatPaused(true);
       chatData = {
         chat: message,
         chatId: uuid(),
@@ -280,7 +287,7 @@ const useChatbot = () => {
       getReplyFromBot(message);
     } catch (error) {
       console.log(error);
-      setBotIsTyping(false);
+      setIsBotTyping(false);
       setError(true);
       if (!error) setError(false);
     }
@@ -290,36 +297,7 @@ const useChatbot = () => {
   useEffect(() => {
     const atLatestChat = smoothScrollInto(latestChat);
     if (isSignedIn && atLatestChat) setIsAtLatestChat(true);
-  }, [conversation, botIsTyping, error, isOnline, isSignedIn]);
-
-  // for sending messages when clicking enter
-  useEffect(() => {
-    const handleSendMessageInEnter = (
-      event: KeyboardEvent | FormEvent<HTMLInputElement>,
-    ) => {
-      const trimmedMessage = userMessage.trim();
-      // message should be sent if its enter key without shift and not empty
-      if (
-        (event as KeyboardEvent).key == "Enter" &&
-        !(event as KeyboardEvent).shiftKey &&
-        trimmedMessage != ""
-      ) {
-        sendMessageToBot(event as KeyboardEvent, trimmedMessage);
-        setUserMessage("");
-      } else if (
-        (event as KeyboardEvent).key == "Enter" &&
-        !(event as KeyboardEvent).shiftKey
-      ) {
-        // this will just clear the spaces if you try to send empty messages using shift + enter
-        event.preventDefault();
-        setUserMessage("");
-      }
-    };
-    document.addEventListener("keydown", handleSendMessageInEnter);
-    return () => {
-      document.removeEventListener("keydown", handleSendMessageInEnter);
-    };
-  }, [sendMessageToBot, userMessage]);
+  }, [conversation, isBotTyping, error, isOnline, isSignedIn]);
 
   // for handling faqs menu on mouse down
   useEffect(() => {
@@ -359,12 +337,10 @@ const useChatbot = () => {
     setIsFaqsMenuActive,
     userMessage,
     setUserMessage,
-    botIsTyping,
-    setBotIsTyping,
     toggleSettings,
     conversation,
     sendMessageToBot,
-    sendFaqToBot,
+    sendSuggestedQueryToBot,
   };
 };
 
