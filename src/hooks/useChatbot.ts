@@ -34,6 +34,7 @@ import {
   processFileResponse,
   processLinkResponse,
 } from "@lib/process-response";
+import postQuery from "@lib/post-query";
 
 // utils
 import { sleep } from "@utils/sleep";
@@ -104,70 +105,103 @@ const useChatbot = () => {
   const getReplyFromBot = async (message: string) => {
     try {
       console.time(`${configuration.name} Replied in`);
-      setIsBotTyping(true);
-      // Temporary statements just to display departments
-      await sleep(1);
-      if (deptsMessages.includes(message)) {
-        const deptServicesResponse = [deptsAnswer, depts];
+      const chatbotQuery = await postQuery(message);
 
-        deptServicesResponse.forEach(
-          async (response: string | deptsType, i: number) => {
-            if (i == 1) {
-              await sleep(1);
-              setIsBotTyping(true);
-              await sleep(1);
-            }
-            chatData = processDepartmentServicesResponse(
-              response,
-              deptsAnswer,
-              depts,
+      if (chatbotQuery.success) {
+        setIsBotTyping(true);
+        setError(false);
+        await sleep(1);
+
+        if (deptsMessages.includes(message)) {
+          const deptServicesResponse = [deptsAnswer, depts];
+
+          deptServicesResponse.forEach(
+            async (response: string | deptsType, i: number) => {
+              if (i == 1) {
+                await sleep(1);
+                setIsBotTyping(true);
+                await sleep(1);
+              }
+              chatData = processDepartmentServicesResponse(
+                response,
+                deptsAnswer,
+                depts,
+              );
+              setIsBotTyping(false);
+              userPost(user.uid, chatData);
+              playMessageNotification();
+            },
+          );
+          setIsChatPaused(true);
+          //
+          //
+          //
+        } else {
+          const { intent, answer } = chatbotQuery.response;
+
+          if (hasSplitSymbol(answer)) {
+            const botHasMultipleMessage = splitMessage(answer);
+            botHasMultipleMessage.forEach(
+              async (response: string, i: number) => {
+                if (i == 1) {
+                  await sleep(1);
+                  setIsBotTyping(true);
+                  await sleep(1);
+                }
+                chatData = {
+                  intent: intent,
+                  chat: response,
+                  chatId: uuid(),
+                  role: "bot",
+                  timestamp: Timestamp.now(),
+                };
+                setIsBotTyping(false);
+                userPost(user.uid, chatData);
+                setIsFaqsMenuActive(false);
+                playMessageNotification();
+              },
             );
+          } else if (hasLinkSymbol(answer)) {
+            const { link, linkMessage } = extractLink(answer);
+            chatData = linkMessage
+              ? processLinkResponse(intent, link, linkMessage)
+              : processLinkResponse(intent, link);
             setIsBotTyping(false);
             userPost(user.uid, chatData);
+            setIsFaqsMenuActive(false);
             playMessageNotification();
-          },
-        );
-        setIsChatPaused(true);
-        // THE ABOVE CODE BLOCKS ARE FOR HANDLING STATIC DEPARTMENT RESPONSES ONLY
-        //
-        //
-        // STARTING HERE FROM "ELSE" HANDLES THE DYNAMIC RESPONSES FROM BOT
-      } else {
-        await sleep(1);
-        const response = await fetch(import.meta.env.VITE_CHATBOT_API_URL, {
-          method: "POST",
-          headers: {
-            "content-type": "application/json",
-            authorization: import.meta.env.VITE_CHATBOT_API_KEY,
-          },
-          body: JSON.stringify({
-            userQuery: message,
-          }),
-        });
+          } else if (hasFileSymbol(answer)) {
+            const { text, link } = extractLink(answer);
+            const fileName = link ? extractFileNameFromUrl(link) : "";
+            const fileExtension = fileName?.split(".")[1];
 
-        if (response.ok) setError(false);
-        else setError(true);
+            const withFileResponse: string[] = text && link ? [text, link] : [];
 
-        const data: {
-          success: boolean;
-          response: {
-            answer: string;
-            intent: string;
-          };
-        } = await response.json();
-        const { intent, answer } = data.response;
-
-        if (hasSplitSymbol(answer)) {
-          const botHasMultipleMessage = splitMessage(answer);
-          botHasMultipleMessage.forEach(async (response: string, i: number) => {
-            if (i == 1) {
-              await sleep(1);
-              setIsBotTyping(true);
-              await sleep(1);
-            }
+            withFileResponse.forEach(async (response: string, i: number) => {
+              if (i == 1) {
+                await sleep(1);
+                setIsBotTyping(true);
+                await sleep(1);
+              }
+              chatData =
+                fileExtension && text
+                  ? processFileResponse(
+                      fileExtension,
+                      fileName,
+                      response,
+                      intent,
+                      text,
+                    )
+                  : chatData;
+              setIsBotTyping(false);
+              userPost(user.uid, chatData);
+              setIsFaqsMenuActive(false);
+              playMessageNotification();
+            });
+          } else {
             chatData = {
               intent: intent,
-              chat: response,
+              chat: answer,
               chatId: uuid(),
               role: "bot",
               timestamp: Timestamp.now(),
@@ -176,67 +210,16 @@ const useChatbot = () => {
             userPost(user.uid, chatData);
             setIsFaqsMenuActive(false);
             playMessageNotification();
-          });
-          return;
-        } else if (hasLinkSymbol(answer)) {
-          const { link, linkMessage } = extractLink(answer);
-          chatData = linkMessage
-            ? processLinkResponse(intent, link, linkMessage)
-            : processLinkResponse(intent, link);
-          setIsBotTyping(false);
-          userPost(user.uid, chatData);
-          setIsFaqsMenuActive(false);
-          playMessageNotification();
-        } else if (hasFileSymbol(answer)) {
-          const { text, link } = extractLink(answer);
-          const fileName = link ? extractFileNameFromUrl(link) : "";
-          const fileExtension = fileName?.split(".")[1];
-
-          const withFileResponse: string[] = text && link ? [text, link] : [];
-
-          withFileResponse.forEach(async (response: string, i: number) => {
-            if (i == 1) {
-              await sleep(1);
-              setIsBotTyping(true);
-              await sleep(1);
-            }
-            chatData =
-              fileExtension && text
-                ? processFileResponse(
-                    fileExtension,
-                    fileName,
-                    response,
-                    intent,
-                    text,
-                  )
-                : chatData;
-            setIsBotTyping(false);
-            userPost(user.uid, chatData);
-            setIsFaqsMenuActive(false);
-            playMessageNotification();
-          });
-        } else {
-          chatData = {
-            intent: intent,
-            chat: answer,
-            chatId: uuid(),
-            role: "bot",
-            timestamp: Timestamp.now(),
-          };
-          setIsBotTyping(false);
-          userPost(user.uid, chatData);
-          setIsFaqsMenuActive(false);
-          playMessageNotification();
+          }
         }
       }
-      setIsChatPaused(false);
-    } catch (error) {
-      console.log(error);
-      setIsBotTyping(false);
-      setError(true);
-      if (!error) setError(false);
-    } finally {
       console.timeEnd(`${configuration.name} Replied in`);
+    } catch (error) {
+      setError(true);
+      console.log(error);
+    } finally {
+      setIsBotTyping(false);
+      setIsChatPaused(false);
     }
   };
 
@@ -251,6 +234,7 @@ const useChatbot = () => {
         event.preventDefault();
         setUserMessage("");
         setIsChatPaused(true);
+        setError(false);
         chatData = {
           chat: message,
           chatId: uuid(),
@@ -275,6 +259,7 @@ const useChatbot = () => {
     try {
       setIsFaqsMenuActive(false);
       setIsChatPaused(true);
+      setError(false);
       chatData = {
         chat: message,
         chatId: uuid(),
