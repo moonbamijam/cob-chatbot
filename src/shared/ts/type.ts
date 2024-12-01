@@ -1,6 +1,14 @@
 import * as admin from "firebase-admin";
 import { IconType } from "react-icons";
 
+export type queryResponseType = {
+  success?: boolean;
+  response: {
+    intent: string;
+    answer: string;
+  };
+};
+
 export type ConfigurationType = {
   icon: string;
   widgetIcon: string;
