@@ -12,7 +12,7 @@ import { scrollInto } from "@utils/scroll-into";
 import { fullTimestamp, timestamp } from "@utils/timestamp";
 
 // components
-import Error from "@components/Error";
+import ChatError from "@/src/features/chat/components/ChatError";
 import Button from "@components/Button";
 import Loading from "@components/Loading";
 import Typing from "@features/chat/components/Typing";
@@ -147,8 +147,8 @@ const ChatSection = ({
         ) : (
           <ChatSkeleton />
         )}
-        {error && <Error message={"something went wrong!"} />}
-        {!isOnline && <Error message={"no internet connection."} />}
+        {error && <ChatError message={"something went wrong!"} />}
+        {!isOnline && <ChatError message={"no internet connection."} />}
         <div ref={latestChat}></div>
       </section>
     </>
