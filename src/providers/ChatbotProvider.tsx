@@ -1,20 +1,24 @@
 import { useState, useEffect, useMemo } from "react";
-import { collection, doc, onSnapshot } from "firebase/firestore";
+import { doc, onSnapshot } from "firebase/firestore";
+
+// firebase
+import { profileCollectionRef } from "@shared/collection-refs";
 
 // contexts
 import { ChatbotContext } from "@contexts/ChatbotContext";
 
 // types
-import { ConfigurationType, ConversationType } from "@shared/ts/type";
+import {
+  ConfigurationType,
+  ConversationType,
+  suggestedQueriesType,
+} from "@shared/ts/type";
 
 // constants
-import { db } from "@constants/firebase/config";
 import { chatbotConfig } from "@constants/bot/chatbot-config";
 
 // assets
 import ChatbotLogo from "@static/assets/images/logo.png";
-
-const botProfileCollectionRef = collection(db, "profile");
 
 const ChatbotProvider = ({ children }: { children: React.ReactNode }) => {
   const [configuration, setConfiguration] = useState<ConfigurationType>({
@@ -24,6 +28,12 @@ const ChatbotProvider = ({ children }: { children: React.ReactNode }) => {
     slogan: chatbotConfig.slogan,
   });
   const [conversation, setConversation] = useState<ConversationType[]>([]);
+  const [menuAccessQueries, setMenuAccessQueries] = useState<
+    suggestedQueriesType[]
+  >([]);
+  const [quickAccessQueries, setQuickAccessQueries] = useState<
+    suggestedQueriesType[]
+  >([]);
   const [isOnline, setOnline] = useState<boolean>(true);
   const [error, setError] = useState<boolean>(false);
   const [isBotTyping, setIsBotTyping] = useState<boolean>(false);
@@ -32,7 +42,7 @@ const ChatbotProvider = ({ children }: { children: React.ReactNode }) => {
   const getBotProfile = async () => {
     try {
       console.time("Received bot info in");
-      onSnapshot(doc(botProfileCollectionRef, "botProfile"), (doc) => {
+      onSnapshot(doc(profileCollectionRef, "botProfile"), (doc) => {
         setConfiguration({
           icon: doc.data()?.interactionIconURL,
           widgetIcon: doc.data()?.widgetIconUrl,
@@ -50,9 +60,25 @@ const ChatbotProvider = ({ children }: { children: React.ReactNode }) => {
     }
   };
 
+  const getSuggestedQueries = async () => {
+    try {
+      console.time("Received suggested queries");
+      onSnapshot(doc(profileCollectionRef, "queries"), (doc) => {
+        if (doc.exists()) {
+          setMenuAccessQueries(doc.data()?.menuAccessQuery);
+          setQuickAccessQueries(doc.data()?.quickAccessQuery);
+        }
+      });
+      console.timeEnd("Received suggested queries");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   useEffect(() => {
     setOnline(navigator.onLine);
     getBotProfile();
+    getSuggestedQueries();
   }, []);
 
   window.addEventListener("online", () => {
@@ -67,12 +93,23 @@ const ChatbotProvider = ({ children }: { children: React.ReactNode }) => {
     return {
       configuration: { configuration, setConfiguration },
       conversation: { conversation, setConversation },
+      menuAccessQuery: { menuAccessQueries, setMenuAccessQueries },
+      quickAccessQuery: { quickAccessQueries, setQuickAccessQueries },
       error: { error, setError },
       isOnline: { isOnline, setOnline },
       isTyping: { isBotTyping, setIsBotTyping },
       isChatPaused: { isChatPaused, setIsChatPaused },
     };
-  }, [configuration, conversation, error, isOnline, isBotTyping, isChatPaused]);
+  }, [
+    configuration,
+    conversation,
+    menuAccessQueries,
+    quickAccessQueries,
+    error,
+    isOnline,
+    isBotTyping,
+    isChatPaused,
+  ]);
 
   return (
     <ChatbotContext.Provider value={chatbot}>

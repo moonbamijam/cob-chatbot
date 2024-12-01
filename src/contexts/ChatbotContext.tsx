@@ -1,5 +1,9 @@
 import React from "react";
-import { ConfigurationType, ConversationType } from "@/src/shared/ts/type";
+import {
+  ConfigurationType,
+  ConversationType,
+  suggestedQueriesType,
+} from "@/src/shared/ts/type";
 
 type ChatbotContextType = {
   configuration: {
@@ -9,6 +13,18 @@ type ChatbotContextType = {
   conversation: {
     conversation: ConversationType[];
     setConversation: React.Dispatch<React.SetStateAction<ConversationType[]>>;
+  };
+  menuAccessQuery: {
+    menuAccessQueries: suggestedQueriesType[];
+    setMenuAccessQueries: React.Dispatch<
+      React.SetStateAction<suggestedQueriesType[]>
+    >;
+  };
+  quickAccessQuery: {
+    quickAccessQueries: suggestedQueriesType[];
+    setQuickAccessQueries: React.Dispatch<
+      React.SetStateAction<suggestedQueriesType[]>
+    >;
   };
   error: {
     error: boolean;
