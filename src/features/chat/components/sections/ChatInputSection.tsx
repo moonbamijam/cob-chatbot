@@ -99,7 +99,7 @@ const ChatInputSection = ({
               <Button
                 key={id}
                 variant="outline"
-                className="rounded-3xl w-full h-full normal-case border border-primary text-xs xs:text-sm text-primary dark:text-white hover:bg-primary hover:text-white active:translate-y-1"
+                className={`rounded-3xl w-full h-full normal-case border border-primary text-xs xs:text-sm text-primary dark:text-white hover:bg-primary hover:text-white ${isChatPaused ? "cursor-wait" : "active:translate-y-1"}`}
                 onClick={() => sendSuggestedQueryToBot(text)}
                 disabled={isChatPaused}
               >
