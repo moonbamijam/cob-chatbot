@@ -1,6 +1,8 @@
 import React, { FormEvent, LegacyRef, useContext } from "react";
 import ReactTextareaAutosize from "react-textarea-autosize";
-import ServicesAndProcess from "@static/messages/services-and-process.json";
+
+// contexts
+import { ChatbotContext } from "@contexts/ChatbotContext";
 
 // components
 import Button from "@components/ui/Button";
@@ -12,9 +14,8 @@ import ItemsRenderer from "@layouts/ItemsRenderer";
 import { IoSend } from "react-icons/io5";
 import { LuMenu } from "react-icons/lu";
 
-// shared
-import { ServicesAndProcessType } from "@/src/shared/ts/type";
-import { ChatbotContext } from "@/src/contexts/ChatbotContext";
+// type
+import { suggestedQueriesType } from "@shared/ts/type";
 
 type ChatInputSectionProps = Readonly<{
   questionsListRef: LegacyRef<HTMLDivElement> | null;
@@ -41,6 +42,7 @@ const ChatInputSection = ({
   setIsFaqsMenuActive,
 }: ChatInputSectionProps) => {
   const chatbot = useContext(ChatbotContext);
+  const { menuAccessQueries } = chatbot.menuAccessQuery;
   const { isChatPaused } = chatbot.isChatPaused;
 
   const toggleFaqsMenu = () => {
@@ -92,16 +94,16 @@ const ChatInputSection = ({
 
         <div className="inline-grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-2 gap-2 ">
           <ItemsRenderer
-            items={ServicesAndProcess.questions}
-            renderItems={({ query }: ServicesAndProcessType, id) => (
+            items={menuAccessQueries}
+            renderItems={({ id, label, text }: suggestedQueriesType) => (
               <Button
                 key={id}
                 variant="outline"
-                className="rounded-3xl w-full h-full border border-primary text-xs xs:text-sm text-primary dark:text-white hover:bg-primary hover:text-white active:translate-y-1"
-                onClick={() => sendSuggestedQueryToBot(query)}
+                className="rounded-3xl w-full h-full normal-case border border-primary text-xs xs:text-sm text-primary dark:text-white hover:bg-primary hover:text-white active:translate-y-1"
+                onClick={() => sendSuggestedQueryToBot(text)}
                 disabled={isChatPaused}
               >
-                {query}
+                {label}
               </Button>
             )}
           />

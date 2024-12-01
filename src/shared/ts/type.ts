@@ -39,8 +39,10 @@ export type ConversationType = {
   depts: deptsType;
 };
 
-export type ServicesAndProcessType = {
-  query: string;
+export type suggestedQueriesType = {
+  id: string;
+  label: string;
+  text: string;
 };
 
 export type SettingsListType = {

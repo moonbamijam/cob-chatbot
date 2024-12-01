@@ -1,5 +1,4 @@
 import { useContext, useRef, useState } from "react";
-import messages from "@static/messages/suggested.json";
 
 // contexts
 import { ChatbotContext } from "@contexts/ChatbotContext";
@@ -10,13 +9,11 @@ import Button from "@components/ui/Button";
 // layouts
 import ItemsRenderer from "@layouts/ItemsRenderer";
 
+// type
+import { suggestedQueriesType } from "@shared/ts/type";
+
 // icons
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa6";
-
-type SuggestedMessagesType = {
-  displayedText: string;
-  message: string;
-};
 
 const SuggestedChatSection = ({
   sendSuggestedQueryToBot,
@@ -24,6 +21,7 @@ const SuggestedChatSection = ({
   sendSuggestedQueryToBot: (message: string) => void;
 }) => {
   const chatbot = useContext(ChatbotContext);
+  const { quickAccessQueries } = chatbot.quickAccessQuery;
   const { isChatPaused } = chatbot.isChatPaused;
   const suggestedChatsRef = useRef<HTMLDivElement | null>(null);
   const suggestedChats = suggestedChatsRef.current;
@@ -102,22 +100,19 @@ const SuggestedChatSection = ({
         className={`w-full h-[100px] px-10 xl:px-12 flex items-center gap-x-6 sm:gap-x-8 xl:gap-x-6 overflow-x-scroll cursor-move ${isSmoothScrolling ? "scroll-smooth" : "scroll-auto"} scrollbar-none`}
       >
         <ItemsRenderer
-          items={messages.list}
-          renderItems={(
-            { displayedText, message }: SuggestedMessagesType,
-            id: number,
-          ) => (
+          items={quickAccessQueries}
+          renderItems={({ id, label, text }: suggestedQueriesType) => (
             <Button
               key={id}
               variant="outline"
               size="xl"
               className={`rounded-3xl min-w-[200px] h-full border border-primary text-xs xs:text-sm text-primary dark:text-white hover:bg-primary hover:text-white ${isChatPaused ? "cursor-not-allowed" : "active:translate-y-1"}`}
               onClick={() => {
-                if (message != "") sendSuggestedQueryToBot(message);
+                if (text != "") sendSuggestedQueryToBot(text);
               }}
               disabled={isChatPaused}
             >
-              {displayedText}
+              {label}
             </Button>
           )}
         />
