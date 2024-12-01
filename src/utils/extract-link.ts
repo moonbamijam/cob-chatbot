@@ -15,15 +15,10 @@ export const extractLink = (
     const text = input.replace(fileLinkRegex, "").trim();
     return { link, text };
   } else if (regularLinkMatch && regularLinkMessageMatch) {
-    const url = regularLinkMatch[1];
-    const linkMessage = regularLinkMessageMatch[1];
-    const link = input
-      .replace(
-        regularLinkRegex,
-        `<a href="${url}" class="font-semibold text-primary dark:text-secondary hover:underline" target="_blank">${linkMessage}</a>`,
-      )
-      .replace(regularLinkMessageRegex, "")
-      .trim();
+    const link = input.replace(/<(.+?)>{=(.+?)=}/g, (_match, text, url) => {
+      return `<a class="font-semibold text-primary dark:text-secondary hover:underline" href="${url}" target="_blank" rel="noopener noreferrer">${text}</a>`;
+    });
+
     return { link };
   } else if (regularLinkMatch) {
     const url = regularLinkMatch[1];
