@@ -84,12 +84,14 @@ const SuggestedChatSection = ({
       className="relative w-full max-w-[95%] flex items-center rounded-3xl border border-surface dark:border-dm-surface-dark dark:bg-dm-surface text-xs xs:text-sm sm:text-base mt-auto outline-none py-4 overflow-hidden"
     >
       <div className="w-[80px] h-full absolute -left-1 hidden xl:flex items-center bg-gradient-to-r from-white dark:from-dm-surface from-30%">
-        <Button
-          className="outline-none h-full border-none bg-transparent text-primary pl-4"
-          onClick={() => handleScrollByButton(-itemWidth)}
-        >
-          <FaArrowLeft />
-        </Button>
+        {quickAccessQueries.length >= 2 && (
+          <Button
+            className="outline-none h-full border-none bg-transparent text-primary pl-4"
+            onClick={() => handleScrollByButton(-itemWidth)}
+          >
+            <FaArrowLeft />
+          </Button>
+        )}
       </div>
       <div
         ref={suggestedChatsRef}
@@ -97,7 +99,7 @@ const SuggestedChatSection = ({
         onMouseLeave={handleMouseLeave}
         onMouseUp={handleMouseUp}
         onMouseMove={handleMouseMove}
-        className={`w-full h-[100px] px-10 xl:px-12 flex items-center gap-x-6 sm:gap-x-8 xl:gap-x-6 overflow-x-scroll cursor-move ${isSmoothScrolling ? "scroll-smooth" : "scroll-auto"} scrollbar-none`}
+        className={`w-full h-[100px] px-10 xl:px-12 flex items-center gap-x-6 sm:gap-x-8 xl:gap-x-6 overflow-x-scroll ${quickAccessQueries.length >= 2 && "cursor-move"} ${isSmoothScrolling ? "scroll-smooth" : "scroll-auto"} scrollbar-none`}
       >
         <ItemsRenderer
           items={quickAccessQueries}
@@ -106,7 +108,7 @@ const SuggestedChatSection = ({
               key={id}
               variant="outline"
               size="xl"
-              className={`rounded-3xl min-w-[200px] h-full border border-primary text-xs xs:text-sm text-primary dark:text-white hover:bg-primary hover:text-white ${isChatPaused ? "cursor-not-allowed" : "active:translate-y-1"}`}
+              className={`rounded-3xl min-w-[200px] h-full border border-primary text-xs xs:text-sm text-primary dark:text-white hover:bg-primary hover:text-white ${isChatPaused ? "cursor-wait" : "active:translate-y-1"}`}
               onClick={() => {
                 if (text != "") sendSuggestedQueryToBot(text);
               }}
@@ -118,12 +120,14 @@ const SuggestedChatSection = ({
         />
       </div>
       <div className="w-[80px] h-full absolute -right-1 hidden xl:flex items-center justify-end bg-gradient-to-l from-white dark:from-dm-surface from-30%">
-        <Button
-          className="outline-none h-full border-none bg-transparent text-primary pr-4"
-          onClick={() => handleScrollByButton(itemWidth)}
-        >
-          <FaArrowRight />
-        </Button>
+        {quickAccessQueries.length >= 2 && (
+          <Button
+            className="outline-none h-full border-none bg-transparent text-primary pr-4"
+            onClick={() => handleScrollByButton(itemWidth)}
+          >
+            <FaArrowRight />
+          </Button>
+        )}
       </div>
     </section>
   );
