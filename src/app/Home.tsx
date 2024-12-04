@@ -10,6 +10,9 @@ import Version from "@components/Version";
 // constants
 import { baseUrl } from "@constants/url/base-url";
 
+// utls
+import { setUID } from "@utils/uid";
+
 // assets
 import LandingCoverLight from "@static/assets/gif/landing-convo-light.gif";
 import LandingCoverDark from "@static/assets/gif/landing-convo-dark.gif";
@@ -36,6 +39,7 @@ const Home = () => {
               variant="cta"
               size="xl"
               className="mt-8 ml-2 bg-primary hover:bg-primary-dark lg:text-lg 2xl:text-xl text-white"
+              onClick={setUID}
             >
               ask {chatbotConfig.name}
             </Button>
