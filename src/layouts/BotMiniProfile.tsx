@@ -2,13 +2,17 @@ import { LegacyRef, useContext } from "react";
 
 // context
 import { ChatbotContext } from "@contexts/ChatbotContext";
+import { UserContext } from "@contexts/UserContext";
 
 // features
 import AverageRating from "@features/ratings/AverageRating";
 
 // components
 import Image from "@components/ui/Image";
-import { UserContext } from "../contexts/UserContext";
+import GradientBotName from "@components/GradientBotName";
+
+// constants
+import { chatbotConfig } from "@constants/bot/chatbot-config";
 
 type BotMiniProfileProps = Partial<
   Readonly<{
@@ -41,9 +45,9 @@ const BotMiniProfile = ({ className, miniProfileRef }: BotMiniProfileProps) => {
         className="w-full flex flex-col items-center text-center mb-4 p-2"
       >
         <div className="mb-4 space-y-2">
-          <h1 className="max-w-full font-bold text-2xl sm:text-4xl  dark:text-white capitalize line-clamp-5">
-            {configuration.name}
-          </h1>
+          <GradientBotName className="max-w-full font-bold text-2xl sm:text-4xl line-clamp-5">
+            {configuration.name ? configuration.name : chatbotConfig.name}
+          </GradientBotName>
           <h3 className="max-w-full dark:text-white sm:text-lg  line-clamp-5">
             {configuration.slogan}
           </h3>
