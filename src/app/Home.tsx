@@ -6,6 +6,7 @@ import Header from "@layouts/header/Header";
 // components
 import Button from "@components/ui/Button";
 import Version from "@components/Version";
+import GradientBotName from "@components/GradientBotName";
 
 // constants
 import { baseUrl } from "@constants/url/base-url";
@@ -24,9 +25,9 @@ const Home = () => {
       <main className="container relative w-full lg:h-screen flex flex-col-reverse lg:flex-row items-center justify-center lg:justify-between 2xl:justify-around lg:items-center py-[100px] px-[2vw] lg:px-[4vw] 2xl:px-[6vw] gap-6">
         <section className="text-center lg:text-left">
           <div className="max-w-[400px]">
-            <h1 className="font-helvetica text-6xl md:text-7xl lg:text-8xl bg-gradient-to-tr from-primary from-35% via-tertiary via-70% to-secondary bg-clip-text text-transparent cursor-default select-none">
+            <GradientBotName className="font-helvetica text-6xl md:text-7xl lg:text-8xl">
               {chatbotConfig.name}
-            </h1>
+            </GradientBotName>
             <p className="text-2xl lg:text-3xl 2xl:text-4xl ml-2 dark:text-white max-w-[350px]">
               {chatbotConfig.slogan}
             </p>
