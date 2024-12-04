@@ -12,7 +12,7 @@ import { UserContext } from "@contexts/UserContext";
 import { ChatbotContext } from "@contexts/ChatbotContext";
 
 // utils
-import { verifiedUID } from "@utils/uid";
+import { generateUID } from "@utils/uid";
 
 // refs
 import { usersCollectionRef } from "@shared/collection-refs";
@@ -23,7 +23,7 @@ const getLocalRating = () => {
 };
 
 const UserProvider = ({ children }: { children: React.ReactNode }) => {
-  const uid = verifiedUID();
+  const uid = generateUID();
   const chatbot = useContext(ChatbotContext);
   const { conversation } = chatbot.conversation;
   const [rating, setRating] = useState<number>(getLocalRating);
