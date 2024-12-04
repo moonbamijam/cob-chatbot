@@ -26,7 +26,7 @@ const ChatBubble = ({
       case "user":
         return (
           <div
-            className={`rounded-3xl shadow px-4 py-3 space-y-2 break-words ${className}`}
+            className={`rounded-3xl shadow px-4 py-3 space-y-2 break-words selection:bg-secondary selection:text-black ${className}`}
             onClick={toggleFullTimestamp}
           >
             <div
