@@ -5,6 +5,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 // providers
 import ChatbotProvider from "@providers/ChatbotProvider";
 import AuthProvider from "@providers/AuthProvider";
+import UserProvider from "@providers/UserProvider";
 import ThemeProvider from "@providers/ThemeProvider";
 import ChatProvider from "@providers/ChatProvider";
 
@@ -47,11 +48,13 @@ createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <ChatbotProvider>
       <AuthProvider>
-        <ThemeProvider>
-          <ChatProvider>
-            <RouterProvider router={router} />
-          </ChatProvider>
-        </ThemeProvider>
+        <UserProvider>
+          <ThemeProvider>
+            <ChatProvider>
+              <RouterProvider router={router} />
+            </ChatProvider>
+          </ThemeProvider>
+        </UserProvider>
       </AuthProvider>
     </ChatbotProvider>
   </StrictMode>,

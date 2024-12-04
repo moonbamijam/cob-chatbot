@@ -1,10 +1,10 @@
 import { useContext } from "react";
+import { Navigate } from "react-router";
 
 // contexts
 import { ChatContext } from "@contexts/ChatContext";
 
 // providers
-import UserProvider from "@providers/UserProvider";
 import FontProvider from "@providers/FontProvider";
 import SoundProvider from "@providers/SoundProvider";
 
@@ -33,27 +33,31 @@ const CityHall = () => {
 
   return (
     <>
-      <PageTitle title="Bacoor Government Center | City of Bacoor Chatbot" />
-      <UserProvider>
-        <main>
-          <div ref={chatHead}>
-            <FontProvider>
-              <SoundProvider>
-                <ChatHead onClick={toggleChat} />
-                <ChatBox closeUsing={toggleChat} />
-              </SoundProvider>
-            </FontProvider>
-          </div>
-          <CityHallUI />
-          <ScreenDim
-            message="Click anywhere to close."
-            className={`bg-black z-40 backdrop-blur ${
-              isChatActive ? "opacity-80" : "opacity-0 invisible"
-            }`}
-          />
-          {isChatActive && <RatingBox />}
-        </main>
-      </UserProvider>
+      {localStorage.getItem("uid") ? (
+        <>
+          <PageTitle title="Bacoor Government Center | City of Bacoor Chatbot" />
+          <main>
+            <div ref={chatHead}>
+              <FontProvider>
+                <SoundProvider>
+                  <ChatHead onClick={toggleChat} />
+                  <ChatBox closeUsing={toggleChat} />
+                </SoundProvider>
+              </FontProvider>
+            </div>
+            <CityHallUI />
+            <ScreenDim
+              message="Click anywhere to close."
+              className={`bg-black z-40 backdrop-blur ${
+                isChatActive ? "opacity-80" : "opacity-0 invisible"
+              }`}
+            />
+            {isChatActive && <RatingBox />}
+          </main>
+        </>
+      ) : (
+        <Navigate to="/" />
+      )}
     </>
   );
 };
