@@ -51,12 +51,19 @@ const RatingBox = ({ className }: RatingBoxProps) => {
         >
           <div className="space-y-4">
             <div className="flex gap-8 sm:text-lg xl:text-xl max-w-[250px] sm:max-w-[350px] xl:max-w-[400px]">
-              <h2>
-                {rating
-                  ? "Thanks for the feedback!"
-                  : `Enjoying talking to ${configuration.name} so far? Please give us a
-            rating!`}
-              </h2>
+              <div>
+                {rating ? (
+                  <p>Thanks for the feedback!</p>
+                ) : (
+                  <p>
+                    Enjoying talking to{" "}
+                    <span className="font-semibold text-primary dark:text-secondary">
+                      {configuration.name}
+                    </span>{" "}
+                    so far? Please give us a rating!
+                  </p>
+                )}
+              </div>
               <Button
                 onClick={() => setIsRatingBoxClosed(false)}
                 variant="icon"
