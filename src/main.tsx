@@ -24,7 +24,13 @@ const router = createBrowserRouter(
   [
     {
       path: "/",
-      element: localStorage.getItem("uid") ? <CityHall /> : <Home />,
+      element:
+        localStorage.getItem("uid") &&
+        localStorage.getItem("isSignedIn") === "true" ? (
+          <CityHall />
+        ) : (
+          <Home />
+        ),
       errorElement: <Error />,
     },
     {

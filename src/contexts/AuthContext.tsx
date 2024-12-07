@@ -2,8 +2,8 @@ import React from "react";
 
 type AuthContextType = {
   user: {
-    isSignedIn: boolean;
-    setIsSignedIn: React.Dispatch<React.SetStateAction<boolean>>;
+    isSignedIn: string | boolean;
+    setIsSignedIn: React.Dispatch<React.SetStateAction<string | boolean>>;
   };
 };
 
