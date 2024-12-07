@@ -4,7 +4,7 @@ We value our users and City hall's privacy, if you have found any vulnerabilitie
 
 ## Reporting a Vulnerability
 
-Please send us a message via [email](mailto:Vivienne<vivchatbot@gmail.com>?subject=Vulnerabiliity%20Report) that includes:
+Please send us a message via [email](mailto:Bacoor%20Chatbot<bacoorchatbot@gmail.com>?subject=Vulnerabiliity%20Report) that includes:
 
 - Description of the vulnerability
 - Who/what wil be affected
