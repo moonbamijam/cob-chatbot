@@ -105,10 +105,10 @@ const useChatbot = () => {
   const getReplyFromBot = async (message: string) => {
     try {
       console.time(`${configuration.name} Replied in`);
+      setIsBotTyping(true);
       const chatbotQuery = await postQuery(message);
 
       if (chatbotQuery.success) {
-        setIsBotTyping(true);
         setError(false);
         await sleep(1);
 
