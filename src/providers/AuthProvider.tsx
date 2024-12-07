@@ -1,27 +1,27 @@
-import { useState, useEffect, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { getAuth, signInAnonymously } from "firebase/auth";
 import { AuthContext } from "@contexts/AuthContext";
 
-const AuthProvider = ({ children }: { children: React.ReactNode }) => {
-  const [isSignedIn, setIsSignedIn] = useState(false);
+const getInitialStates = () => {
+  const isSignedIn = localStorage.getItem("isSignedIn");
+  return isSignedIn ? isSignedIn : false;
+};
 
-  // On render sign in user anonymously
+const AuthProvider = ({ children }: { children: React.ReactNode }) => {
+  const [isSignedIn, setIsSignedIn] = useState(getInitialStates);
+  const auth = getAuth();
+  signInAnonymously(auth);
+
+  // listener
   useEffect(() => {
-    const auth = getAuth();
-    signInAnonymously(auth)
-      .then(() => {
-        setIsSignedIn(true);
-      })
-      .catch((error) => {
-        console.error("Error occured: ", error);
-      });
+    localStorage.setItem("isSignedIn", isSignedIn.toString());
   }, [isSignedIn]);
 
   const authValue = useMemo(() => {
     return {
       user: { isSignedIn, setIsSignedIn },
     };
-  }, [isSignedIn, setIsSignedIn]);
+  }, [isSignedIn]);
 
   return (
     <AuthContext.Provider value={authValue}>{children}</AuthContext.Provider>
