@@ -1,4 +1,8 @@
+import { useContext } from "react";
 import { chatbotConfig } from "@constants/bot/chatbot-config";
+
+// contexts
+import { AuthContext } from "@contexts/AuthContext";
 
 // layouts
 import Header from "@layouts/header/Header";
@@ -16,6 +20,9 @@ import LandingCoverLight from "@static/assets/gif/landing-convo-light.gif";
 import LandingCoverDark from "@static/assets/gif/landing-convo-dark.gif";
 
 const Home = () => {
+  const auth = useContext(AuthContext);
+  const { setIsSignedIn } = auth.user;
+
   return (
     <>
       <Header />
@@ -37,6 +44,7 @@ const Home = () => {
               variant="cta"
               size="xl"
               className="mt-8 ml-2 bg-primary hover:bg-primary-dark lg:text-lg 2xl:text-xl text-white"
+              onClick={() => setIsSignedIn(true)}
             >
               ask {chatbotConfig.name}
             </Button>
