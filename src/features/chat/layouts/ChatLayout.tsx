@@ -221,7 +221,7 @@ const ChatLayout = ({
               )}
             </div>
             <span
-              className={`${isFullTimestampShowing ? "h-max mt-1" : "h-0 opacity-0"} text-xs ml-12 text-black/50 dark:text-white/50`}
+              className={`${isFullTimestampShowing ? "h-max mt-1" : "h-0 opacity-0 invisible"} text-xs ml-12 text-black/50 dark:text-white/50`}
             >
               {fullTimestamp}
             </span>
@@ -243,7 +243,7 @@ const ChatLayout = ({
               </ChatBubble>
             </div>
             <span
-              className={`${isFullTimestampShowing ? "h-max mt-1" : "h-0 opacity-0"} text-xs mr-1 text-black/50 dark:text-white/50`}
+              className={`${isFullTimestampShowing ? "h-max mt-1" : "h-0 opacity-0 invisible"} text-xs mr-1 text-black/50 dark:text-white/50`}
             >
               {fullTimestamp}
             </span>
