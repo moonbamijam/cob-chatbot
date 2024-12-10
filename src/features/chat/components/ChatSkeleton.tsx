@@ -21,20 +21,19 @@ const ChatSkeleton = () => {
   ];
 
   return (
-    <section id="messages">
+    <section>
       <ItemsRenderer
         items={skeletonizedChat}
         renderItems={(skeletonizedChat, i) => (
-          <SkeletonScreen
+          <div
             key={i}
-            variant="chat"
             className={`${
-              skeletonizedChat.role == "bot"
-                ? "bot chat flex items-center gap-2"
-                : "user chat flex justify-end ml-auto"
+              skeletonizedChat.role === "bot"
+                ? "bot-chat flex items-center gap-2"
+                : "user-chat flex justify-end ml-auto"
             } mt-3 mb-2`}
           >
-            {skeletonizedChat.role == "bot" && (
+            {skeletonizedChat.role === "bot" && (
               <SkeletonScreen
                 variant="icon"
                 className="bg-surface dark:bg-dm-surface w-[35px] h-[35px] rounded-full select-none"
@@ -44,12 +43,12 @@ const ChatSkeleton = () => {
               id="chat"
               variant="chat"
               className={`${
-                skeletonizedChat.role == "bot"
+                skeletonizedChat.role === "bot"
                   ? "bg-surface dark:bg-dm-surface w-full h-[96px]"
-                  : "bg-primary w-[216px] h-[64px]"
+                  : "bg-primary w-[300px] h-[68px]"
               } `}
             />
-          </SkeletonScreen>
+          </div>
         )}
       />
     </section>
