@@ -1,6 +1,5 @@
 import { useContext, useRef, useState } from "react";
 import ReactTextareaAutosize from "react-textarea-autosize";
-import messages from "@static/messages/suggested.json";
 
 // contexts
 import { FontContext } from "@contexts/FontContext";
@@ -19,6 +18,7 @@ import { FaArrowLeft, FaArrowRight } from "react-icons/fa6";
 const ChatPreview = () => {
   const chatbot = useContext(ChatbotContext);
   const { configuration } = chatbot.configuration;
+  const { quickAccessQueries } = chatbot.quickAccessQuery;
   const font = useContext(FontContext);
   const { fontSize } = font.size;
   const { fontFamily } = font.family;
@@ -132,14 +132,14 @@ const ChatPreview = () => {
           onMouseMove={handleMouseMove}
           className={`py-2 px-4 xl:px-12 flex items-center gap-x-6 sm:gap-x-8 xl:gap-x-6 overflow-x-auto cursor-move scroll-${scrollBehavior} scrollbar-none`}
         >
-          {messages.list.map((messages, id) => (
+          {quickAccessQueries.map((chat, id) => (
             <Button
               key={id}
               variant="outline"
               size="xl"
               className={`rounded-3xl min-w-[${itemWidth}px] h-[80px] border border-primary text-xs xs:text-sm text-primary dark:text-white hover:bg-primary hover:text-white active:translate-y-1`}
             >
-              {messages.displayedText}
+              {chat.label}
             </Button>
           ))}
         </div>
