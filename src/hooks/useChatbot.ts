@@ -10,7 +10,6 @@ import { v4 as uuid } from "uuid";
 
 // contexts
 import { ChatbotContext } from "@contexts/ChatbotContext";
-import { AuthContext } from "@contexts/AuthContext";
 import { UserContext } from "@contexts/UserContext";
 
 // constants
@@ -53,8 +52,6 @@ import { chatType, deptsType } from "@shared/ts/type";
 import { usersCollectionRef } from "@shared/collection-refs";
 
 const useChatbot = () => {
-  const auth = useContext(AuthContext);
-  const { isSignedIn } = auth.user;
   const user = useContext(UserContext);
   const chatbot = useContext(ChatbotContext);
   const { configuration } = chatbot.configuration;
@@ -65,7 +62,6 @@ const useChatbot = () => {
   const { isBotTyping, setIsBotTyping } = chatbot.isTyping;
   const { playMessageNotification } = useSound();
   const latestChat = useRef<HTMLDivElement | null>(null);
-  const [isAtLatestChat, setIsAtLatestChat] = useState<boolean>(false);
   const questionsListRef = useRef<HTMLDivElement | null>(null);
   const [settings, setSettings] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(true);
@@ -280,9 +276,8 @@ const useChatbot = () => {
 
   // for auto scrolling
   useEffect(() => {
-    const atLatestChat = smoothScrollInto(latestChat);
-    if (isSignedIn && atLatestChat) setIsAtLatestChat(true);
-  }, [conversation, isBotTyping, error, isOnline, isSignedIn]);
+    smoothScrollInto(latestChat);
+  }, [conversation.length, isBotTyping, error, isOnline]);
 
   // for handling faqs menu on mouse down
   useEffect(() => {
@@ -311,7 +306,6 @@ const useChatbot = () => {
   }, [getConversationHistory]);
 
   return {
-    isAtLatestChat,
     latestChat,
     questionsListRef,
     settings,

@@ -1,7 +1,7 @@
 import { cva } from "class-variance-authority";
 
 export const skeletonScreenVariants = cva(
-  "w-full h-full animate-pulse bg-surface-dark dark:bg-dm-surface-light rounded pointer-events-none",
+  "w-full h-full animate-pulse rounded pointer-events-none",
   {
     variants: {
       variant: {
