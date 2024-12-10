@@ -5,9 +5,6 @@ import { AuthContext } from "@contexts/AuthContext";
 import { ChatContext } from "@contexts/ChatContext";
 import { ChatbotContext } from "@contexts/ChatbotContext";
 
-// hooks
-import useChatbot from "@hooks/useChatbot";
-
 // components
 import Loading from "@components/Loading";
 
@@ -16,18 +13,13 @@ const ChatHead = ({ onClick }: { onClick: () => void }) => {
   const { isSignedIn } = auth.user;
   const chatbot = useContext(ChatbotContext);
   const { configuration } = chatbot.configuration;
-  const { conversation } = chatbot.conversation;
   const chat = useContext(ChatContext);
   const { isChatActive } = chat.active;
   const { chatHeadSize } = chat.chatHeadSize;
-  const { isAtLatestChat } = useChatbot();
 
   return (
     <>
-      {isSignedIn &&
-      conversation.length != 0 &&
-      isAtLatestChat &&
-      configuration.widgetIcon ? (
+      {isSignedIn && configuration.widgetIcon ? (
         <button
           onClick={onClick}
           id=""

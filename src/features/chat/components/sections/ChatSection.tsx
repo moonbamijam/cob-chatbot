@@ -139,7 +139,7 @@ const ChatSection = ({
       >
         <BotMiniProfile className="mb-8" miniProfileRef={miniProfileRef} />
         {loadingMoreChats && <Loading />}
-        {conversation ? (
+        {conversation.length ? (
           <div id="chats" ref={chatAreaRef}>
             {renderChatsContent()}
             {isBotTyping && <Typing />}
