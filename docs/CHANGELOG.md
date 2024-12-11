@@ -1,5 +1,41 @@
 # What's New
 
+# [3.3.0](https://github.com/moonbamijam/cob-chatbot/compare/v3.2.1...v3.3.0) (2024-12-11)
+
+
+### Bug Fixes
+
+* bot typing ui takes time to show up ([#221](https://github.com/moonbamijam/cob-chatbot/issues/221)) ([ce3cb66](https://github.com/moonbamijam/cob-chatbot/commit/ce3cb6618523d4844fa2e17c57386941f4a210b9))
+* cannot handle multiple links response ([#206](https://github.com/moonbamijam/cob-chatbot/issues/206)) ([1952a10](https://github.com/moonbamijam/cob-chatbot/commit/1952a10e103872d7e39a397d8074c6f5ba6ff5af)), closes [#190](https://github.com/moonbamijam/cob-chatbot/issues/190)
+* chat head checking to make use of chat skeleton screens ([#224](https://github.com/moonbamijam/cob-chatbot/issues/224)) ([05ce5fc](https://github.com/moonbamijam/cob-chatbot/commit/05ce5fce645c6d683a9737f2c115eafc8fb5d41b))
+* chatbot does not greet on slow 4 devices ([#193](https://github.com/moonbamijam/cob-chatbot/issues/193)) ([f309f31](https://github.com/moonbamijam/cob-chatbot/commit/f309f316045c8d6afca246b85de7b406a74bcab9))
+* full timestamp can still be cursored ([#222](https://github.com/moonbamijam/cob-chatbot/issues/222)) ([584554a](https://github.com/moonbamijam/cob-chatbot/commit/584554a8d5a6f70edaf6dbdf2edbbf49ccdb9905))
+* insufficient permissions when directing to bacoor gov ([#216](https://github.com/moonbamijam/cob-chatbot/issues/216)) ([a454f09](https://github.com/moonbamijam/cob-chatbot/commit/a454f098a3db5ead5cc2e96938c7ebd1a41b0fa0)), closes [#207](https://github.com/moonbamijam/cob-chatbot/issues/207)
+* landing page image overflowing to header on laptop screens ([#218](https://github.com/moonbamijam/cob-chatbot/issues/218)) ([ef07e77](https://github.com/moonbamijam/cob-chatbot/commit/ef07e77bed5e1a95637ef372aed2bfac7eadf605))
+* missing chatbot reminder due to chatbox refactoring ([#194](https://github.com/moonbamijam/cob-chatbot/issues/194)) ([73e6c55](https://github.com/moonbamijam/cob-chatbot/commit/73e6c55cff724983b2b2d0b27b6c9187dc8b5a23)), closes [#193](https://github.com/moonbamijam/cob-chatbot/issues/193)
+* outdated link to city hall page logos ([#191](https://github.com/moonbamijam/cob-chatbot/issues/191)) ([b5f278f](https://github.com/moonbamijam/cob-chatbot/commit/b5f278f4639a86f2592003d2cc8f939a379fc541))
+* text in rating cannot is not visible in dark mode ([#189](https://github.com/moonbamijam/cob-chatbot/issues/189)) ([e876027](https://github.com/moonbamijam/cob-chatbot/commit/e876027751da2e2a888b1c9132b6624cfc76d56e))
+* unresponsive landing page image at small height screens ([#225](https://github.com/moonbamijam/cob-chatbot/issues/225)) ([7dca151](https://github.com/moonbamijam/cob-chatbot/commit/7dca151124253b2a1426e5e196c01cb4953c5f50))
+* video controls are hidden on small screens ([#220](https://github.com/moonbamijam/cob-chatbot/issues/220)) ([59a115e](https://github.com/moonbamijam/cob-chatbot/commit/59a115e247b785065f926863df878e235d4328f8))
+
+
+### Features
+
+* add baseUrl ([#198](https://github.com/moonbamijam/cob-chatbot/issues/198)) ([d7051e3](https://github.com/moonbamijam/cob-chatbot/commit/d7051e3afe7ae3e391bab2d310620977addecb4e))
+* add chatbot response reminder to chatbox ([#192](https://github.com/moonbamijam/cob-chatbot/issues/192)) ([447ce42](https://github.com/moonbamijam/cob-chatbot/commit/447ce42b0549b8c24fda545e255d565e1fe4ab18))
+* add document manager to chatbot team sheesh ([#217](https://github.com/moonbamijam/cob-chatbot/issues/217)) ([3a8bb08](https://github.com/moonbamijam/cob-chatbot/commit/3a8bb08211d7e51c47b337957e791f0f6133d86c))
+* add dynamic suggested queries divided into quick and menu ([#204](https://github.com/moonbamijam/cob-chatbot/issues/204)) ([789c2c0](https://github.com/moonbamijam/cob-chatbot/commit/789c2c07f1ad9d1eadb630b30ab4599fc7394930)), closes [#196](https://github.com/moonbamijam/cob-chatbot/issues/196) [#196](https://github.com/moonbamijam/cob-chatbot/issues/196)
+* add dynamic suggested queries to chat preview ([#223](https://github.com/moonbamijam/cob-chatbot/issues/223)) ([97a4381](https://github.com/moonbamijam/cob-chatbot/commit/97a438197f4d4bbe5030345b019c4376be9e673f))
+* add gradient bot name ([#212](https://github.com/moonbamijam/cob-chatbot/issues/212)) ([5599346](https://github.com/moonbamijam/cob-chatbot/commit/55993461792c16135fc83cdba932c48b0295b962))
+* add security section to about settings ([#200](https://github.com/moonbamijam/cob-chatbot/issues/200)) ([c32d08f](https://github.com/moonbamijam/cob-chatbot/commit/c32d08ff03ecf82dbd4628ff3de0dc3fc85a0847))
+* add selection chat and bot profile ([#213](https://github.com/moonbamijam/cob-chatbot/issues/213)) ([f8778d0](https://github.com/moonbamijam/cob-chatbot/commit/f8778d0b0e8c718a6736a48e4e2d6339540dab0e))
+* add spam query handler ([#202](https://github.com/moonbamijam/cob-chatbot/issues/202)) ([765b6b2](https://github.com/moonbamijam/cob-chatbot/commit/765b6b25e217eb456e3d2d98113a5d0b06ad9da7))
+* add uid checking on what should render in landing page ([#197](https://github.com/moonbamijam/cob-chatbot/issues/197)) ([cf629c7](https://github.com/moonbamijam/cob-chatbot/commit/cf629c79d08f9899b9ffe89a8359038f140ae0b8))
+* improve query fetching and chat error handling ([#203](https://github.com/moonbamijam/cob-chatbot/issues/203)) ([cfdd203](https://github.com/moonbamijam/cob-chatbot/commit/cfdd203210576af5d2f8efc8600d230b6ce27cbd)), closes [#195](https://github.com/moonbamijam/cob-chatbot/issues/195)
+* small ui update to rating box ([#214](https://github.com/moonbamijam/cob-chatbot/issues/214)) ([45c61a2](https://github.com/moonbamijam/cob-chatbot/commit/45c61a2283c36bbeb974bb5fb60f716c292df220))
+* ui improvements to developers section in settings ([#201](https://github.com/moonbamijam/cob-chatbot/issues/201)) ([5ecd531](https://github.com/moonbamijam/cob-chatbot/commit/5ecd5310e494c01f64fee8b1d5dd71468baef5c6))
+* update suggested queries ui/ux ([#205](https://github.com/moonbamijam/cob-chatbot/issues/205)) ([4f0b577](https://github.com/moonbamijam/cob-chatbot/commit/4f0b577097cb0b33d85042c906406b03eb2bbba1))
+
 ## [3.2.1](https://github.com/moonbamijam/cob-chatbot/compare/v3.2.0...v3.2.1) (2024-11-21)
 
 
