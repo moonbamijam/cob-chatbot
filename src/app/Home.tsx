@@ -54,12 +54,12 @@ const Home = () => {
           <img
             src={LandingCoverLight}
             alt="Chatbot"
-            className="block dark:hidden w-max h-max max-h-[500px] lg:max-h-[650px] xl:max-h-[700px] rounded-2xl object-contain"
+            className="block dark:hidden w-max h-max max-h-[500px] lg:max-h-[650px] xl:max-h-[700px] [@media_(min-height:0px)]:max-h-[550px] [@media_(min-height:800px)]:max-h-[700px] rounded-2xl object-contain"
           />
           <img
             src={LandingCoverDark}
             alt="Chatbot"
-            className="hidden dark:block w-max h-max max-h-[500px] lg:max-h-[650px] xl:max-h-[700px] rounded-2xl object-contain"
+            className="hidden dark:block w-max h-max max-h-[500px] lg:max-h-[650px] xl:max-h-[700px] [@media_(min-height:0px)]:max-h-[550px] [@media_(min-height:800px)]:max-h-[700px] rounded-2xl object-contain"
           />
         </div>
         <Version
