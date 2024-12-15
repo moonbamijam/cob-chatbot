@@ -1,9 +1,9 @@
 import { useContext } from "react";
 import { Link } from "react-router-dom";
-import { chatbotConfig } from "@constants/bot/chatbot-config";
 
 // context
 import { ThemeContext } from "@contexts/ThemeContext";
+import { ChatbotContext } from "@contexts/ChatbotContext";
 
 // components
 import Button from "@components/ui/Button";
@@ -12,6 +12,8 @@ import Button from "@components/ui/Button";
 import { LuSun, LuMoon, LuMonitor } from "react-icons/lu";
 
 const Header = () => {
+  const chatbot = useContext(ChatbotContext);
+  const { configuration } = chatbot.configuration;
   const themes = useContext(ThemeContext);
   const { resolvedTheme } = themes.default;
 
@@ -27,7 +29,7 @@ const Header = () => {
         to="/"
         className="hidden lg:block text-2xl dark:text-white bg-surface/30 dark:bg-dm-surface/50 rounded-lg p-2 backdrop-blur-sm sm:bg-transparent sm:dark:bg-transparent sm:rounded-none sm:p-0 sm:backdrop-blur-none"
       >
-        {chatbotConfig.name}
+        {configuration.name}
       </Link>
       <Button
         onClick={themes.toggleTheme}
