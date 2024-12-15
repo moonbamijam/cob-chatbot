@@ -14,9 +14,6 @@ import {
   suggestedQueriesType,
 } from "@shared/ts/type";
 
-// constants
-import { chatbotConfig } from "@constants/bot/chatbot-config";
-
 // assets
 import ChatbotLogo from "@static/assets/images/logo.png";
 
@@ -24,8 +21,8 @@ const ChatbotProvider = ({ children }: { children: React.ReactNode }) => {
   const [configuration, setConfiguration] = useState<ConfigurationType>({
     icon: ChatbotLogo,
     widgetIcon: ChatbotLogo,
-    name: chatbotConfig.name,
-    slogan: chatbotConfig.slogan,
+    name: "",
+    slogan: "",
   });
   const [conversation, setConversation] = useState<ConversationType[]>([]);
   const [menuAccessQueries, setMenuAccessQueries] = useState<
