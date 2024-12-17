@@ -6,6 +6,7 @@ import { ChatbotContext } from "@contexts/ChatbotContext";
 
 // components
 import Button from "@components/ui/Button";
+import SkeletonScreen from "@components/ui/SkeletonScreen";
 
 // layouts
 import ItemsRenderer from "@layouts/ItemsRenderer";
@@ -93,20 +94,30 @@ const ChatInputSection = ({
         </div>
 
         <div className="inline-grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-2 gap-2 ">
-          <ItemsRenderer
-            items={menuAccessQueries}
-            renderItems={({ id, label, text }: suggestedQueriesType) => (
-              <Button
-                key={id}
-                variant="outline"
-                className={`rounded-3xl w-full h-full normal-case border border-primary text-xs xs:text-sm text-primary dark:text-white hover:bg-primary hover:text-white ${isChatPaused ? "cursor-wait" : "active:translate-y-1"}`}
-                onClick={() => sendSuggestedQueryToBot(text)}
-                disabled={isChatPaused}
-              >
-                {label}
-              </Button>
-            )}
-          />
+          {menuAccessQueries.length ? (
+            <ItemsRenderer
+              items={menuAccessQueries}
+              renderItems={({ id, label, text }: suggestedQueriesType) => (
+                <Button
+                  key={id}
+                  variant="outline"
+                  className={`rounded-3xl w-full h-full normal-case border border-primary text-xs xs:text-sm text-primary dark:text-white hover:bg-primary hover:text-white ${isChatPaused ? "cursor-wait" : "active:translate-y-1"}`}
+                  onClick={() => sendSuggestedQueryToBot(text)}
+                  disabled={isChatPaused}
+                >
+                  {label}
+                </Button>
+              )}
+            />
+          ) : (
+            <>
+              <SkeletonScreen className="bg-surface dark:bg-dm-surface-light max-h-[80px] min-w-[200px]" />
+              <SkeletonScreen className="bg-surface dark:bg-dm-surface-light max-h-[80px] min-w-[200px]" />
+              <SkeletonScreen className="bg-surface dark:bg-dm-surface-light max-h-[80px] min-w-[200px]" />
+              <SkeletonScreen className="bg-surface dark:bg-dm-surface-light max-h-[80px] min-w-[200px]" />
+              <SkeletonScreen className="bg-surface dark:bg-dm-surface-light max-h-[80px] min-w-[200px]" />
+            </>
+          )}
         </div>
       </section>
     );

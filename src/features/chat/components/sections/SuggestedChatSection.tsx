@@ -5,6 +5,7 @@ import { ChatbotContext } from "@contexts/ChatbotContext";
 
 // components
 import Button from "@components/ui/Button";
+import SkeletonScreen from "@components/ui/SkeletonScreen";
 
 // layouts
 import ItemsRenderer from "@layouts/ItemsRenderer";
@@ -101,23 +102,31 @@ const SuggestedChatSection = ({
         onMouseMove={handleMouseMove}
         className={`w-full h-[100px] px-10 xl:px-12 flex items-center gap-x-6 sm:gap-x-8 xl:gap-x-6 overflow-x-scroll ${quickAccessQueries.length >= 2 && "cursor-move"} ${isSmoothScrolling ? "scroll-smooth" : "scroll-auto"} scrollbar-none`}
       >
-        <ItemsRenderer
-          items={quickAccessQueries}
-          renderItems={({ id, label, text }: suggestedQueriesType) => (
-            <Button
-              key={id}
-              variant="outline"
-              size="xl"
-              className={`rounded-3xl min-w-[200px] h-full border border-primary text-xs xs:text-sm text-primary dark:text-white hover:bg-primary hover:text-white ${isChatPaused ? "cursor-wait" : "active:translate-y-1"}`}
-              onClick={() => {
-                if (text != "") sendSuggestedQueryToBot(text);
-              }}
-              disabled={isChatPaused}
-            >
-              {label}
-            </Button>
-          )}
-        />
+        {quickAccessQueries.length ? (
+          <ItemsRenderer
+            items={quickAccessQueries}
+            renderItems={({ id, label, text }: suggestedQueriesType) => (
+              <Button
+                key={id}
+                variant="outline"
+                size="xl"
+                className={`rounded-3xl min-w-[200px] h-full border border-primary text-xs xs:text-sm text-primary dark:text-white hover:bg-primary hover:text-white ${isChatPaused ? "cursor-wait" : "active:translate-y-1"}`}
+                onClick={() => {
+                  if (text != "") sendSuggestedQueryToBot(text);
+                }}
+                disabled={isChatPaused}
+              >
+                {label}
+              </Button>
+            )}
+          />
+        ) : (
+          <>
+            <SkeletonScreen className="bg-surface dark:bg-dm-surface-light max-h-[80px] min-w-[200px]" />
+            <SkeletonScreen className="bg-surface dark:bg-dm-surface-light max-h-[80px] min-w-[200px]" />
+            <SkeletonScreen className="bg-surface dark:bg-dm-surface-light max-h-[80px] min-w-[200px]" />
+          </>
+        )}
       </div>
       <div className="w-[80px] h-full absolute -right-1 hidden xl:flex items-center justify-end bg-gradient-to-l from-white dark:from-dm-surface from-30%">
         {quickAccessQueries.length >= 2 && (
