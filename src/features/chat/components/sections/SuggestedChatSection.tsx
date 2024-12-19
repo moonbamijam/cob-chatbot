@@ -16,11 +16,15 @@ import { suggestedQueriesType } from "@shared/ts/type";
 // icons
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa6";
 
+type suggestedChatSectionProps = {
+  sendSuggestedQueryToBot: (message: string) => void;
+  isLargeScreen: boolean;
+};
+
 const SuggestedChatSection = ({
   sendSuggestedQueryToBot,
-}: {
-  sendSuggestedQueryToBot: (message: string) => void;
-}) => {
+  isLargeScreen,
+}: suggestedChatSectionProps) => {
   const chatbot = useContext(ChatbotContext);
   const { quickAccessQueries } = chatbot.quickAccessQuery;
   const { isChatPaused } = chatbot.isChatPaused;
@@ -82,7 +86,7 @@ const SuggestedChatSection = ({
   return (
     <section
       id="suggested-chats"
-      className="relative w-full max-w-[95%] flex items-center rounded-3xl border border-surface dark:border-dm-surface-dark dark:bg-dm-surface text-xs xs:text-sm sm:text-base mt-auto outline-none py-4 overflow-hidden"
+      className={`relative w-full ${isLargeScreen ? "max-w-[70%]" : "max-w-[95%]"}  flex items-center rounded-3xl border border-surface dark:border-dm-surface-dark dark:bg-dm-surface text-xs xs:text-sm sm:text-base mt-auto outline-none py-4 overflow-hidden`}
     >
       <div className="w-[80px] h-full absolute -left-1 hidden xl:flex items-center bg-gradient-to-r from-white dark:from-dm-surface from-30%">
         {quickAccessQueries.length >= 2 && (
