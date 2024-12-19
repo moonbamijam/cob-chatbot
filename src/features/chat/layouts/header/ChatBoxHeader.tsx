@@ -9,13 +9,21 @@ import Button from "@components/ui/Button";
 // icons
 import { IoSettingsSharp } from "react-icons/io5";
 import { IoClose } from "react-icons/io5";
+import { LuMaximize, LuMinimize } from "react-icons/lu";
 
 type HeaderProps = {
+  isLargeScreen: boolean;
+  toggleLargeScreen: MouseEventHandler<HTMLButtonElement>;
   toggleSettings: MouseEventHandler<HTMLButtonElement>;
   closeUsing: MouseEventHandler<HTMLButtonElement>;
 };
 
-const ChatBoxHeader = ({ toggleSettings, closeUsing }: HeaderProps) => {
+const ChatBoxHeader = ({
+  isLargeScreen,
+  toggleLargeScreen,
+  toggleSettings,
+  closeUsing,
+}: HeaderProps) => {
   const chatbot = useContext(ChatbotContext);
   const { configuration } = chatbot?.configuration || {};
 
@@ -41,6 +49,18 @@ const ChatBoxHeader = ({ toggleSettings, closeUsing }: HeaderProps) => {
         </h3>
       </button>
       <menu className="flex gap-4 justify-end items-center">
+        <Button
+          variant="icon"
+          size="icon"
+          className="hidden xl:block rounded-full hover:bg-primary [&>svg>path]:hover:text-white [&>svg>path]:dark:text-white group"
+          onClick={toggleLargeScreen}
+        >
+          {isLargeScreen ? (
+            <LuMinimize className="group-hover:animate-pulse" />
+          ) : (
+            <LuMaximize className="group-hover:animate-pulse" />
+          )}
+        </Button>
         <Button
           variant="icon"
           size="icon"

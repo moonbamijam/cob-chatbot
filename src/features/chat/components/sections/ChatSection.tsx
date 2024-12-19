@@ -35,11 +35,12 @@ import "@styles/utils.css";
 const chatPerPage = 15;
 const step = 10;
 
-const ChatSection = ({
-  latestChat,
-}: {
+type chatSectionProps = {
   latestChat: RefObject<HTMLDivElement>;
-}) => {
+  isLargeScreen: boolean;
+};
+
+const ChatSection = ({ latestChat, isLargeScreen }: chatSectionProps) => {
   const chatbot = useContext(ChatbotContext);
   const { conversation } = chatbot.conversation;
   const { error } = chatbot.error;
@@ -137,10 +138,17 @@ const ChatSection = ({
         className={`relative w-full h-full px-4 py-6 overflow-y-scroll scrollbar-thin scrollbar-track-transparent scrollbar-thumb-surface-dark dark:scrollbar-thumb-dm-surface`}
         onScroll={handleScroll}
       >
-        <BotMiniProfile className="mb-8" miniProfileRef={miniProfileRef} />
+        <BotMiniProfile
+          className="mb-8 w-full"
+          miniProfileRef={miniProfileRef}
+        />
         {loadingMoreChats && <Loading />}
         {conversation.length ? (
-          <div id="chats" ref={chatAreaRef}>
+          <div
+            id="chats"
+            className={`${isLargeScreen ? "xl:max-w-[70%] xl:mx-auto" : ""} `}
+            ref={chatAreaRef}
+          >
             {renderChatsContent()}
             {isBotTyping && <Typing />}
           </div>

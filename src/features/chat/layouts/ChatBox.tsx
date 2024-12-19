@@ -1,4 +1,4 @@
-import { MouseEventHandler, useContext } from "react";
+import { MouseEventHandler, useContext, useState } from "react";
 
 // contexts
 import { FontContext } from "@contexts/FontContext";
@@ -38,24 +38,33 @@ const ChatBox = ({ closeUsing }: ChatBoxProps) => {
   const chat = useContext(ChatContext);
   const { isChatActive } = chat.active;
 
+  const [isLargeScreen, setIslargeScreen] = useState(false);
+
+  const toggleLargeScreen = () => {
+    setIslargeScreen(!isLargeScreen);
+  };
+
   return (
     <>
       <div
         id="message-box"
-        className={`w-full h-full xl:max-w-[500px] fixed flex flex-col items-center xl:right-[10%] xl:bottom-[8%] bg-background dark:bg-dm-background xl:rounded-xl overflow-hidden z-[100] selection:bg-primary selection:text-white ${
+        className={`w-full h-full ${isLargeScreen ? "xl:max-w-full xl:right-0 xl:bottom-0 [@media_((min-height:0px)_and_(min-width:1280px))]:max-h-full" : "xl:max-w-[500px] xl:right-[10%] xl:bottom-[8%] xl:rounded-xl [@media_((min-height:0px)_and_(min-width:1280px))]:max-h-[85%]"} fixed flex flex-col items-center bg-background dark:bg-dm-background overflow-hidden z-[100] selection:bg-primary selection:text-white ${
           isChatActive ? "" : "translate-y-full opacity-0 invisible"
-        } [@media_((min-height:0px)_and_(min-width:1280px))]:max-h-[85%]`}
+        }`}
         style={{
           fontFamily: fontFamily,
         }}
       >
         <ChatBoxHeader
+          isLargeScreen={isLargeScreen}
+          toggleLargeScreen={toggleLargeScreen}
           toggleSettings={toggleSettings}
           closeUsing={closeUsing}
         />
-        <ChatSection latestChat={latestChat} />
+        <ChatSection latestChat={latestChat} isLargeScreen={isLargeScreen} />
         <SuggestedChatSection
           sendSuggestedQueryToBot={sendSuggestedQueryToBot}
+          isLargeScreen={isLargeScreen}
         />
         <ChatInputSection
           questionsListRef={questionsListRef}
@@ -65,6 +74,7 @@ const ChatBox = ({ closeUsing }: ChatBoxProps) => {
           setUserMessage={setUserMessage}
           isFaqsMenuActive={isFaqsMenuActive}
           setIsFaqsMenuActive={setIsFaqsMenuActive}
+          isLargeScreen={isLargeScreen}
         />
         <div className="text-xs text-center text-black/70 dark:text-white/50 py-3 px-5">
           The Chatbot can make mistake. Please double check the answers.
