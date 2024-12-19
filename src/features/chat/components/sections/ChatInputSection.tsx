@@ -84,7 +84,7 @@ const ChatInputSection = ({
     return (
       <section
         id="questions-list"
-        className={`w-full ${isLargeScreen ? "max-w-[70%]" : "max-w-[95%]"} max-h-[500px] md:max-h-[400px] xl:max-h-[300px] absolute bottom-[7%] sm:bottom-[6%] lg:bottom-[5%] px-4 py-5 mb-[160px] rounded-3xl bg-white dark:bg-dm-surface border border-surface dark:border-dm-surface-dark overflow-y-scroll scrollbar-thin scrollbar-track-transparent scrollbar-thumb-surface-dark dark:scrollbar-thumb-dm-surface-dark z-50 ${isFaqsMenuActive ? "block opacity-100 visible" : "opacity-0 invisible"}`}
+        className={`w-full ${isLargeScreen ? "xl:max-w-[70%] max-w-[95%]" : "max-w-[95%]"} max-h-[500px] md:max-h-[400px] xl:max-h-[300px] absolute bottom-[7%] sm:bottom-[6%] lg:bottom-[5%] px-4 py-5 mb-[160px] rounded-3xl bg-white dark:bg-dm-surface border border-surface dark:border-dm-surface-dark overflow-y-scroll scrollbar-thin scrollbar-track-transparent scrollbar-thumb-surface-dark dark:scrollbar-thumb-dm-surface-dark z-50 ${isFaqsMenuActive ? "block opacity-100 visible" : "opacity-0 invisible"}`}
       >
         <div className="mb-4 font-semibold">
           <h1 className="capitalize text-black/80 dark:text-white/80">
@@ -128,7 +128,7 @@ const ChatInputSection = ({
   return (
     <div
       ref={questionsListRef}
-      className={`w-full flex justify-center items-center ${isLargeScreen ? "max-w-[50%]" : ""}`}
+      className={`w-full flex justify-center items-center ${isLargeScreen ? "xl:max-w-[50%]" : ""}`}
     >
       {renderSuggestedQueries()}
       <form
@@ -163,7 +163,7 @@ const ChatInputSection = ({
               setIsFaqsMenuActive(false);
             }}
             onKeyDown={handleSendChat}
-            className={`${isLargeScreen ? "max-h-[200px] " : "max-h-[100px] "} whitespace-pre-line w-full dark:text-white outline-none bg-transparent placeholder:text-sm sm:placeholder:text-base px-2 my-3 dark:bg-dm-surface dark:focus:bg-dm-surface-light placeholder:opacity-80 caret-primary dark:caret-secondary scrollbar-thin scrollbar-track-transparent scrollbar-thumb-surface-dark dark:scrollbar-thumb-dm-surface-dark`}
+            className={`${isLargeScreen ? "xl:max-h-[200px] " : "max-h-[100px] "} whitespace-pre-line w-full dark:text-white outline-none bg-transparent placeholder:text-sm sm:placeholder:text-base px-2 my-3 dark:bg-dm-surface dark:focus:bg-dm-surface-light placeholder:opacity-80 caret-primary dark:caret-secondary scrollbar-thin scrollbar-track-transparent scrollbar-thumb-surface-dark dark:scrollbar-thumb-dm-surface-dark`}
             placeholder="Type here..."
           />
         </label>

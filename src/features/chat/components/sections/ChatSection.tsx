@@ -146,7 +146,7 @@ const ChatSection = ({ latestChat, isLargeScreen }: chatSectionProps) => {
         {conversation.length ? (
           <div
             id="chats"
-            className={`${isLargeScreen ? "max-w-[70%]" : ""} mx-auto`}
+            className={`${isLargeScreen ? "xl:max-w-[70%] xl:mx-auto" : ""} `}
             ref={chatAreaRef}
           >
             {renderChatsContent()}
