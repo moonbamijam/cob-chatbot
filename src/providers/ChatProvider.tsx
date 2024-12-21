@@ -41,8 +41,14 @@ const ChatProvider = ({ children }: { children: React.ReactNode }) => {
         setIsChatActive(false);
     };
     document.addEventListener("mousedown", handleMouseDown);
+    const escChat = (event: KeyboardEvent) => {
+      if (event.key.toLowerCase() === "escape") setIsChatActive(false);
+    };
+    document.addEventListener("keyup", escChat);
+
     return () => {
       document.removeEventListener("mousedown", handleMouseDown);
+      document.removeEventListener("keyup", escChat);
     };
   }, [chatHead]);
 
