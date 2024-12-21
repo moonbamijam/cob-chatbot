@@ -5,6 +5,10 @@ type ChatContextType = {
     isChatActive: boolean;
     setIsChatActive: React.Dispatch<React.SetStateAction<boolean>>;
   };
+  settings: {
+    isSettingsActive: boolean;
+    setIsSettingsActive: React.Dispatch<React.SetStateAction<boolean>>;
+  };
   chatHeadSize: {
     chatHeadSize: number;
     setChatHeadSize: React.Dispatch<React.SetStateAction<number>>;

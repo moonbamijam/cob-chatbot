@@ -7,8 +7,9 @@ const getInitialStates = () => {
 };
 
 const ChatProvider = ({ children }: { children: React.ReactNode }) => {
-  const [isChatActive, setIsChatActive] = useState(false);
-  const [chatHeadSize, setChatHeadSize] = useState(getInitialStates);
+  const [isChatActive, setIsChatActive] = useState<boolean>(false);
+  const [isSettingsActive, setIsSettingsActive] = useState<boolean>(false);
+  const [chatHeadSize, setChatHeadSize] = useState<number>(getInitialStates);
   const chatHead = useRef<HTMLImageElement | null>(null);
   const ratingBoxRef = useRef<HTMLDivElement | null>(null);
 
@@ -55,12 +56,13 @@ const ChatProvider = ({ children }: { children: React.ReactNode }) => {
   const chatValue = useMemo(() => {
     return {
       active: { isChatActive, setIsChatActive },
+      settings: { isSettingsActive, setIsSettingsActive },
       chatHeadSize: { chatHeadSize, setChatHeadSize },
       changeChatHeadSize: changeChatHeadSize,
       icon: chatHead,
       ratingBoxRef: ratingBoxRef,
     };
-  }, [isChatActive, setIsChatActive, chatHeadSize, setChatHeadSize]);
+  }, [isChatActive, chatHeadSize, isSettingsActive]);
 
   return (
     <ChatContext.Provider value={chatValue}>{children}</ChatContext.Provider>
