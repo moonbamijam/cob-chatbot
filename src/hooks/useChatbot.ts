@@ -63,7 +63,6 @@ const useChatbot = () => {
   const { playMessageNotification } = useSound();
   const latestChat = useRef<HTMLDivElement | null>(null);
   const questionsListRef = useRef<HTMLDivElement | null>(null);
-  const [settings, setSettings] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(true);
   const [isFaqsMenuActive, setIsFaqsMenuActive] = useState<boolean>(false);
   const [userMessage, setUserMessage] = useState<string>("");
@@ -73,10 +72,6 @@ const useChatbot = () => {
     chatId: "",
     role: "",
     timestamp: Timestamp.now(),
-  };
-
-  const toggleSettings = () => {
-    setSettings(!settings);
   };
 
   const getConversationHistory = useCallback(async () => {
@@ -308,15 +303,12 @@ const useChatbot = () => {
   return {
     latestChat,
     questionsListRef,
-    settings,
-    setSettings,
     loading,
     setLoading,
     isFaqsMenuActive,
     setIsFaqsMenuActive,
     userMessage,
     setUserMessage,
-    toggleSettings,
     conversation,
     sendMessageToBot,
     sendSuggestedQueryToBot,
