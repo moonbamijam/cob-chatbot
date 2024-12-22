@@ -43,7 +43,10 @@ const ChatProvider = ({ children }: { children: React.ReactNode }) => {
     };
     document.addEventListener("mousedown", handleMouseDown);
     const escChat = (event: KeyboardEvent) => {
-      if (event.key.toLowerCase() === "escape") setIsChatActive(false);
+      if (event.key.toLowerCase() === "escape") {
+        setIsSettingsActive(false);
+        setIsChatActive(false);
+      }
     };
     document.addEventListener("keyup", escChat);
 
