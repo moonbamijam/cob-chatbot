@@ -2,6 +2,7 @@ import { MouseEventHandler, useContext } from "react";
 
 // context
 import { ChatbotContext } from "@contexts/ChatbotContext";
+import { ChatContext } from "@contexts/ChatContext";
 
 // components
 import Button from "@components/ui/Button";
@@ -14,18 +15,18 @@ import { LuMaximize, LuMinimize } from "react-icons/lu";
 type HeaderProps = {
   isLargeScreen: boolean;
   toggleLargeScreen: MouseEventHandler<HTMLButtonElement>;
-  toggleSettings: MouseEventHandler<HTMLButtonElement>;
   closeUsing: MouseEventHandler<HTMLButtonElement>;
 };
 
 const ChatBoxHeader = ({
   isLargeScreen,
   toggleLargeScreen,
-  toggleSettings,
   closeUsing,
 }: HeaderProps) => {
   const chatbot = useContext(ChatbotContext);
   const { configuration } = chatbot?.configuration || {};
+  const chat = useContext(ChatContext);
+  const { isSettingsActive, setIsSettingsActive } = chat.settings;
 
   return (
     <header
@@ -33,7 +34,7 @@ const ChatBoxHeader = ({
       className="w-full flex items-center justify-between px-4 py-2 sm:py-3 lg:py-4 mr-auto border-b-2 dark:border-b-dm-surface-dark"
     >
       <button
-        onClick={toggleSettings}
+        onClick={() => setIsSettingsActive(!isSettingsActive)}
         id="chatbot-detai"
         className="max-w-[60%] w-full flex items-center gap-4"
       >
@@ -65,7 +66,7 @@ const ChatBoxHeader = ({
           variant="icon"
           size="icon"
           className="rounded-full hover:bg-primary hover:rotate-180 [&>svg>path]:hover:text-white [&>svg>path]:dark:text-white"
-          onClick={toggleSettings}
+          onClick={() => setIsSettingsActive(!isSettingsActive)}
         >
           <IoSettingsSharp />
         </Button>

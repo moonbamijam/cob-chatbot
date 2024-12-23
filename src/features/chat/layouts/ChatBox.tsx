@@ -24,12 +24,10 @@ const ChatBox = ({ closeUsing }: ChatBoxProps) => {
   const {
     latestChat,
     questionsListRef,
-    settings,
     isFaqsMenuActive,
     setIsFaqsMenuActive,
     userMessage,
     setUserMessage,
-    toggleSettings,
     sendMessageToBot,
     sendSuggestedQueryToBot,
   } = useChatbot();
@@ -58,7 +56,6 @@ const ChatBox = ({ closeUsing }: ChatBoxProps) => {
         <ChatBoxHeader
           isLargeScreen={isLargeScreen}
           toggleLargeScreen={toggleLargeScreen}
-          toggleSettings={toggleSettings}
           closeUsing={closeUsing}
         />
         <ChatSection latestChat={latestChat} isLargeScreen={isLargeScreen} />
@@ -80,7 +77,7 @@ const ChatBox = ({ closeUsing }: ChatBoxProps) => {
           The Chatbot can make mistake. Please double check the answers.
         </div>
       </div>
-      <Settings settings={settings} toggleSettings={toggleSettings} />
+      <Settings />
     </>
   );
 };
