@@ -95,7 +95,9 @@ const ChatInputSection = ({
           </p>
         </div>
 
-        <div className="inline-grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-2 gap-2 ">
+        <div
+          className={`inline-grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-2 ${isLargeScreen ? "xl:grid-cols-3 2xl:grid-cols-4" : ""} gap-2`}
+        >
           {menuAccessQueries.length ? (
             <ItemsRenderer
               items={menuAccessQueries}
