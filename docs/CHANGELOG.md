@@ -1,5 +1,22 @@
 # What's New
 
+# [3.4.0](https://github.com/moonbamijam/cob-chatbot/compare/v3.3.0...v3.4.0) (2025-01-22)
+
+
+### Bug Fixes
+
+* cannot handle both link and file response ([#242](https://github.com/moonbamijam/cob-chatbot/issues/242)) ([5dd0039](https://github.com/moonbamijam/cob-chatbot/commit/5dd0039638e273ee7f6d76ea2070321580aa754c)), closes [#237](https://github.com/moonbamijam/cob-chatbot/issues/237)
+
+
+### Features
+
+* add dynamic landing screen ([#229](https://github.com/moonbamijam/cob-chatbot/issues/229)) ([ce0d6bf](https://github.com/moonbamijam/cob-chatbot/commit/ce0d6bf509fd0a5809849cad2369c249868226f2))
+* add esc key listener for closing the chat ([#232](https://github.com/moonbamijam/cob-chatbot/issues/232)) ([15322f8](https://github.com/moonbamijam/cob-chatbot/commit/15322f8ba9698aa11c69e07124c99f4e01f21ba8))
+* add large screen ui to chat box ([#231](https://github.com/moonbamijam/cob-chatbot/issues/231)) ([c116cd8](https://github.com/moonbamijam/cob-chatbot/commit/c116cd8a774821804df620a297bd3a3b4c12f1bb)), closes [#209](https://github.com/moonbamijam/cob-chatbot/issues/209)
+* add skeleton screens to suggested queries ([#230](https://github.com/moonbamijam/cob-chatbot/issues/230)) ([ee0c636](https://github.com/moonbamijam/cob-chatbot/commit/ee0c636956346851135f1f0ee423f3c215f2853c))
+* update grid to menu queries ([#239](https://github.com/moonbamijam/cob-chatbot/issues/239)) ([aa25258](https://github.com/moonbamijam/cob-chatbot/commit/aa252584416ae80f8d188c9afcf7b0cff243a236))
+* update meta tags and favicon ([#240](https://github.com/moonbamijam/cob-chatbot/issues/240)) ([b48df09](https://github.com/moonbamijam/cob-chatbot/commit/b48df092d5027d479ecb547b09e94bc8a74c50d6)), closes [#238](https://github.com/moonbamijam/cob-chatbot/issues/238)
+
 # [3.3.0](https://github.com/moonbamijam/cob-chatbot/compare/v3.2.1...v3.3.0) (2024-12-11)
 
 
