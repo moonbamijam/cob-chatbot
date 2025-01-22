@@ -213,7 +213,6 @@ const ChatLayout = ({
               {video && (
                 <video
                   controls
-                  muted
                   className="w-max max-w-[70%] md:max-w-[60%] max-h-max rounded-xl outline-primary object-contain cursor-pointer"
                 >
                   <source src={video} type="video/mp4" />
