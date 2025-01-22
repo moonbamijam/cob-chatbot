@@ -120,3 +120,77 @@ export const processDepartmentServicesResponse = (
   }
   return chatData;
 };
+
+export const processFileWithLinkResponse = (
+  intent: string,
+  response: string,
+  link: string,
+  fileLink: string,
+  fileName: string,
+  fileExtension: string,
+): chatType => {
+  if (images.includes(fileExtension)) {
+    if (response === link) {
+      chatData = {
+        intent: intent,
+        link: link,
+        chat: null,
+        chatId: uuid(),
+        role: "bot",
+        timestamp: Timestamp.now(),
+      };
+    } else {
+      chatData = {
+        intent: intent,
+        image: fileLink,
+        chat: null,
+        chatId: uuid(),
+        role: "bot",
+        timestamp: Timestamp.now(),
+      };
+    }
+  } else if (videos.includes(fileExtension)) {
+    if (response === link) {
+      chatData = {
+        intent: intent,
+        link: link,
+        chat: null,
+        chatId: uuid(),
+        role: "bot",
+        timestamp: Timestamp.now(),
+      };
+    } else {
+      chatData = {
+        intent: intent,
+        video: fileLink,
+        chat: null,
+        chatId: uuid(),
+        role: "bot",
+        timestamp: Timestamp.now(),
+      };
+    }
+  } else if (files.includes(fileExtension)) {
+    if (response === link) {
+      chatData = {
+        intent: intent,
+        link: link,
+        chat: null,
+        chatId: uuid(),
+        role: "bot",
+        timestamp: Timestamp.now(),
+      };
+    } else {
+      chatData = {
+        intent: intent,
+        file: fileName,
+        fileLink: fileLink,
+        fileType: fileExtension,
+        chat: null,
+        chatId: uuid(),
+        role: "bot",
+        timestamp: Timestamp.now(),
+      };
+    }
+  }
+  return chatData;
+};
