@@ -31,6 +31,7 @@ import { userPost } from "@lib/user";
 import {
   processDepartmentServicesResponse,
   processFileResponse,
+  processFileWithLinkResponse,
   processLinkResponse,
 } from "@lib/process-response";
 import postQuery from "@lib/post-query";
@@ -44,7 +45,7 @@ import {
   hasLinkSymbol,
 } from "@utils/symbol-checker";
 import { smoothScrollInto } from "@utils/scroll-into";
-import { extractLink } from "@utils/extract-link";
+import { extractLink, extractMultipleLink } from "@utils/extract-link";
 import { extractFileNameFromUrl } from "@utils/extract-file-name-from-url";
 
 // shared
@@ -146,6 +147,39 @@ const useChatbot = () => {
                   role: "bot",
                   timestamp: Timestamp.now(),
                 };
+                setIsBotTyping(false);
+                userPost(user.uid, chatData);
+                setIsFaqsMenuActive(false);
+                playMessageNotification();
+              },
+            );
+          } else if (hasLinkSymbol(answer) && hasFileSymbol(answer)) {
+            const { link, fileLink } = extractMultipleLink(answer);
+
+            const fileName = fileLink ? extractFileNameFromUrl(fileLink) : "";
+            const fileExtension = fileName?.split(".")[1];
+
+            const fileWithLinkResponse: string[] =
+              link && fileLink ? [link, fileLink] : [];
+
+            fileWithLinkResponse.forEach(
+              async (response: string, i: number) => {
+                console.log(response);
+                if (i == 1) {
+                  await sleep(1);
+                  setIsBotTyping(true);
+                  await sleep(1);
+                }
+                chatData = fileExtension
+                  ? processFileWithLinkResponse(
+                      intent,
+                      response,
+                      link,
+                      fileLink,
+                      fileName,
+                      fileExtension,
+                    )
+                  : chatData;
                 setIsBotTyping(false);
                 userPost(user.uid, chatData);
                 setIsFaqsMenuActive(false);
