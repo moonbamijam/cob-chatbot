@@ -32,3 +32,32 @@ export const extractLink = (
   }
   return { link: "", linkMessage: null, text: input.trim() };
 };
+
+export const extractMultipleLink = (
+  input: string,
+): { link: string; fileLink: string; linkMessage?: string | null } => {
+  const fileLinkRegex = /\[=(.*?)=]/;
+  const fileLinkMatch = input.match(fileLinkRegex);
+
+  const regularLinkRegex = /{=([^{}]+)=}/;
+  const regularLinkMatch = input.match(regularLinkRegex);
+
+  const regularLinkMessageRegex = /<([^<>]+)>/;
+  const regularLinkMessageMatch = input.match(regularLinkMessageRegex);
+
+  if (
+    fileLinkMatch &&
+    ((regularLinkMatch && regularLinkMessageMatch) || regularLinkMatch)
+  ) {
+    const fileLink = fileLinkMatch[1];
+
+    const link = input
+      .replace(/<(.+?)>{=(.+?)=}/g, (_match, text, url) => {
+        return `<a class="font-semibold text-primary dark:text-secondary hover:underline" href="${url}" target="_blank" rel="noopener noreferrer">${text}</a>`;
+      })
+      .replace(fileLinkRegex, "");
+
+    return { link, fileLink };
+  }
+  return { link: "", fileLink: "", linkMessage: null };
+};
