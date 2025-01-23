@@ -3,7 +3,7 @@
   "short_name": "COB Chatbot",
   "theme_color": "#286ffd",
   "background_color": "#ffffff",
-  "start_url": "/",
+  "start_url": "/user",
   "display": "standalone",
   "icons": [
     {
