@@ -19,7 +19,6 @@ const ChatBubble = ({
   toggleFullTimestamp,
 }: ChatBubbleProps) => {
   const font = useContext(FontContext);
-  const { fontSize } = font.size;
 
   const renderChatBubble = () => {
     switch (role) {
@@ -28,10 +27,11 @@ const ChatBubble = ({
           <div
             className={`rounded-3xl shadow px-4 py-3 space-y-2 break-words selection:bg-secondary selection:text-black ${className}`}
             onClick={toggleFullTimestamp}
+            role="container"
           >
             <div
               id="chat"
-              style={{ fontSize: fontSize }}
+              style={{ fontSize: font.size?.fontSize }}
               className="relative dark:text-white"
             >
               {children}
@@ -49,10 +49,11 @@ const ChatBubble = ({
           <div
             className={`rounded-3xl shadow px-4 py-3 space-y-2 break-words ${className}`}
             onClick={toggleFullTimestamp}
+            role="container"
           >
             <div
               id="chat"
-              style={{ fontSize: fontSize }}
+              style={{ fontSize: font.size?.fontSize }}
               className="relative dark:text-white"
             >
               {children}
