@@ -72,9 +72,10 @@
   },
   "lint-staged": {
     "*.{ts,js,tsx,json,css,html}": "prettier --write",
-    "*.{ts,js}": [
+    "*.{ts,js, tsx}": [
       "prettier --write",
-      "eslint"
+      "eslint",
+      "vitest --run"
     ]
   }
 }
